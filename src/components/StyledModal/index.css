@@ -1,0 +1,9 @@
+.ant-modal-content {
+  border-radius: 12px !important;
+}
+@media (max-width: 768px) {
+  .ant-modal {
+    max-width: calc(100vw - 30px) !important;
+    margin: 15px auto !important;
+  }
+}
