@@ -182,14 +182,17 @@ const UnlockButton: React.FunctionComponent = () => {
       )
     } else if (account) {
       return (
-        <ConnectButton
+        <GradientButton
           onClick={() => {
             setLogoutModalShow(() => true)
           }}
         >
-          <WalletIcon src={require('../../assets/images/Icons/wallet.png').default} alt="wallet icon" />
-          {shortAddress(account)}
-        </ConnectButton>
+          <GradientButtonBg />
+          <GradientButtonContent>
+            <WalletIcon src={require('../../assets/images/Icons/wallet.png').default} alt="wallet icon" />
+            <GradientText fontSize="14px">{shortAddress(account)}</GradientText>
+          </GradientButtonContent>
+        </GradientButton>
       )
     } else {
       return (
