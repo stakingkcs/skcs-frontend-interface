@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux'
 import { toggleConnectWalletModalShow } from '../../state/wallet/actions'
 import { CenterRow } from '../Row'
 import { Badge } from 'antd'
+import { Image } from 'components'
 
 import { AlertOutlined } from '@ant-design/icons'
 
@@ -81,14 +82,25 @@ const HighlightText = styled.span`
 
 const ErrorButton = styled(ConnectButton)`
   color: #f00;
-  border: 1px solid #fff;
   display: flex;
   padding-right: 15px;
   justify-content: center;
   align-items: center;
+  background: rgba(248, 71, 82, 0.2);
+  border-radius: 30px;
+  border: none;
+  &:hover {
+    background: rgba(248, 71, 82, 0.2) !important;
+  }
 
   ${Text} {
-    color: #fff;
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: #f84752;
   }
 `
 const WalletIcon = styled.img`
@@ -159,8 +171,13 @@ const UnlockButton: React.FunctionComponent = () => {
     if (hasError) {
       return (
         <ErrorButton onClick={() => switchNetwork(process.env.REACT_APP_CHAIN_ID)}>
-          <AlertOutlined style={{ fontSize: '16px', color: '#fff', margin: '-2px 5px 0px 5px' }} />
-          <Text>{i18next.t(`${errorInfo}`)}</Text>
+          <Image
+            src={require('../../assets/images/Icons/wifi.png').default}
+            width="20px"
+            height="20px"
+            alt="wifi-icon"
+          />
+          <Text style={{ marginLeft: '6px' }}>{i18next.t(`${errorInfo}`)}</Text>
         </ErrorButton>
       )
     } else if (account) {
