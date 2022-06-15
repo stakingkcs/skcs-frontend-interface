@@ -17,6 +17,8 @@ import { AlertOutlined } from '@ant-design/icons'
 import i18next from 'i18next'
 import { getNetworkInfo } from 'utils'
 import { switchNetwork } from '../../utils/wallet'
+import { GradientBgColor } from 'components'
+import { GradientText } from 'components/Text'
 
 const ConnectButton = styled(LanguageButton)`
   width: auto;
@@ -27,10 +29,41 @@ const ConnectButton = styled(LanguageButton)`
   cursor: pointer;
   height: 36px;
   font-size: 14px;
-  font-family: Barlow;
   border: 1.5px solid #00d092;
   background: #000;
 `
+
+const GradientButton = styled(ConnectButton)`
+  position: relative;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  ${GradientBgColor}
+  &:hover {
+    ${GradientBgColor}
+  }
+`
+
+const GradientButtonContent = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+`
+
+const GradientButtonBg = styled.div`
+  position: absolute;
+  width: 99%;
+  height: 34px;
+  left: 1px;
+  top: 1px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 1;
+`
+
 const Text = styled.span`
   user-select: none;
 `
@@ -143,10 +176,13 @@ const UnlockButton: React.FunctionComponent = () => {
       )
     } else {
       return (
-        <ConnectButton onClick={connect}>
-          <WalletIcon src={require('../../assets/images/Icons/wallet.png').default} alt="wallet icon" />
-          <Text style={{ paddingRight: '15px' }}>{t(`Connect Wallet`)}</Text>
-        </ConnectButton>
+        <GradientButton onClick={connect}>
+          <GradientButtonBg />
+          <GradientButtonContent>
+            <WalletIcon src={require('../../assets/images/Icons/wallet.png').default} alt="wallet icon" />
+            <GradientText style={{ paddingRight: '15px', fontSize: '14px' }}>{t(`Connect Wallet`)}</GradientText>
+          </GradientButtonContent>
+        </GradientButton>
       )
     }
   }, [hasError, account, chainId])

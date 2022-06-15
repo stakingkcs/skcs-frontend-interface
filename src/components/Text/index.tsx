@@ -20,6 +20,7 @@ const Text = styled.div<TextProps>`
   font-size: ${getFontSize};
   font-weight: ${({ bold }) => (bold ? 600 : 400)};
   line-height: 1.5;
+  font-family: Arial;
   ${({ textTransform }) => textTransform && `text-transform: ${textTransform};`}
   ${({ ellipsis }) =>
     ellipsis &&
@@ -37,5 +38,11 @@ Text.defaultProps = {
   small: false,
   ellipsis: false,
 }
+
+export const GradientText = styled(Text)`
+  background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%);
+  color: transparent;
+  -webkit-background-clip: text;
+`
 
 export default Text

@@ -8,7 +8,7 @@ import DeFiMarket from 'pages/defimarket'
 import Staking from 'pages/staking'
 import Test from 'pages/test'
 import React, { Suspense, useEffect } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import { useFetchPoolsPublicData } from 'state/hooks'
 import { useConnectWalletModalShow } from 'state/wallet/hooks'
 import { getPoolAprList } from 'utils/getAprList'
@@ -32,10 +32,12 @@ export default function App() {
         <AppLayout>
           <WalletListModal visible={walletListModalShow} />
           <Switch>
-            <Route path="/" exact={true} component={Home} />
+            <Route path="/home" exact={true} component={Home} />
             <Route path="/staking" exact={true} component={Staking} />
             <Route path="/defi-market" exact={true} component={DeFiMarket} />
-            {process.env.REACT_APP_NETWORK_ENV !== 'main' && <Route path="/test" exact={true} component={Test} />}
+            <Route path="/" exact={true}>
+              <Redirect to="/home" />
+            </Route>
             <Route path="*" component={NotFound} />
           </Switch>
         </AppLayout>

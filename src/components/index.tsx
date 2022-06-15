@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Text from './Text'
 
 export { Text }
@@ -36,4 +36,8 @@ export const CenterBox = styled(FlexBox)<{ dir?: string }>`
   flex-flow: ${({ dir }) => dir ?? 'column'} nowrap;
   justify-content: center;
   align-items: center;
+`
+
+export const GradientBgColor = css`
+  background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%) !important;
 `

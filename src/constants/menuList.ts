@@ -39,7 +39,7 @@ export const HOME_MENU_LIST = [
 export const MENU_LIST = [
   {
     name: 'Home',
-    route: '/',
+    route: '/home',
     hasChildren: false,
   },
   {
@@ -54,12 +54,12 @@ export const MENU_LIST = [
   },
   {
     name: 'Doc',
-    route: '/',
+    route: 'https://docs.kcc.io',
     hasChildren: false,
   },
   {
     name: 'FAQ',
-    route: '/',
+    route: 'https://docs.kcc.io',
     hasChildren: false,
   },
 ]
