@@ -1,34 +1,61 @@
-import React from 'react'
 import { Input, InputProps } from 'antd'
-import styled from 'styled-components'
 import BN from 'bignumber.js'
+import { Image } from 'components'
+import React from 'react'
+import styled from 'styled-components'
 
-import './index.less'
 import { useBalance } from '../../state/wallet/hooks'
+import './index.less'
+import { RowCenterBox } from '../index'
 
 const StyledInputWrap = styled.div`
   width: 100%;
   height: auto;
-  margin: 12px 0;
+  position: relative;
 `
 
 const SInput = styled(Input)`
-  background: #ffffff;
-  border: 1px solid #dbdbe6;
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 8px;
+  padding-left: 18px;
+  .ant-input {
+    margin-left: 10px;
+    color: #fff !important;
+    background: transparent;
+    height: 40px;
+  }
 `
 
 const ErrorInfo = styled.div`
-  margin: 12px 0;
+  position: absolute;
+  bottom: -26px;
+  left: 0;
   color: red;
 `
 
 const SuffixText = styled.div`
-  font-family: 'Barlow';
+  font-family: 'Arial';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  color: #7f8393;
+  color: #fff;
+`
+
+const MaxButton = styled.div`
+  background: rgba(0, 208, 146, 0.16);
+  border-radius: 4px;
+  width: 44px;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #00d092;
+  margin-right: 12px;
+  cursor: pointer;
 `
 
 interface Props {
@@ -86,15 +113,24 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
   return (
     <StyledInputWrap>
       <SInput
-        type="number"
         onChange={checkValue}
         width="100%"
-        height="40px"
+        height="54px"
         size="large"
-        placeholder="Please enter an integer amount"
-        suffix={<SuffixText>KCS</SuffixText>}
+        style={{ color: '#fff' }}
+        placeholder="Amount"
+        suffix={
+          <RowCenterBox>
+            <MaxButton>Max</MaxButton>
+            <SuffixText>KCS</SuffixText>
+          </RowCenterBox>
+        }
+        prefix={
+          <Image src={require('../../assets/images/Icons/kcs.png').default} width="24px" height="24px" alt="kcs-icon" />
+        }
       />
       {props.error.hasError && props.error.errorInfo && <ErrorInfo>{`* ${props.error.errorInfo}`}</ErrorInfo>}
+
     </StyledInputWrap>
   )
 }

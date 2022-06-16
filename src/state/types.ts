@@ -1,5 +1,7 @@
 import { BigNumber } from 'ethers/utils'
 import { PoolConfig, ValidatorStatus } from '../constants/types'
+import { ApplicationState } from './application/reducer'
+import { WalletState } from './wallet/reducer'
 
 export type TranslatableText =
   | string
@@ -89,4 +91,6 @@ export interface State {
   prices: PriceState
   pools: PoolsState
   block: BlockState
+  application: ApplicationState
+  wallet: WalletState
 }

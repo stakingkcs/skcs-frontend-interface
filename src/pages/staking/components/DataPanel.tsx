@@ -15,6 +15,7 @@ import { usePools } from '../../../state/hooks'
 import { useBalance } from '../../../state/wallet/hooks'
 import { useDispatch } from 'react-redux'
 import { toggleConnectWalletModalShow } from '../../../state/wallet/actions'
+import RowData from 'components/RowData'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -66,7 +67,7 @@ const ContentWrap = styled.div<{ connected: boolean }>`
     if (connected) {
       return '495px'
     }
-    return '454px'
+    return '328px'
   }};
 `
 const ExtraTitle = styled.div`
@@ -134,7 +135,10 @@ const StakingPanel: FunctionComponent = () => {
               <DataItem
                 title="APR"
                 titleExtra={
-                  <Tooltip placement="top" title="apr description">
+                  <Tooltip
+                    placement="top"
+                    title="APR is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APR = (exchange price 48 hours ago - exchange price at this time)*180*100%"
+                  >
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
@@ -149,13 +153,10 @@ const StakingPanel: FunctionComponent = () => {
                 title="Staked amount"
                 balance="10.00 sKCS"
                 uBalance="≈$400.0026"
-                titleExtra={
-                  <Tooltip placement="top" title="apr description">
-                    <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
-                  </Tooltip>
-                }
                 balanceExtra={
-                  <PlusIcon src={require('../../../assets/images/Icons/plus.png').default} alt="add-token-icon" />
+                  <Tooltip placement="top" title="Add token to wallet">
+                    <PlusIcon src={require('../../../assets/images/Icons/plus.png').default} alt="add-token-icon" />
+                  </Tooltip>
                 }
               />
             </RowCenterBox>
@@ -165,7 +166,10 @@ const StakingPanel: FunctionComponent = () => {
                 balance="10.00 KCS"
                 uBalance="≈$400.0026"
                 titleExtra={
-                  <Tooltip placement="top" title="pending description">
+                  <Tooltip
+                    placement="top"
+                    title="Pending amount means the stKCS unstaking is under processing, the period takes around 3-6 days to process, you can withdraw it after that."
+                  >
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
@@ -173,7 +177,10 @@ const StakingPanel: FunctionComponent = () => {
               <DataItem
                 title="APR"
                 titleExtra={
-                  <Tooltip placement="top" title="apr description">
+                  <Tooltip
+                    placement="top"
+                    title="APR is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit. APR = (exchange price 48 hours ago - exchange price at this time)*180*100%"
+                  >
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
@@ -187,7 +194,10 @@ const StakingPanel: FunctionComponent = () => {
                 balance="10.00 KCS"
                 uBalance="≈$400.0026"
                 titleExtra={
-                  <Tooltip placement="top" title="pending description">
+                  <Tooltip
+                    placement="top"
+                    title="Pending amount means the stKCS unstaking is under processing, the period takes around 3-6 days to process, you can withdraw it after that."
+                  >
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }

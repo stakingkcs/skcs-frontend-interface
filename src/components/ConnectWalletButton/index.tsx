@@ -20,6 +20,8 @@ import { getNetworkInfo } from 'utils'
 import { switchNetwork } from '../../utils/wallet'
 import { GradientBgColor } from 'components'
 import { GradientText } from 'components/Text'
+import { WalletList } from '../../constants/wallet'
+import { useWalletId } from '../../state/hooks'
 
 const ConnectButton = styled(LanguageButton)`
   width: auto;
@@ -151,23 +153,23 @@ const UnlockButton: React.FunctionComponent = () => {
 
   const dispatch = useDispatch()
 
+  const walletId = useWalletId()
+
   const { errorInfo, hasError } = useWalletErrorInfo()
 
-  const selectedNetworkInfo = React.useMemo(() => {
-    return getNetworkInfo(chainId as any)
-  }, [chainId])
+  const walletLogo = React.useMemo(() => {
+    return WalletList[walletId].logo
+  }, [walletId])
 
   const hideLogout = (show: boolean) => {
     setLogoutModalShow(() => show)
   }
 
   const connect = () => {
-    console.log('haha')
     dispatch(toggleConnectWalletModalShow({ show: true }))
   }
 
   const btn = React.useMemo(() => {
-    console.log('account', account)
     if (hasError) {
       return (
         <ErrorButton onClick={() => switchNetwork(process.env.REACT_APP_CHAIN_ID)}>
@@ -189,7 +191,10 @@ const UnlockButton: React.FunctionComponent = () => {
         >
           <GradientButtonBg />
           <GradientButtonContent>
-            <WalletIcon src={require('../../assets/images/Icons/wallet.png').default} alt="wallet icon" />
+            <WalletIcon
+              src={account ? walletLogo : require('../../assets/images/Icons/wallet.png').default}
+              alt="wallet-icon"
+            />
             <GradientText fontSize="14px">{shortAddress(account)}</GradientText>
           </GradientButtonContent>
         </GradientButton>
@@ -199,7 +204,10 @@ const UnlockButton: React.FunctionComponent = () => {
         <GradientButton onClick={connect}>
           <GradientButtonBg />
           <GradientButtonContent>
-            <WalletIcon src={require('../../assets/images/Icons/wallet.png').default} alt="wallet icon" />
+            <WalletIcon
+              src={account ? walletLogo : require('../../assets/images/Icons/wallet.png').default}
+              alt="wallet icon"
+            />
             <GradientText style={{ paddingRight: '15px', fontSize: '14px' }}>{t(`Connect Wallet`)}</GradientText>
           </GradientButtonContent>
         </GradientButton>

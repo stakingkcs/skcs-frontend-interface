@@ -7,10 +7,7 @@ import { State } from './types'
 import { useWeb3React } from '@web3-react/core'
 import { sortBy } from 'lodash'
 
-let count = 0
-
 const debounceUseFetchPublicData = debounce((account, dispatch) => {
-  console.log('count++++++++++', count++)
   dispatch(fetchPoolsPublicDataAsync(account))
 }, 500)
 
@@ -42,4 +39,8 @@ export const useSortedPools = () => {
 
 export const usePoolsUpdatedTime = () => {
   return useSelector((state: State) => state.pools.updatedAt)
+}
+
+export const useWalletId = () => {
+  return useSelector((state: State) => state.wallet.walletId)
 }
