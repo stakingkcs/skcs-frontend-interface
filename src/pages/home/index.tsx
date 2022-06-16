@@ -11,12 +11,18 @@ import Steps from './components/Steps'
 import FAQ from './components/FAQ'
 import BeValidator from './components/BeValidator'
 import Audit from './components/Audit'
+import HomeBanner from './components/HomeBanner'
+import { isMobile } from 'react-device-detect'
+import StakeBenefit from './components/StakeBenefit'
+import StakeProcess from './components/StakeProcess'
+import StakeReward from './components/StakeReward'
 
 const HomeWrap = styled.div`
   height: auto;
   min-height: calc(100vh - 320px);
   width: 100%;
   background: #000;
+  padding: 0 120px;
 `
 
 const bannerBg = require('../../assets/images/home/banner.png').default
@@ -110,7 +116,12 @@ const HomePage: React.FunctionComponent = () => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="KCC Staking | Buy KCS to Vote | KuCoin Community Chain" />
       </Helmet>
-      <HomeWrap>home</HomeWrap>
+      <HomeWrap>
+      <HomeBanner />
+      <StakeBenefit />
+      <StakeProcess />
+      <StakeReward />
+      </HomeWrap>
     </>
   )
 }
