@@ -2,6 +2,7 @@ import React from 'react'
 
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
+import StyledButton from 'components/StyledButton'
 
 const Header = styled.div`
   width: 100%;
@@ -44,6 +45,11 @@ const NumberText = styled.span`
     font-size: 20px;
   }
 `
+const ButtonWarp = styled.div`
+    width: 160px;
+    height: 50px;
+    margin: 40px 0;
+`
 
 const HomeBanner: React.FunctionComponent = () => {
 
@@ -56,6 +62,11 @@ const HomeBanner: React.FunctionComponent = () => {
             The KCC staking protocol currently has <NumberText> $ 64,846,849.846</NumberText>
             of KCS staking <NumberText>$ 8,884,324.846</NumberText> of rewards paid <NumberText> 3.5%</NumberText> APR
           </Title>
+          <ButtonWarp>
+          <StyledButton>
+             Stake Now
+          </StyledButton>
+          </ButtonWarp>  
         </div>
       </Header>
     </>

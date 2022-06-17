@@ -41,3 +41,18 @@ export const CenterBox = styled(FlexBox)<{ dir?: string }>`
 export const GradientBgColor = css`
   background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%) !important;
 `
+
+
+export const Title = styled.div`
+font-family: 'Arial';
+font-style: normal;
+font-weight: bold;
+font-size: 40px;
+text-align: center;
+color: #ffffff;
+margin: 160px 0 60px;
+/* @media (max-width: 768px) {
+  font-size: 26px;
+  margin: 0 8px;
+} */
+`

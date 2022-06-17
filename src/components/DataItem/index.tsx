@@ -25,7 +25,7 @@ const SubTitle = styled.div`
   font-family: 'Arial';
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 24px;
   display: flex;
   align-items: center;

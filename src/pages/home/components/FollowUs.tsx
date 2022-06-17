@@ -33,7 +33,7 @@ const ItemLink = styled.a`
   transition: all 0.3s ease-in;
   background: #1c1c24;
   &:hover {
-    background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%);
+    background: linear-gradient(120.14deg, #00d092 -4.82%, #d04aff 113.33%);
   }
   &:hover ${ItemImg} {
     transform: scale(0.9);

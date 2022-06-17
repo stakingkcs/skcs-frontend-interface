@@ -16,13 +16,16 @@ import { isMobile } from 'react-device-detect'
 import StakeBenefit from './components/StakeBenefit'
 import StakeProcess from './components/StakeProcess'
 import StakeReward from './components/StakeReward'
+import FAQTip from './components/FAQTip'
+import FollowUs from './components/FollowUs'
 
 const HomeWrap = styled.div`
   height: auto;
   min-height: calc(100vh - 320px);
   width: 100%;
   background: #000;
-  padding: 0 120px;
+  padding: 0 160px;
+  padding-bottom: 160px;
 `
 
 const bannerBg = require('../../assets/images/home/banner.png').default
@@ -85,11 +88,16 @@ const StakingButton = styled.div`
   }
 `
 
+const FaqWarp = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
 const HomePage: React.FunctionComponent = () => {
   // const { isMobile, isTablet, isPC } = useResponsive()
   // const { t, i18n } = useTranslation()
   console.log('HomePage')
-  
+
   const { account } = useWeb3React()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -117,10 +125,14 @@ const HomePage: React.FunctionComponent = () => {
         <meta name="twitter:title" content="KCC Staking | Buy KCS to Vote | KuCoin Community Chain" />
       </Helmet>
       <HomeWrap>
-      <HomeBanner />
-      <StakeBenefit />
-      <StakeProcess />
-      <StakeReward />
+        <HomeBanner />
+        <StakeBenefit />
+        <StakeProcess />
+        <StakeReward />
+        <FaqWarp>
+          <FAQTip title="Have more questions?" desc="Check out our Gitbook for more information" />
+          <FollowUs />
+        </FaqWarp>
       </HomeWrap>
     </>
   )
