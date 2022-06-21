@@ -7,16 +7,15 @@ import StyledModal from 'components/StyledModal'
 import { formatEther } from 'ethers/utils'
 import React from 'react'
 import { useAppDispatch } from 'state'
-import { fetchPoolsUserDataAsync } from 'state/pools'
-import { Pool } from 'state/types'
 import { useBalance } from 'state/wallet/hooks'
 import styled from 'styled-components'
 import { updateBalance } from 'utils/wallet'
 import StyledButton from '../../../components/StyledButton/index'
 import { MOJITOSWAP_SWAP_URL } from '../../../constants/index'
-import { useValidatorContract } from '../../../hooks/useContract'
 import { validatorContractHelper } from '../../../utils/validator'
-import { fetchPoolsPublicDataAsync } from '../../../state/pools/index'
+import { useStakerContract } from '../../../hooks/useContract'
+import { fetchStakerPublicData } from '../../../state/staker/fetchStaker'
+import { StakerState } from '../../../state/types';
 
 const ModalWrap = styled.div`
   padding: 23px 20px;
@@ -51,7 +50,7 @@ const BuyLink = styled.a`
   }
 `
 
-const VoteModal: React.FunctionComponent<ModalProps & { validator: Pool; setHash: any } & { setModalList: any }> = ({
+const VoteModal: React.FunctionComponent<ModalProps & { validator: StakerState; setHash: any } & { setModalList: any }> = ({
   validator,
   ...props
 }) => {
@@ -67,7 +66,7 @@ const VoteModal: React.FunctionComponent<ModalProps & { validator: Pool; setHash
 
   const dispatch = useAppDispatch()
 
-  const validatorContract = useValidatorContract()
+  const validatorContract = useStakerContract()
 
   const { library, account, chainId } = useWeb3React()
 
@@ -80,36 +79,36 @@ const VoteModal: React.FunctionComponent<ModalProps & { validator: Pool; setHash
   const handleVote = React.useCallback(async () => {
     props.setHash(() => '')
     setVoteLoading(() => true)
-    try {
-      const response = await validatorContractHelper.voteForValidator(
-        validatorContract,
-        validator.address,
-        Number(voteKCS)
-      )
-      if (response.status) {
-        console.log('response.data', response.data)
-        props.setHash(() => response.data?.transactionHash)
-        setTimeout(() => {
-          if (response.data?.status === 1) {
-            dispatch(fetchPoolsPublicDataAsync(account as any))
-            props.setModalList((list) => {
-              return { ...list, voteModalShow: false, successModalShow: true }
-            })
-            updateBalance(library, account as any)
-          } else {
-            props.setModalList((list) => {
-              return { ...list, voteModalShow: false, failModalShow: true }
-            })
-          }
-        }, 1)
-      } else {
-        props.setModalList((list) => {
-          return { ...list, voteModalShow: false, failModalShow: true }
-        })
-      }
-    } finally {
-      setVoteLoading(() => false)
-    }
+    // try {
+    //   const response = await validatorContractHelper.voteForValidator(
+    //     validatorContract,
+    //     validator.address,
+    //     Number(voteKCS)
+    //   )
+    //   if (response.status) {
+    //     console.log('response.data', response.data)
+    //     props.setHash(() => response.data?.transactionHash)
+    //     setTimeout(() => {
+    //       if (response.data?.status === 1) {
+    //         dispatch(fetchStakerPublicData())
+    //         props.setModalList((list) => {
+    //           return { ...list, voteModalShow: false, successModalShow: true }
+    //         })
+    //         updateBalance(library, account as any)
+    //       } else {
+    //         props.setModalList((list) => {
+    //           return { ...list, voteModalShow: false, failModalShow: true }
+    //         })
+    //       }
+    //     }, 1)
+    //   } else {
+    //     props.setModalList((list) => {
+    //       return { ...list, voteModalShow: false, failModalShow: true }
+    //     })
+    //   }
+    // } finally {
+    //   setVoteLoading(() => false)
+    // }
   }, [setVoteLoading, props, dispatch, voteKCS, validatorContract])
 
   return (

@@ -6,6 +6,8 @@ import { Helmet } from 'react-helmet-async'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
 import StakingPanel from './components/StakingPanel'
+import FAQ from './components/FAQ'
+import Statistics from './components/Statistics'
 
 const gradientBg = require('../../assets/images/gradient-bg.png').default
 
@@ -24,6 +26,31 @@ export const Content = styled.div`
   margin: 0 auto;
   position: relative;
   height: auto;
+`
+
+const BottomPanel = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: auto;
+  padding-top: 64px;
+  padding-bottom: 60px;
+`
+
+const FaqWrap = styled.div`
+  width: 568px;
+  height: 100%;
+`
+const StaticsPanel = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 600px;
+  height: 100%;
 `
 
 const StakingPage: React.FunctionComponent = () => {
@@ -46,6 +73,14 @@ const StakingPage: React.FunctionComponent = () => {
       <HomeWrap>
         <Content>
           <StakingPanel />
+          <BottomPanel>
+            <FaqWrap>
+              <FAQ />
+            </FaqWrap>
+            <StaticsPanel>
+              <Statistics />
+            </StaticsPanel>
+          </BottomPanel>
         </Content>
       </HomeWrap>
     </>

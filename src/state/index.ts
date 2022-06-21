@@ -4,7 +4,7 @@ import { getThemeCache } from '../utils/theme'
 
 import application from './application/reducer'
 import wallet from './wallet/reducer'
-import pools from './pools'
+import staker from './staker'
 import { useDispatch } from 'react-redux'
 
 const PERSISTED_KEYS: string[] = ['application']
@@ -18,7 +18,7 @@ const store = configureStore({
   reducer: {
     application,
     wallet,
-    pools,
+    staker,
   },
   middleware: [
     ...getDefaultMiddleware({ thunk: true, serializableCheck: false }),
@@ -30,6 +30,6 @@ const store = configureStore({
 export type AppState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
-export const useAppDispatch = () => useDispatch<any>()
+export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 export default store

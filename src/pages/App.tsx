@@ -6,25 +6,23 @@ import NotFound from 'pages/error'
 import Home from 'pages/home/'
 import DeFiMarket from 'pages/defimarket'
 import Staking from 'pages/staking'
-import Test from 'pages/test'
 import React, { Suspense, useEffect } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { useFetchPoolsPublicData } from 'state/hooks'
 import { useConnectWalletModalShow } from 'state/wallet/hooks'
-import { getPoolAprList } from 'utils/getAprList'
-import { useSortedPools } from '../state/hooks'
+import { useFetchStakerPublicData } from 'state/hooks'
 
 export default function App() {
   const walletListModalShow = useConnectWalletModalShow()
 
-  useFetchPoolsPublicData()
+  useFetchStakerPublicData()
 
-  const pools = useSortedPools()
-  useEffect(() => {
-    setTimeout(() => {
-      getPoolAprList()
-    }, 100)
-  }, [])
+  // useFetchPoolsPublicData()
+  // const pools = useSortedPools()
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     getPoolAprList()
+  //   }, 100)
+  // }, [])
 
   return (
     <Suspense fallback={<FullLoading />}>

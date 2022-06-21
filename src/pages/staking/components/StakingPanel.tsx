@@ -140,7 +140,7 @@ const StakingPanel: FunctionComponent = () => {
                 <StyledButton style={{ marginTop: '40px' }}>Stake</StyledButton>
               )}
 
-              <RowData style={{ marginTop: '32px' }} title="Exchange rate" content="1KCS = 1.5KCS" />
+              <RowData style={{ marginTop: '32px' }} title="Exchange rate" content="1KCS = 1.5sKCS" />
               <RowData style={{ marginTop: '12px' }} title="You will receive" content="s sKCS" />
               <RowData
                 style={{ marginTop: '12px' }}

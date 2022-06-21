@@ -1,21 +1,15 @@
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { useWeb3React } from '@web3-react/core'
-import { Button, Tooltip } from 'antd'
-import BN from 'bignumber.js'
-import { Image, RowCenterBox } from 'components'
+import { Tooltip } from 'antd'
+import { RowCenterBox } from 'components'
 import DataItem from 'components/DataItem'
 import StyledButton from 'components/StyledButton'
-import Text from 'components/Text'
-import { BigNumber, formatEther } from 'ethers/utils'
-import React, { FunctionComponent } from 'react'
-import CountUp from 'react-countup'
-import styled from 'styled-components'
-import { ValidatorStatus } from '../../../constants/types'
-import { usePools } from '../../../state/hooks'
-import { useBalance } from '../../../state/wallet/hooks'
+import { FunctionComponent } from 'react'
 import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
+import ExternalLink from '../../../components/ExternalLink/index'
 import { toggleConnectWalletModalShow } from '../../../state/wallet/actions'
-import RowData from 'components/RowData'
+import { useBalance } from '../../../state/wallet/hooks'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -70,20 +64,6 @@ const ContentWrap = styled.div<{ connected: boolean }>`
     return '328px'
   }};
 `
-const ExtraTitle = styled.div`
-  font-family: 'Arial';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  align-items: center;
-  color: #d04aff;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: 10px;
-  cursor: pointer;
-`
 
 const PlusIcon = styled.img`
   width: 16px;
@@ -112,19 +92,11 @@ const StakingPanel: FunctionComponent = () => {
             title="Available to stake"
             balance="2.00 KCS"
             titleExtra={
-              <ExtraTitle
-                onClick={() => {
-                  window.open('https://app.mojitoswap.finance/swap', '_blank')
-                }}
-              >
-                <div style={{ marginRight: '6px' }}>Get more KCS</div>
-                <Image
-                  src={require('../../../assets/images/Icons/share.png').default}
-                  width="16px"
-                  height="16px"
-                  alt="link-icon"
-                />{' '}
-              </ExtraTitle>
+              <ExternalLink
+                style={{ marginLeft: '10px' }}
+                url="https://app.mojitoswap.finance/swap"
+                name="Get more KCS"
+              />
             }
           />
         </RowCenterBox>
@@ -189,19 +161,7 @@ const StakingPanel: FunctionComponent = () => {
             </RowCenterBox>
 
             <RowCenterBox align="center" justify="space-between" style={{ marginTop: '32px', width: '100%' }}>
-              <DataItem
-                title="Pending amount"
-                balance="10.00 KCS"
-                uBalance="≈$400.0026"
-                titleExtra={
-                  <Tooltip
-                    placement="top"
-                    title="Pending amount means the stKCS unstaking is under processing, the period takes around 3-6 days to process, you can withdraw it after that."
-                  >
-                    <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
-                  </Tooltip>
-                }
-              />
+              <DataItem title="Available withdraw amount" balance="10.00 KCS" uBalance="≈$400.0026" />
               <StyledButton style={{ width: '232px' }}>Withdraw</StyledButton>
             </RowCenterBox>
           </>

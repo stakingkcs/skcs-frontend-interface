@@ -12,6 +12,6 @@ export const getMulticallAddress = () => {
   return getAddress(MULTICALL_ADDRESS)
 }
 
-export const getValidatorAddress = () => {
-  return getAddress(contracts.validator)
+export const getStakerAddress = () => {
+  return getAddress(contracts.staker)
 }
