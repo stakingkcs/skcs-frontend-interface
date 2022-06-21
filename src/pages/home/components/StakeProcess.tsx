@@ -66,12 +66,29 @@ const StakeItem = styled.a`
   }
 `
 
+const StakeContent = styled.div`
+  width: 1200px;
+  height: 252px;
+  display: flex;
+  justify-content: space-between;
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  &::-webkit-scrollbar {
+    // chrome safari
+    display: none;
+  }
+`
+
 const StakeTitle = styled.p`
   font-family: Arial;
   color: #ffffff;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 40px;
   margin-top: -25px;
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin: 0 8px;
+  }
 `
 const StakeDesc = styled.p`
   color: rgba(127, 131, 147, 1);
@@ -109,6 +126,7 @@ const StakeProcess: React.FunctionComponent = () => {
     <>
       <Title>Start staking and grow your assets in only 4 steps</Title>
       <StakeWarp>
+  
         {processList.map((step) => {
           return (
             <StakeItem>
@@ -118,6 +136,7 @@ const StakeProcess: React.FunctionComponent = () => {
             </StakeItem>
           )
         })}
+ 
       </StakeWarp>
     </>
   )

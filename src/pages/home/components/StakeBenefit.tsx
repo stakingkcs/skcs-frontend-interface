@@ -1,5 +1,7 @@
 import React from 'react'
+import { isMobile } from 'react-device-detect'
 import styled from 'styled-components'
+import { width } from 'styled-system'
 
 const Title = styled.div`
   font-family: 'Arial';
@@ -9,17 +11,35 @@ const Title = styled.div`
   text-align: center;
   color: #ffffff;
   margin: 160px 0 60px;
-  /* @media (max-width: 768px) {
-    font-size: 26px;
-    margin: 0 8px;
-  } */
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 `
 const StakeWarp = styled.div`
   width: 1200px;
   margin: 0 auto;
+  height: 252px;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 32px;
+    justify-content: flex-start;
+    overflow-x: scroll;
+  }
+`
+
+const StakeContent = styled.div`
+  width: 1200px;
+  height: 252px;
   display: flex;
   justify-content: space-between;
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  &::-webkit-scrollbar {
+    // chrome safari
+    display: none;
+  }
 `
+
 const StakeItem = styled.div`
   width: 281px;
   height: 252px;
@@ -78,15 +98,17 @@ const StakeBenefit: React.FunctionComponent = () => {
     <>
       <Title>Why staking with sKCS</Title>
       <StakeWarp>
-        {fitList.map((step) => {
-          return (
-            <StakeItem>
-              <StakeIcon src={step.icon} />
-              <StakeTitle>{step.title}</StakeTitle>
-              <StakeDesc>{step.desc}</StakeDesc>
-            </StakeItem>
-          )
-        })}
+        <StakeContent>
+          {fitList.map((step) => {
+            return (
+              <StakeItem>
+                <StakeIcon src={step.icon} />
+                <StakeTitle>{step.title}</StakeTitle>
+                <StakeDesc>{step.desc}</StakeDesc>
+              </StakeItem>
+            )
+          })}
+        </StakeContent>
       </StakeWarp>
     </>
   )

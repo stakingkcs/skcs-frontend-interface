@@ -15,9 +15,9 @@ export const FlexBox = styled.div`
 
 export const Image = styled.img``
 
-export const ColumnCenterBox = styled(FlexBox)<{ align?: string }>`
+export const ColumnCenterBox = styled(FlexBox)<{justify?: string, align?: string }>`
   flex-flow: column nowrap;
-  justify-content: flex-start;
+  justify-content:${({justify}) => justify ?? 'flex-start'};
   align-items: ${({ align }) => align ?? 'center'};
 `
 

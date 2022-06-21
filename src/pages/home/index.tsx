@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
-// import { useResponsive } from '../../utils/responsive'
 import { fetchPoolsUserDataAsync } from 'state/pools'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
@@ -26,6 +24,9 @@ const HomeWrap = styled.div`
   background: #000;
   padding: 0 160px;
   padding-bottom: 160px;
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `
 
 const bannerBg = require('../../assets/images/home/banner.png').default
@@ -91,6 +92,12 @@ const StakingButton = styled.div`
 const FaqWarp = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
 `
 
 const HomePage: React.FunctionComponent = () => {
