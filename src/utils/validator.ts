@@ -2,8 +2,6 @@ import { Contract } from '@ethersproject/contracts'
 import { TransactionReceipt } from '@ethersproject/providers'
 import { constants } from 'ethers'
 
-
-
 interface ContractCallError {
   code: number
   message: string
@@ -54,7 +52,7 @@ export async function withdrawFromValidator(
 ): Promise<ContractCallResponse> {
   try {
     const tx = await validatorContract.withdraw(targetValidatorAddress)
-    const response: TransactionReceipt =  await tx.wait(1)
+    const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     return { status: 1, data: response }
   } catch (e) {
@@ -69,7 +67,7 @@ export async function claimRewardFromValidator(
 ): Promise<ContractCallResponse> {
   try {
     const tx = await validatorContract.claimReward(targetValidatorAddress)
-    const response: TransactionReceipt =  await tx.wait(1)
+    const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     return { status: 1, data: response }
   } catch (e) {

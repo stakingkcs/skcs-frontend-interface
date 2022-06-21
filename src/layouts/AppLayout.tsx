@@ -6,7 +6,6 @@ import AppHeader from '../components/AppHeader/index'
 
 const AppContentWrap = styled.div`
   height: auto;
-  min-height: calc(100vh - 100px);
   background: #000;
 `
 

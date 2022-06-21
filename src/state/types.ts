@@ -29,9 +29,22 @@ export interface Pool extends PoolConfig {
   }
 }
 
-export interface PoolsState {
-  data: Pool[]
+export interface StakerState {
+  accumulatedReward: BigNumber
+  accumulatedStakedKCSAmount: BigNumber
+  totalStakeKCSAmount: BigNumber
+  totalStakeSKCSAmount: BigNumber
+  apr: BigNumber
+  kcsQuetoBySKCS: BigNumber
+  skcsQuetoByKCS: BigNumber
+  totalStaker: BigNumber
   updatedAt: number
+  rewardFee: BigNumber
+  userData: {
+    stakeAmount: BigNumber
+    pendingAmount: BigNumber
+    availabelWithdrawAmount: BigNumber
+  }
 }
 
 // API Price State
@@ -89,7 +102,7 @@ export interface CollectiblesState {
 
 export interface State {
   prices: PriceState
-  pools: PoolsState
+  staker: StakerState
   block: BlockState
   application: ApplicationState
   wallet: WalletState

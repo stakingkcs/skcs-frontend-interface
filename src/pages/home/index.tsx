@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet-async'
-import { fetchPoolsUserDataAsync } from 'state/pools'
+// import { useResponsive } from '../../utils/responsive'
+import { fetchStakerPublicDataAsync } from 'state/staker'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -111,7 +112,7 @@ const HomePage: React.FunctionComponent = () => {
 
   React.useEffect(() => {
     if (account) {
-      dispatch(fetchPoolsUserDataAsync(account))
+      dispatch(fetchStakerPublicDataAsync(account))
     }
   }, [account, dispatch])
 
