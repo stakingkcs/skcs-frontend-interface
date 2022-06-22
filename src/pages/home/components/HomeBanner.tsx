@@ -1,21 +1,28 @@
+import StyledButton from 'components/StyledButton'
 import React from 'react'
 import styled from 'styled-components'
-import StyledButton from 'components/StyledButton'
-import { useStakerState } from '../../../state/hooks'
-import BN from 'bignumber.js'
 import { formatNumber } from 'utils/bignumber'
+import { useStakerState } from '../../../state/hooks'
+
+const bg = require('../../../assets/images/home/bg-header.png').default
+const mbg = require('../../../assets/images/home/mbg-header.png').default
 
 const Header = styled.div`
   width: 100%;
   height: 864px;
   text-align: center;
-  position: relative;
+  background: url(${bg}) no-repeat top;
+  padding: 0 100px;
+  @media (max-width: 768px) {
+    padding: 0 26px;
+    background: url(${mbg}) no-repeat top;
+  }
 `
-const BgImage = styled.img`
-  object-fit: cover;
-  text-align: center;
-  z-index: -1;
+
+const Content = styled.div`
+  width: 100%;
 `
+
 const Title = styled.div`
   font-family: 'Arial';
   font-style: normal;
@@ -26,9 +33,9 @@ const Title = styled.div`
   color: #ffffff;
   padding-top: 190px;
   @media (max-width: 768px) {
-    font-size: 26px;
-    line-height: 31px;
-    margin: 0 8px;
+    padding-top: 70px;
+    width: 100%;
+    font-size: 32px;
   }
 `
 const NumberText = styled.span`
@@ -54,12 +61,10 @@ const ButtonWarp = styled.div`
 
 const HomeBanner: React.FunctionComponent = () => {
   const staker = useStakerState()
-
   return (
     <>
-      <Header style={{}}>
-        <BgImage src={require('../../../assets/images/home/bg-header.png').default} />
-        <div style={{ position: 'absolute', top: '100px', left: '100px' }}>
+      <Header>
+        <Content>
           <Title>
             The KCC staking protocol currently has{' '}
             <NumberText> ${formatNumber(staker.accumulatedStakedKCSAmount ?? 0)}</NumberText>
@@ -69,7 +74,7 @@ const HomeBanner: React.FunctionComponent = () => {
           <ButtonWarp>
             <StyledButton>Stake Now</StyledButton>
           </ButtonWarp>
-        </div>
+        </Content>
       </Header>
     </>
   )
