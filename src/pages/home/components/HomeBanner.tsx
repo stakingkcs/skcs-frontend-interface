@@ -1,14 +1,15 @@
 import React from 'react'
-
 import styled from 'styled-components'
-import { isMobile } from 'react-device-detect'
 import StyledButton from 'components/StyledButton'
+import { useStakerState } from '../../../state/hooks'
+import BN from 'bignumber.js'
+import { formatNumber } from 'utils/bignumber'
 
 const Header = styled.div`
   width: 100%;
   height: 864px;
   text-align: center;
-
+  position: relative;
 `
 const BgImage = styled.img`
   object-fit: cover;
@@ -37,7 +38,7 @@ const NumberText = styled.span`
   font-size: 54px;
   line-height: 64px;
   text-align: left;
-  color: #41E6AF;
+  color: #41e6af;
   white-space: nowrap;
   margin: 0 10px;
   @media (max-width: 768px) {
@@ -46,27 +47,28 @@ const NumberText = styled.span`
   }
 `
 const ButtonWarp = styled.div`
-    width: 160px;
-    height: 50px;
-    margin: 40px 0;
+  width: 160px;
+  height: 50px;
+  margin: 40px 0;
 `
 
 const HomeBanner: React.FunctionComponent = () => {
+  const staker = useStakerState()
 
   return (
     <>
-      <Header style={{position:"relative" }}>
+      <Header style={{}}>
         <BgImage src={require('../../../assets/images/home/bg-header.png').default} />
-        <div style={{position:"absolute", top: '100px', left: '100px'}}>
+        <div style={{ position: 'absolute', top: '100px', left: '100px' }}>
           <Title>
-            The KCC staking protocol currently has <NumberText> $ 64,846,849.846</NumberText>
-            of KCS staking <NumberText>$ 8,884,324.846</NumberText> of rewards paid <NumberText> 3.5%</NumberText> APR
+            The KCC staking protocol currently has{' '}
+            <NumberText> ${formatNumber(staker.accumulatedStakedKCSAmount ?? 0)}</NumberText>
+            of KCS staking <NumberText>${formatNumber(staker.accumulatedReward)}</NumberText> of rewards paid{' '}
+            <NumberText>${formatNumber(staker.apr)}%</NumberText> APR
           </Title>
           <ButtonWarp>
-          <StyledButton>
-             Stake Now
-          </StyledButton>
-          </ButtonWarp>  
+            <StyledButton>Stake Now</StyledButton>
+          </ButtonWarp>
         </div>
       </Header>
     </>

@@ -12,6 +12,7 @@ import { toggleConnectWalletModalShow } from 'state/wallet/actions'
 import styled from 'styled-components'
 import { useBalance } from '../../../state/wallet/hooks'
 import DataPanel from './DataPanel'
+import { useStakerState } from '../../../state/hooks'
 
 const { TabPane } = Tabs
 
@@ -89,6 +90,7 @@ const TipsText = styled.div`
 
 const StakingPanel: FunctionComponent = () => {
   const balance = useBalance()
+  const staker = useStakerState()
   const { account } = useWeb3React()
 
   const dispatch = useDispatch()
@@ -140,7 +142,11 @@ const StakingPanel: FunctionComponent = () => {
                 <StyledButton style={{ marginTop: '40px' }}>Stake</StyledButton>
               )}
 
-              <RowData style={{ marginTop: '32px' }} title="Exchange rate" content="1KCS = 1.5sKCS" />
+              <RowData
+                style={{ marginTop: '32px' }}
+                title="Exchange rate"
+                content={`1KCS = ${staker.kcsQuetoBySKCS}sKCS`}
+              />
               <RowData style={{ marginTop: '12px' }} title="You will receive" content="s sKCS" />
               <RowData
                 style={{ marginTop: '12px' }}

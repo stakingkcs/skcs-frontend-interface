@@ -1,5 +1,4 @@
 import { createAction } from '@reduxjs/toolkit'
-import BigNumber from 'bignumber.js'
 
 export const updateBlockNumber = createAction<{
   chainId: number

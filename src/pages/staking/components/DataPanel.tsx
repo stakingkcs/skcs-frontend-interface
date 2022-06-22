@@ -10,6 +10,9 @@ import styled from 'styled-components'
 import ExternalLink from '../../../components/ExternalLink/index'
 import { toggleConnectWalletModalShow } from '../../../state/wallet/actions'
 import { useBalance } from '../../../state/wallet/hooks'
+import BN from 'bignumber.js'
+import { formatNumber } from '../../../utils/bignumber'
+import { useStakerState, useKCSPrice, useSKCSPrice } from '../../../state/hooks'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -78,6 +81,11 @@ const StakingPanel: FunctionComponent = () => {
 
   const dispatch = useDispatch()
 
+  const staker = useStakerState()
+
+  const kcsPrice = useKCSPrice()
+  const skcsPrice = useSKCSPrice()
+
   return (
     <>
       {!account && (
@@ -90,7 +98,7 @@ const StakingPanel: FunctionComponent = () => {
         <RowCenterBox>
           <DataItem
             title="Available to stake"
-            balance="2.00 KCS"
+            balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
             titleExtra={
               <ExternalLink
                 style={{ marginLeft: '10px' }}
@@ -103,7 +111,7 @@ const StakingPanel: FunctionComponent = () => {
         {!account ? (
           <>
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '24px', width: '300px' }}>
-              <DataItem title="Staked amount" balance="0.00 sKCS" uBalance="≈$0.0026" />
+              <DataItem title="Staked amount" balance={`0.00 sKCS`} uBalance="≈$0.0000" />
               <DataItem
                 title="APR"
                 titleExtra={
@@ -114,7 +122,7 @@ const StakingPanel: FunctionComponent = () => {
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
-                balance="3.5%"
+                balance={`${formatNumber(staker.apr, 1)}%`}
               />
             </RowCenterBox>
           </>
@@ -123,8 +131,8 @@ const StakingPanel: FunctionComponent = () => {
             <RowCenterBox style={{ marginTop: '32px' }}>
               <DataItem
                 title="Staked amount"
-                balance="10.00 sKCS"
-                uBalance="≈$400.0026"
+                balance={`${formatNumber(staker.userData.stakeAmount, 2)} sKCS`}
+                uBalance={`≈$${formatNumber(skcsPrice.multipliedBy(staker.userData.stakeAmount.toString()), 2)}`}
                 balanceExtra={
                   <Tooltip placement="top" title="Add token to wallet">
                     <PlusIcon src={require('../../../assets/images/Icons/plus.png').default} alt="add-token-icon" />
@@ -135,8 +143,8 @@ const StakingPanel: FunctionComponent = () => {
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '32px', width: '300px' }}>
               <DataItem
                 title="Pending amount"
-                balance="10.00 KCS"
-                uBalance="≈$400.0026"
+                balance={`${formatNumber(staker.userData.pendingAmount, 2)} KCS`}
+                uBalance={`≈$${formatNumber(kcsPrice.multipliedBy(staker.userData.pendingAmount.toString()), 2)}`}
                 titleExtra={
                   <Tooltip
                     placement="top"
@@ -158,10 +166,18 @@ const StakingPanel: FunctionComponent = () => {
                 }
                 balance="3.5%"
               />
-            </RowCenterBox>
+              </RowCenterBox>
+              
 
             <RowCenterBox align="center" justify="space-between" style={{ marginTop: '32px', width: '100%' }}>
-              <DataItem title="Available withdraw amount" balance="10.00 KCS" uBalance="≈$400.0026" />
+              <DataItem
+                title="Available withdraw amount"
+                balance={`${formatNumber(staker.userData.availabelWithdrawAmount, 2)} KCS`}
+                uBalance={`≈${formatNumber(
+                  kcsPrice.multipliedBy(staker.userData.availabelWithdrawAmount.toString()),
+                  4
+                )}`}
+              />
               <StyledButton style={{ width: '232px' }}>Withdraw</StyledButton>
             </RowCenterBox>
           </>

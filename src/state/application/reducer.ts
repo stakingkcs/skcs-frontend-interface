@@ -1,5 +1,4 @@
 import { createReducer } from '@reduxjs/toolkit'
-import BigNumber from 'bignumber.js'
 import {
   updateBlockNumber,
   changeLanguage,
@@ -58,11 +57,6 @@ export default createReducer(initialState, (builder) =>
     .addCase(changeMobileMenuShow, (state, action) => {
       const { show } = action.payload
       state.mobileMenuShow = show
-    })
-    .addCase(updateBridgeLoading, (state, action) => {
-      const { visible, status } = action.payload
-      state.bridgeLoadingStatus = status
-      state.bridgeLoadingVisible = visible
     })
     .addCase(updateAprList, (state, action) => {
       const aprList = action.payload

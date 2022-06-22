@@ -51,16 +51,15 @@ export interface StakerState {
 export interface PriceApiList {
   /* eslint-disable camelcase */
   [key: string]: {
-    name: string
-    symbol: string
     price: string
-    price_BNB: string
   }
 }
 
 export interface PriceApiListThunk {
   /* eslint-disable camelcase */
-  [key: string]: number
+  [key: string]: {
+    price: string
+  }
 }
 
 export interface PriceApiResponse {

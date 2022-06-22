@@ -10,11 +10,14 @@ import React, { Suspense, useEffect } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { useConnectWalletModalShow } from 'state/wallet/hooks'
 import { useFetchStakerPublicData } from 'state/hooks'
+import { useFetchPriceList } from 'utils/prices'
 
 export default function App() {
+  
   const walletListModalShow = useConnectWalletModalShow()
 
   useFetchStakerPublicData()
+  useFetchPriceList()
 
   // useFetchPoolsPublicData()
   // const pools = useSortedPools()
