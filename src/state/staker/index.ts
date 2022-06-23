@@ -14,14 +14,15 @@ const initialState: StakerState = {
   totalStakeSKCSAmount: ZERO,
   totalStaker: ZERO,
   rewardFee: ZERO,
-  apr: ZERO,
-  kcsQuetoBySKCS: ZERO,
-  skcsQuetoByKCS: ZERO,
+  apr: 0,
+  kcsQuetoBySKCS: 0,
+  skcsQuetoByKCS: 0,
   updatedAt: new Date().getTime(),
   userData: {
     stakeAmount: ZERO,
     pendingAmount: ZERO,
-    availabelWithdrawAmount: ZERO,
+    availableWithdrawKCSAmount: ZERO,
+    availableBurnSKCSAmount: ZERO,
   },
 }
 
@@ -88,7 +89,8 @@ export const fetchStakersUserDataAsync = (account) => async (dispatch) => {
 
   dispatch(
     updateStakerUserData({
-      availabelWithdrawAmount: allUserDataCallsRespond[0][0],
+      availableWithdrawKCSAmount: allUserDataCallsRespond[0][0],
+      availableBurnSKCSAmount: allUserDataCallsRespond[0][1],
       pendingAmount: allUserDataCallsRespond[1][0],
       stakeAmount: allUserDataCallsRespond[2][0],
     })

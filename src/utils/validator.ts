@@ -21,7 +21,8 @@ export async function depositKCSToValidator(
   account: string
 ): Promise<ContractCallResponse> {
   try {
-    const tx = await stakerContract.depositKCS(account, { value: amount.toString() })
+    console.log('___', amount.toString())
+    const tx = await stakerContract.depositKCS(account, { value: new BN(amount.toString(10)).toString(10) })
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     return { status: 1, data: response }
@@ -37,7 +38,7 @@ export async function requestRedemption(
   account: string
 ): Promise<ContractCallResponse> {
   try {
-    const tx = await stakerContract.requestRedemption(amount, account)
+    const tx = await stakerContract.requestRedemption(amount.toString(), account)
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     return { status: 1, data: response }

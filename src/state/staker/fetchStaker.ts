@@ -4,6 +4,7 @@ import { StakerState } from 'state/types'
 import { getStakerAddress } from 'utils/addressHelpers'
 import multicall from 'utils/multicall'
 import { ZERO } from '../../constants/number'
+import BN from 'bignumber.js'
 
 export const fetchStakerPublicData = async (): Promise<Partial<StakerState>> => {
   const allStakerPropertyCalls = [
@@ -33,8 +34,15 @@ export const fetchStakerPublicData = async (): Promise<Partial<StakerState>> => 
 
   console.log('allStakerPropertyCallsRespond', allStakerPropertyCallsRespond)
 
-  const kcsQuetoBySKCS = (allStakerPropertyCallsRespond[2][1] as BigNumber).div(allStakerPropertyCallsRespond[2][0])
-  const skcsQuetoByKCS = (allStakerPropertyCallsRespond[2][0] as BigNumber).div(allStakerPropertyCallsRespond[2][1])
+  const kcsQuetoBySKCS = new BN(allStakerPropertyCallsRespond[2][1].toString())
+    .div(10 ** 18)
+    .div(new BN(allStakerPropertyCallsRespond[2][0].toString(10)).div(10 ** 18))
+    .toNumber()
+
+  const skcsQuetoByKCS = new BN(allStakerPropertyCallsRespond[2][0].toString())
+    .div(10 ** 18)
+    .div(new BN(allStakerPropertyCallsRespond[2][1].toString()).div(10 ** 18))
+    .toNumber()
 
   return {
     accumulatedStakedKCSAmount: allStakerPropertyCallsRespond[0][0],
@@ -45,6 +53,6 @@ export const fetchStakerPublicData = async (): Promise<Partial<StakerState>> => 
     totalStakeSKCSAmount: allStakerPropertyCallsRespond[2][1],
     kcsQuetoBySKCS,
     skcsQuetoByKCS,
-    apr: ZERO,
+    apr: 0,
   }
 }

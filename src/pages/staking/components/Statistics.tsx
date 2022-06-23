@@ -76,7 +76,7 @@ const DataRowWrap = styled.div`
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
   border-radius: 16px;
-  margin-top: 24px;
+  margin-top: 28px;
   padding: 32px;
 `
 

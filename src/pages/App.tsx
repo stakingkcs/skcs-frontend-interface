@@ -14,11 +14,11 @@ import { useFetchPriceList } from 'utils/prices'
 import { useStakeApr } from 'hooks/useStakerApr'
 
 export default function App() {
-  const walletListModalShow = useConnectWalletModalShow()
-
   useFetchStakerPublicData()
   useFetchPriceList()
   useStakeApr()
+
+  const walletListModalShow = useConnectWalletModalShow()
 
   return (
     <Suspense fallback={<FullLoading />}>

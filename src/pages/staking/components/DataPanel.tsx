@@ -1,18 +1,22 @@
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { useWeb3React } from '@web3-react/core'
-import { Tooltip } from 'antd'
-import { RowCenterBox } from 'components'
+import { notification, Tooltip } from 'antd'
+import BN from 'bignumber.js'
+import { ALink, FlexBox, RowCenterBox } from 'components'
 import DataItem from 'components/DataItem'
 import StyledButton from 'components/StyledButton'
-import { FunctionComponent } from 'react'
+import React, { FunctionComponent } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import ExternalLink from '../../../components/ExternalLink/index'
+import { useKCSPrice, useSKCSPrice, useStakerState } from '../../../state/hooks'
 import { toggleConnectWalletModalShow } from '../../../state/wallet/actions'
 import { useBalance } from '../../../state/wallet/hooks'
-import BN from 'bignumber.js'
 import { formatNumber } from '../../../utils/bignumber'
-import { useStakerState, useKCSPrice, useSKCSPrice } from '../../../state/hooks'
+import { stakerContractHelper } from '../../../utils/validator'
+import { useStakerContract } from '../../../hooks/useContract'
+import { updateBalance } from 'utils/wallet'
+import { fetchStakersUserDataAsync } from 'state/staker'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -75,7 +79,9 @@ const PlusIcon = styled.img`
 `
 
 const StakingPanel: FunctionComponent = () => {
-  const { account } = useWeb3React()
+  const [loading, setLoading] = React.useState<boolean>(false)
+
+  const { account, library } = useWeb3React()
 
   const balance = useBalance()
 
@@ -85,6 +91,53 @@ const StakingPanel: FunctionComponent = () => {
 
   const kcsPrice = useKCSPrice()
   const skcsPrice = useSKCSPrice()
+
+  const stakerContract = useStakerContract()
+
+  const handleWithdraw = React.useCallback(async () => {
+    if (!account) return
+    setLoading(() => true)
+    try {
+      const response = await stakerContractHelper.withdrawKCSFromValidator(stakerContract, account)
+      if (response.status) {
+        console.log('response.data', response.data)
+        if (response.data?.status === 1) {
+          notification.success({
+            message: `Unstaking confirmed!`,
+            description: (
+              <div>
+                Unstake
+                {formatNumber(new BN(staker.userData.availableBurnSKCSAmount.toString()).div(10 ** 18).toString(10), 3)}
+                sKCS and receive{' '}
+                {formatNumber(
+                  new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
+                  3
+                )}{' '}
+                KCS.{' '}
+                <ALink
+                  href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
+                  target="_blank"
+                >
+                  View transaction on chain.
+                </ALink>
+              </div>
+            ),
+          })
+          updateBalance(library, account)
+          dispatch(fetchStakersUserDataAsync(account))
+        } else {
+          notification.success({
+            message: 'Staking failed!',
+            description: 'Please try again.',
+          })
+        }
+      }
+    } catch (e) {
+      console.log(e)
+    } finally {
+      setLoading(() => false)
+    }
+  }, [dispatch, stakerContract, account, library])
 
   return (
     <>
@@ -177,13 +230,23 @@ const StakingPanel: FunctionComponent = () => {
             <RowCenterBox align="center" justify="space-between" style={{ marginTop: '32px', width: '100%' }}>
               <DataItem
                 title="Available withdraw amount"
-                balance={`${formatNumber(staker.userData.availabelWithdrawAmount, 2)} KCS`}
+                balance={`${formatNumber(
+                  new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
+                  2
+                )} KCS`}
                 uBalance={`≈${formatNumber(
-                  kcsPrice.multipliedBy(staker.userData.availabelWithdrawAmount.toString()),
+                  kcsPrice.multipliedBy(new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18)),
                   4
                 )}`}
               />
-              <StyledButton style={{ width: '232px' }}>Withdraw</StyledButton>
+              <StyledButton
+                loading={loading}
+                disabled={!account || staker.userData.availableWithdrawKCSAmount.eq(0)}
+                onClick={handleWithdraw}
+                style={{ width: '232px' }}
+              >
+                Withdraw
+              </StyledButton>
             </RowCenterBox>
           </>
         )}

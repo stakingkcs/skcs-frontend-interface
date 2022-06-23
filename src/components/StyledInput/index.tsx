@@ -147,7 +147,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
             >
               Max
             </MaxButton>
-            <SuffixText>KCS</SuffixText>
+            <SuffixText>{props.suffix ?? 'KCS'}</SuffixText>
           </RowCenterBox>
         }
         prefix={

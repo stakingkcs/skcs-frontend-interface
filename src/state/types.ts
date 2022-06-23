@@ -34,16 +34,17 @@ export interface StakerState {
   accumulatedStakedKCSAmount: BigNumber
   totalStakeKCSAmount: BigNumber
   totalStakeSKCSAmount: BigNumber
-  apr: BigNumber
-  kcsQuetoBySKCS: BigNumber
-  skcsQuetoByKCS: BigNumber
+  apr: number
+  kcsQuetoBySKCS: number
+  skcsQuetoByKCS: number
   totalStaker: BigNumber
   updatedAt: number
   rewardFee: BigNumber
   userData: {
     stakeAmount: BigNumber
     pendingAmount: BigNumber
-    availabelWithdrawAmount: BigNumber
+    availableWithdrawKCSAmount: BigNumber
+    availableBurnSKCSAmount: BigNumber
   }
 }
 

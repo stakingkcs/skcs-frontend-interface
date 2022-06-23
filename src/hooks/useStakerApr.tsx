@@ -1,29 +1,15 @@
-import BN from 'bignumber.js'
+import { JsonRpcProvider } from '@ethersproject/providers'
+import ABI from 'constants/abi/Validators.json'
 import { ZERO } from 'constants/number'
-import { getAccRewardPerShareByBlock } from 'graph'
-import store from 'state'
+import { Zero } from 'ethers/constants'
+import { BigNumber } from 'ethers/utils'
 import { useBlockNumber } from 'state/application/hooks'
 import { useStakerState } from 'state/hooks'
+import { updateStakerPublicDataByKey } from 'state/staker'
 import { getContract } from 'utils'
-import { getAddress, getStakerAddress } from 'utils/addressHelpers'
+import { getStakerAddress } from 'utils/addressHelpers'
 import { useAppDispatch } from '../state/index'
-import ABI from 'constants/abi/Validators.json'
-import { JsonRpcProvider } from '@ethersproject/providers'
-import { BigNumber } from 'ethers/utils'
-import { updateStakerPublicDataByKey, updateStakerUserData } from 'state/staker'
-import { Zero } from 'ethers/constants'
-
-interface AccPerShareEntities {
-  accRewardPerShare: string
-  block: string
-  validator: string
-}
-
-export const getValidatorApr = (validatorPerShare: BN) => {
-  return new BN(
-    new BN(validatorPerShare).div(1e12).div(1e18).multipliedBy(365).multipliedBy(100).toFixed(2, 1)
-  ).toString()
-}
+import BN from 'bignumber.js'
 
 export const useStakeApr = async () => {
   const dispatch = useAppDispatch()
@@ -31,9 +17,9 @@ export const useStakeApr = async () => {
   const latestBlock = useBlockNumber()
   const staker = useStakerState()
 
-  if (!latestBlock || staker.skcsQuetoByKCS.eq(ZERO) || !latestBlock) {
-    dispatch(updateStakerPublicDataByKey({ key: 'apr', value: Zero }))
-    return
+  if (!latestBlock || staker.skcsQuetoByKCS == 0 || !latestBlock) {
+    dispatch(updateStakerPublicDataByKey({ key: 'apr', value: 0 }))
+    return null
   }
 
   try {
@@ -50,12 +36,16 @@ export const useStakeApr = async () => {
 
     const response = await contract.functions.exchangeRate({ blockTag: yesterdayBlock })
 
-    const preSkcsQuetoByKCS = (response[0][0] as BigNumber).div(response[0][1])
-
-    const apr = staker.skcsQuetoByKCS.sub(preSkcsQuetoByKCS).mul(180)
-
-    dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apr }))
+    if (response[0][0]) {
+      const preSkcsQuetoByKCS = new BN(response[0][0])
+        .div(10 ** 18)
+        .div(new BN(response[0][1]).div(10 ** 18))
+        .toNumber()
+      const apr = (staker.skcsQuetoByKCS - preSkcsQuetoByKCS) * 180
+      dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apr }))
+    }
   } catch (e) {
     console.log(e)
   }
+  return null
 }
