@@ -1,6 +1,7 @@
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { useWeb3React } from '@web3-react/core'
-import { Tabs, Tooltip } from 'antd'
+import { notification, Tabs, Tooltip } from 'antd'
+import BN from 'bignumber.js'
 import { GradientBgColor, RowCenterBox } from 'components'
 import RowData from 'components/RowData'
 import StyledButton from 'components/StyledButton'
@@ -10,9 +11,17 @@ import React, { FunctionComponent } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleConnectWalletModalShow } from 'state/wallet/actions'
 import styled from 'styled-components'
-import { useBalance } from '../../../state/wallet/hooks'
-import DataPanel from './DataPanel'
 import { useStakerState } from '../../../state/hooks'
+import { useBalance } from '../../../state/wallet/hooks'
+import { formatNumber } from '../../../utils/bignumber'
+import DataPanel from './DataPanel'
+import { stakerContractHelper } from '../../../utils/validator'
+import { useStakerContract } from '../../../hooks/useContract'
+import { BigNumber } from 'ethers/utils'
+import { ZERO } from 'constants/number'
+import { updateBalance } from 'utils/wallet'
+import { FlexBox } from '../../../components/index'
+import { fetchStakersUserDataAsync, updateStakerUserData } from 'state/staker'
 
 const { TabPane } = Tabs
 
@@ -91,7 +100,9 @@ const TipsText = styled.div`
 const StakingPanel: FunctionComponent = () => {
   const balance = useBalance()
   const staker = useStakerState()
-  const { account } = useWeb3React()
+  const { account, library } = useWeb3React()
+  const [loading, setLoading] = React.useState<boolean>(false)
+  const stakerContract = useStakerContract()
 
   const dispatch = useDispatch()
 
@@ -99,10 +110,69 @@ const StakingPanel: FunctionComponent = () => {
   const [error, setError] = React.useState<{ hasError: boolean; errorInfo: string }>({ hasError: false, errorInfo: '' })
 
   const [activeKey, setActiveKey] = React.useState<string>('1')
+  const [depositKCSGasFee, setDepositKCSGasFee] = React.useState<BigNumber>(ZERO)
 
   const changeActiveKey = (key: string) => {
     setActiveKey(() => key)
   }
+
+  React.useEffect(() => {
+    async function getGasFee() {
+      if (!account) return 0
+      const gasFeeRespond = await stakerContract.estimateGas.depositKCS(account, {
+        value: new BigNumber(100).mul(10).toString(),
+      })
+      console.log('gasFee', gasFeeRespond)
+      setDepositKCSGasFee(() => new BigNumber(gasFeeRespond.toString()))
+    }
+
+    getGasFee()
+  }, [stakerContract, account])
+
+  const maxDepositKCS = React.useMemo(() => {
+    if (balance === '') return ZERO
+    return new BigNumber(balance).sub(depositKCSGasFee)
+  }, [depositKCSGasFee, balance])
+
+  const handleDeposit = React.useCallback(async () => {
+    if (!account) return
+    setLoading(() => true)
+    try {
+      console.log('inputvalue', inputValue)
+      const response = await stakerContractHelper.depositKCSToValidator(
+        stakerContract,
+        new BN(inputValue).times(10 ** 18),
+        account
+      )
+      if (response.status) {
+        console.log('response.data', response.data)
+
+        if (response.data?.status === 1) {
+          notification.success({
+            message: 'Staking confirmed!',
+            description: (
+              <FlexBox>
+                Stake {inputValue} KCS and receive {formatNumber(staker.kcsQuetoBySKCS.mul(inputValue), 3)} sKCS. View
+                transaction on chain.
+              </FlexBox>
+            ),
+          })
+          setInputValue(() => '')
+          updateBalance(library, account)
+          dispatch(fetchStakersUserDataAsync(account))
+        } else {
+          notification.success({
+            message: 'Staking failed!',
+            description: 'Please try again.',
+          })
+        }
+      }
+    } catch (e) {
+      console.log(e)
+    } finally {
+      setLoading(() => false)
+    }
+  }, [dispatch, stakerContract, account, library, inputValue])
 
   return (
     <StakingPanelWrap connected={Boolean(account)}>
@@ -123,11 +193,11 @@ const StakingPanel: FunctionComponent = () => {
           >
             <ContentWrap>
               <StyledInput
+                inputValue={inputValue}
                 setVaule={setInputValue}
-                value={inputValue}
                 error={error}
                 setError={setError}
-                maxLimit={'12'}
+                maxLimit={new BN(maxDepositKCS.toString()).div(10 ** 18).toString()}
               />
               {!account ? (
                 <StyledButton
@@ -139,15 +209,29 @@ const StakingPanel: FunctionComponent = () => {
                   Connect Wallet
                 </StyledButton>
               ) : (
-                <StyledButton style={{ marginTop: '40px' }}>Stake</StyledButton>
+                <StyledButton
+                  disabled={!account || !inputValue || error.hasError}
+                  style={{ marginTop: '40px' }}
+                  loading={loading}
+                  onClick={handleDeposit}
+                >
+                  Stake
+                </StyledButton>
               )}
 
               <RowData
                 style={{ marginTop: '32px' }}
                 title="Exchange rate"
-                content={`1KCS = ${staker.kcsQuetoBySKCS}sKCS`}
+                content={`1KCS = ${formatNumber(staker.kcsQuetoBySKCS, 3)}sKCS`}
               />
-              <RowData style={{ marginTop: '12px' }} title="You will receive" content="s sKCS" />
+              <RowData
+                style={{ marginTop: '12px' }}
+                title="You will receive"
+                content={`${formatNumber(
+                  new BN(inputValue === '' ? 0 : inputValue).times(staker.kcsQuetoBySKCS.toString()),
+                  3
+                )} sKCS`}
+              />
               <RowData
                 style={{ marginTop: '12px' }}
                 title={
@@ -161,7 +245,7 @@ const StakingPanel: FunctionComponent = () => {
                     </Tooltip>
                   </RowCenterBox>
                 }
-                content="10%"
+                content={`${formatNumber(new BN(staker.rewardFee.toString()).div(10000).toString(), 2)}%`}
               />
 
               {account && (

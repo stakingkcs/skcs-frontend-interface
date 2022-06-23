@@ -1,6 +1,7 @@
 import { Contract } from '@ethersproject/contracts'
 import { TransactionReceipt } from '@ethersproject/providers'
-import { constants } from 'ethers'
+import BN from 'bignumber.js'
+import { BigNumber } from 'ethers/utils'
 
 interface ContractCallError {
   code: number
@@ -14,13 +15,13 @@ interface ContractCallResponse {
   error?: ContractCallError
 }
 
-export async function voteForValidator(
-  validatorContract: Contract,
-  targetValidatorAddress: string,
-  amount: number
+export async function depositKCSToValidator(
+  stakerContract: Contract,
+  amount: BigNumber | BN,
+  account: string
 ): Promise<ContractCallResponse> {
   try {
-    const tx = await validatorContract.vote(targetValidatorAddress, { value: constants.WeiPerEther.mul(amount) })
+    const tx = await stakerContract.depositKCS(account, { value: amount.toString() })
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     return { status: 1, data: response }
@@ -30,13 +31,13 @@ export async function voteForValidator(
   }
 }
 
-export async function redeemFromValidator(
-  validatorContract: Contract,
-  targetValidatorAddress: string,
-  amount: number
+export async function requestRedemption(
+  stakerContract: Contract,
+  amount: BigNumber | BN,
+  account: string
 ): Promise<ContractCallResponse> {
   try {
-    const tx = await validatorContract.revokeVote(targetValidatorAddress, amount)
+    const tx = await stakerContract.requestRedemption(amount, account)
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     return { status: 1, data: response }
@@ -46,12 +47,12 @@ export async function redeemFromValidator(
   }
 }
 
-export async function withdrawFromValidator(
-  validatorContract: Contract,
-  targetValidatorAddress: string
+export async function withdrawKCSFromValidator(
+  stakerContract: Contract,
+  account: string
 ): Promise<ContractCallResponse> {
   try {
-    const tx = await validatorContract.withdraw(targetValidatorAddress)
+    const tx = await stakerContract.withdrawKCS(account, account)
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     return { status: 1, data: response }
@@ -61,24 +62,8 @@ export async function withdrawFromValidator(
   }
 }
 
-export async function claimRewardFromValidator(
-  validatorContract: Contract,
-  targetValidatorAddress: string
-): Promise<ContractCallResponse> {
-  try {
-    const tx = await validatorContract.claimReward(targetValidatorAddress)
-    const response: TransactionReceipt = await tx.wait(1)
-    console.log('contract call response', response)
-    return { status: 1, data: response }
-  } catch (e) {
-    console.error('contract call error', e)
-    return { status: 0, error: e as ContractCallError }
-  }
-}
-
-export const validatorContractHelper = {
-  redeemFromValidator,
-  voteForValidator,
-  withdrawFromValidator,
-  claimRewardFromValidator,
+export const stakerContractHelper = {
+  depositKCSToValidator,
+  requestRedemption,
+  withdrawKCSFromValidator,
 }

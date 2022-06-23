@@ -131,8 +131,11 @@ const StakingPanel: FunctionComponent = () => {
             <RowCenterBox style={{ marginTop: '32px' }}>
               <DataItem
                 title="Staked amount"
-                balance={`${formatNumber(staker.userData.stakeAmount, 2)} sKCS`}
-                uBalance={`≈$${formatNumber(skcsPrice.multipliedBy(staker.userData.stakeAmount.toString()), 2)}`}
+                balance={`${formatNumber(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18), 2)} sKCS`}
+                uBalance={`≈$${formatNumber(
+                  skcsPrice.multipliedBy(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18)),
+                  2
+                )}`}
                 balanceExtra={
                   <Tooltip placement="top" title="Add token to wallet">
                     <PlusIcon src={require('../../../assets/images/Icons/plus.png').default} alt="add-token-icon" />
@@ -143,8 +146,11 @@ const StakingPanel: FunctionComponent = () => {
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '32px', width: '300px' }}>
               <DataItem
                 title="Pending amount"
-                balance={`${formatNumber(staker.userData.pendingAmount, 2)} KCS`}
-                uBalance={`≈$${formatNumber(kcsPrice.multipliedBy(staker.userData.pendingAmount.toString()), 2)}`}
+                balance={`${formatNumber(new BN(staker.userData.pendingAmount.toString()).div(10 ** 18), 2)} KCS`}
+                uBalance={`≈$${formatNumber(
+                  kcsPrice.multipliedBy(new BN(staker.userData.pendingAmount.toString()).div(10 ** 18)),
+                  2
+                )}`}
                 titleExtra={
                   <Tooltip
                     placement="top"
@@ -164,10 +170,9 @@ const StakingPanel: FunctionComponent = () => {
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
-                balance="3.5%"
+                balance={`${formatNumber(staker.apr, 1)}%`}
               />
-              </RowCenterBox>
-              
+            </RowCenterBox>
 
             <RowCenterBox align="center" justify="space-between" style={{ marginTop: '32px', width: '100%' }}>
               <DataItem

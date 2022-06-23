@@ -56,8 +56,7 @@ const Desc = styled.div`
     width: 90%;
   }
 `
-const ButtonWarp = styled.div`
-`
+const ButtonWarp = styled.div``
 
 const Panel = styled.div`
   width: 540px;
@@ -67,10 +66,10 @@ const Panel = styled.div`
   margin: 70px 0 0 0;
   padding: 40px 32px;
   @media (max-width: 768px) {
-   width:327px;
-   height: 544px;
-   padding: 32px 24px;
-   margin: 40px 0 0 0;
+    width: 327px;
+    height: 544px;
+    padding: 32px 24px;
+    margin: 40px 0 0 0;
   }
 `
 const PanelText = styled.p`
@@ -90,7 +89,7 @@ const StakeReward: React.FunctionComponent = () => {
   const renderData = () => {
     if (!isMobile) {
       return (
-        <RowCenterBox style={{width: '100%'}} align="flex-start" justify="space-between">
+        <RowCenterBox style={{ width: '100%' }} align="flex-start" justify="space-between">
           <DataItem
             title="APR"
             titleExtra={
@@ -103,20 +102,13 @@ const StakeReward: React.FunctionComponent = () => {
             }
             balance="3.5%"
           />
-        <DataItem
-            title="Monthly Rewards"
-            balance="0.03KCS"
-            uBalance="≈$0.0026"
-          />
-        <DataItem
-            title="Yearly Rewards"
-            balance="0.03KCS"
-            uBalance="≈$0.0026"
-          />
-        </RowCenterBox>)
+          <DataItem title="Monthly Rewards" balance="0.03KCS" uBalance="≈$0.0026" />
+          <DataItem title="Yearly Rewards" balance="0.03KCS" uBalance="≈$0.0026" />
+        </RowCenterBox>
+      )
     } else {
       return (
-        <ColumnCenterBox style={{width: '100%', height: '272px'}} justify="space-between" align="flex-start">
+        <ColumnCenterBox style={{ width: '100%', height: '272px' }} justify="space-between" align="flex-start">
           <DataItem
             title="APR"
             titleExtra={
@@ -129,21 +121,11 @@ const StakeReward: React.FunctionComponent = () => {
             }
             balance="3.5%"
           />
-        <DataItem
-            title="Monthly Rewards"
-            balance="0.03KCS"
-            uBalance="≈$0.0026"
-          />
-        <DataItem
-            title="Yearly Rewards"
-            balance="0.03KCS"
-            uBalance="≈$0.0026"
-          />
-        </ColumnCenterBox>)
+          <DataItem title="Monthly Rewards" balance="0.03KCS" uBalance="≈$0.0026" />
+          <DataItem title="Yearly Rewards" balance="0.03KCS" uBalance="≈$0.0026" />
+        </ColumnCenterBox>
+      )
     }
-
-
-
   }
 
   return (
@@ -153,13 +135,16 @@ const StakeReward: React.FunctionComponent = () => {
         <Desc>Calculate your staking rewards and stake KCS now</Desc>
         <Panel>
           <PanelText>Enter the staking amount</PanelText>
-          <StyledInput setVaule={setInputValue} value={inputValue} setError={setError} error={error} maxLimit={'12'} />
-          <DataPanelWarp>
-            {renderData()}
-          </DataPanelWarp>
-          <StyledButton>
-             Stake Now
-          </StyledButton>
+          <StyledInput
+            inputValue={inputValue}
+            setVaule={setInputValue}
+            value={inputValue}
+            setError={setError}
+            error={error}
+            maxLimit={'12'}
+          />
+          <DataPanelWarp>{renderData()}</DataPanelWarp>
+          <StyledButton>Stake Now</StyledButton>
         </Panel>
       </StakeWarp>
     </>

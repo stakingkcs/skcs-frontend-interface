@@ -6,6 +6,9 @@ import styled from 'styled-components'
 import { Image, RowCenterBox } from '../../../components/index'
 import { useResponsive } from '../../../utils/responsive'
 import ExternalLink from '../../../components/ExternalLink/index'
+import { formatNumber } from '../../../utils/bignumber'
+import { useStakerState, useKCSPrice } from '../../../state/hooks'
+import BN from 'bignumber.js'
 
 const { Panel } = Collapse
 
@@ -78,6 +81,8 @@ const DataRowWrap = styled.div`
 `
 
 const Statistics: React.FunctionComponent = () => {
+  const staker = useStakerState()
+  const kcsPrice = useKCSPrice()
   return (
     <StepsWrap>
       <Content>
@@ -86,9 +91,29 @@ const Statistics: React.FunctionComponent = () => {
         </RowCenterBox>
         <DataRowWrap>
           <RowData title="APR" content="3.5%" />
-          <RowData style={{ marginTop: '12px' }} title="Total staked amount" content="887,463,996.843 KCS" />
-          <RowData style={{ marginTop: '12px' }} title="Stakers" content="9747947" />
-          <RowData style={{ marginTop: '12px' }} title="stKCS market cap" content="$ 9,367,463,996.843" />
+          <RowData
+            style={{ marginTop: '12px' }}
+            title="Total staked amount"
+            content={`${formatNumber(new BN(staker.totalStakeKCSAmount.toString()).div(10 ** 18), 3)} KCS`}
+          />
+          <RowData
+            style={{ marginTop: '12px' }}
+            title="Stakers"
+            content={formatNumber(staker.totalStaker.toNumber(), 0)}
+          />
+          <RowData
+            style={{ marginTop: '12px' }}
+            title="stKCS market cap"
+            content={`$ ${formatNumber(
+              kcsPrice.times(
+                new BN(staker.totalStakeSKCSAmount.toString())
+                  .div(10 ** 18)
+                  .times(staker.skcsQuetoByKCS.toString())
+                  .toString()
+              ),
+              3
+            )}`}
+          />
           <ExternalLink style={{ marginTop: '20px' }} url="" name="View on KCC Explorer" />
         </DataRowWrap>
       </Content>

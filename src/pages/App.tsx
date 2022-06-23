@@ -11,21 +11,14 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import { useConnectWalletModalShow } from 'state/wallet/hooks'
 import { useFetchStakerPublicData } from 'state/hooks'
 import { useFetchPriceList } from 'utils/prices'
+import { useStakeApr } from 'hooks/useStakerApr'
 
 export default function App() {
-  
   const walletListModalShow = useConnectWalletModalShow()
 
   useFetchStakerPublicData()
   useFetchPriceList()
-
-  // useFetchPoolsPublicData()
-  // const pools = useSortedPools()
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     getPoolAprList()
-  //   }, 100)
-  // }, [])
+  useStakeApr()
 
   return (
     <Suspense fallback={<FullLoading />}>

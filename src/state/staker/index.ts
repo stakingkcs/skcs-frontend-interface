@@ -29,18 +29,26 @@ export const StakerSlice = createSlice({
   name: 'Staker',
   initialState,
   reducers: {
-    setStakerPublicData: (state, action) => {
-      const staterData: StakerState = action.payload.staker
-      state = staterData
+    setStakerPublicData: (state, action: { payload: { staker } }) => {
+      const { staker } = action.payload
+      state.accumulatedReward = staker.accumulatedReward
+      state.accumulatedStakedKCSAmount = staker.accumulatedStakedKCSAmount
+      state.totalStakeKCSAmount = staker.totalStakeKCSAmount
+      state.totalStakeSKCSAmount = staker.totalStakeSKCSAmount
+      state.kcsQuetoBySKCS = staker.kcsQuetoBySKCS
+      state.skcsQuetoByKCS = staker.skcsQuetoByKCS
+      state.totalStaker = staker.totalStaker
+      state.rewardFee = staker.rewardFee
+      state.apr = staker.apr
       state.updatedAt = new Date().getTime()
     },
-    setStakerPublicDataByKey: (state, action) => {
+    updateStakerPublicDataByKey: (state, action) => {
       const { key, value } = action.payload
       state[key] = value
     },
     updateStakerUserData: (state, action: { payload: StakerState['userData'] }) => {
       const userData = action.payload
-      state.userData = userData
+      state.userData = { ...userData }
     },
     updateStakerUserDataByKey: (state, action) => {
       const { key, value } = action.payload
@@ -50,7 +58,7 @@ export const StakerSlice = createSlice({
 })
 
 // Actions
-export const { setStakerPublicData, setStakerPublicDataByKey, updateStakerUserData, updateStakerUserDataByKey } =
+export const { setStakerPublicData, updateStakerPublicDataByKey, updateStakerUserData, updateStakerUserDataByKey } =
   StakerSlice.actions
 
 // Thunks
@@ -89,6 +97,7 @@ export const fetchStakersUserDataAsync = (account) => async (dispatch) => {
 
 export const fetchStakerPublicDataAsync = (account?: string) => async (dispatch) => {
   const stakerData = await fetchStakerPublicData()
+  console.log('stakerData', stakerData)
   dispatch(setStakerPublicData({ staker: stakerData }))
   if (account) {
     dispatch(fetchStakersUserDataAsync(account))

@@ -37,10 +37,10 @@ export const fetchStakerPublicData = async (): Promise<Partial<StakerState>> => 
   const skcsQuetoByKCS = (allStakerPropertyCallsRespond[2][0] as BigNumber).div(allStakerPropertyCallsRespond[2][1])
 
   return {
-    accumulatedStakedKCSAmount: allStakerPropertyCallsRespond[0],
-    accumulatedReward: allStakerPropertyCallsRespond[1],
-    totalStaker: allStakerPropertyCallsRespond[3],
-    rewardFee: allStakerPropertyCalls[4][0],
+    accumulatedStakedKCSAmount: allStakerPropertyCallsRespond[0][0],
+    accumulatedReward: allStakerPropertyCallsRespond[1][0],
+    totalStaker: allStakerPropertyCallsRespond[3][0],
+    rewardFee: allStakerPropertyCallsRespond[4][0],
     totalStakeKCSAmount: allStakerPropertyCallsRespond[2][0],
     totalStakeSKCSAmount: allStakerPropertyCallsRespond[2][1],
     kcsQuetoBySKCS,

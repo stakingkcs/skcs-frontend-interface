@@ -4,9 +4,10 @@ import { Image } from 'components'
 import React from 'react'
 import styled from 'styled-components'
 
+import { useWeb3React } from '@web3-react/core'
 import { useBalance } from '../../state/wallet/hooks'
-import './index.less'
 import { RowCenterBox } from '../index'
+import './index.less'
 
 const StyledInputWrap = styled.div`
   width: 100%;
@@ -59,6 +60,7 @@ const MaxButton = styled.div`
 `
 
 interface Props {
+  inputValue: string
   setVaule: any
   error: { hasError: boolean; errorInfo: string }
   setError: any
@@ -68,9 +70,10 @@ interface Props {
 
 const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
   const balance = useBalance()
+  const { account } = useWeb3React()
 
   React.useEffect(() => {
-    if (props.checkBalance && new BN(balance).div(10 ** 18).lte(1)) {
+    if (props.checkBalance && new BN(balance).div(10 ** 18).lte(0)) {
       props.setError(() => {
         return { hasError: true, errorInfo: 'Insufficient balance' }
       })
@@ -78,6 +81,14 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
   }, [balance, props.checkBalance])
 
   const checkValue = (input) => {
+    if (!account) {
+      props.setError(() => {
+        return { hasError: true, errorInfo: 'Please connect your wallet' }
+      })
+      props.setVaule(() => input.target.value)
+      return
+    }
+
     const value = input.target.value?.trim()
 
     props.setError(() => {
@@ -88,26 +99,33 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
       props.setError(() => {
         return { hasError: true, errorInfo: '' }
       })
+      props.setVaule(() => '')
       return
     }
 
-    const Reg = /^[1-9][0-9]*$/
+    if (Number(value) === 0) {
+      props.setError(() => {
+        return { hasError: true, errorInfo: 'The amount must be greater than 0.' }
+      })
+      props.setVaule(() => '')
+      return
+    }
+
+    const Reg = /^[1-9][0-9]*([\.][0-9]{1,18})?$/
 
     if (!Reg.test(value)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: 'Invalid enterger amount and at least enter 1.' }
+        return { hasError: true, errorInfo: 'Please enter a valid number with up to 18 decimal places.' }
       })
-      return
     }
 
     if (props.maxLimit && Number(value) > Number(props.maxLimit)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: "Don't exceed the maximum amount and at least enter 1." }
+        return { hasError: true, errorInfo: 'The amount exceeds the available balance.' }
       })
-      return
     }
 
-    props.setVaule(() => Number(value))
+    props.setVaule(() => value)
   }
 
   return (
@@ -119,9 +137,16 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
         size="large"
         style={{ color: '#fff' }}
         placeholder="Amount"
+        value={props.inputValue}
         suffix={
           <RowCenterBox>
-            <MaxButton>Max</MaxButton>
+            <MaxButton
+              onClick={() => {
+                props.setVaule(props.maxLimit)
+              }}
+            >
+              Max
+            </MaxButton>
             <SuffixText>KCS</SuffixText>
           </RowCenterBox>
         }
@@ -130,7 +155,6 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
         }
       />
       {props.error.hasError && props.error.errorInfo && <ErrorInfo>{`* ${props.error.errorInfo}`}</ErrorInfo>}
-
     </StyledInputWrap>
   )
 }

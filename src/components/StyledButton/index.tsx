@@ -21,6 +21,12 @@ const StyledButtonWrap = styled(Button)<{ disabled?: boolean; loading: boolean }
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
+  opacity: ${({ disabled }) => {
+    if (disabled) {
+      return 0.5
+    }
+    return 1
+  }};
   &:hover {
     background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%) !important;
   }
