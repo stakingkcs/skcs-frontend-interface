@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { formatNumber } from 'utils/bignumber'
 import { useStakerState } from '../../../state/hooks'
+import BN from 'bignumber.js'
 
 const bg = require('../../../assets/images/home/bg-header.png').default
 const mbg = require('../../../assets/images/home/mbg-header.png').default
@@ -67,9 +68,13 @@ const HomeBanner: React.FunctionComponent = () => {
         <Content>
           <Title>
             The KCC staking protocol currently has{' '}
-            <NumberText> ${formatNumber(staker.accumulatedStakedKCSAmount ?? 0)}</NumberText>
-            of KCS staking <NumberText>${formatNumber(staker.accumulatedReward)}</NumberText> of rewards paid{' '}
-            <NumberText>${formatNumber(staker.apr)}%</NumberText> APR
+            <NumberText>
+              {' '}
+              ${formatNumber(new BN(staker.accumulatedStakedKCSAmount.toString()).div(10 ** 18) ?? 0)}
+            </NumberText>
+            of KCS staking{' '}
+            <NumberText>${formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18))}</NumberText> of
+            rewards paid <NumberText>${formatNumber(staker.apr)}%</NumberText> APR
           </Title>
           <ButtonWarp>
             <StyledButton>Stake Now</StyledButton>
