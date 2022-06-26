@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { Children } from 'react'
 import styled from 'styled-components'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { isMobile } from 'react-device-detect'
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import 'swiper/swiper.min.css'
 
 const baseStep = require('../../../assets/images/home/base-step.png').default
 const baseHover = require('../../../assets/images/home/base-hover.png').default
@@ -25,7 +29,7 @@ const StakeWarp = styled.div`
     width: 120px;
     height: 10px;
     background: red;
-    border: 1px dashed #FFFFFF;
+    border: 1px dashed #ffffff;
     margin: 0 25px;
   }
 `
@@ -59,7 +63,7 @@ const StakeItem = styled.a`
   justify-content: flex-start;
   align-items: center;
   &:hover ${StakeIcon} {
-      transform: translateY(-20px);
+    transform: translateY(-20px);
   }
   &:hover ${StakeBaseIcon} {
     background: url(${baseHover}) no-repeat center;
@@ -102,31 +106,60 @@ const processList = [
   {
     icon: require('../../../assets/images/home/c-step1.png').default,
     title: '1. Connect Wallet',
-    link: ""
+    link: '',
   },
   {
     icon: require('../../../assets/images/home/c-step2.png').default,
     title: '2. Stake KCS',
-    link: ""
+    link: '',
   },
   {
     icon: require('../../../assets/images/home/c-step3.png').default,
     title: '3. Get sKCS',
-    link: ""
+    link: '',
   },
   {
     icon: require('../../../assets/images/home/c-step4.png').default,
     title: '4.Use sKCS',
-    link: ""
+    link: '',
   },
 ]
 
 const StakeProcess: React.FunctionComponent = () => {
+  if (isMobile) {
+    return (
+      <>
+        <Title>Start staking and grow your assets in only 4 steps</Title>
+        <StakeWarp>
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={3}
+            pagination={{
+              type: "progressbar",
+            }}
+            navigation={true}
+          >
+            {processList.map((step) => {
+              return (
+                <SwiperSlide>
+                  <StakeItem>
+                    <StakeIcon src={step.icon} />
+                    <StakeBaseIcon />
+                    <StakeTitle>{step.title}</StakeTitle>
+                  </StakeItem>
+                </SwiperSlide>
+              )
+            })}
+          </Swiper>
+        </StakeWarp>
+      </>
+    )
+  }
+
   return (
     <>
       <Title>Start staking and grow your assets in only 4 steps</Title>
       <StakeWarp>
-  
         {processList.map((step) => {
           return (
             <StakeItem>
@@ -136,7 +169,6 @@ const StakeProcess: React.FunctionComponent = () => {
             </StakeItem>
           )
         })}
- 
       </StakeWarp>
     </>
   )

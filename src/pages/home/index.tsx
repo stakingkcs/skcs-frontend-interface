@@ -23,7 +23,6 @@ const HomeWrap = styled.div`
   min-height: calc(100vh - 320px);
   width: 100%;
   background: #000;
-  padding: 0 160px;
   padding-bottom: 160px;
   @media (max-width: 768px) {
     padding: 0;

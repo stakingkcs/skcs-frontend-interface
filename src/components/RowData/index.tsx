@@ -33,13 +33,15 @@ interface Props {
   title: ReactElement | string
   content: ReactElement | string
   style?: CSSProperties
+  tstyle?: CSSProperties
+  dstyle?: CSSProperties
 }
 
-const RowData: React.FunctionComponent<Props> = ({ content, title, style }) => {
+const RowData: React.FunctionComponent<Props> = ({ content, title, style, tstyle, dstyle }) => {
   return (
     <DataItemWrap style={style}>
-      <Title>{title}</Title>
-      <Desc>{content}</Desc>
+      <Title style={tstyle}>{title}</Title>
+      <Desc style={dstyle}>{content}</Desc>
     </DataItemWrap>
   )
 }
