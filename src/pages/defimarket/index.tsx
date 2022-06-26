@@ -50,7 +50,7 @@ const Warp = styled.div`
 `
 export const Content = styled.div`
   width: 100%;
-  max-width: 1200px;
+  max-width: 1220px;
   margin: 0 auto;
   position: relative;
   height: auto;
@@ -61,18 +61,35 @@ export const Content = styled.div`
     justify-content: center;
   }
 `
+const DataWarp = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  &:nth-child(3) {
+    margin-right: 0 !important;
+  }
+`
+
 const DeFiMarket: React.FunctionComponent = () => {
   return (
     <Warp>
-      <Title style={{textAlign: 'center'}}>Use stKCS across the DeFi ecosystem</Title>
+      <Title style={{ textAlign: 'center' }}>Use stKCS across the DeFi ecosystem</Title>
       <Content>
         <Banlance />
         <Title>Liquidity</Title>
         <Desc>Use stSOL in liquidity mining pools</Desc>
-        <Liquidity />
+        <DataWarp>
+          <Liquidity />
+          <Liquidity />
+          <Liquidity />
+        </DataWarp>
+
         <Title>Supply & Borrow</Title>
         <Desc>Supply stKCS to earn interest, collateral to borrow other assets.</Desc>
-        <Supply />
+        <DataWarp>
+          <Supply />
+          <Supply />
+        </DataWarp>
       </Content>
     </Warp>
   )

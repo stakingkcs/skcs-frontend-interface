@@ -24,6 +24,7 @@ const StakeWarp = styled.div`
     padding: 0 32px;
     justify-content: flex-start;
     overflow-x: scroll;
+    margin-bottom: 100px;
   }
 `
 

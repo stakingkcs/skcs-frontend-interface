@@ -15,10 +15,11 @@ const Title = styled.div`
   text-align: center;
   color: #ffffff;
   margin: 160px 0 75px 0;
-  /* @media (max-width: 768px) {
-    font-size: 26px;
-    margin: 0 8px;
-  } */
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: 0 auto !important;
+    font-size: 28px;
+  }
 `
 const StakeWarp = styled.div`
   width: 1200px;
@@ -31,6 +32,10 @@ const StakeWarp = styled.div`
     background: red;
     border: 1px dashed #ffffff;
     margin: 0 25px;
+  }
+   @media (max-width: 768px) {
+    width: 90%;
+    margin-bottom: 100px;
   }
 `
 
@@ -56,6 +61,19 @@ const StakeBaseIcon = styled.div`
     background-repeat: no-repeat;
   } */
 `
+
+const StakeTitle = styled.p`
+  font-family: Arial;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 40px;
+  margin-top: -25px;
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin: 0 8px;
+  }
+`
+
 const StakeItem = styled.a`
   display: flex;
   flex-direction: column;
@@ -68,6 +86,10 @@ const StakeItem = styled.a`
   &:hover ${StakeBaseIcon} {
     background: url(${baseHover}) no-repeat center;
   }
+  &:hover ${StakeTitle} {
+    color: #D04AFF;
+  }
+  
 `
 
 const StakeContent = styled.div`
@@ -83,17 +105,6 @@ const StakeContent = styled.div`
   }
 `
 
-const StakeTitle = styled.p`
-  font-family: Arial;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 40px;
-  margin-top: -25px;
-  @media (max-width: 768px) {
-    font-size: 28px;
-    margin: 0 8px;
-  }
-`
 const StakeDesc = styled.p`
   color: rgba(127, 131, 147, 1);
   font-size: 14px;
@@ -132,12 +143,16 @@ const StakeProcess: React.FunctionComponent = () => {
         <Title>Start staking and grow your assets in only 4 steps</Title>
         <StakeWarp>
           <Swiper
-            spaceBetween={50}
-            slidesPerView={3}
+            coverflowEffect={{
+              rotate: 30,
+              stretch: 10,
+              depth: 60,
+              modifier: 2,
+              slideShadows : true
+            }}
             pagination={{
               type: "progressbar",
             }}
-            navigation={true}
           >
             {processList.map((step) => {
               return (

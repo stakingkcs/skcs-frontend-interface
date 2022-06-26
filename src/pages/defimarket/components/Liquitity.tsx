@@ -46,6 +46,7 @@ const LiquidityWarp = styled.div`
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.5);
   padding: 36px 24px;
+  margin: 0 25px 25px 0;
   @media (max-width: 768px) {
     width: 343px;
   }

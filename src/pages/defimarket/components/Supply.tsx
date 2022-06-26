@@ -16,7 +16,9 @@ const Warp = styled.div`
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.5);
   padding: 36px 24px;
+  margin-right: 25px;
   @media (max-width: 768px) {
+    margin-right: 0;
     width: 343px;
   }
 `
@@ -63,7 +65,7 @@ const Supply: React.FunctionComponent = () => {
     <>
       <Warp>
         <SymbolWarp>
-          <SymbolIcon />
+          <SymbolIcon src={''}/>
           <SymbolTitle>MJT+SKCS</SymbolTitle>
         </SymbolWarp>
         <RowData
