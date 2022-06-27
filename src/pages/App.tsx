@@ -1,17 +1,17 @@
 import FullLoading from 'components/FullLoading'
 import WalletListModal from 'components/WalletListModal'
 import Web3ReactManager, { getLibrary } from 'components/Web3ReactManager'
+import { useStakeApr } from 'hooks/useStakerApr'
 import AppLayout from 'layouts/AppLayout'
+import DeFiMarket from 'pages/defimarket'
 import NotFound from 'pages/error'
 import Home from 'pages/home/'
-import DeFiMarket from 'pages/defimarket'
 import Staking from 'pages/staking'
-import React, { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { useConnectWalletModalShow } from 'state/wallet/hooks'
 import { useFetchStakerPublicData } from 'state/hooks'
+import { useConnectWalletModalShow } from 'state/wallet/hooks'
 import { useFetchPriceList } from 'utils/prices'
-import { useStakeApr } from 'hooks/useStakerApr'
 
 export default function App() {
   useFetchStakerPublicData()
