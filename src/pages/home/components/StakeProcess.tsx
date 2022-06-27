@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { Children } from 'react'
 import styled from 'styled-components'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { isMobile } from 'react-device-detect'
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import 'swiper/swiper.min.css'
 
 const baseStep = require('../../../assets/images/home/base-step.png').default
 const baseHover = require('../../../assets/images/home/base-hover.png').default
@@ -11,10 +15,11 @@ const Title = styled.div`
   text-align: center;
   color: #ffffff;
   margin: 160px 0 75px 0;
-  /* @media (max-width: 768px) {
-    font-size: 26px;
-    margin: 0 8px;
-  } */
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: 0 auto !important;
+    font-size: 28px;
+  }
 `
 const StakeWarp = styled.div`
   width: 1200px;
@@ -25,8 +30,12 @@ const StakeWarp = styled.div`
     width: 120px;
     height: 10px;
     background: red;
-    border: 1px dashed #FFFFFF;
+    border: 1px dashed #ffffff;
     margin: 0 25px;
+  }
+   @media (max-width: 768px) {
+    width: 90%;
+    margin-bottom: 100px;
   }
 `
 
@@ -52,6 +61,19 @@ const StakeBaseIcon = styled.div`
     background-repeat: no-repeat;
   } */
 `
+
+const StakeTitle = styled.p`
+  font-family: Arial;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 40px;
+  margin-top: -25px;
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin: 0 8px;
+  }
+`
+
 const StakeItem = styled.a`
   display: flex;
   flex-direction: column;
@@ -59,11 +81,15 @@ const StakeItem = styled.a`
   justify-content: flex-start;
   align-items: center;
   &:hover ${StakeIcon} {
-      transform: translateY(-20px);
+    transform: translateY(-20px);
   }
   &:hover ${StakeBaseIcon} {
     background: url(${baseHover}) no-repeat center;
   }
+  &:hover ${StakeTitle} {
+    color: #D04AFF;
+  }
+  
 `
 
 const StakeContent = styled.div`
@@ -79,17 +105,6 @@ const StakeContent = styled.div`
   }
 `
 
-const StakeTitle = styled.p`
-  font-family: Arial;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 40px;
-  margin-top: -25px;
-  @media (max-width: 768px) {
-    font-size: 28px;
-    margin: 0 8px;
-  }
-`
 const StakeDesc = styled.p`
   color: rgba(127, 131, 147, 1);
   font-size: 14px;
@@ -102,31 +117,64 @@ const processList = [
   {
     icon: require('../../../assets/images/home/c-step1.png').default,
     title: '1. Connect Wallet',
-    link: ""
+    link: '',
   },
   {
     icon: require('../../../assets/images/home/c-step2.png').default,
     title: '2. Stake KCS',
-    link: ""
+    link: '',
   },
   {
     icon: require('../../../assets/images/home/c-step3.png').default,
     title: '3. Get sKCS',
-    link: ""
+    link: '',
   },
   {
     icon: require('../../../assets/images/home/c-step4.png').default,
     title: '4.Use sKCS',
-    link: ""
+    link: '',
   },
 ]
 
 const StakeProcess: React.FunctionComponent = () => {
+  if (isMobile) {
+    return (
+      <>
+        <Title>Start staking and grow your assets in only 4 steps</Title>
+        <StakeWarp>
+          <Swiper
+            coverflowEffect={{
+              rotate: 30,
+              stretch: 10,
+              depth: 60,
+              modifier: 2,
+              slideShadows : true
+            }}
+            pagination={{
+              type: "progressbar",
+            }}
+          >
+            {processList.map((step) => {
+              return (
+                <SwiperSlide>
+                  <StakeItem>
+                    <StakeIcon src={step.icon} />
+                    <StakeBaseIcon />
+                    <StakeTitle>{step.title}</StakeTitle>
+                  </StakeItem>
+                </SwiperSlide>
+              )
+            })}
+          </Swiper>
+        </StakeWarp>
+      </>
+    )
+  }
+
   return (
     <>
       <Title>Start staking and grow your assets in only 4 steps</Title>
       <StakeWarp>
-  
         {processList.map((step) => {
           return (
             <StakeItem>
@@ -136,7 +184,6 @@ const StakeProcess: React.FunctionComponent = () => {
             </StakeItem>
           )
         })}
- 
       </StakeWarp>
     </>
   )

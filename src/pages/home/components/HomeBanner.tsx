@@ -9,12 +9,14 @@ const bg = require('../../../assets/images/home/bg-header.png').default
 const mbg = require('../../../assets/images/home/mbg-header.png').default
 
 const Header = styled.div`
-  width: 100%;
+  margin: 0 auto;
+  width: 1440px;
   height: 864px;
   text-align: center;
   background: url(${bg}) no-repeat top;
-  padding: 0 100px;
+  padding: 0 120px;
   @media (max-width: 768px) {
+    width: 100%;
     padding: 0 26px;
     background: url(${mbg}) no-repeat top;
   }

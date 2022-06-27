@@ -99,7 +99,7 @@ const FollowUs: FunctionComponent = () => {
             return (
               <ItemLink>
                 <ItemImg src={item.icon} />
-                <ItemText>{item.name}</ItemText>
+                <ItemText style={{display: isMobile ? 'block': 'none'}}>{item.name}</ItemText>
               </ItemLink>
             )
           })}
