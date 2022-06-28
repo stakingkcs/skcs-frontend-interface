@@ -17,6 +17,7 @@ import { formatCurrency, shortAddress } from '../../utils/format'
 import { updateBalance } from '../../utils/wallet'
 import { useDispatch } from 'react-redux'
 import { updateBalance as updateCurrentBalace } from '../../state/wallet/actions'
+import { CenterBox, Image } from 'components'
 
 export interface LogoutModalProps {
   visible: boolean
@@ -113,7 +114,7 @@ const ShiningBadge = styled(Badge)`
 `
 
 const OperateWrap = styled(SpaceRow)`
-  margin-top: 30px;
+  margin-top: 32px;
 `
 
 const OperateItem = styled.div`
@@ -123,54 +124,71 @@ const OperateItem = styled.div`
   justify-content: center;
   align-items: center;
   color: #fff;
-  background: #39393b;
-  width: 70px;
-  height: 70px;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
 `
 const OperateIcon = styled.img`
   width: 20px;
   height: 20px;
 `
 const OperateText = styled.div`
-  color: #fff;
-  margin-top: 5px;
+  margin-top: 8px;
 `
 
-const CloseIconWrap = styled.div`
-  width: 44px;
-  height: 44px;
+const ModalTitle = styled.div`
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  color: #efeff2;
+`
+
+const SubTitle = styled.div`
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: left;
+  color: #b4b7c1;
+  width: 100%;
+`
+const InputContainer = styled.div`
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-top: 7px;
+  padding: 12px 16px;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
   align-items: center;
-  position: absolute;
-  background: #252528;
-  border-radius: 50%;
-  top: 340px;
-  left: 50%;
-  transform: translateX(-50%);
-  cursor: pointer;
-  transition: all 0.6s ease-in-out;
-  &:hover {
-    transform: translateX(-50%) rotate(180deg);
-  }
+`
+const InputText = styled.div`
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #efeff2;
 `
 
 const OperateList = [
   {
     key: '0',
-    title: 'View',
-    icon: <ChromeOutlined style={{ fontSize: '20px' }} />,
+    title: 'Copy',
+    icon: <OperateIcon src={require('../../assets/images/Icons/copy.png').default} />,
   },
   {
     key: '1',
-    title: 'Copy',
-    icon: <CopyOutlined style={{ fontSize: '20px' }} />,
+    title: 'View in Blockchain',
+    icon: <OperateIcon src={require('../../assets/images/Icons/share-gray.png').default} />,
   },
   {
     key: '2',
     title: 'Logout',
-    icon: <OperateIcon src={require('../../assets/images/Icons/logout.svg').default} />,
+    icon: <OperateIcon src={require('../../assets/images/Icons/logout.png').default} />,
   },
 ]
 
@@ -231,15 +249,15 @@ const LogoutModal: React.FunctionComponent<LogoutModalProps> = (props) => {
     hideSelf()
   }
 
-  const operateClick = (index: number) => {
+  const operateClick = (index: string) => {
     switch (index) {
-      case 0:
-        nav2Scan()
-        break
-      case 1:
+      case '0':
         copyAddress()
         break
-      case 2:
+      case '1':
+        nav2Scan()
+        break
+      case '2':
         logoutAndLock()
         break
       default:
@@ -249,10 +267,12 @@ const LogoutModal: React.FunctionComponent<LogoutModalProps> = (props) => {
 
   const OperateListDom = OperateList.map((operate, index) => {
     return (
-      <OperateItem key={index} onClick={operateClick.bind(null, index)}>
-        {operate.icon}
-        <OperateText>{t(`${operate.title}`)}</OperateText>
-      </OperateItem>
+      <CenterBox key={index} style={{ width: 'auto' }}>
+        <OperateItem onClick={operateClick.bind(null, operate.key)}>{operate.icon}</OperateItem>
+        <OperateText style={{ color: operate.title === 'Logout' ? '#FB6491' : '#fff' }}>
+          {t(`${operate.title}`)}
+        </OperateText>
+      </CenterBox>
     )
   })
 
@@ -265,30 +285,29 @@ const LogoutModal: React.FunctionComponent<LogoutModalProps> = (props) => {
     >
       <WalletInfoWrap>
         <SpaceRow>
-          <HighLightTitle>{account && shortAddress(account as any)}</HighLightTitle>
-          <NetworkNameWrap>
-            <ShiningBadge status="processing" />
-            {networkInfo?.abbr}
-          </NetworkNameWrap>
+          <ModalTitle>My Wallet</ModalTitle>
+          <Image
+            style={{ cursor: 'pointer' }}
+            src={require('../../assets/images/Icons/close-white.png').default}
+            width="20px"
+            height="20px"
+            alt="close-icon"
+            onClick={hideSelf}
+          />
         </SpaceRow>
-        <WalletName>{walletInfo?.name}</WalletName>
-        <BalanceWrap>
-          <SpaceRow>
-            <NetworkNameWrap>
-              <NetworkIcon src={networkInfo?.logo} />
-              {networkInfo?.symbol.toUpperCase()}
-            </NetworkNameWrap>
-            <BalanceText>
-              {formatCurrency(
-                new BN(balance ?? 0).div(Math.pow(10, networkInfo?.decimals)).toPrecision(6).toString()
-              ) ?? 'loading...'}
-            </BalanceText>
-          </SpaceRow>
-        </BalanceWrap>
+
+        <SubTitle style={{ marginTop: '20px' }}>Network</SubTitle>
+        <InputContainer>
+          <Image src={networkInfo?.logo} width="20px" height="20px" alt="chain-logo" />
+          <InputText style={{ marginLeft: '8px' }}>{networkInfo?.fullName}</InputText>
+        </InputContainer>
+
+        <SubTitle style={{ marginTop: '20px' }}>Wallet Address</SubTitle>
+        <InputContainer>
+          <InputText>{account}</InputText>
+        </InputContainer>
+
         <OperateWrap>{OperateListDom}</OperateWrap>
-        <CloseIconWrap onClick={hideSelf}>
-          <PlusOutlined style={{ transform: `rotate(45deg)`, fontSize: '20px', color: '#fff' }} />
-        </CloseIconWrap>
       </WalletInfoWrap>
     </WalletCenterWrap>
   )
