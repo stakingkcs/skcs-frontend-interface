@@ -310,7 +310,7 @@ const StakingPanel: FunctionComponent = () => {
 
               {account && (
                 <TipsText>
-                  Default stKCS unstaking period takes around 3-6 days to process, you can withdraw it after that.
+                  Default sKCS unstaking period takes around 3-6 days to process, you can withdraw it after that.
                 </TipsText>
               )}
             </ContentWrap>
@@ -388,7 +388,7 @@ const StakingPanel: FunctionComponent = () => {
 
               {account && (
                 <TipsText>
-                  Default stKCS unstaking period takes around 3-6 days to process, you can withdraw it after that.
+                  Default sKCS unstaking period takes around 3-6 days to process, you can withdraw it after that.
                 </TipsText>
               )}
             </ContentWrap>

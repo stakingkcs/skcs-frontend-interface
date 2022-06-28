@@ -13,4 +13,9 @@ export const WalletList = [
     name: 'Wallet Connect',
     logo: require('../assets/images/home/walletlink.png').default,
   },
+  {
+    id: 2,
+    name: 'KuCoin Wallet',
+    logo: require('../assets/images/home/kucoinwallet.svg').default,
+  },
 ]

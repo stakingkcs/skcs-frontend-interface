@@ -73,7 +73,7 @@ const DataWarp = styled.div`
 const DeFiMarket: React.FunctionComponent = () => {
   return (
     <Warp>
-      <Title style={{ textAlign: 'center' }}>Use stKCS across the DeFi ecosystem</Title>
+      <Title style={{ textAlign: 'center' }}>Use sKCS across the DeFi ecosystem</Title>
       <Content>
         <Banlance />
         <Title>Liquidity</Title>
@@ -85,7 +85,7 @@ const DeFiMarket: React.FunctionComponent = () => {
         </DataWarp>
 
         <Title>Supply & Borrow</Title>
-        <Desc>Supply stKCS to earn interest, collateral to borrow other assets.</Desc>
+        <Desc>Supply sKCS to earn interest, collateral to borrow other assets.</Desc>
         <DataWarp>
           <Supply />
           <Supply />

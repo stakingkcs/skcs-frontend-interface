@@ -63,18 +63,12 @@ export const DivideLine = styled.div`
 `
 
 export const ModalTitle = styled.div`
-  height: 36px;
-  font-weight: 500;
-  color: #000621;
-  width: 100%;
-  text-align: center;
-  margin-top: 26px;
-  font-family: 'Barlow';
+  font-family: 'Arial';
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 16px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #040a2d;
+  align-items: flex-start;
+  text-align: left;
+  color: #efeff2;
 `

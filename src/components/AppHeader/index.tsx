@@ -53,8 +53,8 @@ const AppHeaderContent = styled(HeaderLeftWrap)<{ isMobile: boolean }>`
 `
 
 const KccLogo = styled(Image)`
-  width: 94px;
-  height: 32px;
+  width: 100px;
+  height: 34px;
   cursor: pointer;
 `
 
@@ -95,7 +95,7 @@ const AppHeader: React.FunctionComponent = () => {
             {show ? <AppMenu style={{ width: '100%' }} /> : null}
           </MobileView>
           <KccLogo
-            src={require('../../assets/images/kcc-logo.svg').default}
+            src={require('../../assets/images/Icons/logo.svg').default}
             alt="kcc-logo"
             onClick={() => window.open('https://kcc.io', '_blank')}
           />

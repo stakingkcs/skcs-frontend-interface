@@ -144,7 +144,7 @@ const StakingPanel: FunctionComponent = () => {
       {!account && (
         <HeaderPanel>
           <Title>Stake KCS</Title>
-          <Desc>Stake KCS and receive stKCS as proof while staking</Desc>
+          <Desc>Stake KCS and receive sKCS as proof while staking</Desc>
         </HeaderPanel>
       )}
       <ContentWrap connected={Boolean(account)}>
@@ -207,7 +207,7 @@ const StakingPanel: FunctionComponent = () => {
                 titleExtra={
                   <Tooltip
                     placement="top"
-                    title="Pending amount means the stKCS unstaking is under processing, the period takes around 3-6 days to process, you can withdraw it after that."
+                    title="Pending amount means the sKCS unstaking is under processing, the period takes around 3-6 days to process, you can withdraw it after that."
                   >
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>

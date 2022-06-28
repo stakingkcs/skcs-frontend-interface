@@ -13,7 +13,7 @@ export interface WalletState {
 const initialState: WalletState = {
     hasError: false,
     errorInfo: '',
-    connectWalletModalShow: false,
+    connectWalletModalShow: true,
     balance: '',
     walletId: 0
 }

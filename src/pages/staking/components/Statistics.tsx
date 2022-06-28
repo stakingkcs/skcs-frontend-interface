@@ -103,7 +103,7 @@ const Statistics: React.FunctionComponent = () => {
           />
           <RowData
             style={{ marginTop: '12px' }}
-            title="stKCS market cap"
+            title="sKCS market cap"
             content={`$ ${formatNumber(
               kcsPrice.times(
                 new BN(staker.totalStakeSKCSAmount.toString())
