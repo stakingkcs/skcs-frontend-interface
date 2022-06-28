@@ -76,7 +76,7 @@ const HomeBanner: React.FunctionComponent = () => {
             </NumberText>
             of KCS staking{' '}
             <NumberText>${formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18))}</NumberText> of
-            rewards paid <NumberText>${formatNumber(staker.apr)}%</NumberText> APR
+            rewards paid <NumberText>{formatNumber(staker.apr)}%</NumberText> APR
           </Title>
           <ButtonWarp>
             <StyledButton>Stake Now</StyledButton>
