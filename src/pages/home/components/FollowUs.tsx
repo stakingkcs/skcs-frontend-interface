@@ -44,12 +44,9 @@ const ItemLink = styled.a`
   text-align: center;
   line-height: 72px;
   transition: all 0.3s ease-in;
-  background: #1c1c24;
+  background: rgba(255, 255, 255, 0.12);
   &:hover {
     background: linear-gradient(120.14deg, #00d092 -4.82%, #d04aff 113.33%);
-  }
-  &:hover ${ItemImg} {
-    transform: scale(0.9);
   }
   @media (max-width: 768px) {
     width: 120px;

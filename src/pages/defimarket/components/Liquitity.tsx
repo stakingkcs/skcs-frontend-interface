@@ -50,6 +50,9 @@ const LiquidityWarp = styled.div`
   @media (max-width: 768px) {
     width: 343px;
   }
+  &:nth-child(3n + 0) {
+    margin-right: 0;
+  }
 `
 const SymbolWarp = styled.div`
   display: flex;
@@ -65,6 +68,7 @@ const SymbolTitle = styled.p`
   line-height: 24px;
   color: #ffffff;
   font-weight: bold;
+  margin-bottom: 0;
 `
 const GradientButton = styled.div`
   position: relative;
@@ -96,22 +100,22 @@ const Liquidity: React.FunctionComponent = () => {
           <SymbolTitle>MJT+SKCS</SymbolTitle>
         </SymbolWarp>
         <RowData
-          style={{ marginTop: isMobile ? '22px' : '32px' }}
+          style={{ marginTop: isMobile ? '15px' : '23px' }}
           tstyle={{ fontSize: '18px' }}
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title="Apr"
           content={`100%`}
         />
         <RowData
-          style={{ marginTop: isMobile ? '22px' : '32px' }}
+          style={{ marginTop: isMobile ? '22px' : '23px' }}
           title="Total Liquidity"
           content={`$690,000,0`}
           tstyle={{ fontSize: '18px' }}
           dstyle={{ fontWeight: 700, fontSize: '24px' }}
         />
-        <StyledButton style={{ marginTop: '40px', height: '48px' }}>Add Liquidity</StyledButton>
+        <StyledButton style={{ margin: '35px 0 24px 0', height: '48px' }}>Add Liquidity</StyledButton>
         <GradienButton>
-          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>swap</GradientText>
+          <GradientText style={{ fontSize: '18px', fontWeight: 700}}>swap</GradientText>
         </GradienButton>
       </LiquidityWarp>
     </>

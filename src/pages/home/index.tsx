@@ -21,9 +21,9 @@ import FollowUs from './components/FollowUs'
 const HomeWrap = styled.div`
   height: auto;
   min-height: calc(100vh - 320px);
-  width: 100%;
   background: #000;
   padding-bottom: 160px;
+  margin: 0 auto;
   @media (max-width: 768px) {
     padding: 0;
   }
