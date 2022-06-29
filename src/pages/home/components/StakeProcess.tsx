@@ -2,6 +2,7 @@ import React, { Children } from 'react'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { isMobile } from 'react-device-detect'
+import SwiperCore, { Autoplay } from 'swiper'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import 'swiper/swiper.min.css'
 
@@ -66,10 +67,10 @@ const StakeTitle = styled.p`
   font-family: Arial;
   color: #ffffff;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 20px;
   margin-top: -25px;
   @media (max-width: 768px) {
-    font-size: 28px;
+    font-size: 16px;
     margin: 0 8px;
   }
 `
@@ -89,6 +90,15 @@ const StakeItem = styled.a`
   &:hover ${StakeTitle} {
     color: #d04aff;
   }
+`
+const StakeDashed = styled.div`
+  width: 120px;
+  height: 1px;
+  border: 1px dashed #ffffff;
+  opacity: 50%;
+  margin-top: 153px;
+  /* left: auto;
+  right: auto; */
 `
 
 const StakeContent = styled.div`
@@ -137,20 +147,14 @@ const processList = [
 
 const StakeProcess: React.FunctionComponent = () => {
   if (isMobile) {
+    SwiperCore.use([Autoplay])
     return (
       <>
         <Title>Start staking and grow your assets in only 4 steps</Title>
         <StakeWarp>
           <Swiper
-            coverflowEffect={{
-              rotate: 30,
-              stretch: 10,
-              depth: 60,
-              modifier: 2,
-              slideShadows: true,
-            }}
-            pagination={{
-              type: 'progressbar',
+            autoplay={{
+              delay: 0,
             }}
           >
             {processList.map((step) => {
@@ -174,13 +178,16 @@ const StakeProcess: React.FunctionComponent = () => {
     <>
       <Title>Start staking and grow your assets in only 4 steps</Title>
       <StakeWarp>
-        {processList.map((step) => {
+        {processList.map((step, index) => {
           return (
-            <StakeItem key={step.title}>
-              <StakeIcon src={step.icon} />
-              <StakeBaseIcon />
-              <StakeTitle>{step.title}</StakeTitle>
-            </StakeItem>
+            <div key={step.title}>
+              <StakeItem>
+                <StakeIcon src={step.icon} />
+                <StakeBaseIcon />
+                <StakeTitle>{step.title}</StakeTitle>
+              </StakeItem>
+              {index !== processList.length - 1 ? <StakeDashed /> : ''}
+            </div>
           )
         })}
       </StakeWarp>

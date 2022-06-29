@@ -3,6 +3,8 @@ import { isMobile } from 'react-device-detect'
 import styled from 'styled-components'
 import { Title, Text } from '../../../components/index'
 
+
+const arrow = require('../../../assets/images/home/arrow.png').default
 const FAQWarp = styled.div`
   width: 507px;
 
@@ -17,9 +19,10 @@ const FAQWarp = styled.div`
 `
 
 const TipWarp = styled.div`
+  position:relative;
   width: 507px;
   height: 134px;
-  background: rgba(29, 28, 36, 1);
+  background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
   border-radius: 16px;
   padding: 32px;
@@ -29,7 +32,12 @@ const TipWarp = styled.div`
     height: 204px;
   }
 `
-
+const IconArrow = styled.img`
+  position:absolute;
+  right: 28px;
+  top: 45%;
+  object-fit: cover;
+`
 const QuesTitle = styled.p`
   font-size: 28px;
   font-weight: 700;
@@ -53,7 +61,9 @@ const FAQTip: FunctionComponent<Props> = ({ title, desc }) => {
       <TipWarp>
         <QuesTitle>{title} </QuesTitle>
         <Desc>{desc}</Desc>
+        <IconArrow src={arrow}/>
       </TipWarp>
+     
     </FAQWarp>
   )
 }

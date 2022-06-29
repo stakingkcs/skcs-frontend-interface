@@ -10,26 +10,30 @@ const mbg = require('../../../assets/images/home/mbg-header.png').default
 
 const Header = styled.div`
   margin: 0 auto;
-  width: 1440px;
-  height: 864px;
   text-align: center;
   background: url(${bg}) no-repeat top;
+  padding: 0 135px;
+  @media (max-width: 768px) {
+    padding: 0;
+    width: 100%;
+    background: url(${mbg}) no-repeat top;
+  }
+`
+const Content = styled.div`
+  width: 1440px;
+  height: 864px;
   padding: 0 120px;
   @media (max-width: 768px) {
     width: 100%;
     padding: 0 26px;
-    background: url(${mbg}) no-repeat top;
+   
   }
-`
-
-const Content = styled.div`
-  width: 100%;
 `
 
 const Title = styled.div`
   font-family: 'Arial';
   font-style: normal;
-  font-size: 52px;
+  font-size: 54px;
   line-height: 62px;
   text-align: left;
   width: 944px;

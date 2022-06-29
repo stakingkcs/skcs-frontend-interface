@@ -12,7 +12,7 @@ const Title = styled.div`
   font-size: 28px;
   text-align: left;
   color: #ffffff;
-  margin: 52px 0 12px 0;
+  margin: 52px 0 48px 0;
   @media (max-width: 768px) {
     font-size: 24px;
     text-align: center;
@@ -41,7 +41,7 @@ const Warp = styled.div`
   height: auto;
   min-height: calc(100vh - 100px);
   width: 100%;
-  background: url(${gradientBg}) center -200px no-repeat;
+  background: url(${gradientBg})  no-repeat fixed center ;
   background-size: 1600px auto;
   color: white;
   @media (max-width: 768px) {
@@ -65,9 +65,6 @@ const DataWarp = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  &:nth-child(3) {
-    margin-right: 0 !important;
-  }
 `
 
 const DeFiMarket: React.FunctionComponent = () => {
@@ -81,12 +78,12 @@ const DeFiMarket: React.FunctionComponent = () => {
         <DataWarp>
           <Liquidity />
           <Liquidity />
-          <Liquidity />
         </DataWarp>
 
         <Title>Supply & Borrow</Title>
         <Desc>Supply sKCS to earn interest, collateral to borrow other assets.</Desc>
         <DataWarp>
+          <Supply />
           <Supply />
           <Supply />
         </DataWarp>

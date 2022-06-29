@@ -17,6 +17,9 @@ const Warp = styled.div`
   background: rgba(0, 0, 0, 0.5);
   padding: 36px 24px;
   margin-right: 25px;
+  &:nth-child(3n + 0) {
+    margin-right: 0;
+  }
   @media (max-width: 768px) {
     margin-right: 0;
     width: 343px;

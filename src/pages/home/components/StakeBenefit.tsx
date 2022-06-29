@@ -25,6 +25,12 @@ const StakeWarp = styled.div`
     justify-content: flex-start;
     overflow-x: scroll;
     margin-bottom: 100px;
+    scrollbar-width: none; /* firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    &::-webkit-scrollbar {
+      // chrome safari
+      display: none;
+    }
   }
 `
 
@@ -33,19 +39,13 @@ const StakeContent = styled.div`
   height: 252px;
   display: flex;
   justify-content: space-between;
-  scrollbar-width: none; /* firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-  &::-webkit-scrollbar {
-    // chrome safari
-    display: none;
-  }
 `
 
 const StakeItem = styled.div`
   width: 281px;
   height: 252px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
