@@ -10,7 +10,7 @@ const Title = styled.div`
   font-size: 40px;
   text-align: center;
   color: #ffffff;
-  margin: 160px 0 60px;
+  margin: 120px 0 64px;
   @media (max-width: 768px) {
     font-size: 24px;
   }

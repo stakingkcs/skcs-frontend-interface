@@ -57,7 +57,7 @@ const NumberText = styled.span`
   margin: 0 10px;
   @media (max-width: 768px) {
     margin: 0 5px;
-    font-size: 20px;
+    font-size: 32px;
   }
 `
 const ButtonWarp = styled.div`

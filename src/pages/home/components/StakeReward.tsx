@@ -1,5 +1,5 @@
 import { Tooltip } from 'antd'
-import { QuestionCircleOutlined } from '@ant-design/icons'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import { ColumnCenterBox, RowCenterBox } from 'components'
 import DataItem from 'components/DataItem'
 import StyledInput from 'components/StyledInput'
@@ -33,9 +33,9 @@ const Title = styled.div`
   font-size: 40px;
   text-align: center;
   color: #ffffff;
-  margin: 259px 0 0 0;
+  margin: 129px 0 0 0;
   @media (max-width: 768px) {
-    font-size: 24px;
+    font-size: 28px;
     margin: 0 8px;
   }
 `
@@ -97,7 +97,8 @@ const StakeReward: React.FunctionComponent = () => {
                 placement="top"
                 title="APR is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APR = (exchange price 48 hours ago - exchange price at this time)*180*100%"
               >
-                <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
+         
+                <InfoCircleOutlined style={{ color: '#B4B7C1'}}/>
               </Tooltip>
             }
             balance="3.5%"
@@ -116,7 +117,7 @@ const StakeReward: React.FunctionComponent = () => {
                 placement="top"
                 title="APR is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APR = (exchange price 48 hours ago - exchange price at this time)*180*100%"
               >
-                <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
+                <InfoCircleOutlined style={{ color: 'rgba(255, 255, 255, 0.01)'}}/>
               </Tooltip>
             }
             balance="3.5%"

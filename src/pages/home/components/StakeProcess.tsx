@@ -18,8 +18,11 @@ const Title = styled.div`
   margin: 160px 0 75px 0;
   @media (max-width: 768px) {
     width: 80%;
-    margin: 0 auto !important;
+    margin: 0 auto;
+    margin-top:120px ;
+    margin-bottom:70px;
     font-size: 28px;
+    line-height: 32px;
   }
 `
 const StakeWarp = styled.div`
@@ -147,7 +150,7 @@ const processList = [
 
 const StakeProcess: React.FunctionComponent = () => {
   if (isMobile) {
-    SwiperCore.use([Autoplay])
+    // SwiperCore.use([Autoplay]);
     return (
       <>
         <Title>Start staking and grow your assets in only 4 steps</Title>

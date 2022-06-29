@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { CenterBox } from '../../../components/index'
 
-const BalancePanelWrpa = styled.div`
+const BalancePanelWarp = styled.div`
   width: 383px;
   height: 102px;
   left: 120px;
@@ -25,5 +25,5 @@ const ImageWrap = styled(CenterBox)`
 `
 
 const BalancePanel: FunctionComponent = () => {
-  return <BalancePanelWrpa></BalancePanelWrpa>
+  return <BalancePanelWarp></BalancePanelWarp>
 }
