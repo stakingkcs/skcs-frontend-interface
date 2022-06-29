@@ -1,4 +1,4 @@
-import { ModalProps, notification } from 'antd'
+import { ModalProps } from 'antd'
 import BN from 'bignumber.js'
 import { Image, RawBox, RowCenterBox, Text } from 'components'
 import StyledModal from 'components/StyledModal'
@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux'
 import { toggleConnectWalletModalShow } from 'state/wallet/actions'
 import ModalDescription from 'components/ModalDescription'
 import WarningDescription from '../../../components/WarningDescription/index'
+import StyledNotification from 'components/StyledNotification'
 
 const DescriptionWrap = styled.div`
   margin-top: 14px;
@@ -186,7 +187,7 @@ const ValidatorModal: React.FunctionComponent<
           }
           onClick={() => {
             Copy(props.validator.address)
-            notification.success({
+            StyledNotification.success({
               message: 'Notification',
               description: 'Copied!',
             })

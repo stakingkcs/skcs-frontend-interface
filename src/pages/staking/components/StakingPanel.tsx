@@ -1,6 +1,6 @@
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { useWeb3React } from '@web3-react/core'
-import { notification, Tabs, Tooltip } from 'antd'
+import { Tabs, Tooltip } from 'antd'
 import BN from 'bignumber.js'
 import { ALink, GradientBgColor, RowCenterBox } from 'components'
 import RowData from 'components/RowData'
@@ -22,6 +22,7 @@ import { ZERO } from 'constants/number'
 import { updateBalance } from 'utils/wallet'
 import { FlexBox } from '../../../components/index'
 import { fetchStakersUserDataAsync, updateStakerUserData } from 'state/staker'
+import StyledNotification from 'components/StyledNotification'
 
 const { TabPane } = Tabs
 
@@ -152,7 +153,7 @@ const StakingPanel: FunctionComponent = () => {
       if (response.status) {
         console.log('response.data', response.data)
         if (response.data?.status === 1) {
-          notification.success({
+          StyledNotification.success({
             message: 'Unstaking confirmed!',
             description: (
               <div>
@@ -171,7 +172,7 @@ const StakingPanel: FunctionComponent = () => {
           updateBalance(library, account)
           dispatch(fetchStakersUserDataAsync(account))
         } else {
-          notification.success({
+          StyledNotification.success({
             message: 'Unstaking failed!',
             description: 'Please try again.',
           })
@@ -179,7 +180,7 @@ const StakingPanel: FunctionComponent = () => {
       }
     } catch (e) {
       console.log(e)
-      notification.success({
+      StyledNotification.success({
         message: 'Unstaking failed!',
         description: 'Please try again.',
       })
@@ -202,7 +203,7 @@ const StakingPanel: FunctionComponent = () => {
         console.log('response.data', response.data)
 
         if (response.data?.status === 1) {
-          notification.success({
+          StyledNotification.success({
             message: 'Staking confirmed!',
             description: (
               <div>
@@ -221,7 +222,7 @@ const StakingPanel: FunctionComponent = () => {
           updateBalance(library, account)
           dispatch(fetchStakersUserDataAsync(account))
         } else {
-          notification.success({
+          StyledNotification.success({
             message: 'Staking failed!',
             description: 'Please try again.',
           })

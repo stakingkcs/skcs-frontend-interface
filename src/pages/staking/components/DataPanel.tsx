@@ -1,6 +1,6 @@
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { useWeb3React } from '@web3-react/core'
-import { notification, Tooltip } from 'antd'
+import { Tooltip } from 'antd'
 import BN from 'bignumber.js'
 import { ALink, FlexBox, RowCenterBox } from 'components'
 import DataItem from 'components/DataItem'
@@ -17,6 +17,7 @@ import { stakerContractHelper } from '../../../utils/validator'
 import { useStakerContract } from '../../../hooks/useContract'
 import { updateBalance } from 'utils/wallet'
 import { fetchStakersUserDataAsync } from 'state/staker'
+import StyledNotification from 'components/StyledNotification'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -102,7 +103,7 @@ const StakingPanel: FunctionComponent = () => {
       if (response.status) {
         console.log('response.data', response.data)
         if (response.data?.status === 1) {
-          notification.success({
+          StyledNotification.success({
             message: `Unstaking confirmed!`,
             description: (
               <div>
@@ -126,7 +127,7 @@ const StakingPanel: FunctionComponent = () => {
           updateBalance(library, account)
           dispatch(fetchStakersUserDataAsync(account))
         } else {
-          notification.success({
+          StyledNotification.success({
             message: 'Staking failed!',
             description: 'Please try again.',
           })

@@ -102,7 +102,7 @@ const StakeBenefit: React.FunctionComponent = () => {
         <StakeContent>
           {fitList.map((step) => {
             return (
-              <StakeItem>
+              <StakeItem key={step.title}>
                 <StakeIcon src={step.icon} />
                 <StakeTitle>{step.title}</StakeTitle>
                 <StakeDesc>{step.desc}</StakeDesc>

@@ -2,7 +2,7 @@ import React, { Children } from 'react'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { isMobile } from 'react-device-detect'
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import 'swiper/swiper.min.css'
 
 const baseStep = require('../../../assets/images/home/base-step.png').default
@@ -33,7 +33,7 @@ const StakeWarp = styled.div`
     border: 1px dashed #ffffff;
     margin: 0 25px;
   }
-   @media (max-width: 768px) {
+  @media (max-width: 768px) {
     width: 90%;
     margin-bottom: 100px;
   }
@@ -87,9 +87,8 @@ const StakeItem = styled.a`
     background: url(${baseHover}) no-repeat center;
   }
   &:hover ${StakeTitle} {
-    color: #D04AFF;
+    color: #d04aff;
   }
-  
 `
 
 const StakeContent = styled.div`
@@ -148,15 +147,15 @@ const StakeProcess: React.FunctionComponent = () => {
               stretch: 10,
               depth: 60,
               modifier: 2,
-              slideShadows : true
+              slideShadows: true,
             }}
             pagination={{
-              type: "progressbar",
+              type: 'progressbar',
             }}
           >
             {processList.map((step) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={step.title}>
                   <StakeItem>
                     <StakeIcon src={step.icon} />
                     <StakeBaseIcon />
@@ -177,7 +176,7 @@ const StakeProcess: React.FunctionComponent = () => {
       <StakeWarp>
         {processList.map((step) => {
           return (
-            <StakeItem>
+            <StakeItem key={step.title}>
               <StakeIcon src={step.icon} />
               <StakeBaseIcon />
               <StakeTitle>{step.title}</StakeTitle>

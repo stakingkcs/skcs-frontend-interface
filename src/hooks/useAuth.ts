@@ -9,12 +9,12 @@ import {
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
 import { connectorLocalStorageKey } from '../constants/wallet'
-import { notification } from 'antd'
 import { ConnectorNames, connectorsByName, injected } from '../connectors'
 import { updateErrorInfo } from '../state/wallet/actions'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import i18next from 'i18next'
+import StyledNotification from 'components/StyledNotification'
 
 /*  */
 const useAuth = () => {
@@ -34,7 +34,7 @@ const useAuth = () => {
           // error modal
           dispatch(updateErrorInfo({ hasError: true, errorInfo: 'Unsupported Network' }))
         } else if (error instanceof NoEthereumProviderError) {
-          notification.error({
+          StyledNotification.error({
             message: i18next.t('Provider Error'),
             description: i18next.t('No provider was found'),
           })
@@ -47,13 +47,13 @@ const useAuth = () => {
             const walletConnector = connector as WalletConnectConnector
             walletConnector.walletConnectProvider = undefined
           }
-          notification.error({
+          StyledNotification.error({
             message: i18next.t('Authorization Error'),
             description: i18next.t('Please authorize to access your account'),
           })
           dispatch(updateErrorInfo({ hasError: true, errorInfo: 'Authorization Error' }))
         } else {
-          notification.error({
+          StyledNotification.error({
             message: i18next.t(`Unknown error`),
             description: i18next.t(`${error.message}`),
           })
@@ -61,7 +61,7 @@ const useAuth = () => {
         }
       })
     } else {
-      notification.error({
+      StyledNotification.error({
         message: i18next.t("Can't find connector"),
         description: i18next.t('The connector config is wrong'),
       })

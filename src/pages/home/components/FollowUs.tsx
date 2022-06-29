@@ -59,29 +59,29 @@ const ItemLink = styled.a`
   }
 `
 const ItemText = styled.p`
-font-size: 14px;
-color: #FFFFFF;
+  font-size: 14px;
+  color: #ffffff;
 `
 
 const followList = [
   {
     icon: require('../../../assets/images/home/f1.png').default,
-    name: "Twitter",
+    name: 'Twitter',
     link: '',
   },
   {
     icon: require('../../../assets/images/home/f2.png').default,
-    name: "Discord",
+    name: 'Discord',
     link: '',
   },
   {
     icon: require('../../../assets/images/home/f3.png').default,
-    name: "Telegram",
+    name: 'Telegram',
     link: '',
   },
   {
     icon: require('../../../assets/images/home/f4.png').default,
-    name: "Medium",
+    name: 'Medium',
     link: '',
   },
 ]
@@ -97,9 +97,9 @@ const FollowUs: FunctionComponent = () => {
         <IconWarp>
           {followList.map((item) => {
             return (
-              <ItemLink>
+              <ItemLink key={item.name}>
                 <ItemImg src={item.icon} />
-                <ItemText style={{display: isMobile ? 'block': 'none'}}>{item.name}</ItemText>
+                <ItemText style={{ display: isMobile ? 'block' : 'none' }}>{item.name}</ItemText>
               </ItemLink>
             )
           })}
