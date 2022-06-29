@@ -180,14 +180,14 @@ const StakeProcess: React.FunctionComponent = () => {
       <StakeWarp>
         {processList.map((step, index) => {
           return (
-            <div key={step.title}>
+            <>
               <StakeItem>
                 <StakeIcon src={step.icon} />
                 <StakeBaseIcon />
                 <StakeTitle>{step.title}</StakeTitle>
               </StakeItem>
               {index !== processList.length - 1 ? <StakeDashed /> : ''}
-            </div>
+            </>
           )
         })}
       </StakeWarp>
