@@ -1,14 +1,27 @@
-import { Tooltip } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
-import { ColumnCenterBox, RowCenterBox } from 'components'
+import { useWeb3React } from '@web3-react/core'
+import { Tooltip } from 'antd'
+import BN from 'bignumber.js'
+import { ALink, ColumnCenterBox, RowCenterBox } from 'components'
 import DataItem from 'components/DataItem'
-import StyledInput from 'components/StyledInput'
-import { url } from 'inspector'
-import React from 'react'
-import styled from 'styled-components'
 import StyledButton from 'components/StyledButton'
-import FAQTip from './FAQTip'
+import StyledInput from 'components/StyledInput'
+import StyledNotification from 'components/StyledNotification'
+import { ZERO } from 'constants/number'
+import { BigNumber } from 'ethers/utils'
+import { useStakerContract } from 'hooks/useContract'
+import React from 'react'
 import { isMobile } from 'react-device-detect'
+import { useDispatch } from 'react-redux'
+import { useAppDispatch } from 'state'
+import { useKCSPrice, useStakerState } from 'state/hooks'
+import { fetchStakersUserDataAsync } from 'state/staker'
+import { toggleConnectWalletModalShow } from 'state/wallet/actions'
+import { useBalance } from 'state/wallet/hooks'
+import styled from 'styled-components'
+import { formatNumber } from 'utils/bignumber'
+import { stakerContractHelper } from 'utils/validator'
+import { updateBalance } from 'utils/wallet'
 
 const bg = require('../../../assets/images/home/re-bg.png').default
 const StakeWarp = styled.div`
@@ -86,6 +99,78 @@ const DataPanelWarp = styled.div`
 const StakeReward: React.FunctionComponent = () => {
   const [inputValue, setInputValue] = React.useState<string>('')
   const [error, setError] = React.useState<{ hasError: boolean; errorInfo: string }>({ hasError: false, errorInfo: '' })
+  const balance = useBalance()
+  const staker = useStakerState()
+  const { account, library } = useWeb3React()
+  const [loading, setLoading] = React.useState<boolean>(false)
+  const [depositKCSGasFee, setDepositKCSGasFee] = React.useState<BigNumber>(ZERO)
+  const stakerContract = useStakerContract()
+  const kcsPrice = useKCSPrice()
+  const dispatch = useDispatch()
+  const maxDepositKCS = React.useMemo(() => {
+    if (balance === '') return ZERO
+    return new BigNumber(balance).sub(depositKCSGasFee)
+  }, [depositKCSGasFee, balance])
+
+  React.useEffect(() => {
+    async function getGasFee() {
+      if (!account) return 0
+      const gasFeeRespond = await stakerContract.estimateGas.depositKCS(account, {
+        value: new BigNumber(100).mul(10).toString(),
+      })
+      console.log('gasFee', gasFeeRespond)
+      setDepositKCSGasFee(() => new BigNumber(gasFeeRespond.toString()))
+    }
+
+    getGasFee()
+  }, [stakerContract, account])
+
+  const handleDeposit = React.useCallback(async () => {
+    if (!account) return
+    setLoading(() => true)
+    try {
+      console.log('inputvalue', inputValue)
+      const response = await stakerContractHelper.depositKCSToValidator(
+        stakerContract,
+        new BN(inputValue).times(10 ** 18),
+        account
+      )
+      if (response.status) {
+        console.log('response.data', response.data)
+
+        if (response.data?.status === 1) {
+          StyledNotification.success({
+            message: 'Staking confirmed!',
+            description: (
+              <div>
+                Stake {inputValue} KCS and receive{' '}
+                {formatNumber(new BN(staker.kcsQuetoBySKCS).multipliedBy(inputValue), 3)} sKCS.{' '}
+                <ALink
+                  href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
+                  target="_blank"
+                >
+                  View transaction on chain.
+                </ALink>
+              </div>
+            ),
+          })
+          setInputValue(() => '')
+          updateBalance(library, account)
+          dispatch(fetchStakersUserDataAsync(account))
+        } else {
+          StyledNotification.success({
+            message: 'Staking failed!',
+            description: 'Please try again.',
+          })
+        }
+      }
+    } catch (e) {
+      console.log(e)
+    } finally {
+      setLoading(() => false)
+    }
+  }, [dispatch, stakerContract, account, library, inputValue, setInputValue])
+
   const renderData = () => {
     if (!isMobile) {
       return (
@@ -100,10 +185,27 @@ const StakeReward: React.FunctionComponent = () => {
                 <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             }
-            balance="3.5%"
+            balance={`${formatNumber(staker.apr, 2)}%`}
           />
-          <DataItem title="Monthly Rewards" balance="0.03KCS" uBalance="≈$0.0026" />
-          <DataItem title="Yearly Rewards" balance="0.03KCS" uBalance="≈$0.0026" />
+          <DataItem
+            title="Monthly Rewards"
+            balance={`${formatNumber(
+              inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).toString() : 0,
+              4
+            )}KCS`}
+            uBalance={`≈${formatNumber(
+              inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).multipliedBy(kcsPrice).toString() : 0,
+              4
+            )}`}
+          />
+          <DataItem
+            title="Yearly Rewards"
+            balance={`${formatNumber(inputValue ? new BN(inputValue).multipliedBy(staker.apr).toString() : 0, 4)}KCS`}
+            uBalance={`≈${formatNumber(
+              inputValue ? new BN(inputValue).multipliedBy(staker.apr).multipliedBy(kcsPrice).toString() : 0,
+              4
+            )}`}
+          />
         </RowCenterBox>
       )
     } else {
@@ -119,10 +221,27 @@ const StakeReward: React.FunctionComponent = () => {
                 <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             }
-            balance="3.5%"
+            balance={`${formatNumber(staker.apr, 2)}%`}
           />
-          <DataItem title="Monthly Rewards" balance="0.03KCS" uBalance="≈$0.0026" />
-          <DataItem title="Yearly Rewards" balance="0.03KCS" uBalance="≈$0.0026" />
+          <DataItem
+            title="Monthly Rewards"
+            balance={`${formatNumber(
+              inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).toString() : 0,
+              4
+            )}KCS`}
+            uBalance={`≈${formatNumber(
+              inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).multipliedBy(kcsPrice).toString() : 0,
+              4
+            )}`}
+          />
+          <DataItem
+            title="Yearly Rewards"
+            balance={`${formatNumber(inputValue ? new BN(inputValue).multipliedBy(staker.apr).toString() : 0, 4)}KCS`}
+            uBalance={`≈${formatNumber(
+              inputValue ? new BN(inputValue).multipliedBy(staker.apr).multipliedBy(kcsPrice).toString() : 0,
+              4
+            )}`}
+          />
         </ColumnCenterBox>
       )
     }
@@ -141,10 +260,26 @@ const StakeReward: React.FunctionComponent = () => {
             value={inputValue}
             setError={setError}
             error={error}
-            maxLimit={'12'}
+            maxLimit={new BN(maxDepositKCS.toString()).div(10 ** 18).toString()}
           />
           <DataPanelWarp>{renderData()}</DataPanelWarp>
-          <StyledButton>Stake Now</StyledButton>
+          {!account ? (
+            <StyledButton
+              onClick={() => {
+                dispatch(toggleConnectWalletModalShow({ show: true }))
+              }}
+            >
+              Connect Wallet
+            </StyledButton>
+          ) : (
+            <StyledButton
+              disabled={!account || !inputValue || error.hasError}
+              loading={loading}
+              onClick={handleDeposit}
+            >
+              Stake
+            </StyledButton>
+          )}
         </Panel>
       </StakeWarp>
     </>

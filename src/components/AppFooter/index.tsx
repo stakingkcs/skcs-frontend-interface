@@ -10,29 +10,60 @@ import { BrowserView, MobileView } from '../Common'
 import { KCC } from '../../constants'
 import { Image } from 'components'
 import { RowCenterBox } from '../index'
+import { useResponsive } from 'utils/responsive'
 
 export interface AppFooterProps {}
 
-const KccLogo = styled(Image)`
-  width: 94px;
-  height: 32px;
-  cursor: pointer;
+const IconWarp = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
+`
+const ItemImg = styled.img`
+  width: 20px;
+  height: auto;
+  transition: all 0.3s ease-in;
+`
+const ItemLink = styled.a`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  transition: all 0.3s ease-in;
+  background: rgba(255, 255, 255, 0.12);
+  &:hover {
+    background: linear-gradient(120.14deg, #00d092 -4.82%, #d04aff 113.33%);
+  }
+  & + & {
+    margin-left: 32px;
+  }
 `
 
 const AppFooterWrap = styled.div`
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   z-index: 0;
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-start;
+  width: 100%;
   align-items: center;
   height: 100px;
-  background: #1d1d1d;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.04);
   box-sizing: border-box;
   @media (max-width: 768px) {
     width: 100%;
     height: auto;
-    text-align: center;
   }
   @media (max-width: 1200px) and (min-width: 769px) {
     height: auto;
@@ -42,45 +73,74 @@ const AppFooterContentWrap = styled.div`
   width: 100%;
   height: 100px;
   max-width: 1200px;
+  margin: 0 auto;
   box-sizing: border-box;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   @media (max-width: 768px) {
     width: 100%;
-    padding-top: 0px;
-  }
-  @media (max-width: 1200px) and (min-width: 769px) {
-    width: 100%;
-    padding: 24px 24px 0px 24px;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 42px;
   }
 `
 
 const CopyRightText = styled.div`
-  width: 100%;
-  opacity: 0.6;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
   font-size: 14px;
-  color: #ffffff;
+  color: #b4b7c1;
   @media (max-width: 768px) {
     text-align: center;
     font-size: 12px;
+    margin-bottom: 28px;
   }
 `
 
+export const mediaList = [
+  {
+    icon: require('../../assets/images/home/f1.png').default,
+    name: 'Twitter',
+    link: '',
+  },
+  {
+    icon: require('../../assets/images/home/f2.png').default,
+    name: 'Discord',
+    link: '',
+  },
+  {
+    icon: require('../../assets/images/home/f4.png').default,
+    name: 'Medium',
+    link: '',
+  },
+  {
+    icon: require('../../assets/images/home/f3.png').default,
+    name: 'Telegram',
+    link: '',
+  },
+]
+
 const AppFooter: React.FunctionComponent<AppFooterProps> = () => {
   const { t, i18n } = useTranslation()
+  const { isMobile } = useResponsive()
   return (
     <AppFooterWrap>
       <AppFooterContentWrap>
-        <RowCenterBox>
-          <KccLogo
-            src={require('../../assets/images/kcc-logo.svg').default}
-            alt="kcc-logo"
-            onClick={() => window.open('https://kcc.io', '_blank')}
-          />
-          <CopyRightText>CopyRight © {`${new Date().getFullYear()}`} staking.kcc.io All Rights Reserved.</CopyRightText>
-        </RowCenterBox>
+        <CopyRightText>CopyRight © {`${new Date().getFullYear()}`} sKCS.io All Rights Reserved.</CopyRightText>
+        <IconWarp>
+          {mediaList.map((item) => {
+            return (
+              <ItemLink key={item.name}>
+                <ItemImg src={item.icon} />
+              </ItemLink>
+            )
+          })}
+        </IconWarp>
       </AppFooterContentWrap>
     </AppFooterWrap>
   )

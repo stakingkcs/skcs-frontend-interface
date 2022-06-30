@@ -12,10 +12,10 @@ import { useAppDispatch } from '../state/index'
 import BN from 'bignumber.js'
 
 export const useStakeApr = async () => {
+  const staker = useStakerState()
   const dispatch = useAppDispatch()
 
   const latestBlock = useBlockNumber()
-  const staker = useStakerState()
 
   if (!latestBlock || staker.skcsQuetoByKCS == 0 || !latestBlock) {
     dispatch(updateStakerPublicDataByKey({ key: 'apr', value: 0 }))
@@ -24,7 +24,6 @@ export const useStakeApr = async () => {
 
   try {
     const yesterdayBlock = Number(latestBlock) - Math.floor((48 * 60 * 60) / 3)
-
     const contract = getContract(
       getStakerAddress(),
       ABI,
@@ -34,14 +33,21 @@ export const useStakeApr = async () => {
       }) as any
     )
 
+    console.log('yesterdayBlock', yesterdayBlock)
+
     const response = await contract.functions.exchangeRate({ blockTag: yesterdayBlock })
 
-    if (response[0][0]) {
-      const preSkcsQuetoByKCS = new BN(response[0][0])
+    console.log('response', response)
+
+    if (response[0]) {
+      const preSkcsQuetoByKCS = new BN(response[0].toString())
         .div(10 ** 18)
-        .div(new BN(response[0][1]).div(10 ** 18))
-        .toNumber()
-      const apr = (staker.skcsQuetoByKCS - preSkcsQuetoByKCS) * 180
+        .div(new BN(response[1].toString()).div(10 ** 18))
+        .toString()
+
+      console.log('preSkcsQuetoByKCS', preSkcsQuetoByKCS)
+
+      const apr = (staker.skcsQuetoByKCS - Number(preSkcsQuetoByKCS)) * 180
       dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apr }))
     }
   } catch (e) {

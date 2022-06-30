@@ -103,7 +103,6 @@ const FaqWarp = styled.div`
 const HomePage: React.FunctionComponent = () => {
   // const { isMobile, isTablet, isPC } = useResponsive()
   // const { t, i18n } = useTranslation()
-  console.log('HomePage')
 
   const { account } = useWeb3React()
   const dispatch = useDispatch()

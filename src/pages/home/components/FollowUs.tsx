@@ -1,3 +1,4 @@
+import { mediaList } from 'components/AppFooter'
 import React, { FunctionComponent } from 'react'
 import { isMobile } from 'react-device-detect'
 import styled from 'styled-components'
@@ -60,29 +61,6 @@ const ItemText = styled.p`
   color: #ffffff;
 `
 
-const followList = [
-  {
-    icon: require('../../../assets/images/home/f1.png').default,
-    name: 'Twitter',
-    link: '',
-  },
-  {
-    icon: require('../../../assets/images/home/f2.png').default,
-    name: 'Discord',
-    link: '',
-  },
-  {
-    icon: require('../../../assets/images/home/f3.png').default,
-    name: 'Telegram',
-    link: '',
-  },
-  {
-    icon: require('../../../assets/images/home/f4.png').default,
-    name: 'Medium',
-    link: '',
-  },
-]
-
 const FollowUs: FunctionComponent = () => {
   return (
     <FollowWarp>
@@ -92,7 +70,7 @@ const FollowUs: FunctionComponent = () => {
       <TipWarp>
         <Desc>Click media icon to follow us</Desc>
         <IconWarp>
-          {followList.map((item) => {
+          {mediaList.map((item) => {
             return (
               <ItemLink key={item.name}>
                 <ItemImg src={item.icon} />

@@ -9,7 +9,7 @@ import Home from 'pages/home/'
 import Staking from 'pages/staking'
 import { Suspense } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { useFetchStakerPublicData } from 'state/hooks'
+import { useFetchStakerPublicData, useStakerState } from 'state/hooks'
 import { useConnectWalletModalShow } from 'state/wallet/hooks'
 import { useFetchPriceList } from 'utils/prices'
 
