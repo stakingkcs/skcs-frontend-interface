@@ -56,14 +56,10 @@ const ItemLink = styled.a`
   }
 `
 const ItemText = styled.p`
-<<<<<<< Updated upstream
-  font-size: 14px;
-=======
   font-family: 'Arial';
   font-style: normal;
   font-size: 14px;
   line-height: 24px;
->>>>>>> Stashed changes
   color: #ffffff;
 `
 

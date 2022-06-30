@@ -35,6 +35,7 @@ const IconArrow = styled.img`
   position: absolute;
   right: 28px;
   object-fit: cover;
+  top: 45%;
   @media (max-width: 768px) {
     top: 33%;
   }

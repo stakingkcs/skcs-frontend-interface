@@ -3,11 +3,18 @@ import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { isMobile } from 'react-device-detect'
 import SwiperCore, { Autoplay } from 'swiper'
+
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import 'swiper/swiper.min.css'
+import 'swiper/swiper-bundle.css'
+import 'swiper/components/pagination/pagination.less'
+import './Swiper.css'
 
 const baseStep = require('../../../assets/images/home/base-step.png').default
 const baseHover = require('../../../assets/images/home/base-hover.png').default
+const aLeft = require('../../../assets/images/home/arrow-left.png').default
+const aRight = require('../../../assets/images/home/arrow-right.png').default
+
 const Title = styled.div`
   font-family: 'Arial';
   font-style: normal;
@@ -19,8 +26,8 @@ const Title = styled.div`
   @media (max-width: 768px) {
     width: 80%;
     margin: 0 auto;
-    margin-top:120px ;
-    margin-bottom:70px;
+    margin-top: 120px;
+    margin-bottom: 70px;
     font-size: 28px;
     line-height: 32px;
   }
@@ -74,7 +81,7 @@ const StakeTitle = styled.p`
   margin-top: -25px;
   @media (max-width: 768px) {
     font-size: 16px;
-    margin: 0 8px;
+    margin: 0 8px 40px 8px;
   }
 `
 
@@ -150,14 +157,21 @@ const processList = [
 
 const StakeProcess: React.FunctionComponent = () => {
   if (isMobile) {
-    // SwiperCore.use([Autoplay]);
+    SwiperCore.use([Pagination, Navigation])
     return (
       <>
         <Title>Start staking and grow your assets in only 4 steps</Title>
         <StakeWarp>
           <Swiper
-            autoplay={{
-              delay: 0,
+            navigation={{
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+              disabledClass: 'disable', //
+            }}
+            pagination={{
+              type: 'progressbar',
+
+              clickable: false,
             }}
           >
             {processList.map((step) => {
@@ -171,6 +185,12 @@ const StakeProcess: React.FunctionComponent = () => {
                 </SwiperSlide>
               )
             })}
+            <div className="swiper-button-prev">
+              <img style={{width: '36px', height:'36px'}} src={aLeft} alt="" />
+            </div>
+            <div className="swiper-button-next">
+              <img style={{width: '36px', height:'36px'}} src={aRight} alt="" />
+            </div>
           </Swiper>
         </StakeWarp>
       </>
