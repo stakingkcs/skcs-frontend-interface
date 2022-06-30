@@ -49,6 +49,7 @@ const LiquidityWarp = styled.div`
   margin: 0 25px 25px 0;
   @media (max-width: 768px) {
     width: 343px;
+    margin: 25px auto;
   }
   &:nth-child(3n + 0) {
     margin-right: 0;

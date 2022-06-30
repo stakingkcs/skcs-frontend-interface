@@ -52,6 +52,9 @@ const BanlanceText = styled.p`
   font-size: 16px;
   line-height: 24px;
   color: #b4b7c1;
+  @media (max-width: 768px) {
+    text-align: left;
+  }
 `
 
 const BanlanceNum = styled.p`
