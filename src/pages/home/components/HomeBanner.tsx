@@ -26,7 +26,6 @@ const Content = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     padding: 0 26px;
-   
   }
 `
 
@@ -57,7 +56,7 @@ const NumberText = styled.span`
   margin: 0 10px;
   @media (max-width: 768px) {
     margin: 0 5px;
-    font-size: 20px;
+    font-size: 32px;
   }
 `
 const ButtonWarp = styled.div`
@@ -80,7 +79,7 @@ const HomeBanner: React.FunctionComponent = () => {
             </NumberText>
             of KCS staking{' '}
             <NumberText>${formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18))}</NumberText> of
-            rewards paid <NumberText>{formatNumber(staker.apr)}%</NumberText> APR
+            rewards paid <NumberText>{formatNumber(staker.apr * 100)}%</NumberText> APR
           </Title>
           <ButtonWarp>
             <StyledButton>Stake Now</StyledButton>

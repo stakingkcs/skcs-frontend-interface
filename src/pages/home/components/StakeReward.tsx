@@ -3,6 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Tooltip } from 'antd'
 import BN from 'bignumber.js'
 import { ALink, ColumnCenterBox, RowCenterBox } from 'components'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import DataItem from 'components/DataItem'
 import StyledButton from 'components/StyledButton'
 import StyledInput from 'components/StyledInput'
@@ -13,7 +14,6 @@ import { useStakerContract } from 'hooks/useContract'
 import React from 'react'
 import { isMobile } from 'react-device-detect'
 import { useDispatch } from 'react-redux'
-import { useAppDispatch } from 'state'
 import { useKCSPrice, useStakerState } from 'state/hooks'
 import { fetchStakersUserDataAsync } from 'state/staker'
 import { toggleConnectWalletModalShow } from 'state/wallet/actions'
@@ -46,9 +46,9 @@ const Title = styled.div`
   font-size: 40px;
   text-align: center;
   color: #ffffff;
-  margin: 259px 0 0 0;
+  margin: 129px 0 0 0;
   @media (max-width: 768px) {
-    font-size: 24px;
+    font-size: 28px;
     margin: 0 8px;
   }
 `
@@ -182,10 +182,10 @@ const StakeReward: React.FunctionComponent = () => {
                 placement="top"
                 title="APR is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APR = (exchange price 48 hours ago - exchange price at this time)*180*100%"
               >
-                <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
+                <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             }
-            balance={`${formatNumber(staker.apr, 2)}%`}
+            balance={`${formatNumber(staker.apr * 100, 2)}%`}
           />
           <DataItem
             title="Monthly Rewards"
@@ -218,7 +218,7 @@ const StakeReward: React.FunctionComponent = () => {
                 placement="top"
                 title="APR is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APR = (exchange price 48 hours ago - exchange price at this time)*180*100%"
               >
-                <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
+                <InfoCircleOutlined style={{ color: 'rgba(255, 255, 255, 0.01)' }} />
               </Tooltip>
             }
             balance={`${formatNumber(staker.apr, 2)}%`}

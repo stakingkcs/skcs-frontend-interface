@@ -57,7 +57,10 @@ const ItemLink = styled.a`
   }
 `
 const ItemText = styled.p`
+  font-family: 'Arial';
+  font-style: normal;
   font-size: 14px;
+  line-height: 24px;
   color: #ffffff;
 `
 

@@ -10,6 +10,9 @@ const AppContentWrap = styled.div`
   min-height: 100vh;
   background: #000;
   padding-bottom: 100px;
+  @media (max-width: 768px) {
+    padding-bottom: 170px;
+  }
 `
 
 // Not fullscreen mode

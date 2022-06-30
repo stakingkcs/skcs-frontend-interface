@@ -30,8 +30,11 @@ const SubTitle = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
-  color: #b4b7c1;
+  color: #ffffff;
   margin-right: 6px;
+  @media (max-width: 768px) { 
+    font-size: 14px;
+  }
 `
 const BalanceText = styled.div`
   font-family: 'Arial';
@@ -43,6 +46,9 @@ const BalanceText = styled.div`
   align-items: center;
   color: #00d092;
   margin-right: 8px;
+  @media (max-width: 768px) { 
+    font-size: 20px;
+  }
 `
 
 const UBalanceText = styled.div`
