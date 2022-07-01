@@ -55,6 +55,7 @@ const AppHeaderContent = styled(HeaderLeftWrap)<{ isMobile: boolean }>`
 const KccLogo = styled(Image)`
   width: 104px;
   height: auto;
+  padding-left: 10px;
   cursor: pointer;
 `
 

@@ -48,7 +48,7 @@ const BalanceText = styled.div`
   align-items: center;
   color: #00d092;
   margin-right: 8px;
-  max-width: 150px;
+  max-width: 200px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -66,7 +66,7 @@ const UBalanceText = styled.div`
   align-items: center;
   text-align: center;
   color: #b4b7c1;
-  max-width: 150px;
+  max-width: 200px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
