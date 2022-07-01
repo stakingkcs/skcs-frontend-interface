@@ -8,6 +8,7 @@ const DataItemWrap = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
+  overflow: hidden;
 `
 
 const Title = styled.div`
@@ -32,8 +33,9 @@ const SubTitle = styled.div`
   text-align: center;
   color: #ffffff;
   margin-right: 6px;
-  @media (max-width: 768px) { 
+  @media (max-width: 768px) {
     font-size: 14px;
+    text-align: left;
   }
 `
 const BalanceText = styled.div`
@@ -46,7 +48,11 @@ const BalanceText = styled.div`
   align-items: center;
   color: #00d092;
   margin-right: 8px;
-  @media (max-width: 768px) { 
+  max-width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  @media (max-width: 768px) {
     font-size: 20px;
   }
 `
@@ -60,6 +66,10 @@ const UBalanceText = styled.div`
   align-items: center;
   text-align: center;
   color: #b4b7c1;
+  max-width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `
 
 interface Props {

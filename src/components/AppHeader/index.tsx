@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import { changeMobileMenuShow } from '../../state/application/actions'
 import { useResponsive } from '../../utils/responsive'
 import UnlockButton from '../ConnectWalletButton'
-import { withRouter } from 'react-router-dom'
+import { useHistory, withRouter } from 'react-router-dom'
 import { BrowserView, MobileView } from 'components/Common'
 import { Image } from 'components/index'
 
@@ -53,8 +53,8 @@ const AppHeaderContent = styled(HeaderLeftWrap)<{ isMobile: boolean }>`
 `
 
 const KccLogo = styled(Image)`
-  width: 100px;
-  height: 34px;
+  width: 104px;
+  height: auto;
   cursor: pointer;
 `
 
@@ -68,6 +68,8 @@ const AppHeader: React.FunctionComponent = () => {
 
   const show = useMobileMenuShow()
   const { isMobile } = useResponsive()
+
+  const history = useHistory()
 
   const dispatch = useDispatch()
 
@@ -97,7 +99,9 @@ const AppHeader: React.FunctionComponent = () => {
           <KccLogo
             src={require('../../assets/images/Icons/logo.svg').default}
             alt="kcc-logo"
-            onClick={() => window.open('https://kcc.io', '_blank')}
+            onClick={() => {
+              history.push('/')
+            }}
           />
           <BrowserView>
             <AppMenu style={{ width: '480px', position: 'relative', top: '3px' }} />

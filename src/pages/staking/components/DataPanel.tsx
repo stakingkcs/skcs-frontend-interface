@@ -176,7 +176,7 @@ const StakingPanel: FunctionComponent = () => {
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
-                balance={`${formatNumber(staker.apr, 1)}%`}
+                balance={`${formatNumber(staker.apr, 2)}%`}
               />
             </RowCenterBox>
           </>
@@ -224,7 +224,7 @@ const StakingPanel: FunctionComponent = () => {
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
-                balance={`${formatNumber(staker.apr, 1)}%`}
+                balance={`${formatNumber(staker.apr * 100, 2)}%`}
               />
             </RowCenterBox>
 

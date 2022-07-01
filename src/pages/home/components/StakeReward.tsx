@@ -221,7 +221,7 @@ const StakeReward: React.FunctionComponent = () => {
                 <InfoCircleOutlined style={{ color: 'rgba(255, 255, 255, 0.01)' }} />
               </Tooltip>
             }
-            balance={`${formatNumber(staker.apr, 2)}%`}
+            balance={`${formatNumber(staker.apr * 100, 2)}%`}
           />
           <DataItem
             title="Monthly Rewards"
