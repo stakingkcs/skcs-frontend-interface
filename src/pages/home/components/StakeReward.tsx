@@ -24,6 +24,7 @@ import { stakerContractHelper } from 'utils/validator'
 import { updateBalance } from 'utils/wallet'
 
 const bg = require('../../../assets/images/home/re-bg.png').default
+const mbg = require('../../../assets/images/home/m-re-bg.png').default
 const StakeWarp = styled.div`
   height: 995px;
   margin: 0 auto;
@@ -37,6 +38,9 @@ const StakeWarp = styled.div`
     background: red;
     border: 1px dashed #ffffff;
     margin: 0 25px;
+  }
+  @media (max-width: 768px) {
+    background: url(${mbg}) no-repeat center;
   }
 `
 const Title = styled.div`

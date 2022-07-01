@@ -49,8 +49,8 @@ const StakeItem = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 32px 24px;
+  justify-content: flex-start;
+  padding: 20px 24px;
 `
 const StakeIcon = styled.img`
   width: 72px;
@@ -74,23 +74,23 @@ const StakeDesc = styled.p`
 const fitList = [
   {
     icon: require('../../../assets/images/home/staking-step1.png').default,
-    title: 'Click Staking',
-    desc: 'Choose any currency in the "Market" to supply and earn interest',
+    title: 'Decentralized',
+    desc: 'Stake KCS to support network decentralisation and watch your sKCS value grow.',
   },
   {
     icon: require('../../../assets/images/home/staking-step2.png').default,
     title: 'Get Rewards',
-    desc: 'Choose any currency in the "Market" to supply and earn interest',
+    desc: 'In return for staking your KCS, sKCS accrues staking rewards over time.',
   },
   {
     icon: require('../../../assets/images/home/staking-step3.png').default,
     title: 'Leverage',
-    desc: 'Choose any currency in the "Market" to supply and earn interest',
+    desc: 'Use your sKCS to earn additional yields and put your sKCS to work across the KCC ecosystem.',
   },
   {
     icon: require('../../../assets/images/home/staking-step4.png').default,
     title: 'Security',
-    desc: 'Choose any currency in the "Market" to supply and earn interest',
+    desc: 'sKCS.io is the most reliable liquid staking protocol built on KCC, and our smart contracts have been audited by BlockSec.',
   },
 ]
 
