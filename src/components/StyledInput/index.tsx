@@ -142,6 +142,9 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
           <RowCenterBox>
             <MaxButton
               onClick={() => {
+                props.setError(() => {
+                  return { hasError: false, errorInfo: '' }
+                })
                 props.setVaule(props.maxLimit)
               }}
             >

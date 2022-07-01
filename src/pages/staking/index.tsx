@@ -18,6 +18,10 @@ export const HomeWrap = styled.div`
   width: 100%;
   background: url(${gradientBg}) center -200px no-repeat;
   background-size: 1600px auto;
+  @media (max-width: 768px) {
+    padding-top: 10px;
+    background-attachment: fixed;
+  }
 `
 
 export const Content = styled.div`
@@ -38,11 +42,23 @@ const BottomPanel = styled.div`
   height: auto;
   padding-top: 64px;
   padding-bottom: 60px;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+    padding-bottom: 22px;
+  }
 `
 
 const FaqWrap = styled.div`
   width: 568px;
   height: 100%;
+  order: 0;
+  @media (max-width: 768px) {
+    width: 100%;
+    order: 1;
+  }
 `
 const StaticsPanel = styled.div`
   display: flex;
@@ -51,6 +67,12 @@ const StaticsPanel = styled.div`
   align-items: flex-start;
   width: 600px;
   height: 100%;
+  border: 1;
+  order: 1;
+  @media (max-width: 768px) {
+    width: 100%;
+    order: 0;
+  }
 `
 
 const StakingPage: React.FunctionComponent = () => {

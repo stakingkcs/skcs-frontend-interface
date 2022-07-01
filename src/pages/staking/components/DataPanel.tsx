@@ -18,6 +18,9 @@ import { useStakerContract } from '../../../hooks/useContract'
 import { updateBalance } from 'utils/wallet'
 import { fetchStakersUserDataAsync } from 'state/staker'
 import StyledNotification from 'components/StyledNotification'
+import { addTokenToWallet } from '../../../utils/wallet'
+import tokens from 'constants/tokens'
+import { getStakerAddress } from '../../../utils/addressHelpers'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -176,7 +179,7 @@ const StakingPanel: FunctionComponent = () => {
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
-                balance={`${formatNumber(staker.apr, 1)}%`}
+                balance={`${formatNumber(staker.apr, 2)}%`}
               />
             </RowCenterBox>
           </>
@@ -192,7 +195,18 @@ const StakingPanel: FunctionComponent = () => {
                 )}`}
                 balanceExtra={
                   <Tooltip placement="top" title="Add token to wallet">
-                    <PlusIcon src={require('../../../assets/images/Icons/plus.png').default} alt="add-token-icon" />
+                    <PlusIcon
+                      src={require('../../../assets/images/Icons/plus.png').default}
+                      onClick={() => {
+                        addTokenToWallet({
+                          tokenAddress: getStakerAddress(),
+                          decimals: 18,
+                          image: 'https://s3.ap-northeast-1.amazonaws.com/static.kcc.io/logo/skcs.png',
+                          symbol: 'SKCS',
+                        })
+                      }}
+                      alt="add-token-icon"
+                    />
                   </Tooltip>
                 }
               />
@@ -224,7 +238,7 @@ const StakingPanel: FunctionComponent = () => {
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
-                balance={`${formatNumber(staker.apr, 1)}%`}
+                balance={`${formatNumber(staker.apr * 100, 2)}%`}
               />
             </RowCenterBox>
 

@@ -69,6 +69,28 @@ export const switchNetwork = async (id: any) => {
   }
 }
 
+export const addTokenToWallet = async (token: { tokenAddress: string, symbol: string, decimals: number, image: string }) => {
+
+  if (!window.ethereum) return
+  await window.ethereum
+    .request({
+      method: 'wallet_watchAsset',
+      params: {
+        type: 'ERC20',
+        options: {
+          address: token.tokenAddress,
+          symbol: token.symbol.toUpperCase(),
+          decimals: token.decimals,
+          image: token.image,
+        },
+      },
+    })
+    .catch(console.error)
+}
+
+
+
+
 export const updateBalance = async (library: any, account: string) => {
   const walletId = store.getState().wallet.walletId
   const wallet = getWalletInstance(walletId)

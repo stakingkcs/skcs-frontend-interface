@@ -39,11 +39,23 @@ const StakingPanelWrap = styled.div<{ connected: boolean }>`
     }
     return '454px'
   }};
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    justify-content: center;
+    height: auto;
+    padding: 0 16px;
+  }
 `
 
 const DataPanelWrap = styled.div`
   width: 568px;
   height: 100%;
+  order: 0;
+  @media (max-width: 768px) {
+    width: 100%;
+    order: 1;
+    margin-top: 12px;
+  }
 `
 const StakePanel = styled.div`
   background: rgba(0, 0, 0, 0.5);
@@ -51,6 +63,11 @@ const StakePanel = styled.div`
   border-radius: 16px;
   width: 600px;
   height: 100%;
+  order: 1;
+  @media (max-width: 768px) {
+    width: 100%;
+    order: 0;
+  }
 `
 
 const StyledTabPane = styled(TabPane)`

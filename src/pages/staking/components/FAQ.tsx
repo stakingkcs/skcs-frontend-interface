@@ -81,6 +81,11 @@ const Title = styled.div`
   line-height: 28px;
   text-align: left;
   color: #ffffff;
+  @media (max-width: 768px) {
+    text-align: center;
+    margin-top: 40px;
+    width: 100%;
+  }
 `
 
 const PanelHeader = styled.div`
@@ -98,6 +103,9 @@ const PanelHeader = styled.div`
   user-select: none;
   padding-left: 0px;
   width: 100%;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `
 
 const FaqP = styled.div`
@@ -180,7 +188,7 @@ const FAQ: React.FunctionComponent = () => {
       <Content>
         <RowCenterBox justify="space-between">
           <Title>FAQ</Title>
-          <RowCenterBox justify="flex-end" style={{ cursor: 'pointer' }}>
+          <RowCenterBox justify="flex-end" style={{ cursor: 'pointer', display: isMobile ? 'none' : 'flex' }}>
             <MoreText>More</MoreText>
             <Image
               src={require('../../../assets/images/Icons/arrow-right-white.png').default}
@@ -204,7 +212,7 @@ const FAQ: React.FunctionComponent = () => {
                   <Panel
                     header={
                       <PanelHeader>
-                        <span>{faq.title}</span>
+                        <span style={{ textAlign: 'left' }}>{faq.title}</span>
                         {!activeList[index] ? (
                           <Image
                             src={require('../../../assets/images/Icons/purple-plus.png').default}

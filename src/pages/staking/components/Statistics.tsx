@@ -1,14 +1,13 @@
-import { Collapse, Space } from 'antd'
-import DataItem from 'components/DataItem'
+import { Collapse } from 'antd'
+import BN from 'bignumber.js'
 import RowData from 'components/RowData'
 import React from 'react'
 import styled from 'styled-components'
-import { Image, RowCenterBox } from '../../../components/index'
-import { useResponsive } from '../../../utils/responsive'
 import ExternalLink from '../../../components/ExternalLink/index'
+import { CenterBox, RowCenterBox } from '../../../components/index'
+import { useKCSPrice, useStakerState } from '../../../state/hooks'
 import { formatNumber } from '../../../utils/bignumber'
-import { useStakerState, useKCSPrice } from '../../../state/hooks'
-import BN from 'bignumber.js'
+import { useResponsive } from '../../../utils/responsive'
 
 const { Panel } = Collapse
 
@@ -39,6 +38,11 @@ const Title = styled.div`
   line-height: 28px;
   text-align: left;
   color: #ffffff;
+  @media (max-width: 768px) {
+    text-align: center;
+    margin-top: 40px;
+    width: 100%;
+  }
 `
 
 const PanelHeader = styled.div`
@@ -71,6 +75,13 @@ const MoreLink = styled.a`
   }
 `
 
+const DividerLine = styled.div`
+  background: rgba(255, 255, 255, 0.16);
+  height: 1px;
+  width: 100%;
+  margin: 24px 0 0 0;
+`
+
 const DataRowWrap = styled.div`
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
@@ -83,6 +94,7 @@ const DataRowWrap = styled.div`
 const Statistics: React.FunctionComponent = () => {
   const staker = useStakerState()
   const kcsPrice = useKCSPrice()
+  const { isMobile } = useResponsive()
   return (
     <StepsWrap>
       <Content>
@@ -90,7 +102,7 @@ const Statistics: React.FunctionComponent = () => {
           <Title>Statistics</Title>
         </RowCenterBox>
         <DataRowWrap>
-          <RowData title="APR" content="3.5%" />
+          <RowData title="APR" content={`${formatNumber(staker.apr * 100, 2)}%`} />
           <RowData
             style={{ marginTop: '12px' }}
             title="Total staked amount"
@@ -114,7 +126,10 @@ const Statistics: React.FunctionComponent = () => {
               3
             )}`}
           />
-          <ExternalLink style={{ marginTop: '20px' }} url="" name="View on KCC Explorer" />
+          {isMobile && <DividerLine />}
+          <CenterBox style={{ alignItems: isMobile ? 'center' : 'flex-start' }}>
+            <ExternalLink style={{ marginTop: '20px' }} url="" name="View on KCC Explorer" />
+          </CenterBox>
         </DataRowWrap>
       </Content>
     </StepsWrap>
