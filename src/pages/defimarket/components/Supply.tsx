@@ -26,6 +26,10 @@ const Warp = styled.div`
     margin-right: 0;
     width: 343px;
     border-radius: 20px;
+    margin: 25px auto;
+    &:nth-child(3n + 0) {
+      margin-right: auto;
+    }
   }
 `
 
@@ -89,8 +93,8 @@ const Supply: React.FunctionComponent = () => {
             </RowCenterBox>
           }
           content={
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf:'center'}}>
-              <p style={{marginBottom: '0'}}> 100%</p>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+              <p style={{ marginBottom: '0' }}> 100%</p>
               <Caculator src={caculatImg} />
             </div>
           }
