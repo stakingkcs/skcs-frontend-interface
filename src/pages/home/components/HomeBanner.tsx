@@ -12,7 +12,7 @@ const Header = styled.div`
   margin: 0 auto;
   text-align: center;
   background: url(${bg}) no-repeat top;
-  width: 1200px;
+
   @media (max-width: 768px) {
     padding: 0;
     width: 100%;
@@ -20,8 +20,10 @@ const Header = styled.div`
   }
 `
 const Content = styled.div`
+  margin: 0 auto;
+  width: 1200px;
   height: 864px;
-  width: 100%;
+
   @media (max-width: 768px) {
     width: 100%;
     padding: 0 26px;
