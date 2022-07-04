@@ -24,7 +24,7 @@ const AppHeaderWrap = styled.div`
   left: 0;
   position: absolute;
   background: transparent;
-  z-index: 6;
+  z-index:99;
   @media (max-width: 768px) {
     background: #000000;
     position: relative;
