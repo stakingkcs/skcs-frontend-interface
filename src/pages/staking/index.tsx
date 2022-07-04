@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import StakingPanel from './components/StakingPanel'
 import FAQ from './components/FAQ'
 import Statistics from './components/Statistics'
+import DanamicCenterBg from '../../components/DynamicBg/DynamicCenterBg'
 
 const gradientBg = require('../../assets/images/gradient-bg.png').default
 
@@ -16,9 +17,9 @@ export const HomeWrap = styled.div`
   height: auto;
   min-height: calc(100vh - 100px);
   width: 100%;
-  background: url(${gradientBg}) center -200px no-repeat;
   background-size: 1600px auto;
   @media (max-width: 768px) {
+    background: url(${gradientBg}) top center no-repeat;
     padding-top: 10px;
     background-attachment: fixed;
   }
@@ -94,6 +95,7 @@ const StakingPage: React.FunctionComponent = () => {
       </Helmet>
       <HomeWrap>
         <Content>
+          <DanamicCenterBg />
           <StakingPanel />
           <BottomPanel>
             <FaqWrap>

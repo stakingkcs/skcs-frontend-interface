@@ -116,7 +116,7 @@ const Liquidity: React.FunctionComponent = () => {
         />
         <StyledButton style={{ margin: '35px 0 24px 0', height: '48px' }}>Add Liquidity</StyledButton>
         <GradienButton>
-          <GradientText style={{ fontSize: '18px', fontWeight: 700}}>swap</GradientText>
+          <GradientText style={{ fontSize: '18px', fontWeight: 700}}>Swap</GradientText>
         </GradienButton>
       </LiquidityWarp>
     </>

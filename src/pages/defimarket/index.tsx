@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import Banlance from './components/Banlance'
 import Liquidity from './components/Liquitity'
 import Supply from './components/Supply'
+import DanamicCenterBg from '../../components/DynamicBg/DynamicCenterBg'
 
 const gradientBg = require('../../assets/images/gradient-bg.png').default
+
 const Title = styled.div`
   font-family: 'Arial';
   font-style: normal;
@@ -41,10 +43,10 @@ const Warp = styled.div`
   height: auto;
   min-height: calc(100vh - 100px);
   width: 100%;
-  background: url(${gradientBg})  no-repeat fixed center ;
   background-size: 1600px auto;
   color: white;
   @media (max-width: 768px) {
+    background: url(${gradientBg}) no-repeat fixed center;
     text-align: center;
   }
 `
@@ -65,6 +67,8 @@ const DataWarp = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+  position: relative;
+  z-index: 99;
 `
 
 const DeFiMarket: React.FunctionComponent = () => {
@@ -72,9 +76,10 @@ const DeFiMarket: React.FunctionComponent = () => {
     <Warp>
       <Title style={{ textAlign: 'center' }}>Use sKCS across the DeFi ecosystem</Title>
       <Content>
+        <DanamicCenterBg />
         <Banlance />
         <Title>Liquidity</Title>
-        <Desc>Use stSOL in liquidity mining pools</Desc>
+        <Desc>Use sKCS in liquidity mining pools</Desc>
         <DataWarp>
           <Liquidity />
           <Liquidity />

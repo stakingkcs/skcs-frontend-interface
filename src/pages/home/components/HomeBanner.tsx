@@ -35,6 +35,7 @@ const Content = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     padding: 0 26px;
+    background: none;
   }
 `
 

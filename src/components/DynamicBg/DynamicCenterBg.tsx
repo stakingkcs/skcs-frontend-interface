@@ -31,8 +31,8 @@ const greenAnimation = keyframes`
 `
 
 const CircleWrap = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: absolute;
   z-index: 0;
   left: 0;
@@ -46,10 +46,10 @@ const GreenCircle = styled.div`
   position: absolute;
   width: 400px;
   height: 400px;
-  right: 332px;
+  right: 432px;
   top: 367px;
   background: #5aefc2;
-  filter: blur(200px);
+  filter: blur(500px);
   animation: ${greenAnimation} 14s infinite ease;
   z-index: 0;
 `
@@ -58,14 +58,14 @@ const PurpleCircle = styled.div`
   position: absolute;
   width: 400px;
   height: 400px;
-  right: 154px;
+  right: 100px;
   top: 164px;
   background: #ab84ff;
-  filter: blur(350px);
+  filter: blur(500px);
   animation: ${purpleAnimation} 12s infinite ease;
 `
 
-const DanamicBg: React.FunctionComponent = () => {
+const DanamicCenterBg: React.FunctionComponent = () => {
   return (
     <CircleWrap>
       <GreenCircle />
@@ -74,4 +74,4 @@ const DanamicBg: React.FunctionComponent = () => {
   )
 }
 
-export default DanamicBg
+export default DanamicCenterBg
