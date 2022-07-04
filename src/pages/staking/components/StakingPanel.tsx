@@ -299,7 +299,7 @@ const StakingPanel: FunctionComponent = () => {
               <RowData
                 style={{ marginTop: '32px' }}
                 title="Exchange rate"
-                content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 3)}KCS`}
+                content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 4)}KCS`}
               />
               <RowData
                 style={{ marginTop: '12px' }}
@@ -377,7 +377,7 @@ const StakingPanel: FunctionComponent = () => {
               <RowData
                 style={{ marginTop: '32px' }}
                 title="Exchange rate"
-                content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 3)}KCS`}
+                content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 4)}KCS`}
               />
               <RowData
                 style={{ marginTop: '12px' }}

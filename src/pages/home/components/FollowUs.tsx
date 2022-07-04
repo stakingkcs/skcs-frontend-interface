@@ -75,7 +75,7 @@ const FollowUs: FunctionComponent = () => {
         <IconWarp>
           {mediaList.map((item) => {
             return (
-              <ItemLink key={item.name}>
+              <ItemLink key={item.name} onClick={() => window.open(item.link, '_blank')}>
                 <ItemImg src={item.icon} />
                 <ItemText style={{ display: isMobile ? 'block' : 'none' }}>{item.name}</ItemText>
               </ItemLink>

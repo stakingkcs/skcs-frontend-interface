@@ -106,22 +106,22 @@ export const mediaList = [
   {
     icon: require('../../assets/images/home/f1.png').default,
     name: 'Twitter',
-    link: '',
+    link: 'https://twitter.com/sKCS_io',
   },
   {
     icon: require('../../assets/images/home/f2.png').default,
     name: 'Discord',
-    link: '',
+    link: 'https://discord.gg/26VN2syXdm',
   },
   {
     icon: require('../../assets/images/home/f4.png').default,
     name: 'Medium',
-    link: '',
+    link: 'https://medium.com/@sKCS.io',
   },
   {
     icon: require('../../assets/images/home/f3.png').default,
     name: 'Telegram',
-    link: '',
+    link: 'https://t.me/sKCSio',
   },
 ]
 
@@ -135,7 +135,12 @@ const AppFooter: React.FunctionComponent<AppFooterProps> = () => {
         <IconWarp>
           {mediaList.map((item) => {
             return (
-              <ItemLink key={item.name}>
+              <ItemLink
+                key={item.name}
+                onClick={() => {
+                  window.open(item.link, '_blank')
+                }}
+              >
                 <ItemImg src={item.icon} />
               </ItemLink>
             )
