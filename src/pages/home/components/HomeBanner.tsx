@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { formatNumber } from 'utils/bignumber'
 import { useStakerState } from '../../../state/hooks'
 import BN from 'bignumber.js'
+import { useHistory } from 'react-router-dom'
 
 const bg = require('../../../assets/images/home/bg-header.png').default
 const mbg = require('../../../assets/images/home/mbg-header.png').default
@@ -66,8 +67,15 @@ const ButtonWarp = styled.div`
   margin: 40px 0;
 `
 
+const BannerStyledButton = styled(StyledButton)`
+  &:hover {
+    opacity: 0.8;
+  }
+`
+
 const HomeBanner: React.FunctionComponent = () => {
   const staker = useStakerState()
+  const history = useHistory()
   return (
     <>
       <Header>
@@ -80,10 +88,16 @@ const HomeBanner: React.FunctionComponent = () => {
             </NumberText>
             of KCS staking{' '}
             <NumberText>${formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18))}</NumberText> of
-            rewards paid <NumberText>{formatNumber(staker.apr * 100)}%</NumberText> APR
+            rewards paid <NumberText>{formatNumber(staker.apr * 100)}%</NumberText> APY
           </Title>
           <ButtonWarp>
-            <StyledButton>Stake Now</StyledButton>
+            <BannerStyledButton
+              onClick={() => {
+                history.push('/staking')
+              }}
+            >
+              Stake Now
+            </BannerStyledButton>
           </ButtonWarp>
         </Content>
       </Header>

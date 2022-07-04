@@ -169,11 +169,11 @@ const StakingPanel: FunctionComponent = () => {
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '24px', width: '300px' }}>
               <DataItem title="Staked amount" balance={`0.00 sKCS`} uBalance="≈$0.0000" />
               <DataItem
-                title="APR"
+                title="APY"
                 titleExtra={
                   <Tooltip
                     placement="top"
-                    title="APR is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APR = (exchange price 48 hours ago - exchange price at this time)*180*100%"
+                    title="APY is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APY = (exchange price 48 hours ago - exchange price at this time)*180*100%"
                   >
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
@@ -228,11 +228,11 @@ const StakingPanel: FunctionComponent = () => {
                 }
               />
               <DataItem
-                title="APR"
+                title="APY"
                 titleExtra={
                   <Tooltip
                     placement="top"
-                    title="APR is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit. APR = (exchange price 48 hours ago - exchange price at this time)*180*100%"
+                    title="APY is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit. APY = (exchange price 48 hours ago - exchange price at this time)*180*100%"
                   >
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>

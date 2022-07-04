@@ -180,11 +180,11 @@ const StakeReward: React.FunctionComponent = () => {
       return (
         <RowCenterBox style={{ width: '100%' }} align="flex-start" justify="space-between">
           <DataItem
-            title="APR"
+            title="APY"
             titleExtra={
               <Tooltip
                 placement="top"
-                title="APR is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APR = (exchange price 48 hours ago - exchange price at this time)*180*100%"
+                title="APY is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APY = (exchange price 48 hours ago - exchange price at this time)*180*100%"
               >
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
@@ -216,11 +216,11 @@ const StakeReward: React.FunctionComponent = () => {
       return (
         <ColumnCenterBox style={{ width: '100%', height: '272px' }} justify="space-between" align="flex-start">
           <DataItem
-            title="APR"
+            title="APY"
             titleExtra={
               <Tooltip
                 placement="top"
-                title="APR is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APR = (exchange price 48 hours ago - exchange price at this time)*180*100%"
+                title="APY is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APY = (exchange price 48 hours ago - exchange price at this time)*180*100%"
               >
                 <InfoCircleOutlined style={{ color: 'rgba(255, 255, 255, 0.01)' }} />
               </Tooltip>

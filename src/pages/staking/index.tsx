@@ -88,7 +88,7 @@ const StakingPage: React.FunctionComponent = () => {
         <title>KuCoin Token Staking | Earn KCS Rewards | KuCoin Community Chain</title>
         <meta
           name="description"
-          content="Buy KCS for staking and voting. Users can earn high APR rewards with KCC staking."
+          content="Buy KCS for staking and voting. Users can earn high APY rewards with KCC staking."
         />
         <meta name="keywords" content="KuCoin token, KCS, KCC, buy KCS, KCS staking" />
       </Helmet>

@@ -102,7 +102,7 @@ const Statistics: React.FunctionComponent = () => {
           <Title>Statistics</Title>
         </RowCenterBox>
         <DataRowWrap>
-          <RowData title="APR" content={`${formatNumber(staker.apr * 100, 2)}%`} />
+          <RowData title="APY" content={`${formatNumber(staker.apr * 100, 2)}%`} />
           <RowData
             style={{ marginTop: '12px' }}
             title="Total staked amount"
