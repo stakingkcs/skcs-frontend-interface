@@ -79,7 +79,7 @@ const Supply: React.FunctionComponent = () => {
       <Warp>
         <SymbolWarp>
           <SymbolIcon src={''} />
-          <SymbolTitle>MJT+SKCS</SymbolTitle>
+          <SymbolTitle>MJT+sKCS</SymbolTitle>
         </SymbolWarp>
         <RowData
           style={{ marginTop: '12px' }}

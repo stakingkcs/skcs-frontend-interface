@@ -103,26 +103,29 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
       return
     }
 
-    if (Number(value) === 0) {
-      props.setError(() => {
-        return { hasError: true, errorInfo: 'The amount must be greater than 0.' }
-      })
-      props.setVaule(() => '')
-      return
-    }
-
-    const Reg = /^[1-9][0-9]*([\.][0-9]{1,18})?$/
+    const Reg = /^([1-9]*|[0-9])([\.][0-9]{1,18})?$/
 
     if (!Reg.test(value)) {
       props.setError(() => {
         return { hasError: true, errorInfo: 'Please enter a valid number with up to 18 decimal places.' }
       })
+      props.setVaule(() => value)
+      return
     }
 
     if (props.maxLimit && Number(value) > Number(props.maxLimit)) {
       props.setError(() => {
         return { hasError: true, errorInfo: 'The amount exceeds the available balance.' }
       })
+      props.setVaule(() => value)
+      return
+    }
+
+    if (Number(value) === 0) {
+      props.setError(() => {
+        return { hasError: true, errorInfo: 'The amount must be greater than 0.' }
+      })
+      props.setVaule(() => '0')
     }
 
     props.setVaule(() => value)
