@@ -17,6 +17,7 @@ import StakeProcess from './components/StakeProcess'
 import StakeReward from './components/StakeReward'
 import FAQTip from './components/FAQTip'
 import FollowUs from './components/FollowUs'
+import { useTranslation } from 'react-i18next'
 
 const HomeWrap = styled.div`
   height: auto;
@@ -104,6 +105,7 @@ const HomePage: React.FunctionComponent = () => {
   // const { isMobile, isTablet, isPC } = useResponsive()
   // const { t, i18n } = useTranslation()
 
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -117,7 +119,7 @@ const HomePage: React.FunctionComponent = () => {
   return (
     <>
       <Helmet>
-        <title>KCC Staking | Buy KCS to Vote | KuCoin Community Chain</title>
+      <title>KCC Staking | Buy KCS to Vote | KuCoin Community Chain</title>
         <meta
           name="description"
           content="Staking KuCoin token (KCS), vote and enjoy rewards in KuCoin Community Chain (KCC)."
@@ -136,7 +138,7 @@ const HomePage: React.FunctionComponent = () => {
         <StakeProcess />
         <StakeReward />
         <FaqWarp>
-          <FAQTip title="Have more questions?" desc="Check out our Gitbook for more information" />
+          <FAQTip title={t("HOME_60")} desc={t("HOME_61")} />
           <FollowUs />
         </FaqWarp>
       </HomeWrap>

@@ -22,6 +22,7 @@ import styled from 'styled-components'
 import { formatNumber } from 'utils/bignumber'
 import { stakerContractHelper } from 'utils/validator'
 import { updateBalance } from 'utils/wallet'
+import { useTranslation } from 'react-i18next'
 
 const bg = require('../../../assets/images/home/re-bg.png').default
 const mbg = require('../../../assets/images/home/m-re-bg.png').default
@@ -101,6 +102,7 @@ const DataPanelWarp = styled.div`
 `
 
 const StakeReward: React.FunctionComponent = () => {
+  const { t } = useTranslation()
   const [inputValue, setInputValue] = React.useState<string>('')
   const [error, setError] = React.useState<{ hasError: boolean; errorInfo: string }>({ hasError: false, errorInfo: '' })
   const balance = useBalance()
@@ -144,16 +146,16 @@ const StakeReward: React.FunctionComponent = () => {
 
         if (response.data?.status === 1) {
           StyledNotification.success({
-            message: 'Staking confirmed!',
+            message: t('HOME_7'),
             description: (
               <div>
-                Stake {inputValue} KCS and receive{' '}
+                {t('HOME_8', { asset: inputValue })}
                 {formatNumber(new BN(staker.kcsQuetoBySKCS).multipliedBy(inputValue), 3)} sKCS.{' '}
                 <ALink
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
-                  View transaction on chain.
+                  {t('HOME_9')}
                 </ALink>
               </div>
             ),
@@ -163,8 +165,8 @@ const StakeReward: React.FunctionComponent = () => {
           dispatch(fetchStakersUserDataAsync(account))
         } else {
           StyledNotification.success({
-            message: 'Staking failed!',
-            description: 'Please try again.',
+            message: t('HOME_10'),
+            description: t('HOME_11'),
           })
         }
       }
@@ -180,19 +182,16 @@ const StakeReward: React.FunctionComponent = () => {
       return (
         <RowCenterBox style={{ width: '100%' }} align="flex-start" justify="space-between">
           <DataItem
-            title="APY"
+            title={t("HOME_38")}
             titleExtra={
-              <Tooltip
-                placement="top"
-                title="APY is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APY = (exchange price 48 hours ago - exchange price at this time)*180*100%"
-              >
+              <Tooltip placement="top" title={t('HOME_12')}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             }
             balance={`${formatNumber(staker.apr * 100, 2)}%`}
           />
           <DataItem
-            title="Monthly Rewards"
+            title={t('HOME_13')}
             balance={`${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).toString() : 0,
               4
@@ -203,7 +202,7 @@ const StakeReward: React.FunctionComponent = () => {
             )}`}
           />
           <DataItem
-            title="Yearly Rewards"
+            title={t('HOME_14')}
             balance={`${formatNumber(inputValue ? new BN(inputValue).multipliedBy(staker.apr).toString() : 0, 4)}KCS`}
             uBalance={`≈${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).multipliedBy(kcsPrice).toString() : 0,
@@ -218,17 +217,14 @@ const StakeReward: React.FunctionComponent = () => {
           <DataItem
             title="APY"
             titleExtra={
-              <Tooltip
-                placement="top"
-                title="APY is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APY = (exchange price 48 hours ago - exchange price at this time)*180*100%"
-              >
+              <Tooltip placement="top" title={t('HOME_12')}>
                 <InfoCircleOutlined style={{ color: 'rgba(255, 255, 255, 0.01)' }} />
               </Tooltip>
             }
-            balance={`${formatNumber(staker.apr * 100, 2)}%`}
+            balance={`${formatNumber(staker.apr, 2)}%`}
           />
           <DataItem
-            title="Monthly Rewards"
+            title={t('HOME_16')}
             balance={`${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).toString() : 0,
               4
@@ -239,7 +235,7 @@ const StakeReward: React.FunctionComponent = () => {
             )}`}
           />
           <DataItem
-            title="Yearly Rewards"
+            title={t('HOME_17')}
             balance={`${formatNumber(inputValue ? new BN(inputValue).multipliedBy(staker.apr).toString() : 0, 4)}KCS`}
             uBalance={`≈${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).multipliedBy(kcsPrice).toString() : 0,
@@ -254,10 +250,10 @@ const StakeReward: React.FunctionComponent = () => {
   return (
     <>
       <StakeWarp>
-        <Title>Rewards Calculator</Title>
-        <Desc>Calculate your staking rewards and stake KCS now</Desc>
+        <Title>{t('HOME_18')}</Title>
+        <Desc>{t('HOME_19')}</Desc>
         <Panel>
-          <PanelText>Enter the staking amount</PanelText>
+          <PanelText>{}</PanelText>
           <StyledInput
             inputValue={inputValue}
             setVaule={setInputValue}
@@ -273,7 +269,7 @@ const StakeReward: React.FunctionComponent = () => {
                 dispatch(toggleConnectWalletModalShow({ show: true }))
               }}
             >
-              Connect Wallet
+              {t('HOME_21')}
             </StyledButton>
           ) : (
             <StyledButton
@@ -281,7 +277,7 @@ const StakeReward: React.FunctionComponent = () => {
               loading={loading}
               onClick={handleDeposit}
             >
-              Stake
+              {t('HOME_22')}
             </StyledButton>
           )}
         </Panel>

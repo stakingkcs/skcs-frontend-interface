@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { isMobile } from 'react-device-detect'
 import SwiperCore, { Autoplay } from 'swiper'
+import { useTranslation } from 'react-i18next'
 
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import 'swiper/swiper.min.css'
@@ -132,35 +133,35 @@ const StakeDesc = styled.p`
   margin-bottom: 0;
 `
 
-const processList = [
-  {
-    icon: require('../../../assets/images/home/c-step1.png').default,
-    title: '1. Connect Wallet',
-    link: '',
-  },
-  {
-    icon: require('../../../assets/images/home/c-step2.png').default,
-    title: '2. Stake KCS',
-    link: '',
-  },
-  {
-    icon: require('../../../assets/images/home/c-step3.png').default,
-    title: '3. Get sKCS',
-    link: '',
-  },
-  {
-    icon: require('../../../assets/images/home/c-step4.png').default,
-    title: '4.Use sKCS',
-    link: '',
-  },
-]
-
 const StakeProcess: React.FunctionComponent = () => {
+  const { t } = useTranslation()
+  const processList = [
+    {
+      icon: require('../../../assets/images/home/c-step1.png').default,
+      title: t("HOME_32"),
+      link: '',
+    },
+    {
+      icon: require('../../../assets/images/home/c-step2.png').default,
+      title: t("HOME_33"),
+      link: '',
+    },
+    {
+      icon: require('../../../assets/images/home/c-step3.png').default,
+      title: t("HOME_34"),
+      link: '',
+    },
+    {
+      icon: require('../../../assets/images/home/c-step4.png').default,
+      title: t("HOME_35"),
+      link: '',
+    },
+  ]
   if (isMobile) {
     SwiperCore.use([Pagination, Navigation])
     return (
       <>
-        <Title>Start staking and grow your assets in only 4 steps</Title>
+        <Title>{t("HOME_37")}</Title>
         <StakeWarp>
           <Swiper
             navigation={{
@@ -170,7 +171,6 @@ const StakeProcess: React.FunctionComponent = () => {
             }}
             pagination={{
               type: 'progressbar',
-
               clickable: false,
             }}
           >
@@ -186,10 +186,11 @@ const StakeProcess: React.FunctionComponent = () => {
               )
             })}
             <div className="swiper-button-prev">
-              <img style={{width: '36px', height:'36px'}} src={aLeft} alt="" />
+              <img style={{ width: '36px', height: '36px' }} src={aLeft} alt="" />
             </div>
+            x
             <div className="swiper-button-next">
-              <img style={{width: '36px', height:'36px'}} src={aRight} alt="" />
+              <img style={{ width: '36px', height: '36px' }} src={aRight} alt="" />
             </div>
           </Swiper>
         </StakeWarp>
@@ -199,7 +200,7 @@ const StakeProcess: React.FunctionComponent = () => {
 
   return (
     <>
-      <Title>Start staking and grow your assets in only 4 steps</Title>
+      <Title>{t("HOME_37")}</Title>
       <StakeWarp>
         {processList.map((step, index) => {
           return (

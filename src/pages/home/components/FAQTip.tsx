@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { isMobile } from 'react-device-detect'
 import styled from 'styled-components'
 import { Title, Text } from '../../../components/index'
-
+import { useTranslation } from 'react-i18next'
 const arrow = require('../../../assets/images/home/arrow.png').default
 const FAQWarp = styled.div`
   width: 507px;

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { RawBox, Image, RowCenterBox, ColumnCenterBox } from '../../../components/index'
+import { useTranslation } from 'react-i18next'
 
 const StepsWrap = styled.div`
   width: 100%;
@@ -49,10 +50,12 @@ const ImageWrap = styled.div`
 `
 
 const Audit: React.FunctionComponent = () => {
+  const { t } = useTranslation()
+  
   return (
     <StepsWrap>
       <Content>
-        <Title>Audit institutions</Title>
+        <Title>{t("HOME_54")}</Title>
         <ImageWrap>
           <Image
             src={require('../../../assets/images/home/peckshield.png').default}

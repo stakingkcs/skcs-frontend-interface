@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react'
 import { isMobile } from 'react-device-detect'
 import styled from 'styled-components'
 import { Title } from '../../../components/index'
+import { useTranslation } from 'react-i18next'
 
 const FollowWarp = styled.div`
   width: 444px;
@@ -65,13 +66,14 @@ const ItemText = styled.p`
 `
 
 const FollowUs: FunctionComponent = () => {
+  const { t } = useTranslation()
   return (
     <FollowWarp>
       <Title style={{ fontSize: '32px', margin: '0 0 25px 0', textAlign: isMobile ? 'center' : 'left' }}>
-        Follow Us
+        {t('HOME_39')}
       </Title>
       <TipWarp>
-        <Desc>Click media icon to follow us</Desc>
+        <Desc>{t("HOME_40")}</Desc>
         <IconWarp>
           {mediaList.map((item) => {
             return (

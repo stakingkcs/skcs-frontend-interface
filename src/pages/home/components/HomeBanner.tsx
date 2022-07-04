@@ -6,12 +6,13 @@ import { useStakerState } from '../../../state/hooks'
 import BN from 'bignumber.js'
 import { useHistory } from 'react-router-dom'
 import DanamicBg from '../../../components/DynamicBg/index'
+import { useTranslation } from 'react-i18next'
 
 const bg = require('../../../assets/images/home/bg-header.png').default
 const mbg = require('../../../assets/images/home/mbg-header.png').default
 
 const Header = styled.div`
-  margin: 0 auto;
+  margin: 0 auto; 
   text-align: center;
   /* background: url(${bg}) no-repeat top; */
   position: relative;
@@ -84,20 +85,21 @@ const BannerStyledButton = styled(StyledButton)`
 const HomeBanner: React.FunctionComponent = () => {
   const staker = useStakerState()
   const history = useHistory()
+  const { t } = useTranslation()
+  console.log("ttt::", t)
   return (
     <>
       <Header>
         <DanamicBg />
         <Content>
           <Title>
-            The KCC staking protocol currently has{' '}
+           {t('HOME_1', {asset: ' '})}
             <NumberText>
               {' '}
               {formatNumber(new BN(staker.accumulatedStakedKCSAmount.toString()).div(10 ** 18) ?? 0)}
             </NumberText>
-            of KCS staking{' '}
-            <NumberText>{formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18))}</NumberText> of
-            rewards paid <NumberText>{formatNumber(staker.apr * 100)}%</NumberText> APY
+            {t("HOME_2")}
+            <NumberText>{formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18))}</NumberText> {t("HOME_3")} <NumberText>{formatNumber(staker.apr * 100)}%</NumberText> {t("HOME_4")}
           </Title>
           <ButtonWarp>
             <BannerStyledButton
@@ -105,7 +107,7 @@ const HomeBanner: React.FunctionComponent = () => {
                 history.push('/staking')
               }}
             >
-              Stake Now
+              {t("HOME_5")}
             </BannerStyledButton>
           </ButtonWarp>
         </Content>
