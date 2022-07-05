@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Image, RowCenterBox } from '../../../components/index'
 import { useResponsive } from '../../../utils/responsive'
-
+import { useTranslation } from 'react-i18next'
 const { Panel } = Collapse
 
 const StepsWrap = styled.div`
@@ -123,48 +123,45 @@ const MoreLink = styled.a`
   }
 `
 
-const faqList = [
-  {
-    title: '1.How to participate in KCC node validator with staking?',
-    desc: (
-      <div>
-        <FaqP>
-          By staking your KCS, you participate in the node selection voting process of Kucoin Community Chain（KCC）
-          validators and earn rewards. Staking KCS is critical for securing the network.
-        </FaqP>
-        <FaqP>Validators can stake KCS to themselves, and they can also receive delegations from KCS voting.</FaqP>
-        <FaqP>
-          You can vote for validators by staking KCS, 1 KCS represents 1 vote, you can get the KCS back if you redeem
-          the voting.
-        </FaqP>
-      </div>
-    ),
-  },
-  {
-    title: '2.How to check/withdraw my staking rewards?',
-    desc: (
-      <div>
-        <FaqP>1.Click on "My Vote" to see your rewards overview</FaqP>
-        <FaqP>2.You can check the rewards of each validator and click “Claim” to get it</FaqP>
-      </div>
-    ),
-  },
-  {
-    title: '3.How to redeem my staking?',
-    desc: (
-      <div>
-        <FaqP>1.Click on "My Vote" to see your staking overview</FaqP>
-        <FaqP>2.Click "Redeem" to stop staking</FaqP>
-        <FaqP>
-          3.You can withdraw it after 3days unbinding period, during the unbinding period, your staked KCS will not
-          receive any rewards.
-        </FaqP>
-      </div>
-    ),
-  },
-]
-
 const FAQ: React.FunctionComponent = () => {
+  const { t } = useTranslation()
+  const faqList = [
+    {
+      title: t("HOME_41"),
+      desc: (
+        <div>
+          <FaqP>
+            {t("HOME_42")}
+          </FaqP>
+          <FaqP>{t("HOME_43")}</FaqP>
+          <FaqP>
+           {t("HOME_44")}
+          </FaqP>
+        </div>
+      ),
+    },
+    {
+      title: t("HOME_45"),
+      desc: (
+        <div>
+          <FaqP>{t("HOME_46")}</FaqP>
+          <FaqP>{t("HOME_47")}</FaqP>
+        </div>
+      ),
+    },
+    {
+      title: t("HOME_48"),
+      desc: (
+        <div>
+          <FaqP>{t("HOME_49")}</FaqP>
+          <FaqP>{t("HOME_50")}</FaqP>
+          <FaqP>
+            {t("HOME_51")}
+          </FaqP>
+        </div>
+      ),
+    },
+  ]
   const [activeList, setActiveList] = React.useState<boolean[]>(new Array(faqList.length).fill(false))
   const { isMobile } = useResponsive()
 
@@ -180,7 +177,7 @@ const FAQ: React.FunctionComponent = () => {
   return (
     <StepsWrap>
       <Content>
-        <Title>FAQ</Title>
+        <Title>{t("HOME_52")}</Title>
         <RowCenterBox justify="center" style={{ width: '100%', marginTop: isMobile ? '32px' : '50px' }}>
           <Space direction="vertical" size={16} style={{ width: isMobile ? '351px' : '100%' }}>
             {faqList.map((faq, index) => {
@@ -225,7 +222,7 @@ const FAQ: React.FunctionComponent = () => {
             <RowCenterBox justify="center">
               <PanelHeader style={{ justifyContent: 'center', cursor: 'pointer', height: isMobile ? '36px' : '72px' }}>
                 <MoreLink href="https://docs.kcc.io/#/en-us/?id=kcc-staking" target="_blank">
-                  More
+                  {t("HOME_53")}
                 </MoreLink>
               </PanelHeader>
             </RowCenterBox>

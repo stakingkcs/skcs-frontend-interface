@@ -1,5 +1,6 @@
 import React from 'react'
 import { isMobile } from 'react-device-detect'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { width } from 'styled-system'
 
@@ -71,33 +72,34 @@ const StakeDesc = styled.p`
   line-height: 24px;
   margin-bottom: 0;
 `
-const fitList = [
-  {
-    icon: require('../../../assets/images/home/staking-step1.png').default,
-    title: 'Decentralized',
-    desc: 'Stake KCS to support network decentralisation and watch your sKCS value grow.',
-  },
-  {
-    icon: require('../../../assets/images/home/staking-step2.png').default,
-    title: 'Get Rewards',
-    desc: 'In return for staking your KCS, sKCS accrues staking rewards over time.',
-  },
-  {
-    icon: require('../../../assets/images/home/staking-step3.png').default,
-    title: 'Leverage',
-    desc: 'Use your sKCS to earn additional yields and put your sKCS to work across the KCC ecosystem.',
-  },
-  {
-    icon: require('../../../assets/images/home/staking-step4.png').default,
-    title: 'Security',
-    desc: 'sKCS.io is the most reliable liquid staking protocol built on KCC, and our smart contracts have been audited by BlockSec.',
-  },
-]
 
 const StakeBenefit: React.FunctionComponent = () => {
+  const { t } = useTranslation()
+  const fitList = [
+    {
+      icon: require('../../../assets/images/home/staking-step1.png').default,
+      title: t('HOME_23'),
+      desc: t('HOME_24'),
+    },
+    {
+      icon: require('../../../assets/images/home/staking-step2.png').default,
+      title: t('HOME_25'),
+      desc: t('HOME_26'),
+    },
+    {
+      icon: require('../../../assets/images/home/staking-step3.png').default,
+      title: t('HOME_27'),
+      desc: t('HOME_28'),
+    },
+    {
+      icon: require('../../../assets/images/home/staking-step4.png').default,
+      title: t('HOME_29'),
+      desc: t('HOME_30'),
+    },
+  ]
   return (
     <>
-      <Title>Why staking with sKCS</Title>
+      <Title>{t('HOME_31')}</Title>
       <StakeWarp>
         <StakeContent>
           {fitList.map((step) => {

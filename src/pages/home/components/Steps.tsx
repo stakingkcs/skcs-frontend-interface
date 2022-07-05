@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { toggleConnectWalletModalShow } from '../../../state/wallet/actions'
 import { useWeb3React } from '@web3-react/core'
 import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const StepsWrap = styled.div`
   width: 100%;
@@ -111,7 +112,7 @@ const steps = [
 
 const Steps: React.FunctionComponent = () => {
   const { isMobile } = useResponsive()
-
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const dispatch = useDispatch()
 
@@ -139,7 +140,7 @@ const Steps: React.FunctionComponent = () => {
   return (
     <StepsWrap>
       <Content>
-        <Title>Staking, Vote and get rewards in 4 steps</Title>
+        <Title>{t("HOME_6")}</Title>
         <RowCenterBox
           justify="center"
           style={{ width: '100%', marginTop: isMobile ? '73px' : '120px', flexFlow: isMobile ? 'column' : 'row' }}

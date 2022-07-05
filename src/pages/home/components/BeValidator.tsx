@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { RawBox, Image, RowCenterBox, ColumnCenterBox } from '../../../components/index'
 import { useResponsive } from '../../../utils/responsive'
+import { useTranslation } from 'react-i18next'
 
 const StepsWrap = styled.div`
   width: 100%;
@@ -81,25 +82,26 @@ const Card = styled(ColumnCenterBox)`
   }
 `
 
-const stepList = [
-  {
-    title: 'Audit for registration',
-    url: '',
-    icon: require('../../../assets/images/home/v-step1.png').default,
-  },
-  {
-    title: 'Candidate registration',
-    url: '',
-    icon: require('../../../assets/images/home/v-step2.png').default,
-  },
-  {
-    title: 'Voting as a validator',
-    url: 'Buy KCS to join staking',
-    icon: require('../../../assets/images/home/v-step3.png').default,
-  },
-]
-
 const BeValidator: React.FunctionComponent = () => {
+  const { t } = useTranslation()
+  const stepList = [
+    {
+      title: t("HOME_55"),
+      url: '',
+      icon: require('../../../assets/images/home/v-step1.png').default,
+    },
+    {
+      title: t("HOME_56"),
+      url: '',
+      icon: require('../../../assets/images/home/v-step2.png').default,
+    },
+    {
+      title: t("HOME_57"),
+      url: '',
+      icon: require('../../../assets/images/home/v-step3.png').default,
+    },
+  ]
+
   const { isMobile } = useResponsive()
   const history = useHistory()
 
@@ -113,7 +115,7 @@ const BeValidator: React.FunctionComponent = () => {
   return (
     <StepsWrap>
       <Content>
-        <Title>To be a validator</Title>
+        <Title>{t("HOME_57")}</Title>
         <RowCenterBox
           justify="center"
           style={{ width: '100%', marginTop: isMobile ? '32px' : '64px', flexFlow: isMobile ? 'column' : 'row' }}
@@ -124,7 +126,7 @@ const BeValidator: React.FunctionComponent = () => {
                 <Image width="188px" height="140px" style={{ marginTop: '65px' }} src={step.icon} />
                 <CardTitle>{step.title}</CardTitle>
                 <LinkText justify="center">
-                  <span style={{ marginRight: '8px' }}>Learn More</span>
+                  <span style={{ marginRight: '8px' }}>{t("HOME_59")}</span>
                   <Image
                     src={require('../../../assets/images/home/green-arrow-rigth.png').default}
                     width="16px"
