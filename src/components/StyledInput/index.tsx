@@ -103,7 +103,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
       return
     }
 
-    const Reg = /^([1-9]*|[0-9])([\.][0-9]{1,18})?$/
+    const Reg = /^([1-9][0-9]*|[0])(\.[0-9]{1,18})?$/
 
     if (!Reg.test(value)) {
       props.setError(() => {

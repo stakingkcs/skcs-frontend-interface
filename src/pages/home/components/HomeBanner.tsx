@@ -90,14 +90,14 @@ const HomeBanner: React.FunctionComponent = () => {
         <DanamicBg />
         <Content>
           <Title>
-            The KCC staking protocol currently has{' '}
+            The KCC staking protocol currently has
             <NumberText>
               {' '}
               {formatNumber(new BN(staker.accumulatedStakedKCSAmount.toString()).div(10 ** 18) ?? 0)}
             </NumberText>
-            of KCS staking{' '}
+            of KCS staking <br />
             <NumberText>{formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18))}</NumberText> of
-            rewards paid <NumberText>{formatNumber(staker.apr * 100)}%</NumberText> APY
+            rewards paid <br /> <NumberText>{formatNumber(staker.apr * 100)}%</NumberText> APY
           </Title>
           <ButtonWarp>
             <BannerStyledButton

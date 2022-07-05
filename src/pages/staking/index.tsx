@@ -31,6 +31,7 @@ export const Content = styled.div`
   margin: 0 auto;
   position: relative;
   height: auto;
+  z-index: 99;
 `
 
 const BottomPanel = styled.div`
@@ -96,15 +97,17 @@ const StakingPage: React.FunctionComponent = () => {
       <HomeWrap>
         <Content>
           <DanamicCenterBg />
-          <StakingPanel />
-          <BottomPanel>
-            <FaqWrap>
-              <FAQ />
-            </FaqWrap>
-            <StaticsPanel>
-              <Statistics />
-            </StaticsPanel>
-          </BottomPanel>
+          <div style={{ position: 'relative', zIndex: 999 }}>
+            <StakingPanel />
+            <BottomPanel>
+              <FaqWrap>
+                <FAQ />
+              </FaqWrap>
+              <StaticsPanel>
+                <Statistics />
+              </StaticsPanel>
+            </BottomPanel>
+          </div>
         </Content>
       </HomeWrap>
     </>

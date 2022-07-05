@@ -1,22 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Helmet } from 'react-helmet-async'
-// import { useResponsive } from '../../utils/responsive'
-import { fetchStakerPublicDataAsync } from 'state/staker'
+import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import Steps from './components/Steps'
-import FAQ from './components/FAQ'
-import BeValidator from './components/BeValidator'
-import Audit from './components/Audit'
+import { fetchStakerPublicDataAsync } from 'state/staker'
+import FAQTip from './components/FAQTip'
+import FollowUs from './components/FollowUs'
 import HomeBanner from './components/HomeBanner'
-import { isMobile } from 'react-device-detect'
 import StakeBenefit from './components/StakeBenefit'
 import StakeProcess from './components/StakeProcess'
 import StakeReward from './components/StakeReward'
-import FAQTip from './components/FAQTip'
-import FollowUs from './components/FollowUs'
 
 const HomeWrap = styled.div`
   height: auto;
@@ -45,47 +39,6 @@ const Banner = styled.div`
     background: url(${bannerBgH5}) bottom center no-repeat;
     height: 320px;
     background-size: contain;
-  }
-`
-const StyledH1 = styled.h1`
-  margin-top: 280px;
-  font-family: 'Barlow';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 52px;
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-  @media (max-width: 768px) {
-    font-size: 32px;
-    margin: 103px 0 16px 0;
-    text-align: center;
-    max-width: 300px;
-  }
-`
-
-const StakingButton = styled.div`
-  width: 160px;
-  height: 48px;
-  background: #00d092;
-  border-radius: 27px;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #ffffff;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    opacity: 0.9;
-  }
-  @media (max-width: 768px) {
-    width: 140px;
-    height: 40px;
   }
 `
 

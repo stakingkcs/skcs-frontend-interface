@@ -21,10 +21,11 @@ import { useBalance } from 'state/wallet/hooks'
 import styled from 'styled-components'
 import { formatNumber } from 'utils/bignumber'
 import { stakerContractHelper } from 'utils/validator'
-import { updateBalance } from 'utils/wallet'
+import { updateBalance } from 'utils/wallet'  
 
 const bg = require('../../../assets/images/home/re-bg.png').default
 const mbg = require('../../../assets/images/home/m-re-bg.png').default
+
 const StakeWarp = styled.div`
   height: 995px;
   margin: 0 auto;
