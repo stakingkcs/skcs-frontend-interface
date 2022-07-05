@@ -22,6 +22,7 @@ import { useBalance } from '../../../state/wallet/hooks'
 import { formatNumber } from '../../../utils/bignumber'
 import { stakerContractHelper } from '../../../utils/validator'
 import DataPanel from './DataPanel'
+import { useTranslation } from 'react-i18next'
 
 const { TabPane } = Tabs
 
@@ -115,6 +116,7 @@ const TipsText = styled.div`
 `
 
 const StakingPanel: FunctionComponent = () => {
+  const { t } = useTranslation()
   const balance = useBalance()
   const staker = useStakerState()
   const { account, library } = useWeb3React()

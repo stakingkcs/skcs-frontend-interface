@@ -17,6 +17,7 @@ import { toggleConnectWalletModalShow } from 'state/wallet/actions'
 import ModalDescription from 'components/ModalDescription'
 import WarningDescription from '../../../components/WarningDescription/index'
 import StyledNotification from 'components/StyledNotification'
+import { useTranslation } from 'react-i18next'
 
 const DescriptionWrap = styled.div`
   margin-top: 14px;
@@ -153,6 +154,7 @@ const ValidatorModal: React.FunctionComponent<
   const dispatch = useDispatch()
   const [unfold, setUnfold] = React.useState<boolean>(false)
   const { isMobile } = useResponsive()
+  const { t } = useTranslation()
 
   React.useEffect(() => {
     console.log(props)
@@ -168,7 +170,7 @@ const ValidatorModal: React.FunctionComponent<
               window.open(props.validator.website, '_blank')
             }}
           >
-            Official Website
+            {t('STAKE_41')}
           </WebsiteText>
         )}
       </RowCenterBox>
@@ -178,7 +180,7 @@ const ValidatorModal: React.FunctionComponent<
   return (
     <StyledModal title={<Header />} {...props} width="440px">
       <Text fontSize="14px" mt="15px" color="#040A2D">
-        Contract address
+        {t('STAKE_42')}
       </Text>
       <RawBox style={{ marginTop: '5px', width: '100%' }}>
         <RowCenterBox
@@ -209,7 +211,7 @@ const ValidatorModal: React.FunctionComponent<
           <RowBetween>
             <RawBox>
               <Text style={{ width: '110px' }} fontSize="14px" color="#7F8393">
-                Current Ranking
+                {t('STAKE_43')}
               </Text>
               <Text fontSize="18px" color="#040A2D" marginTop="8px" fontWeight={500}>
                 {props.validator?.rank}
@@ -217,7 +219,7 @@ const ValidatorModal: React.FunctionComponent<
             </RawBox>
             <RawBox style={{ marginLeft: '16px' }}>
               <Text fontSize="14px" color="#7F8393">
-                APY
+                {t('STAKE_10')}
               </Text>
               <Text fontSize="18px" color="#040A2D" marginTop="8px" fontWeight={500}>
                 {`${props.validator?.apr}%`}
@@ -225,7 +227,7 @@ const ValidatorModal: React.FunctionComponent<
             </RawBox>
           </RowBetween>
           <Text fontSize="14px" color="#7F8393" mt="15px">
-            Votes/ Proportion
+            {t('STAKE_44')}
           </Text>
           <Text fontSize="18px" color="#040A2D" marginTop="8px" fontWeight={500}>
             {new BN((props?.validator && props.validator?.votes?.toString()) ?? 0).toFormat({
@@ -237,20 +239,14 @@ const ValidatorModal: React.FunctionComponent<
         </Card>
       </RowCenterBox>
       <DescriptionWrap>
-        <DescriptionTitle>Introduction</DescriptionTitle>
-        <DescriptionText unfold={unfold}>
-          This is a leading Staking and Masternode hosting platform that provides secure and convenient hosting services
-          while managing close to a billion dollars in assets and the highest number of nodes globally. As one of
-          dollars in assets and the highest number of nodesThis is a leading Staking and Masternode hosting platform
-          that provides secure and convenient hosting services while managing close to a billion dollars in assets and
-          the highest number of nodes globally. As one of dollars in assets and the highest number of nodes.
-        </DescriptionText>
+        <DescriptionTitle>{t('STAKE_45')}</DescriptionTitle>
+        <DescriptionText unfold={unfold}>{t('STAKE_46')}</DescriptionText>
         <OperateText onClick={() => setUnfold((old) => !old)}>{unfold ? 'Unfold' : 'Read more'}</OperateText>
       </DescriptionWrap>
       {props.validator.status === ValidatorStatus['In Jail'] && (
         <WarningDescription>
           <RawBox style={{ marginLeft: '18px' }}>
-            <WarningText>This validator is "In Jail" for bad behavior and does not support being voted.</WarningText>
+            <WarningText>{t('STAKE_47')}</WarningText>
           </RawBox>
         </WarningDescription>
       )}
@@ -268,7 +264,7 @@ const ValidatorModal: React.FunctionComponent<
               })
             }}
           >
-            Connect Wallet
+            {t('STAKE_19')}
           </StyledButton>
         )}
 
@@ -280,13 +276,13 @@ const ValidatorModal: React.FunctionComponent<
               })
             }}
           >
-            Vote
+            {t('STAKE_48')}
           </StyledButton>
         )}
 
         {account && props.validator.status === ValidatorStatus['In Jail'] && (
           <StyledButton disabled={true} style={{ marginTop: '-10px' }}>
-            Vote
+            {t('STAKE_48')}
           </StyledButton>
         )}
       </RowCenterBox>

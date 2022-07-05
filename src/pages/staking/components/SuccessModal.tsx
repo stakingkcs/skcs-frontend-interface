@@ -6,6 +6,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import StyledButton from '../../../components/StyledButton/index'
+import { useTranslation } from 'react-i18next'
 
 const TipText = styled.div`
   font-family: 'Barlow';
@@ -22,6 +23,7 @@ const TipText = styled.div`
 
 const SuccessModal: React.FunctionComponent<ModalProps & { setModalList: any; hash: string }> = (props) => {
   const history = useHistory()
+  const { t } = useTranslation()
 
   return (
     <StyledModal {...props} width="440px">
@@ -33,7 +35,7 @@ const SuccessModal: React.FunctionComponent<ModalProps & { setModalList: any; ha
             height="48px"
             alt="success-icon"
           />
-          <TipText>Voted Successful</TipText>
+          <TipText>{t("STAKE_39")}</TipText>
           <HashLink hash={props.hash} />
         </ColumnCenterBox>
       </RawBox>
@@ -46,7 +48,7 @@ const SuccessModal: React.FunctionComponent<ModalProps & { setModalList: any; ha
             history.push('/my-vote')
           }}
         >
-          Check My Vote
+          {t("STAKE_40")}
         </StyledButton>
       </RowCenterBox>
     </StyledModal>

@@ -7,14 +7,15 @@ import GradienButton from 'components/StyledButton/GradientButton'
 import Text from 'components/Text'
 import { GradientText } from 'components/Text'
 import React from 'react'
+
 import styled from 'styled-components'
 import RowData from 'components/RowData'
+import Calculator from './Calculator'
 
 const caculatImg = require('../../../assets/images/defimarket/caculator.png').default
 
 const Warp = styled.div`
   width: 384px;
-
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.5);
   padding: 36px 24px;
@@ -59,7 +60,7 @@ const GradientButton = styled.div`
   }
 `
 
-const Caculator = styled.img`
+const CaculatorImg = styled.img`
   width: 20px;
   height: 20px;
 `
@@ -95,7 +96,13 @@ const Supply: React.FunctionComponent = () => {
           content={
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
               <p style={{ marginBottom: '0' }}> 100%</p>
-              <Caculator src={caculatImg} />
+              {/* <Calculator visible={true}/> */}
+              <CaculatorImg
+                src={caculatImg}
+                onClick={() => {
+              
+                }}
+              />
             </div>
           }
         />

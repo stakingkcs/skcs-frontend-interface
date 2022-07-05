@@ -252,7 +252,7 @@ const StakeReward: React.FunctionComponent = () => {
         <Title>{t('HOME_18')}</Title>
         <Desc>{t('HOME_19')}</Desc>
         <Panel>
-          <PanelText>{}</PanelText>
+          <PanelText>{t('HOME_20')}</PanelText>
           <StyledInput
             inputValue={inputValue}
             setVaule={setInputValue}

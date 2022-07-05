@@ -6,6 +6,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import StyledButton from '../../../components/StyledButton/index'
+import { useTranslation } from 'react-i18next'
 
 const TipText = styled.div`
   font-family: 'Barlow';
@@ -22,6 +23,7 @@ const TipText = styled.div`
 
 const FailedModal: React.FunctionComponent<ModalProps & { setModalList: any; hash: string }> = (props) => {
   const history = useHistory()
+  const { t } = useTranslation()
 
   return (
     <StyledModal {...props} width="440px">
@@ -33,7 +35,7 @@ const FailedModal: React.FunctionComponent<ModalProps & { setModalList: any; has
             height="48px"
             alt="failed-icon"
           />
-          <TipText>Voted Failed</TipText>
+          <TipText>{t("STAKE_20")}</TipText>
           <HashLink hash={props.hash} />
         </ColumnCenterBox>
       </RawBox>
@@ -45,7 +47,7 @@ const FailedModal: React.FunctionComponent<ModalProps & { setModalList: any; has
             })
           }}
         >
-          Retry
+          {t("STAKE_21")}
         </StyledButton>
       </RowCenterBox>
     </StyledModal>

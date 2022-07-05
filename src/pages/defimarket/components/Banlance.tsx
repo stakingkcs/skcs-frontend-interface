@@ -3,25 +3,11 @@ import styled from 'styled-components'
 
 const walletFile = require('../../../assets/images/home/walletfile.png').default
 const exlink = require('../../../assets/images/home/ex_link.png').default
-const Title = styled.div`
-  font-family: 'Arial';
-  font-style: normal;
-  font-weight: bold;
-  font-size: 28px;
-  text-align: center;
-  color: #ffffff;
-  margin: 20px  0;
-  /* @media (max-width: 768px) {
-    font-size: 26px;
-    margin: 0 8px;
-  } */
-`
 
-const Warp = styled.div`
+const BWarp = styled.div`
   width: 383px;
   height: 102px;
   background: rgba(0, 0, 0, 0.5);
-  color: #ffffff;
   border-radius: 20px;
   padding: 21px 24px;
   display: flex;
@@ -83,7 +69,7 @@ const LinkIcon = styled.img`
 const Banlance: React.FunctionComponent = () => {
   return (
     <>
-      <Warp>
+      <BWarp>
         <IconWarp>
         <Icon src={walletFile}/>
         </IconWarp>
@@ -95,7 +81,7 @@ const Banlance: React.FunctionComponent = () => {
           <LinkText>Get sKCS</LinkText>
           <LinkIcon src={exlink} />
         </LinkWarp>
-      </Warp>
+      </BWarp>
     </>
   )
 }
