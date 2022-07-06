@@ -35,6 +35,10 @@ const ConnectButton = styled(LanguageButton)`
   font-size: 14px;
   border: 1.5px solid #00d092;
   background: #000;
+  @media (max-width: 768px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 `
 
 const GradientButton = styled(ConnectButton)`
@@ -110,6 +114,11 @@ const WalletIcon = styled.img`
   width: 20px;
   height: 20px;
   margin-right: 10px;
+  @media (max-width: 768px) {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+  }
 `
 
 const NetworkWrap = styled(CenterRow)`
@@ -211,7 +220,7 @@ const UnlockButton: React.FunctionComponent = () => {
               src={account ? walletLogo : require('../../assets/images/Icons/wallet.png').default}
               alt="wallet icon"
             />
-            <GradientText style={{ paddingRight: '15px', fontSize: isMobile ? '12px' : '14px' }}>
+            <GradientText style={{ paddingRight: isMobile ? '0px' : '15px', fontSize: isMobile ? '12px' : '14px' }}>
               {t(`Connect Wallet`)}
             </GradientText>
           </GradientButtonContent>

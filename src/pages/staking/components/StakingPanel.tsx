@@ -2,7 +2,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons'
 import { useWeb3React } from '@web3-react/core'
 import { Tabs, Tooltip } from 'antd'
 import BN from 'bignumber.js'
-import { ALink, GradientBgColor, RowCenterBox } from 'components'
+import { ALink, FlexBox, GradientBgColor, Image, RowCenterBox } from 'components'
 import RowData from 'components/RowData'
 import StyledButton from 'components/StyledButton'
 import StyledInput from 'components/StyledInput'
@@ -23,6 +23,8 @@ import { formatNumber } from '../../../utils/bignumber'
 import { stakerContractHelper } from '../../../utils/validator'
 import DataPanel from './DataPanel'
 import { useTranslation } from 'react-i18next'
+import { CenterBox, BetweenBox } from '../../../components/index'
+import { useResponsive } from 'utils/responsive'
 
 const { TabPane } = Tabs
 
@@ -78,6 +80,9 @@ const StyledTabPane = styled(TabPane)`
 const ContentWrap = styled.div`
   padding: 34px 32px;
   width: 100%;
+  @media (max-width: 768px) {
+    padding: 16px 16px;
+  }
 `
 
 const StyledTabs = styled(Tabs)`
@@ -89,12 +94,14 @@ const StyledTabs = styled(Tabs)`
     padding: 32px 0 24px 0;
   }
 
-  .ant-tabs-nav-list {
-    width: 100%;
-  }
   .ant-tabs-ink-bar {
     ${GradientBgColor}
   }
+
+  .ant-tabs-nav-list {
+    width: 100%;
+  }
+
   .ant-tabs-nav {
     &:before {
       position: absolute;
@@ -102,6 +109,20 @@ const StyledTabs = styled(Tabs)`
       left: 0;
       border-bottom: none !important;
       content: '';
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ant-tabs-tab {
+      width: auto;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 10px 0 5px 0;
+    }
+    .ant-tabs-nav-list {
+      width: 180px;
+      padding-left: 20px;
     }
   }
 `
@@ -115,7 +136,16 @@ const TipsText = styled.div`
   margin-top: 16px;
 `
 
+const SubTitle = styled.div`
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #b4b7c1;
+`
+
 const StakingPanel: FunctionComponent = () => {
+  const { isMobile } = useResponsive()
   const { t } = useTranslation()
   const balance = useBalance()
   const staker = useStakerState()
@@ -253,27 +283,28 @@ const StakingPanel: FunctionComponent = () => {
     }
   }, [dispatch, stakerContract, account, library, inputValue])
 
-  const changePanel = React.useCallback(
-    (e) => {
-      console.log('e', e)
-      console.log(activeKey)
-      if (e.keyCode === 9) {
-        changeActiveKey(activeKey === '1' ? '1' : '2')
-      }
-    },
-    [activeKey, changeActiveKey]
-  )
+  // const changePanel = React.useCallback(
+  //   (e) => {
+  //     console.log('e', e)
+  //     console.log(activeKey)
+  //     if (e.keyCode === 9) {
+  //       changeActiveKey(activeKey === '1' ? '2' : '1')
+  //     }
+  //   },
+  //   [activeKey, changeActiveKey]
+  // )
 
-  React.useEffect(() => {
-    window.addEventListener('keydown', changePanel)
-    return () => window.removeEventListener('keydown', changePanel)
-  }, [])
+  // React.useEffect(() => {
+  //   window.addEventListener('keydown', changePanel)
+  //   return () => window.removeEventListener('keydown', changePanel)
+  // }, [])
 
   return (
     <StakingPanelWrap connected={Boolean(account)}>
       <DataPanelWrap>
         <DataPanel />
       </DataPanelWrap>
+
       <StakePanel>
         <StyledTabs defaultActiveKey="1" style={{ width: '100%' }} onChange={changeActiveKey}>
           <StyledTabPane
@@ -294,6 +325,52 @@ const StakingPanel: FunctionComponent = () => {
                 setError={setError}
                 maxLimit={new BN(maxDepositKCS.toString()).div(10 ** 18).toString()}
               />
+
+              {isMobile && (
+                <>
+                  {account && (
+                    <BetweenBox style={{ marginTop: '8px' }}>
+                      <SubTitle>Wallet Balance</SubTitle>
+                      <SubTitle>{`${formatNumber(new BN(balance).div(10 ** 18), 2)} KCS`}</SubTitle>
+                    </BetweenBox>
+                  )}
+
+                  <CenterBox style={{ margin: '24px 0' }}>
+                    <Image
+                      src={require('../../../assets/images/Icons/arrow-down.png').default}
+                      width="8px"
+                      height="auto"
+                      alt="arrow-down-icon"
+                    />
+                  </CenterBox>
+                  <FlexBox style={{ flexFlow: 'column nowrap' }}>
+                    <SubTitle style={{ marginBottom: '8px' }}>You will receive</SubTitle>
+                    <StyledInput
+                      showMax={false}
+                      suffix="sKCS"
+                      readOnly={true}
+                      inputValue={formatNumber(
+                        new BN(inputValue === '' ? 0 : inputValue).times(staker.kcsQuetoBySKCS.toString()),
+                        4
+                      )}
+                      setVaule={setInputValue}
+                      error={error}
+                      setError={setError}
+                      maxLimit={'0'}
+                    />
+                    {account && (
+                      <BetweenBox style={{ marginTop: '8px' }}>
+                        <SubTitle>Staked Balance</SubTitle>
+                        <SubTitle>{`${formatNumber(
+                          new BN(staker.userData?.stakeAmount.toString() ?? 0).div(10 ** 18),
+                          2
+                        )} sKCS`}</SubTitle>
+                      </BetweenBox>
+                    )}
+                  </FlexBox>
+                </>
+              )}
+
               {!account ? (
                 <StyledButton
                   style={{ marginTop: '40px' }}
@@ -319,14 +396,28 @@ const StakingPanel: FunctionComponent = () => {
                 title="Exchange rate"
                 content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 4)}KCS`}
               />
-              <RowData
-                style={{ marginTop: '12px' }}
-                title="You will receive"
-                content={`${formatNumber(
-                  new BN(inputValue === '' ? 0 : inputValue).times(staker.kcsQuetoBySKCS.toString()),
-                  3
-                )} sKCS`}
-              />
+              {isMobile ? (
+                <RowData
+                  style={{ marginTop: '12px' }}
+                  title="APY"
+                  content={
+                    <Text color="#00D092">{`${formatNumber(
+                      new BN(staker.apr.toString()).multipliedBy(100).toString(),
+                      3
+                    )} %`}</Text>
+                  }
+                />
+              ) : (
+                <RowData
+                  style={{ marginTop: '12px' }}
+                  title="You will receive"
+                  content={`${formatNumber(
+                    new BN(inputValue === '' ? 0 : inputValue).times(staker.kcsQuetoBySKCS.toString()),
+                    3
+                  )} sKCS`}
+                />
+              )}
+
               <RowData
                 style={{ marginTop: '12px' }}
                 title={
@@ -372,6 +463,53 @@ const StakingPanel: FunctionComponent = () => {
                 suffix="sKCS"
                 maxLimit={new BN(staker.userData.stakeAmount.toString()).div(10 ** 18).toString()}
               />
+
+              {isMobile && (
+                <>
+                  {account && (
+                    <BetweenBox style={{ marginTop: '8px' }}>
+                      <SubTitle>Wallet Balance</SubTitle>
+                      <SubTitle>{`${formatNumber(
+                        new BN(staker.userData?.stakeAmount.toString() ?? 0).div(10 ** 18),
+                        2
+                      )} sKCS`}</SubTitle>
+                    </BetweenBox>
+                  )}
+                  <CenterBox style={{ margin: '24px 0' }}>
+                    <Image
+                      src={require('../../../assets/images/Icons/arrow-down.png').default}
+                      width="8px"
+                      height="auto"
+                      alt="arrow-down-icon"
+                    />
+                  </CenterBox>
+                  <FlexBox style={{ flexFlow: 'column nowrap' }}>
+                    <SubTitle style={{ marginBottom: '8px' }}>You will receive</SubTitle>
+                    <StyledInput
+                      showMax={false}
+                      suffix="KCS"
+                      style={{ marginTop: '8px' }}
+                      readOnly={true}
+                      inputValue={formatNumber(
+                        new BN(inputValue === '' ? 0 : inputValue).times(staker.skcsQuetoByKCS.toString()),
+                        4
+                      )}
+                      setVaule={setInputValue}
+                      error={error}
+                      setError={setError}
+                      maxLimit={'0'}
+                    />
+
+                    {account && (
+                      <BetweenBox style={{ marginTop: '8px' }}>
+                        <SubTitle>Wallet Balance</SubTitle>
+                        <SubTitle>{`${formatNumber(new BN(balance ?? 0).div(10 ** 18), 2)} KCS`}</SubTitle>
+                      </BetweenBox>
+                    )}
+                  </FlexBox>
+                </>
+              )}
+
               {!account ? (
                 <StyledButton
                   style={{ marginTop: '40px' }}
@@ -397,14 +535,29 @@ const StakingPanel: FunctionComponent = () => {
                 title="Exchange rate"
                 content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 4)}KCS`}
               />
-              <RowData
-                style={{ marginTop: '12px' }}
-                title="You will receive"
-                content={`${formatNumber(
-                  new BN(inputValue === '' ? 0 : inputValue).times(staker.skcsQuetoByKCS.toString()),
-                  3
-                )} KCS`}
-              />
+
+              {isMobile ? (
+                <RowData
+                  style={{ marginTop: '12px' }}
+                  title="APY"
+                  content={
+                    <Text color="#00D092">{`${formatNumber(
+                      new BN(staker.apr.toString()).multipliedBy(100).toString(),
+                      3
+                    )} %`}</Text>
+                  }
+                />
+              ) : (
+                <RowData
+                  style={{ marginTop: '12px' }}
+                  title="You will receive"
+                  content={`${formatNumber(
+                    new BN(inputValue === '' ? 0 : inputValue).times(staker.skcsQuetoByKCS.toString()),
+                    3
+                  )} sKCS`}
+                />
+              )}
+
               <RowData
                 style={{ marginTop: '12px' }}
                 title={

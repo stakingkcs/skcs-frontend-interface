@@ -18,6 +18,7 @@ export const HomeWrap = styled.div`
   min-height: calc(100vh - 100px);
   width: 100%;
   background-size: 1600px auto;
+  background: url(${gradientBg}) center -400px no-repeat;
   @media (max-width: 768px) {
     background: url(${gradientBg}) top center no-repeat;
     padding-top: 10px;
@@ -96,7 +97,7 @@ const StakingPage: React.FunctionComponent = () => {
       </Helmet>
       <HomeWrap>
         <Content>
-          <DanamicCenterBg />
+          {/* <DanamicCenterBg /> */}
           <div style={{ position: 'relative', zIndex: 999 }}>
             <StakingPanel />
             <BottomPanel>

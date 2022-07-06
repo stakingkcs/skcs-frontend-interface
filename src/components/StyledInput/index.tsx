@@ -8,6 +8,7 @@ import { useWeb3React } from '@web3-react/core'
 import { useBalance } from '../../state/wallet/hooks'
 import { RowCenterBox } from '../index'
 import './index.less'
+import { useResponsive } from 'utils/responsive'
 
 const StyledInputWrap = styled.div`
   width: 100%;
@@ -26,6 +27,9 @@ const SInput = styled(Input)`
     background: transparent;
     height: 40px;
   }
+  @media (max-width: 768px) {
+    padding-left: 0px;
+  }
 `
 
 const ErrorInfo = styled.div`
@@ -33,6 +37,10 @@ const ErrorInfo = styled.div`
   bottom: -26px;
   left: 0;
   color: red;
+  @media (max-width: 768px) {
+    position: relative;
+    bottom: -5px;
+  }
 `
 
 const SuffixText = styled.div`
@@ -66,13 +74,16 @@ interface Props {
   setError: any
   maxLimit: string
   checkBalance?: boolean
+  showMax?: boolean
 }
 
-const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
+const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = true, ...props }) => {
+  const { isMobile } = useResponsive()
   const balance = useBalance()
   const { account } = useWeb3React()
 
   React.useEffect(() => {
+    if (props.readOnly) return
     if (props.checkBalance && new BN(balance).div(10 ** 18).lte(0)) {
       props.setError(() => {
         return { hasError: true, errorInfo: 'Insufficient balance' }
@@ -81,6 +92,8 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
   }, [balance, props.checkBalance])
 
   const checkValue = (input) => {
+    console.log('readonly', props.readOnly)
+    if (props.readOnly) return
     if (!account) {
       props.setError(() => {
         return { hasError: true, errorInfo: 'Please connect your wallet' }
@@ -141,26 +154,46 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
         style={{ color: '#fff' }}
         placeholder="Amount"
         value={props.inputValue}
+        readOnly={props.readOnly}
         suffix={
           <RowCenterBox>
-            <MaxButton
-              onClick={() => {
-                props.setError(() => {
-                  return { hasError: false, errorInfo: '' }
-                })
-                props.setVaule(props.maxLimit)
-              }}
-            >
-              Max
-            </MaxButton>
+            {showMax && (
+              <MaxButton
+                onClick={() => {
+                  props.setError(() => {
+                    return { hasError: false, errorInfo: '' }
+                  })
+
+                  props.setVaule(props.maxLimit)
+
+                  if (Number(props.maxLimit) === 0) {
+                    props.setError(() => {
+                      return { hasError: true, errorInfo: 'The amount must be greater than 0.' }
+                    })
+                  }
+                }}
+              >
+                Max
+              </MaxButton>
+            )}
+
             <SuffixText>{props.suffix ?? 'KCS'}</SuffixText>
           </RowCenterBox>
         }
         prefix={
-          <Image src={require('../../assets/images/Icons/kcs.png').default} width="24px" height="24px" alt="kcs-icon" />
+          isMobile ? null : (
+            <Image
+              src={require('../../assets/images/Icons/kcs.png').default}
+              width="24px"
+              height="24px"
+              alt="kcs-icon"
+            />
+          )
         }
       />
-      {props.error.hasError && props.error.errorInfo && <ErrorInfo>{`* ${props.error.errorInfo}`}</ErrorInfo>}
+      {!props.readOnly && props.error.hasError && props.error.errorInfo && (
+        <ErrorInfo>{`* ${props.error.errorInfo}`}</ErrorInfo>
+      )}
     </StyledInputWrap>
   )
 }

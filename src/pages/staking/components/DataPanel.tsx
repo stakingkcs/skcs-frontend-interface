@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { fetchStakersUserDataAsync } from 'state/staker'
 import styled from 'styled-components'
+import { useResponsive } from 'utils/responsive'
 import { updateBalance } from 'utils/wallet'
 import ExternalLink from '../../../components/ExternalLink/index'
 import { useStakerContract } from '../../../hooks/useContract'
@@ -74,6 +75,9 @@ const ContentWrap = styled.div<{ connected: boolean }>`
     }
     return '328px'
   }};
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `
 
 const PlusIcon = styled.img`
@@ -84,6 +88,7 @@ const PlusIcon = styled.img`
 
 const StakingPanel: FunctionComponent = () => {
   const { t } = useTranslation()
+  const { isMobile } = useResponsive()
   const [loading, setLoading] = React.useState<boolean>(false)
 
   const { account, library } = useWeb3React()
@@ -108,10 +113,10 @@ const StakingPanel: FunctionComponent = () => {
         console.log('response.data', response.data)
         if (response.data?.status === 1) {
           StyledNotification.success({
-            message: t("STAKE_1"),
+            message: t('STAKE_1'),
             description: (
               <div>
-              {t("STAKE_2")}
+                {t('STAKE_2')}
                 {formatNumber(new BN(staker.userData.availableBurnSKCSAmount.toString()).div(10 ** 18).toString(10), 3)}
                 sKCS and receive{' '}
                 {formatNumber(
@@ -123,7 +128,7 @@ const StakingPanel: FunctionComponent = () => {
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
-                  {t("STAKE_3")}
+                  {t('STAKE_3')}
                 </ALink>
               </div>
             ),
@@ -132,8 +137,8 @@ const StakingPanel: FunctionComponent = () => {
           dispatch(fetchStakersUserDataAsync(account))
         } else {
           StyledNotification.success({
-            message: t("STAKE_4"),
-            description: t("STAKE_5"),
+            message: t('STAKE_4'),
+            description: t('STAKE_5'),
           })
         }
       }
@@ -144,39 +149,41 @@ const StakingPanel: FunctionComponent = () => {
     }
   }, [dispatch, stakerContract, account, library])
 
+  if (!account && isMobile) return null
+
   return (
     <>
       {!account && (
         <HeaderPanel>
-          <Title>{t("STAKE_6")}</Title>
-          <Desc>{t("STAKE_7")}</Desc>
+          <Title>{t('STAKE_6')}</Title>
+          <Desc>{t('STAKE_7')}</Desc>
         </HeaderPanel>
       )}
       <ContentWrap connected={Boolean(account)}>
-        <RowCenterBox>
-          <DataItem
-            title={t("STAKE_8")}
-            balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
-            titleExtra={
-              <ExternalLink
-                style={{ marginLeft: '10px' }}
-                url="https://app.mojitoswap.finance/swap"
-                name={t("STAKE_9")}
-              />
-            }
-          />
-        </RowCenterBox>
+        {!isMobile && (
+          <RowCenterBox>
+            <DataItem
+              title={t('STAKE_8')}
+              balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
+              titleExtra={
+                <ExternalLink
+                  style={{ marginLeft: '10px' }}
+                  url="https://app.mojitoswap.finance/swap"
+                  name={t('STAKE_9')}
+                />
+              }
+            />
+          </RowCenterBox>
+        )}
+
         {!account ? (
           <>
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '24px', width: '300px' }}>
               <DataItem title="Staked amount" balance={`0.00 sKCS`} uBalance="≈$0.0000" />
               <DataItem
-                title={t("STAKE_10")}
+                title={t('STAKE_10')}
                 titleExtra={
-                  <Tooltip
-                    placement="top"
-                    title={t("STAKE_11")}
-                  >
+                  <Tooltip placement="top" title={t('STAKE_11')}>
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
@@ -186,66 +193,65 @@ const StakingPanel: FunctionComponent = () => {
           </>
         ) : (
           <>
-            <RowCenterBox style={{ marginTop: '32px' }}>
-              <DataItem
-                title={t("STAKE_12")}
-                balance={`${formatNumber(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18), 2)} sKCS`}
-                uBalance={`≈$${formatNumber(
-                  skcsPrice.multipliedBy(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18)),
-                  2
-                )}`}
-                balanceExtra={
-                  <Tooltip placement="top" title={t("STAKE_13")}>
-                    <PlusIcon
-                      src={require('../../../assets/images/Icons/plus.png').default}
-                      onClick={() => {
-                        addTokenToWallet({
-                          tokenAddress: getStakerAddress(),
-                          decimals: 18,
-                          image: 'https://s3.ap-northeast-1.amazonaws.com/static.kcc.io/logo/skcs.png',
-                          symbol: 'SKCS',
-                        })
-                      }}
-                      alt="add-token-icon"
-                    />
-                  </Tooltip>
-                }
-              />
-            </RowCenterBox>
+            {!isMobile && (
+              <RowCenterBox style={{ marginTop: '32px' }}>
+                <DataItem
+                  title={t('STAKE_12')}
+                  balance={`${formatNumber(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18), 2)} sKCS`}
+                  uBalance={`≈$${formatNumber(
+                    skcsPrice.multipliedBy(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18)),
+                    2
+                  )}`}
+                  balanceExtra={
+                    <Tooltip placement="top" title={t('STAKE_13')}>
+                      <PlusIcon
+                        src={require('../../../assets/images/Icons/plus.png').default}
+                        onClick={() => {
+                          addTokenToWallet({
+                            tokenAddress: getStakerAddress(),
+                            decimals: 18,
+                            image: 'https://s3.ap-northeast-1.amazonaws.com/static.kcc.io/logo/skcs.png',
+                            symbol: 'SKCS',
+                          })
+                        }}
+                        alt="add-token-icon"
+                      />
+                    </Tooltip>
+                  }
+                />
+              </RowCenterBox>
+            )}
+
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '32px', width: '300px' }}>
               <DataItem
-                title={t("STAKE_14")}
+                title={t('STAKE_14')}
                 balance={`${formatNumber(new BN(staker.userData.pendingAmount.toString()).div(10 ** 18), 2)} KCS`}
                 uBalance={`≈$${formatNumber(
                   kcsPrice.multipliedBy(new BN(staker.userData.pendingAmount.toString()).div(10 ** 18)),
                   2
                 )}`}
                 titleExtra={
-                  <Tooltip
-                    placement="top"
-                    title={t("STAKE_15")}
-                  >
+                  <Tooltip placement="top" title={t('STAKE_15')}>
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
               />
-              <DataItem
-                title={t("STAKE_10")}
-                titleExtra={
-                  <Tooltip
-                    placement="top"
-                    title={t("STAKE_16")}
-                  >
-                    <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
-                  </Tooltip>
-                }
-                balance={`${formatNumber(staker.apr * 100, 2)}%`}
-              />
+              {!isMobile && (
+                <DataItem
+                  title={t('STAKE_10')}
+                  titleExtra={
+                    <Tooltip placement="top" title={t('STAKE_16')}>
+                      <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
+                    </Tooltip>
+                  }
+                  balance={`${formatNumber(staker.apr * 100, 2)}%`}
+                />
+              )}
             </RowCenterBox>
 
             <RowCenterBox align="center" justify="space-between" style={{ marginTop: '32px', width: '100%' }}>
               <DataItem
-                title={t("STAKE_17")}
+                title={t('STAKE_17')}
                 balance={`${formatNumber(
                   new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
                   2
@@ -255,13 +261,14 @@ const StakingPanel: FunctionComponent = () => {
                   4
                 )}`}
               />
+
               <StyledButton
                 loading={loading}
                 disabled={!account || staker.userData.availableWithdrawKCSAmount.eq(0)}
                 onClick={handleWithdraw}
                 style={{ width: '232px' }}
               >
-                {t("STAKE_18")}
+                {t('STAKE_18')}
               </StyledButton>
             </RowCenterBox>
           </>
@@ -274,7 +281,7 @@ const StakingPanel: FunctionComponent = () => {
               dispatch(toggleConnectWalletModalShow({ show: true }))
             }}
           >
-           {t("STAKE_19")}
+            {t('STAKE_19')}
           </StyledButton>
         )}
       </ContentWrap>

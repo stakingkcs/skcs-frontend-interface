@@ -35,7 +35,7 @@ const WalletCenterWrap = styled.div<{ visible: boolean }>`
   width: 100%;
   height: 100vh;
   inset: 0;
-  z-index: 9999999;
+  z-index: 99999;
   background: rgba(0, 0, 0, 0.8);
   flex-flow: column nowrap;
   justify-content: center;
@@ -172,6 +172,12 @@ const InputText = styled.div`
   font-weight: 400;
   font-size: 14px;
   color: #efeff2;
+  @media (max-width: 768px) {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 `
 
 const OperateList = [

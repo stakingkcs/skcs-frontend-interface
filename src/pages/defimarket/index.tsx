@@ -46,6 +46,7 @@ const Warp = styled.div`
   width: 100%;
   background-size: 1600px auto;
   color: white;
+  background: url(${gradientBg}) no-repeat fixed center;
   @media (max-width: 768px) {
     background: url(${gradientBg}) no-repeat fixed center;
     text-align: center;
@@ -78,7 +79,7 @@ const DeFiMarket: React.FunctionComponent = () => {
     <Warp>
       <Title style={{ textAlign: 'center' }}>{t("DIFI_2")}</Title>
       <Content>
-        <DanamicCenterBg />
+        {/* <DanamicCenterBg /> */}
         <Banlance />
         <Title>{t("DIFI_1")}</Title>
         <Desc>{t("DIFI_3")}</Desc>
