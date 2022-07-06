@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 export interface NotFoundProps {}
+import { useTranslation } from 'react-i18next'
 
 const PageNotFoundWrap = styled.div`
   width: 100%;
@@ -18,7 +19,8 @@ const PageNotFoundWrap = styled.div`
 `
 
 const NotFound: React.FunctionComponent<NotFoundProps> = () => {
-  return <PageNotFoundWrap>Sorry,Not Found.</PageNotFoundWrap>
+  const { t } = useTranslation()
+  return <PageNotFoundWrap>{t('ERROR_1')}</PageNotFoundWrap>
 }
 
 export default NotFound

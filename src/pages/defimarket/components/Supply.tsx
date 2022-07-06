@@ -7,14 +7,15 @@ import GradienButton from 'components/StyledButton/GradientButton'
 import Text from 'components/Text'
 import { GradientText } from 'components/Text'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import RowData from 'components/RowData'
+import Calculator from './Calculator'
 
 const caculatImg = require('../../../assets/images/defimarket/caculator.png').default
 
 const Warp = styled.div`
   width: 384px;
-
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.5);
   padding: 36px 24px;
@@ -59,7 +60,7 @@ const GradientButton = styled.div`
   }
 `
 
-const Caculator = styled.img`
+const CaculatorImg = styled.img`
   width: 20px;
   height: 20px;
 `
@@ -74,6 +75,8 @@ const GradientButtonContent = styled.div`
 `
 
 const Supply: React.FunctionComponent = () => {
+  const { t } = useTranslation()
+  
   return (
     <>
       <Warp>
@@ -86,8 +89,8 @@ const Supply: React.FunctionComponent = () => {
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={
             <RowCenterBox>
-              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>Supply APY</Text>
-              <Tooltip placement="top" title="supply APR">
+              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DIFI_7")}</Text>
+              <Tooltip placement="top" title={t("DIFI_6")}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
@@ -95,7 +98,8 @@ const Supply: React.FunctionComponent = () => {
           content={
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
               <p style={{ marginBottom: '0' }}> 100%</p>
-              <Caculator src={caculatImg} />
+              {/* <Calculator visible={true}/> */}
+              <CaculatorImg src={caculatImg} onClick={() => {}} />
             </div>
           }
         />
@@ -104,8 +108,8 @@ const Supply: React.FunctionComponent = () => {
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={
             <RowCenterBox>
-              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>Borrow APY</Text>
-              <Tooltip placement="top" title="Borrow APY">
+              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DIFI_8")}</Text>
+              <Tooltip placement="top" title={t("DIFI_8")}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
@@ -117,17 +121,17 @@ const Supply: React.FunctionComponent = () => {
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={
             <RowCenterBox>
-              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>Collateral Factor</Text>
-              <Tooltip placement="top" title="Collateral Factor">
+              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DIFI_9")}</Text>
+              <Tooltip placement="top" title={t("DIFI_12")}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
           }
           content={`80%`}
         />
-        <StyledButton style={{ marginTop: '40px', height: '48px' }}>Supply</StyledButton>
+        <StyledButton style={{ marginTop: '40px', height: '48px' }}>{t("DIFI_10")}</StyledButton>
         <GradienButton>
-          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>Borrow</GradientText>
+          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t("DIFI_11")}</GradientText>
         </GradienButton>
       </Warp>
     </>

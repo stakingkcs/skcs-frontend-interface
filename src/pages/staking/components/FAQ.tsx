@@ -1,5 +1,6 @@
 import { Collapse, Space } from 'antd'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Image, RowCenterBox } from '../../../components/index'
 import { useResponsive } from '../../../utils/responsive'
@@ -129,48 +130,48 @@ const MoreText = styled.div`
   color: #ffffff;
 `
 
-const faqList = [
-  {
-    title: '1.How to participate in KCC node validator with staking?',
-    desc: (
-      <div>
-        <FaqP>
-          By staking your KCS, you participate in the node selection voting process of Kucoin Community Chain（KCC）
-          validators and earn rewards. Staking KCS is critical for securing the network.
-        </FaqP>
-        <FaqP>Validators can stake KCS to themselves, and they can also receive delegations from KCS voting.</FaqP>
-        <FaqP>
-          You can vote for validators by staking KCS, 1 KCS represents 1 vote, you can get the KCS back if you redeem
-          the voting.
-        </FaqP>
-      </div>
-    ),
-  },
-  {
-    title: '2.How to check/withdraw my staking rewards?',
-    desc: (
-      <div>
-        <FaqP>1.Click on "My Vote" to see your rewards overview</FaqP>
-        <FaqP>2.You can check the rewards of each validator and click “Claim” to get it</FaqP>
-      </div>
-    ),
-  },
-  {
-    title: '3.How to redeem my staking?',
-    desc: (
-      <div>
-        <FaqP>1.Click on "My Vote" to see your staking overview</FaqP>
-        <FaqP>2.Click "Redeem" to stop staking</FaqP>
-        <FaqP>
-          3.You can withdraw it after 3days unbinding period, during the unbinding period, your staked KCS will not
-          receive any rewards.
-        </FaqP>
-      </div>
-    ),
-  },
-]
 
 const FAQ: React.FunctionComponent = () => {
+  const { t } = useTranslation()
+  const faqList = [
+    {
+      title: t("STAKE_24"),
+      desc: (
+        <div>
+          <FaqP>
+          {t("STAKE_25")}
+          </FaqP>
+          <FaqP>{t("STAKE_26")}</FaqP>
+          <FaqP>
+           {t("STAKE_27")}
+          </FaqP>
+        </div>
+      ),
+    },
+    {
+      title: t("STAKE_28"),
+      desc: (
+        <div>
+          <FaqP>{t("STAKE_29")}</FaqP>
+          <FaqP>{t("STAKE_30")}</FaqP>
+        </div>
+      ),
+    },
+    {
+      title: t("STAKE_31"),
+      desc: (
+        <div>
+          <FaqP>{t("STAKE_32")}</FaqP>
+          <FaqP>{t("STAKE_33")}</FaqP>
+          <FaqP>
+          {t("STAKE_34")}
+          </FaqP>
+        </div>
+      ),
+    },
+  ]
+
+  
   const [activeList, setActiveList] = React.useState<boolean[]>(new Array(faqList.length).fill(false))
   const { isMobile } = useResponsive()
 
@@ -183,13 +184,15 @@ const FAQ: React.FunctionComponent = () => {
     })
   }
 
+  
+
   return (
     <StepsWrap>
       <Content>
         <RowCenterBox justify="space-between">
-          <Title>FAQ</Title>
+          <Title>{t("STAKE_22")}</Title>
           <RowCenterBox justify="flex-end" style={{ cursor: 'pointer', display: isMobile ? 'none' : 'flex' }}>
-            <MoreText>More</MoreText>
+            <MoreText>{t("STAKE_23")}</MoreText>
             <Image
               src={require('../../../assets/images/Icons/arrow-right-white.png').default}
               width="24px"

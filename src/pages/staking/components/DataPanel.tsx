@@ -7,6 +7,7 @@ import DataItem from 'components/DataItem'
 import StyledButton from 'components/StyledButton'
 import StyledNotification from 'components/StyledNotification'
 import React, { FunctionComponent } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { fetchStakersUserDataAsync } from 'state/staker'
 import styled from 'styled-components'
@@ -82,6 +83,7 @@ const PlusIcon = styled.img`
 `
 
 const StakingPanel: FunctionComponent = () => {
+  const { t } = useTranslation()
   const [loading, setLoading] = React.useState<boolean>(false)
 
   const { account, library } = useWeb3React()
@@ -106,10 +108,10 @@ const StakingPanel: FunctionComponent = () => {
         console.log('response.data', response.data)
         if (response.data?.status === 1) {
           StyledNotification.success({
-            message: `Unstaking confirmed!`,
+            message: t("STAKE_1"),
             description: (
               <div>
-                Unstake
+              {t("STAKE_2")}
                 {formatNumber(new BN(staker.userData.availableBurnSKCSAmount.toString()).div(10 ** 18).toString(10), 3)}
                 sKCS and receive{' '}
                 {formatNumber(
@@ -121,7 +123,7 @@ const StakingPanel: FunctionComponent = () => {
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
-                  View transaction on chain.
+                  {t("STAKE_3")}
                 </ALink>
               </div>
             ),
@@ -130,8 +132,8 @@ const StakingPanel: FunctionComponent = () => {
           dispatch(fetchStakersUserDataAsync(account))
         } else {
           StyledNotification.success({
-            message: 'Staking failed!',
-            description: 'Please try again.',
+            message: t("STAKE_4"),
+            description: t("STAKE_5"),
           })
         }
       }
@@ -146,20 +148,20 @@ const StakingPanel: FunctionComponent = () => {
     <>
       {!account && (
         <HeaderPanel>
-          <Title>Stake KCS</Title>
-          <Desc>Stake KCS and receive sKCS as proof while staking</Desc>
+          <Title>{t("STAKE_6")}</Title>
+          <Desc>{t("STAKE_7")}</Desc>
         </HeaderPanel>
       )}
       <ContentWrap connected={Boolean(account)}>
         <RowCenterBox>
           <DataItem
-            title="Available to stake"
+            title={t("STAKE_8")}
             balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
             titleExtra={
               <ExternalLink
                 style={{ marginLeft: '10px' }}
                 url="https://app.mojitoswap.finance/swap"
-                name="Get more KCS"
+                name={t("STAKE_9")}
               />
             }
           />
@@ -169,11 +171,11 @@ const StakingPanel: FunctionComponent = () => {
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '24px', width: '300px' }}>
               <DataItem title="Staked amount" balance={`0.00 sKCS`} uBalance="≈$0.0000" />
               <DataItem
-                title="APY"
+                title={t("STAKE_10")}
                 titleExtra={
                   <Tooltip
                     placement="top"
-                    title="APY is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit.APY = (exchange price 48 hours ago - exchange price at this time)*180*100%"
+                    title={t("STAKE_11")}
                   >
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
@@ -186,14 +188,14 @@ const StakingPanel: FunctionComponent = () => {
           <>
             <RowCenterBox style={{ marginTop: '32px' }}>
               <DataItem
-                title="Staked amount"
+                title={t("STAKE_12")}
                 balance={`${formatNumber(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18), 2)} sKCS`}
                 uBalance={`≈$${formatNumber(
                   skcsPrice.multipliedBy(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18)),
                   2
                 )}`}
                 balanceExtra={
-                  <Tooltip placement="top" title="Add token to wallet">
+                  <Tooltip placement="top" title={t("STAKE_13")}>
                     <PlusIcon
                       src={require('../../../assets/images/Icons/plus.png').default}
                       onClick={() => {
@@ -212,7 +214,7 @@ const StakingPanel: FunctionComponent = () => {
             </RowCenterBox>
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '32px', width: '300px' }}>
               <DataItem
-                title="Pending amount"
+                title={t("STAKE_14")}
                 balance={`${formatNumber(new BN(staker.userData.pendingAmount.toString()).div(10 ** 18), 2)} KCS`}
                 uBalance={`≈$${formatNumber(
                   kcsPrice.multipliedBy(new BN(staker.userData.pendingAmount.toString()).div(10 ** 18)),
@@ -221,18 +223,18 @@ const StakingPanel: FunctionComponent = () => {
                 titleExtra={
                   <Tooltip
                     placement="top"
-                    title="Pending amount means the sKCS unstaking is under processing, the period takes around 3-6 days to process, you can withdraw it after that."
+                    title={t("STAKE_15")}
                   >
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
               />
               <DataItem
-                title="APY"
+                title={t("STAKE_10")}
                 titleExtra={
                   <Tooltip
                     placement="top"
-                    title="APY is denominated in terms of sKCS, not USD. The calculation is based on the sKCS/KCS exchange rate 2 days ago, it is not compounded and is not a guaranteed or promised return or profit. APY = (exchange price 48 hours ago - exchange price at this time)*180*100%"
+                    title={t("STAKE_16")}
                   >
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
@@ -243,7 +245,7 @@ const StakingPanel: FunctionComponent = () => {
 
             <RowCenterBox align="center" justify="space-between" style={{ marginTop: '32px', width: '100%' }}>
               <DataItem
-                title="Available withdraw amount"
+                title={t("STAKE_17")}
                 balance={`${formatNumber(
                   new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
                   2
@@ -259,7 +261,7 @@ const StakingPanel: FunctionComponent = () => {
                 onClick={handleWithdraw}
                 style={{ width: '232px' }}
               >
-                Withdraw
+                {t("STAKE_18")}
               </StyledButton>
             </RowCenterBox>
           </>
@@ -272,7 +274,7 @@ const StakingPanel: FunctionComponent = () => {
               dispatch(toggleConnectWalletModalShow({ show: true }))
             }}
           >
-            Connect Wallet
+           {t("STAKE_19")}
           </StyledButton>
         )}
       </ContentWrap>

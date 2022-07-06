@@ -8,6 +8,7 @@ import { CenterBox, RowCenterBox } from '../../../components/index'
 import { useKCSPrice, useStakerState } from '../../../state/hooks'
 import { formatNumber } from '../../../utils/bignumber'
 import { useResponsive } from '../../../utils/responsive'
+import { useTranslation } from 'react-i18next'
 
 const { Panel } = Collapse
 
@@ -95,27 +96,28 @@ const Statistics: React.FunctionComponent = () => {
   const staker = useStakerState()
   const kcsPrice = useKCSPrice()
   const { isMobile } = useResponsive()
+  const { t } = useTranslation()
   return (
     <StepsWrap>
       <Content>
         <RowCenterBox justify="space-between">
-          <Title>Statistics</Title>
+          <Title>{t("STAKE_35")}</Title>
         </RowCenterBox>
         <DataRowWrap>
-          <RowData title="APY" content={`${formatNumber(staker.apr * 100, 2)}%`} />
+          <RowData title={t("STAKE_10")} content={`${formatNumber(staker.apr * 100, 2)}%`} />
           <RowData
             style={{ marginTop: '12px' }}
-            title="Total staked amount"
+            title={t("STAKE_36")}
             content={`${formatNumber(new BN(staker.totalStakeKCSAmount.toString()).div(10 ** 18), 3)} KCS`}
           />
           <RowData
             style={{ marginTop: '12px' }}
-            title="Stakers"
+            title={t("STAKE_37")}
             content={formatNumber(staker.totalStaker.toNumber(), 0)}
           />
           <RowData
             style={{ marginTop: '12px' }}
-            title="sKCS market cap"
+            title={t("STAKE_38")}
             content={`$ ${formatNumber(
               kcsPrice.times(
                 new BN(staker.totalStakeSKCSAmount.toString())
