@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 const walletFile = require('../../../assets/images/home/walletfile.png').default
@@ -67,6 +68,7 @@ const LinkIcon = styled.img`
 `
 
 const Banlance: React.FunctionComponent = () => {
+  const { t } = useTranslation()
   return (
     <>
       <BWarp>
@@ -74,11 +76,11 @@ const Banlance: React.FunctionComponent = () => {
         <Icon src={walletFile}/>
         </IconWarp>
         <BanlanceWarp>
-          <BanlanceText>Current balance</BanlanceText>
+          <BanlanceText>{t("STAKE_49")}</BanlanceText>
           <BanlanceNum>38,275 sKCS</BanlanceNum>
         </BanlanceWarp>
         <LinkWarp>
-          <LinkText>Get sKCS</LinkText>
+          <LinkText>{t("STAKE_50")}</LinkText>
           <LinkIcon src={exlink} />
         </LinkWarp>
       </BWarp>

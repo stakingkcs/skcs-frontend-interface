@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Banlance from './components/Banlance'
 import Liquidity from './components/Liquitity'
 import Supply from './components/Supply'
+import { useTranslation } from 'react-i18next'
 import DanamicCenterBg from '../../components/DynamicBg/DynamicCenterBg'
 
 const gradientBg = require('../../assets/images/gradient-bg.png').default
@@ -72,21 +73,22 @@ const DataWarp = styled.div`
 `
 
 const DeFiMarket: React.FunctionComponent = () => {
+  const { t } = useTranslation()
   return (
     <Warp>
-      <Title style={{ textAlign: 'center' }}>Use sKCS across the DeFi ecosystem</Title>
+      <Title style={{ textAlign: 'center' }}>{t("DIFI_2")}</Title>
       <Content>
         <DanamicCenterBg />
         <Banlance />
-        <Title>Liquidity</Title>
-        <Desc>Use sKCS in liquidity mining pools</Desc>
+        <Title>{t("DIFI_1")}</Title>
+        <Desc>{t("DIFI_3")}</Desc>
         <DataWarp>
           <Liquidity />
           <Liquidity />
         </DataWarp>
 
-        <Title>Supply & Borrow</Title>
-        <Desc>Supply sKCS to earn interest, collateral to borrow other assets.</Desc>
+        <Title>{t("DIFI_4")}</Title>
+        <Desc>{t("DIFI_5")}</Desc>
         <DataWarp>
           <Supply />
           <Supply />
