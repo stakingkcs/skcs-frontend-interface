@@ -190,8 +190,8 @@ const ValidatorModal: React.FunctionComponent<
           onClick={() => {
             Copy(props.validator.address)
             StyledNotification.success({
-              message: 'Notification',
-              description: 'Copied!',
+              message: t("STAKE_72"),
+              description: t("STAKE_73"),
             })
           }}
         >

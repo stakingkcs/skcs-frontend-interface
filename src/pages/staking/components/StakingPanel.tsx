@@ -202,16 +202,16 @@ const StakingPanel: FunctionComponent = () => {
         console.log('response.data', response.data)
         if (response.data?.status === 1) {
           StyledNotification.success({
-            message: 'Unstaking confirmed!',
+            message: t('STAKE_54'),
             description: (
               <div>
-                Unstake {inputValue} sKCS and receive{' '}
+                {t('STAKE_55', { asset: inputValue })}
                 {formatNumber(new BN(inputValue).multipliedBy(staker.skcsQuetoByKCS.toString()), 3)} KCS.{' '}
                 <ALink
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
-                  View transaction on chain.
+                  {t('STAKE_56')}
                 </ALink>
               </div>
             ),
@@ -221,16 +221,16 @@ const StakingPanel: FunctionComponent = () => {
           dispatch(fetchStakersUserDataAsync(account))
         } else {
           StyledNotification.success({
-            message: 'Unstaking failed!',
-            description: 'Please try again.',
+            message: t('STAKE_57'),
+            description: t('STAKE_58'),
           })
         }
       }
     } catch (e) {
       console.log(e)
       StyledNotification.success({
-        message: 'Unstaking failed!',
-        description: 'Please try again.',
+        message: t('STAKE_59'),
+        description: t('STAKE_60'),
       })
     } finally {
       setUnstakeLoading(() => false)
@@ -252,16 +252,16 @@ const StakingPanel: FunctionComponent = () => {
 
         if (response.data?.status === 1) {
           StyledNotification.success({
-            message: 'Staking confirmed!',
+            message: t('HOME_7'),
             description: (
               <div>
-                Stake {inputValue} KCS and receive{' '}
+                {t('STAKE_61', { asset: inputValue })}
                 {formatNumber(new BN(staker.kcsQuetoBySKCS).multipliedBy(inputValue), 3)} sKCS.{' '}
                 <ALink
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
-                  View transaction on chain.
+                  {t('STAKE_56')}
                 </ALink>
               </div>
             ),
@@ -271,8 +271,8 @@ const StakingPanel: FunctionComponent = () => {
           dispatch(fetchStakersUserDataAsync(account))
         } else {
           StyledNotification.success({
-            message: 'Staking failed!',
-            description: 'Please try again.',
+            message: t('STAKE_62'),
+            description: t('STAKE_63'),
           })
         }
       }
@@ -310,9 +310,9 @@ const StakingPanel: FunctionComponent = () => {
           <StyledTabPane
             tab={
               activeKey === '1' ? (
-                <GradientText style={{ fontSize: '20px', fontWeight: 700 }}>Stake</GradientText>
+                <GradientText style={{ fontSize: '20px', fontWeight: 700 }}>{t('HOME_22')}</GradientText>
               ) : (
-                <Text style={{ fontSize: '20px', fontWeight: 700, color: '#fff' }}>Stake</Text>
+                <Text style={{ fontSize: '20px', fontWeight: 700, color: '#fff' }}>{t('HOME_22')}</Text>
               )
             }
             key="1"
@@ -378,7 +378,7 @@ const StakingPanel: FunctionComponent = () => {
                     dispatch(toggleConnectWalletModalShow({ show: true }))
                   }}
                 >
-                  Connect Wallet
+                  {t('STAKE_64')}
                 </StyledButton>
               ) : (
                 <StyledButton
@@ -387,13 +387,13 @@ const StakingPanel: FunctionComponent = () => {
                   loading={loading}
                   onClick={handleDeposit}
                 >
-                  Stake
+                  {t('HOME_22')}
                 </StyledButton>
               )}
 
               <RowData
                 style={{ marginTop: '32px' }}
-                title="Exchange rate"
+                title={t('STAKE_65')}
                 content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 4)}KCS`}
               />
               {isMobile ? (
@@ -410,7 +410,7 @@ const StakingPanel: FunctionComponent = () => {
               ) : (
                 <RowData
                   style={{ marginTop: '12px' }}
-                  title="You will receive"
+                  title={t('STAKE_66')}
                   content={`${formatNumber(
                     new BN(inputValue === '' ? 0 : inputValue).times(staker.kcsQuetoBySKCS.toString()),
                     3
@@ -422,11 +422,8 @@ const StakingPanel: FunctionComponent = () => {
                 style={{ marginTop: '12px' }}
                 title={
                   <RowCenterBox>
-                    <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>Rewards fee</Text>
-                    <Tooltip
-                      placement="top"
-                      title="This fee applies to staking rewards only, and is NOT taken from your staked amount, it is a fee on earnings only."
-                    >
+                    <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t('STAKE_68')}</Text>
+                    <Tooltip placement="top" title={t('STAKE_71')}>
                       <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                     </Tooltip>
                   </RowCenterBox>
@@ -434,11 +431,7 @@ const StakingPanel: FunctionComponent = () => {
                 content={`${formatNumber(new BN(staker.rewardFee.toString()).div(10000).toString(), 2)}%`}
               />
 
-              {account && (
-                <TipsText>
-                  Default sKCS unstaking period takes around 3-6 days to process, you can withdraw it after that.
-                </TipsText>
-              )}
+              {account && <TipsText>{t('STAKE_67')}</TipsText>}
             </ContentWrap>
           </StyledTabPane>
 
@@ -447,9 +440,9 @@ const StakingPanel: FunctionComponent = () => {
           <StyledTabPane
             tab={
               activeKey === '2' ? (
-                <GradientText style={{ fontSize: '20px', fontWeight: 700 }}>Unstake</GradientText>
+                <GradientText style={{ fontSize: '20px', fontWeight: 700 }}>{t('STAKE_2')}</GradientText>
               ) : (
-                <Text style={{ fontSize: '20px', fontWeight: 700, color: '#fff' }}>Unstake</Text>
+                <Text style={{ fontSize: '20px', fontWeight: 700, color: '#fff' }}>{t('STAKE_2')}</Text>
               )
             }
             key="2"
@@ -517,7 +510,7 @@ const StakingPanel: FunctionComponent = () => {
                     dispatch(toggleConnectWalletModalShow({ show: true }))
                   }}
                 >
-                  Connect Wallet
+                  {t('STAKE_64')}
                 </StyledButton>
               ) : (
                 <StyledButton
@@ -526,13 +519,13 @@ const StakingPanel: FunctionComponent = () => {
                   loading={unstakeLoading}
                   onClick={handleUnstake}
                 >
-                  Unstake
+                  {t('STAKE_2')}
                 </StyledButton>
               )}
 
               <RowData
                 style={{ marginTop: '32px' }}
-                title="Exchange rate"
+                title={t('STAKE_65')}
                 content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 4)}KCS`}
               />
 
@@ -550,7 +543,7 @@ const StakingPanel: FunctionComponent = () => {
               ) : (
                 <RowData
                   style={{ marginTop: '12px' }}
-                  title="You will receive"
+                  title={t('STAKE_66')}
                   content={`${formatNumber(
                     new BN(inputValue === '' ? 0 : inputValue).times(staker.skcsQuetoByKCS.toString()),
                     3
@@ -562,11 +555,8 @@ const StakingPanel: FunctionComponent = () => {
                 style={{ marginTop: '12px' }}
                 title={
                   <RowCenterBox>
-                    <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>Rewards fee</Text>
-                    <Tooltip
-                      placement="top"
-                      title="This fee applies to staking rewards only, and is NOT taken from your staked amount, it is a fee on earnings only."
-                    >
+                    <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t('STAKE_68')}</Text>
+                    <Tooltip placement="top" title={t('STAKE_69')}>
                       <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                     </Tooltip>
                   </RowCenterBox>
@@ -574,11 +564,7 @@ const StakingPanel: FunctionComponent = () => {
                 content={`${formatNumber(new BN(staker.rewardFee.toString()).div(10000).toString(), 2)}%`}
               />
 
-              {account && (
-                <TipsText>
-                  Default sKCS unstaking period takes around 3-6 days to process, you can withdraw it after that.
-                </TipsText>
-              )}
+              {account && <TipsText>{t('STAKE_70')}</TipsText>}
             </ContentWrap>
           </StyledTabPane>
         </StyledTabs>
