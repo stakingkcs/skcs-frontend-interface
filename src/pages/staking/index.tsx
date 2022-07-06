@@ -9,6 +9,7 @@ import StakingPanel from './components/StakingPanel'
 import FAQ from './components/FAQ'
 import Statistics from './components/Statistics'
 import DanamicCenterBg from '../../components/DynamicBg/DynamicCenterBg'
+import { useTranslation } from 'react-i18next'
 
 const gradientBg = require('../../assets/images/gradient-bg.png').default
 
@@ -79,7 +80,7 @@ const StaticsPanel = styled.div`
 
 const StakingPage: React.FunctionComponent = () => {
   // const { isMobile, isTablet, isPC } = useResponsive()
-  // const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   const { account } = useWeb3React()
   const dispatch = useDispatch()
@@ -87,12 +88,12 @@ const StakingPage: React.FunctionComponent = () => {
   return (
     <>
       <Helmet>
-        <title>KuCoin Token Staking | Earn KCS Rewards | KuCoin Community Chain</title>
+        <title>{t("STAKE_51")}</title>
         <meta
           name="description"
-          content="Buy KCS for staking and voting. Users can earn high APY rewards with KCC staking."
+          content={t("STAKE_52")}
         />
-        <meta name="keywords" content="KuCoin token, KCS, KCC, buy KCS, KCS staking" />
+        <meta name="keywords" content={t("STAKE_53")} />
       </Helmet>
       <HomeWrap>
         <Content>
