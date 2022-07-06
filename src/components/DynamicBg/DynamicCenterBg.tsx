@@ -37,6 +37,7 @@ const CircleWrap = styled.div`
   z-index: 0;
   left: 0;
   top: 0;
+  display: none;
   @media (max-width: 768px) {
     display: none;
   }

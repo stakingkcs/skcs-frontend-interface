@@ -22,6 +22,7 @@ import { GradientBgColor } from 'components'
 import { GradientText } from 'components/Text'
 import { WalletList } from '../../constants/wallet'
 import { useWalletId } from '../../state/hooks'
+import { useResponsive } from 'utils/responsive'
 
 const ConnectButton = styled(LanguageButton)`
   width: auto;
@@ -157,6 +158,8 @@ const UnlockButton: React.FunctionComponent = () => {
 
   const { errorInfo, hasError } = useWalletErrorInfo()
 
+  const { isMobile } = useResponsive()
+
   const walletLogo = React.useMemo(() => {
     return WalletList[walletId].logo
   }, [walletId])
@@ -179,7 +182,7 @@ const UnlockButton: React.FunctionComponent = () => {
             height="20px"
             alt="wifi-icon"
           />
-          <Text style={{ marginLeft: '6px' }}>{i18next.t(`${errorInfo}`)}</Text>
+          <Text style={{ marginLeft: '6px', fontSize: isMobile ? '12px' : '14px' }}>{i18next.t(`${errorInfo}`)}</Text>
         </ErrorButton>
       )
     } else if (account) {
@@ -195,7 +198,7 @@ const UnlockButton: React.FunctionComponent = () => {
               src={account ? walletLogo : require('../../assets/images/Icons/wallet.png').default}
               alt="wallet-icon"
             />
-            <GradientText fontSize="14px">{shortAddress(account)}</GradientText>
+            <GradientText style={{ fontSize: isMobile ? '12px' : '14px' }}>{shortAddress(account)}</GradientText>
           </GradientButtonContent>
         </GradientButton>
       )
@@ -208,7 +211,9 @@ const UnlockButton: React.FunctionComponent = () => {
               src={account ? walletLogo : require('../../assets/images/Icons/wallet.png').default}
               alt="wallet icon"
             />
-            <GradientText style={{ paddingRight: '15px', fontSize: '14px' }}>{t(`Connect Wallet`)}</GradientText>
+            <GradientText style={{ paddingRight: '15px', fontSize: isMobile ? '12px' : '14px' }}>
+              {t(`Connect Wallet`)}
+            </GradientText>
           </GradientButtonContent>
         </GradientButton>
       )

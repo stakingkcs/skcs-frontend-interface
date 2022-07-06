@@ -10,7 +10,9 @@ import { useResponsive } from '../../utils/responsive'
 import UnlockButton from '../ConnectWalletButton'
 import { useHistory, withRouter } from 'react-router-dom'
 import { BrowserView, MobileView } from 'components/Common'
-import { Image } from 'components/index'
+import { CenterBox, Image } from 'components/index'
+import ChangeLanguage from 'components/ChangeLanguage'
+import { RowCenterBox } from '../index'
 
 const AppHeaderWrap = styled.div`
   display: flex;
@@ -24,7 +26,7 @@ const AppHeaderWrap = styled.div`
   left: 0;
   position: absolute;
   background: transparent;
-  z-index:99;
+  z-index: 99;
   @media (max-width: 768px) {
     background: #000000;
     position: relative;
@@ -57,6 +59,9 @@ const KccLogo = styled(Image)`
   height: auto;
   padding-left: 10px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 60px;
+  }
 `
 
 const MenuClose = styled.img`
@@ -109,9 +114,10 @@ const AppHeader: React.FunctionComponent = () => {
           </BrowserView>
         </HeaderLeftWrap>
 
-        <Box>
+        <RowCenterBox justify="flex-end">
           <UnlockButton />
-        </Box>
+          <ChangeLanguage styles={{ marginLeft: '12px' }} />
+        </RowCenterBox>
       </AppHeaderContent>
     </AppHeaderWrap>
   )

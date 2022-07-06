@@ -251,6 +251,22 @@ const StakingPanel: FunctionComponent = () => {
     }
   }, [dispatch, stakerContract, account, library, inputValue])
 
+  const changePanel = React.useCallback(
+    (e) => {
+      console.log('e', e)
+      console.log(activeKey)
+      if (e.keyCode === 9) {
+        changeActiveKey(activeKey === '1' ? '1' : '2')
+      }
+    },
+    [activeKey, changeActiveKey]
+  )
+
+  React.useEffect(() => {
+    window.addEventListener('keydown', changePanel)
+    return () => window.removeEventListener('keydown', changePanel)
+  }, [])
+
   return (
     <StakingPanelWrap connected={Boolean(account)}>
       <DataPanelWrap>
