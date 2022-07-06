@@ -130,48 +130,40 @@ const MoreText = styled.div`
   color: #ffffff;
 `
 
-
 const FAQ: React.FunctionComponent = () => {
   const { t } = useTranslation()
   const faqList = [
     {
-      title: t("STAKE_24"),
+      title: t('STAKE_24'),
       desc: (
         <div>
-          <FaqP>
-          {t("STAKE_25")}
-          </FaqP>
-          <FaqP>{t("STAKE_26")}</FaqP>
-          <FaqP>
-           {t("STAKE_27")}
-          </FaqP>
+          <FaqP>{t('STAKE_25')}</FaqP>
+          <FaqP>{t('STAKE_26')}</FaqP>
         </div>
       ),
     },
     {
-      title: t("STAKE_28"),
+      title: t('STAKE_28'),
       desc: (
         <div>
-          <FaqP>{t("STAKE_29")}</FaqP>
-          <FaqP>{t("STAKE_30")}</FaqP>
+          <FaqP>{t('STAKE_29')}</FaqP>
+          <FaqP>{t('STAKE_30')}</FaqP>
         </div>
       ),
     },
     {
-      title: t("STAKE_31"),
+      title: t('STAKE_31'),
       desc: (
         <div>
-          <FaqP>{t("STAKE_32")}</FaqP>
-          <FaqP>{t("STAKE_33")}</FaqP>
-          <FaqP>
-          {t("STAKE_34")}
-          </FaqP>
+          <FaqP>{t('STAKE_32')}</FaqP>
+          <FaqP>{t('STAKE_33')}</FaqP>
+          <FaqP>{t('STAKE_34')}</FaqP>
+          <FaqP>{t('STAKE_84')}</FaqP>
         </div>
       ),
     },
   ]
 
-  
   const [activeList, setActiveList] = React.useState<boolean[]>(new Array(faqList.length).fill(false))
   const { isMobile } = useResponsive()
 
@@ -184,15 +176,13 @@ const FAQ: React.FunctionComponent = () => {
     })
   }
 
-  
-
   return (
     <StepsWrap>
       <Content>
         <RowCenterBox justify="space-between">
-          <Title>{t("STAKE_22")}</Title>
+          <Title>{t('STAKE_22')}</Title>
           <RowCenterBox justify="flex-end" style={{ cursor: 'pointer', display: isMobile ? 'none' : 'flex' }}>
-            <MoreText>{t("STAKE_23")}</MoreText>
+            <MoreText>{t('STAKE_23')}</MoreText>
             <Image
               src={require('../../../assets/images/Icons/arrow-right-white.png').default}
               width="24px"
@@ -215,7 +205,7 @@ const FAQ: React.FunctionComponent = () => {
                   <Panel
                     header={
                       <PanelHeader>
-                        <span style={{ textAlign: 'left' }}>{faq.title}</span>
+                        <span style={{ textAlign: 'left' }}>{`${index + 1}. ${faq.title}`}</span>
                         {!activeList[index] ? (
                           <Image
                             src={require('../../../assets/images/Icons/purple-plus.png').default}
