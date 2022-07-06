@@ -280,9 +280,9 @@ const StakingPanel: FunctionComponent = () => {
           <StyledTabPane
             tab={
               activeKey === '1' ? (
-                <GradientText style={{ fontSize: '20px', fontWeight: 700 }}>Stake</GradientText>
+                <GradientText style={{ fontSize: '20px', fontWeight: 700 }}>{t("HOME_22")}</GradientText>
               ) : (
-                <Text style={{ fontSize: '20px', fontWeight: 700, color: '#fff' }}>Stake</Text>
+                <Text style={{ fontSize: '20px', fontWeight: 700, color: '#fff' }}></Text>
               )
             }
             key="1"
@@ -357,9 +357,9 @@ const StakingPanel: FunctionComponent = () => {
           <StyledTabPane
             tab={
               activeKey === '2' ? (
-                <GradientText style={{ fontSize: '20px', fontWeight: 700 }}>Unstake</GradientText>
+                <GradientText style={{ fontSize: '20px', fontWeight: 700 }}>{t("STAKE_2")}</GradientText>
               ) : (
-                <Text style={{ fontSize: '20px', fontWeight: 700, color: '#fff' }}>Unstake</Text>
+                <Text style={{ fontSize: '20px', fontWeight: 700, color: '#fff' }}>{t("STAKE_2")}</Text>
               )
             }
             key="2"

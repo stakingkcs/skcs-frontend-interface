@@ -88,12 +88,9 @@ const StakingPage: React.FunctionComponent = () => {
   return (
     <>
       <Helmet>
-        <title>{t("STAKE_51")}</title>
-        <meta
-          name="description"
-          content={t("STAKE_52")}
-        />
-        <meta name="keywords" content={t("STAKE_53")} />
+        <title>{t('STAKE_51')}</title>
+        <meta name="description" content={t('STAKE_52')} />
+        <meta name="keywords" content={t('STAKE_53')} />
       </Helmet>
       <HomeWrap>
         <Content>
