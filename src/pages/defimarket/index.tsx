@@ -89,8 +89,8 @@ const DeFiMarket: React.FunctionComponent = () => {
           name={t("DIFI_21")}
           content={t("DIFI_18")}
         />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="DeFi Market | sKCS" />
+        <meta name={t("DIFI_25")} content={t("DIFI_26")} />
+        <meta name={t("DIFI_27")} content={t("DIFI_20")} />
       </Helmet>
 
       <Warp>
