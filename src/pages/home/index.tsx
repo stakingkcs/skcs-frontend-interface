@@ -72,18 +72,18 @@ const HomePage: React.FunctionComponent = () => {
   return (
     <>
       <Helmet>
-        <title>KCS Staking | sKCS</title>
+        <title>{t("HOME_62")}</title>
         <meta
-          name="description"
-          content="Stake KCS and get sKCS to accrue staking rewards over time and earn additional yields with high APY"
+          name={t("HOME_70")}
+          content={t("HOME_63")}
         />
-        <meta name="keywords" content="KCS staking, sKCS, stake KCS" />
+        <meta name={t("DEFI_28")}  content={t("HOME_64")} />
         <meta
-          name="twitter:description"
-          content="Stake KCS and get sKCS to accrue staking rewards over time and earn additional yields with high APY"
+          name={t("HOME_65")}
+          content={t("HOME_66")}
         />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="KCS Staking | sKCS" />
+        <meta name={t("HOME_67")} content={t("HOME_68")} />
+        <meta name={t("HOME_69")} content={t("HOME_62")} />
       </Helmet>
       <HomeWrap>
         <HomeBanner />

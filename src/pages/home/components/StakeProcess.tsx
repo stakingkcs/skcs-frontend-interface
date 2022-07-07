@@ -148,12 +148,12 @@ const StakeProcess: React.FunctionComponent = () => {
     },
     {
       icon: require('../../../assets/images/home/c-step3.png').default,
-      title: t("HOME_34"),
+      title: t("HOME_35"),
       link: '',
     },
     {
       icon: require('../../../assets/images/home/c-step4.png').default,
-      title: t("HOME_35"),
+      title: t("HOME_36"),
       link: '',
     },
   ]
