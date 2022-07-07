@@ -57,9 +57,12 @@ interface Props {
 }
 
 const FAQTip: FunctionComponent<Props> = ({ title, desc }) => {
+  const { t } = useTranslation()
   return (
     <FAQWarp>
-      <Title style={{ fontSize: '32px', margin: '0 0 25px 0', textAlign: isMobile ? 'center' : 'left' }}>FAQ</Title>
+      <Title style={{ fontSize: '32px', margin: '0 0 25px 0', textAlign: isMobile ? 'center' : 'left' }}>
+        {t('HOME_71')}
+      </Title>
       <TipWarp>
         <QuesTitle>{title} </QuesTitle>
         <Desc>{desc}</Desc>

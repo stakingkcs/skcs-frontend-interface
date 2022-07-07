@@ -79,15 +79,15 @@ const DeFiMarket: React.FunctionComponent = () => {
   return (
     <>
       <Helmet>
-        <title>DeFi Market | sKCS</title>
+        <title>{t("DIFI_17")}</title>
         <meta
-          name="description"
-          content="Use sKCS in the DeFi ecosystem. Participants can supply sKCS to earn interest or use sKCS as collateral to borrow other crypto assets."
+          name={t("DIFI_19")}
+          content={t("DIFI_18")}
         />
-        <meta name="keywords" content="KCS staking, sKCS, stake KCS" />
+        <meta name={t("DEFI_28")} content={t("HOME_64")} />
         <meta
-          name="twitter:description"
-          content="Use sKCS in the DeFi ecosystem. Participants can supply sKCS to earn interest or use sKCS as collateral to borrow other crypto assets."
+          name={t("DIFI_21")}
+          content={t("DIFI_18")}
         />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="DeFi Market | sKCS" />
@@ -104,7 +104,6 @@ const DeFiMarket: React.FunctionComponent = () => {
             <Liquidity />
             <Liquidity />
           </DataWarp>
-
           <Title>{t('DIFI_4')}</Title>
           <Desc>{t('DIFI_5')}</Desc>
           <DataWarp>

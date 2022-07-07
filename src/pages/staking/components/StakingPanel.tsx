@@ -461,7 +461,7 @@ const StakingPanel: FunctionComponent = () => {
                 <>
                   {account && (
                     <BetweenBox style={{ marginTop: '8px' }}>
-                      <SubTitle>Wallet Balance</SubTitle>
+                      <SubTitle>{t("STAKE_27")}</SubTitle>
                       <SubTitle>{`${formatNumber(
                         new BN(staker.userData?.stakeAmount.toString() ?? 0).div(10 ** 18),
                         2
@@ -495,7 +495,7 @@ const StakingPanel: FunctionComponent = () => {
 
                     {account && (
                       <BetweenBox style={{ marginTop: '8px' }}>
-                        <SubTitle>Wallet Balance</SubTitle>
+                        <SubTitle>{t("STAKE_27")}</SubTitle>
                         <SubTitle>{`${formatNumber(new BN(balance ?? 0).div(10 ** 18), 2)} KCS`}</SubTitle>
                       </BetweenBox>
                     )}

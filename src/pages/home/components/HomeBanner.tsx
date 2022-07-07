@@ -85,7 +85,6 @@ const HomeBanner: React.FunctionComponent = () => {
   const staker = useStakerState()
   const history = useHistory()
   const { t } = useTranslation()
-  console.log('ttt::', t)
   return (
     <>
       <Header>

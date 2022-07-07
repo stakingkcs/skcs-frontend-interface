@@ -179,7 +179,7 @@ const StakingPanel: FunctionComponent = () => {
         {!account ? (
           <>
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '24px', width: '300px' }}>
-              <DataItem title="Staked amount" balance={`0.00 sKCS`} uBalance="≈$0.0000" />
+              <DataItem title={t('STAKE_85')} balance={`0.00 sKCS`} uBalance="≈$0.0000" />
               <DataItem
                 title={t('STAKE_10')}
                 titleExtra={
