@@ -101,7 +101,6 @@
   "STAKE_32": "The sKCS token will have a range of use cases in the KCC ecosystem. They allow you to access DeFi market while enjoying your staking rewards and helping the network. For example:",
   "STAKE_33": "Borrowing/Lending - sKCS can be used as collateral or borrowed on multiple platforms.",
   "STAKE_34": "Liquidity provision - sKCS/XXX pools - These pools will be subject to impermanent loss but will allow you to provide liquidity on a large number of pairs.",
- 
   "STAKE_35": "Statistics",
   "STAKE_36": "Total staked amount",
   "STAKE_37": "Stakers",
@@ -183,5 +182,6 @@
   "DIFI_26": "summary",
   "DIFI_27": "twitter:title",  
   "DEFI_28": "keywords",
+  
   "ERROR_1": "Sorry,Not Found."
 }
