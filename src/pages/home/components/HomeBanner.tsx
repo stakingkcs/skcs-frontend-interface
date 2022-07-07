@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { formatNumber } from 'utils/bignumber'
 import { useStakerState } from '../../../state/hooks'
 import BN from 'bignumber.js'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import DanamicBg from '../../../components/DynamicBg/index'
 import { useTranslation } from 'react-i18next'
 
@@ -68,10 +68,11 @@ const NumberText = styled.span`
     font-size: 32px;
   }
 `
-const ButtonWarp = styled.div`
+const ButtonWarp = styled(Link)`
   width: 160px;
   height: 50px;
   margin: 40px 0;
+  display: block;
 `
 
 const BannerStyledButton = styled(StyledButton)`
@@ -102,14 +103,8 @@ const HomeBanner: React.FunctionComponent = () => {
             {t('HOME_3')} <br />
             <NumberText>{formatNumber(staker.apr * 100)}%</NumberText> {t('HOME_4')}
           </Title>
-          <ButtonWarp>
-            <BannerStyledButton
-              onClick={() => {
-                history.push('/staking')
-              }}
-            >
-              {t('HOME_5')}
-            </BannerStyledButton>
+          <ButtonWarp to="/staking">
+            <BannerStyledButton>{t('HOME_5')}</BannerStyledButton>
           </ButtonWarp>
         </Content>
       </Header>

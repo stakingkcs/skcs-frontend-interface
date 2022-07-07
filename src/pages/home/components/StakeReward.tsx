@@ -43,7 +43,7 @@ const StakeWarp = styled.div`
     background: url(${mbg}) no-repeat center;
   }
 `
-const Title = styled.div`
+const Title = styled.h2`
   font-family: 'Arial';
   font-style: normal;
   font-weight: bold;
