@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { width } from 'styled-system'
 
-const Title = styled.div`
+const Title = styled.h1`
   font-family: 'Arial';
   font-style: normal;
   font-weight: bold;

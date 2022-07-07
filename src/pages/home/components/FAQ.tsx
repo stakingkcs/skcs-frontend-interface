@@ -73,7 +73,7 @@ const Content = styled.div`
   align-items: center;
 `
 
-const Title = styled.div`
+const Title = styled.h2`
   font-family: 'Barlow';
   font-style: normal;
   font-weight: 700;

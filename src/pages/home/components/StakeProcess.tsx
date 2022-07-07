@@ -16,7 +16,7 @@ const baseHover = require('../../../assets/images/home/base-hover.png').default
 const aLeft = require('../../../assets/images/home/arrow-left.png').default
 const aRight = require('../../../assets/images/home/arrow-right.png').default
 
-const Title = styled.div`
+const Title = styled.h2`
   font-family: 'Arial';
   font-style: normal;
   font-weight: bold;

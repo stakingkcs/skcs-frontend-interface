@@ -42,7 +42,7 @@ export const GradientBgColor = css`
   background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%) !important;
 `
 
-export const Title = styled.div`
+export const Title = styled.h2`
   font-family: 'Arial';
   font-style: normal;
   font-weight: bold;
