@@ -4,6 +4,7 @@ import Banlance from './components/Banlance'
 import Liquidity from './components/Liquitity'
 import Supply from './components/Supply'
 import { useTranslation } from 'react-i18next'
+import { Helmet } from 'react-helmet-async'
 import DanamicCenterBg from '../../components/DynamicBg/DynamicCenterBg'
 
 const gradientBg = require('../../assets/images/gradient-bg.png').default
@@ -76,27 +77,44 @@ const DataWarp = styled.div`
 const DeFiMarket: React.FunctionComponent = () => {
   const { t } = useTranslation()
   return (
-    <Warp>
-      <Title style={{ textAlign: 'center' }}>{t("DIFI_2")}</Title>
-      <Content>
-        {/* <DanamicCenterBg /> */}
-        <Banlance />
-        <Title>{t("DIFI_1")}</Title>
-        <Desc>{t("DIFI_3")}</Desc>
-        <DataWarp>
-          <Liquidity />
-          <Liquidity />
-        </DataWarp>
+    <>
+      <Helmet>
+        <title>DeFi Market | sKCS</title>
+        <meta
+          name="description"
+          content="Use sKCS in the DeFi ecosystem. Participants can supply sKCS to earn interest or use sKCS as collateral to borrow other crypto assets."
+        />
+        <meta name="keywords" content="KCS staking, sKCS, stake KCS" />
+        <meta
+          name="twitter:description"
+          content="Use sKCS in the DeFi ecosystem. Participants can supply sKCS to earn interest or use sKCS as collateral to borrow other crypto assets."
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="DeFi Market | sKCS" />
+      </Helmet>
 
-        <Title>{t("DIFI_4")}</Title>
-        <Desc>{t("DIFI_5")}</Desc>
-        <DataWarp>
-          <Supply />
-          <Supply />
-          <Supply />
-        </DataWarp>
-      </Content>
-    </Warp>
+      <Warp>
+        <Title style={{ textAlign: 'center' }}>{t('DIFI_2')}</Title>
+        <Content>
+          {/* <DanamicCenterBg /> */}
+          <Banlance />
+          <Title>{t('DIFI_1')}</Title>
+          <Desc>{t('DIFI_3')}</Desc>
+          <DataWarp>
+            <Liquidity />
+            <Liquidity />
+          </DataWarp>
+
+          <Title>{t('DIFI_4')}</Title>
+          <Desc>{t('DIFI_5')}</Desc>
+          <DataWarp>
+            <Supply />
+            <Supply />
+            <Supply />
+          </DataWarp>
+        </Content>
+      </Warp>
+    </>
   )
 }
 export default DeFiMarket

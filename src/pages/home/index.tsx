@@ -72,18 +72,18 @@ const HomePage: React.FunctionComponent = () => {
   return (
     <>
       <Helmet>
-      <title>KCC Staking | Buy KCS to Vote | KuCoin Community Chain</title>
+        <title>KCS Staking | sKCS</title>
         <meta
           name="description"
-          content="Staking KuCoin token (KCS), vote and enjoy rewards in KuCoin Community Chain (KCC)."
+          content="Stake KCS and get sKCS to accrue staking rewards over time and earn additional yields with high APY"
         />
-        <meta name="keywords" content="KuCoin token, KCS, KCC, buy KCS, KCC staking" />
+        <meta name="keywords" content="KCS staking, sKCS, stake KCS" />
         <meta
           name="twitter:description"
-          content="Staking KuCoin token (KCS), vote and enjoy rewards in KuCoin Community Chain (KCC)."
+          content="Stake KCS and get sKCS to accrue staking rewards over time and earn additional yields with high APY"
         />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="KCC Staking | Buy KCS to Vote | KuCoin Community Chain" />
+        <meta name="twitter:title" content="KCS Staking | sKCS" />
       </Helmet>
       <HomeWrap>
         <HomeBanner />
@@ -91,7 +91,7 @@ const HomePage: React.FunctionComponent = () => {
         <StakeProcess />
         <StakeReward />
         <FaqWarp>
-          <FAQTip title={t("HOME_60")} desc={t("HOME_61")} />
+          <FAQTip title={t('HOME_60')} desc={t('HOME_61')} />
           <FollowUs />
         </FaqWarp>
       </HomeWrap>

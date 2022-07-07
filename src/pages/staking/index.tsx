@@ -89,9 +89,15 @@ const StakingPage: React.FunctionComponent = () => {
   return (
     <>
       <Helmet>
-        <title>{t('STAKE_51')}</title>
-        <meta name="description" content={t('STAKE_52')} />
-        <meta name="keywords" content={t('STAKE_53')} />
+        <title>Staking | sKCS</title>
+        <meta name="description" content="Stake KCS and receive sKCS as proof to earn staking rewards with high APY" />
+        <meta name="keywords" content="stake KCS, sKCS" />
+        <meta
+          name="twitter:description"
+          content="Stake KCS and receive sKCS as proof to earn staking rewards with high APY"
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="stake KCS, sKCS" />
       </Helmet>
       <HomeWrap>
         <Content>
