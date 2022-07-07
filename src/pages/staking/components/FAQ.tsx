@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Image, RowCenterBox } from '../../../components/index'
 import { useResponsive } from '../../../utils/responsive'
+import { sKCS } from 'constants/index'
 
 const { Panel } = Collapse
 
@@ -181,7 +182,11 @@ const FAQ: React.FunctionComponent = () => {
       <Content>
         <RowCenterBox justify="space-between">
           <Title>{t('STAKE_22')}</Title>
-          <RowCenterBox justify="flex-end" style={{ cursor: 'pointer', display: isMobile ? 'none' : 'flex' }}>
+          <RowCenterBox
+            justify="flex-end"
+            style={{ cursor: 'pointer', display: isMobile ? 'none' : 'flex' }}
+            onClick={() => window.open(sKCS.faq, '_blank')}
+          >
             <MoreText>{t('STAKE_23')}</MoreText>
             <Image
               src={require('../../../assets/images/Icons/arrow-right-white.png').default}

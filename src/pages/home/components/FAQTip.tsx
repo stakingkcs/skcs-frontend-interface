@@ -1,11 +1,13 @@
-import React, { FunctionComponent } from 'react'
+import { sKCS } from 'constants/index'
+import { FunctionComponent } from 'react'
 import { isMobile } from 'react-device-detect'
 import styled from 'styled-components'
-import { Title, Text } from '../../../components/index'
-import { useTranslation } from 'react-i18next'
+import { Text, Title } from '../../../components/index'
+
 const arrow = require('../../../assets/images/home/arrow.png').default
 const FAQWarp = styled.div`
   width: 507px;
+  cursor: pointer;
 
   @media (max-width: 768px) {
     display: flex;
@@ -58,7 +60,7 @@ interface Props {
 
 const FAQTip: FunctionComponent<Props> = ({ title, desc }) => {
   return (
-    <FAQWarp>
+    <FAQWarp onClick={() => window.open(sKCS.faq, '_blank')}>
       <Title style={{ fontSize: '32px', margin: '0 0 25px 0', textAlign: isMobile ? 'center' : 'left' }}>FAQ</Title>
       <TipWarp>
         <QuesTitle>{title} </QuesTitle>

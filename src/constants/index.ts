@@ -52,15 +52,8 @@ export const APP = {
 
 export const MOJITOSWAP_SWAP_URL = 'https://app.mojitoswap.finance/swap'
 
-export const MojitoSwap = {
-  url: 'https://app.mojitoswap.finance',
-  github: 'https://github.com/MojitoFinance',
-  twitter: 'https://twitter.com/MojitoSwap',
-  medium: 'https://medium.com/@mojitoswap',
-  telegram: 'https://t.me/MojitoFinance',
-  doc: 'https://docs.mojitoswap.finance',
-  cmc: 'https://coinmarketcap.com/currencies/mojitoswap',
-  coingecko: 'https://www.coingecko.com/en/coins/mojitoswap',
-  defillama: 'https://defillama.com/protocol/mojitoswap',
-  refferal: 'https://app.mojitoswap.finance/referral',
+export const sKCS = {
+  docs: 'https://docs.skcs.io',
+  faq: 'https://docs.skcs.io/faq/faq'
 }
+
