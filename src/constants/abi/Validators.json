@@ -573,7 +573,7 @@
   },
   {
     "inputs": [],
-    "name": "getAccumulatedRewardKCSAmount",
+    "name": "accumulatedRewardKCSAmount",
     "outputs": [
       {
         "internalType": "uint256",
