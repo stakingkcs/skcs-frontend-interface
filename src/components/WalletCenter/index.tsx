@@ -291,7 +291,7 @@ const LogoutModal: React.FunctionComponent<LogoutModalProps> = (props) => {
     >
       <WalletInfoWrap>
         <SpaceRow>
-          <ModalTitle>My Wallet</ModalTitle>
+          <ModalTitle>{t("COMPONENT_12")}</ModalTitle>
           <Image
             style={{ cursor: 'pointer' }}
             src={require('../../assets/images/Icons/close-white.png').default}
@@ -302,13 +302,13 @@ const LogoutModal: React.FunctionComponent<LogoutModalProps> = (props) => {
           />
         </SpaceRow>
 
-        <SubTitle style={{ marginTop: '20px' }}>Network</SubTitle>
+        <SubTitle style={{ marginTop: '20px' }}>{t("COMPONENT_13")}</SubTitle>
         <InputContainer>
           <Image src={networkInfo?.logo} width="20px" height="20px" alt="chain-logo" />
           <InputText style={{ marginLeft: '8px' }}>{networkInfo?.fullName}</InputText>
         </InputContainer>
 
-        <SubTitle style={{ marginTop: '20px' }}>Wallet Address</SubTitle>
+        <SubTitle style={{ marginTop: '20px' }}>{t("COMPONENT_14")}</SubTitle>
         <InputContainer>
           <InputText>{account}</InputText>
         </InputContainer>

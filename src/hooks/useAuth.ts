@@ -32,13 +32,13 @@ const useAuth = () => {
       activate(connector, async (error: Error) => {
         if (error instanceof UnsupportedChainIdError) {
           // error modal
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: 'Unsupported Network' }))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_19") }))
         } else if (error instanceof NoEthereumProviderError) {
           StyledNotification.error({
-            message: i18next.t('Provider Error'),
-            description: i18next.t('No provider was found'),
+            message: i18next.t("COMPONENT_20"),
+            description: i18next.t("COMPONENT_21"),
           })
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: 'Provider Error' }))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: "COMPONENT_22" }))
         } else if (
           error instanceof UserRejectedRequestErrorInjected ||
           error instanceof UserRejectedRequestErrorWalletConnect
@@ -48,24 +48,24 @@ const useAuth = () => {
             walletConnector.walletConnectProvider = undefined
           }
           StyledNotification.error({
-            message: i18next.t('Authorization Error'),
-            description: i18next.t('Please authorize to access your account'),
+            message: i18next.t("COMPONENT_23"),
+            description: i18next.t("COMPONENT_24"),
           })
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: 'Authorization Error' }))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_25") }))
         } else {
           StyledNotification.error({
-            message: i18next.t(`Unknown error`),
+            message: i18next.t("COMPONENT_26"),
             description: i18next.t(`${error.message}`),
           })
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: t(`Unknown error`) }))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_26") }))
         }
       })
     } else {
       StyledNotification.error({
-        message: i18next.t("Can't find connector"),
-        description: i18next.t('The connector config is wrong'),
+        message: i18next.t("COMPONENT_27"),
+        description: i18next.t("COMPONENT_28"),
       })
-      dispatch(updateErrorInfo({ hasError: true, errorInfo: "Can't find connector" }))
+      dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_29") }))
     }
   }, [])
 

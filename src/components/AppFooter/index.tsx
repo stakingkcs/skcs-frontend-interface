@@ -131,7 +131,7 @@ const AppFooter: React.FunctionComponent<AppFooterProps> = () => {
   return (
     <AppFooterWrap>
       <AppFooterContentWrap>
-        <CopyRightText>CopyRight © {`${new Date().getFullYear()}`} sKCS.io All Rights Reserved.</CopyRightText>
+        <CopyRightText>{t("COMPONENT_1", {asset: new Date().getFullYear()})}</CopyRightText>
         <IconWarp>
           {mediaList.map((item) => {
             return (

@@ -149,7 +149,7 @@ const WalletListModal: React.FunctionComponent<WalletListModalProps> = ({ visibl
           dispatch(updateWalletId({ walletId: 2 }))
       }
     } else {
-      message.warn(t(`Please select one of the wallets in the list`))
+      message.warn(t("COMPONENT_15"))
     }
   }
 
@@ -192,8 +192,8 @@ const WalletListModal: React.FunctionComponent<WalletListModalProps> = ({ visibl
       }}
     >
       <ColumnCenterBox align="flex-start" style={{ width: '100%' }}>
-        <ModalTitle>{t(`Connect Your Wallet`)}</ModalTitle>
-        <Text style={{ marginTop: '16px' }}>Please connect your wallet with one of the wallet providers</Text>
+        <ModalTitle>{t("COMPONENT_16")}</ModalTitle>
+        <Text style={{ marginTop: '16px' }}>{t("COMPONENT_17")}</Text>
         <WalletListWrap>{walletList}</WalletListWrap>
       </ColumnCenterBox>
     </StyledModal>

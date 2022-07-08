@@ -9,6 +9,7 @@ import { useBalance } from '../../state/wallet/hooks'
 import { RowCenterBox } from '../index'
 import './index.less'
 import { useResponsive } from 'utils/responsive'
+import { useTranslation } from 'react-i18next'
 
 const StyledInputWrap = styled.div`
   width: 100%;
@@ -81,12 +82,13 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
   const { isMobile } = useResponsive()
   const balance = useBalance()
   const { account } = useWeb3React()
+  const { t } = useTranslation()
 
   React.useEffect(() => {
     if (props.readOnly) return
     if (props.checkBalance && new BN(balance).div(10 ** 18).lte(0)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: 'Insufficient balance' }
+        return { hasError: true, errorInfo: t("COMPONENT_4") }
       })
     }
   }, [balance, props.checkBalance])
@@ -96,7 +98,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
     if (props.readOnly) return
     if (!account) {
       props.setError(() => {
-        return { hasError: true, errorInfo: 'Please connect your wallet' }
+        return { hasError: true, errorInfo: t("COMPONENT_5") }
       })
       props.setVaule(() => input.target.value)
       return
@@ -120,7 +122,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
 
     if (!Reg.test(value)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: 'Please enter a valid number with up to 18 decimal places.' }
+        return { hasError: true, errorInfo: t("COMPONENT_6") }
       })
       props.setVaule(() => value)
       return
@@ -128,7 +130,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
 
     if (props.maxLimit && Number(value) > Number(props.maxLimit)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: 'The amount exceeds the available balance.' }
+        return { hasError: true, errorInfo: t("COMPONENT_7") }
       })
       props.setVaule(() => value)
       return
@@ -136,7 +138,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
 
     if (Number(value) === 0) {
       props.setError(() => {
-        return { hasError: true, errorInfo: 'The amount must be greater than 0.' }
+        return { hasError: true, errorInfo: t("COMPONENT_8") }
       })
       props.setVaule(() => '0')
     }
@@ -152,7 +154,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
         height="54px"
         size="large"
         style={{ color: '#fff' }}
-        placeholder="Amount"
+        placeholder=""
         value={props.inputValue}
         readOnly={props.readOnly}
         suffix={
@@ -168,12 +170,12 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
 
                   if (Number(props.maxLimit) === 0) {
                     props.setError(() => {
-                      return { hasError: true, errorInfo: 'The amount must be greater than 0.' }
+                      return { hasError: true, errorInfo: t("COMPONENT_9") }
                     })
                   }
                 }}
               >
-                Max
+                {t("COMPONENT_10")}
               </MaxButton>
             )}
 

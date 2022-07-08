@@ -153,6 +153,7 @@
   "STAKE_84": "Trade on DEXs - sKCS is available on most decentralized exchanges and can be traded for other crypto tokens. Remember, by trading your sKCS, you also trade your accumulated rewards.",
   "STAKE_85": "Staked amount",
   "STAKE_86": "keywords",
+  "STAKE_87": "Staked Balance",
 
   "DIFI_1": "Liquidity",
   "DIFI_2": "Use sKCS across the DeFi ecosystem",
@@ -182,6 +183,36 @@
   "DIFI_26": "summary",
   "DIFI_27": "twitter:title",  
   "DEFI_28": "keywords",
-  
-  "ERROR_1": "Sorry,Not Found."
+
+  "ERROR_1": "Sorry,Not Found.",
+
+  "COMPONENT_1": "CopyRight © {{asset}} sKCS.io All Rights Reserved.", 
+  "COMPONENT_2": "Connect Wallet", 
+  "COMPONENT_3": "Amount", 
+  "COMPONENT_4": "Insufficient balance", 
+  "COMPONENT_5": "Please connect your wallet", 
+  "COMPONENT_6": "Please enter a valid number with up to 18 decimal places.", 
+  "COMPONENT_7": "The amount exceeds the available balance.", 
+  "COMPONENT_8": "The amount must be greater than 0.", 
+  "COMPONENT_9": "The amount must be greater than 0.", 
+  "COMPONENT_10": "Max", 
+  "COMPONENT_11": "View transaction in blockchain", 
+  "COMPONENT_12": "My Wallet", 
+  "COMPONENT_13": "Network", 
+  "COMPONENT_14": "Wallet Address", 
+  "COMPONENT_15": "Please select one of the wallets in the list", 
+  "COMPONENT_16": "Connect Your Wallet", 
+  "COMPONENT_17": "Please connect your wallet with one of the wallet providers", 
+  "COMPONENT_18": "Unicorn Contest", 
+  "COMPONENT_19": "Unsupported Network", 
+  "COMPONENT_20": "Provider Error", 
+  "COMPONENT_21": "No provider was found", 
+  "COMPONENT_22": "Provider Error", 
+  "COMPONENT_23": "Authorization Error", 
+  "COMPONENT_24": "Please authorize to access your account", 
+  "COMPONENT_25": "Authorization Error", 
+  "COMPONENT_26": "Unknown error", 
+  "COMPONENT_27": "Can't find connector", 
+  "COMPONENT_28": "The connector config is wrong", 
+  "COMPONENT_29": "Can't find connector"
 }
