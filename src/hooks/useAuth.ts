@@ -35,10 +35,10 @@ const useAuth = () => {
           dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_19") }))
         } else if (error instanceof NoEthereumProviderError) {
           StyledNotification.error({
-            message: i18next.t("COMPONENT_20"),
-            description: i18next.t("COMPONENT_21"),
+            message: t("COMPONENT_20"),
+            description: t("COMPONENT_21"),
           })
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: "COMPONENT_22" }))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_22")}))
         } else if (
           error instanceof UserRejectedRequestErrorInjected ||
           error instanceof UserRejectedRequestErrorWalletConnect
@@ -48,22 +48,22 @@ const useAuth = () => {
             walletConnector.walletConnectProvider = undefined
           }
           StyledNotification.error({
-            message: i18next.t("COMPONENT_23"),
-            description: i18next.t("COMPONENT_24"),
+            message: t("COMPONENT_23"),
+            description: t("COMPONENT_24"),
           })
           dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_25") }))
         } else {
           StyledNotification.error({
-            message: i18next.t("COMPONENT_26"),
-            description: i18next.t(`${error.message}`),
+            message: t("COMPONENT_26"),
+            description: t(`${error.message}`),
           })
           dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_26") }))
         }
       })
     } else {
       StyledNotification.error({
-        message: i18next.t("COMPONENT_27"),
-        description: i18next.t("COMPONENT_28"),
+        message: t("COMPONENT_27"),
+        description: t("COMPONENT_28"),
       })
       dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_29") }))
     }
