@@ -44,14 +44,14 @@ const StakeContent = styled.div`
 
 const StakeItem = styled.div`
   width: 281px;
-  height: 252px;
+  height: 281px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 20px 24px;
+  padding: 25px 25px;
 `
 const StakeIcon = styled.img`
   width: 72px;
@@ -64,6 +64,7 @@ const StakeTitle = styled.p`
   font-weight: bold;
   font-size: 24px;
   margin-bottom: 0;
+  line-height: 48px;
 `
 const StakeDesc = styled.p`
   color: rgba(127, 131, 147, 1);

@@ -18,6 +18,7 @@ const TipWarp = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  height: 134px;
 `
 const Desc = styled.p`
   font-size: 16px;
@@ -31,6 +32,7 @@ const Desc = styled.p`
 const IconWarp = styled.div`
   display: flex;
   justify-content: space-between;
+
   @media (max-width: 768px) {
     flex-wrap: wrap;
   }
@@ -48,6 +50,7 @@ const ItemLink = styled.a`
   transition: all 0.3s ease-in;
   background: rgba(255, 255, 255, 0.12);
   &:hover {
+    transform: scale(1.1);
     background: linear-gradient(120.14deg, #00d092 -4.82%, #d04aff 113.33%);
   }
   @media (max-width: 768px) {
