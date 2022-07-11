@@ -28,7 +28,7 @@ const Content = styled.div`
   margin: 0 auto;
   width: 1200px;
   height: 864px;
-  background: url(${kcsBg}) right bottom no-repeat;
+  background: url(${kcsBg}) right 80% no-repeat;
   background-size: 419px 451px;
 
   @media (max-width: 768px) {
@@ -46,7 +46,7 @@ const Title = styled.div`
   text-align: left;
   width: 944px;
   color: #ffffff;
-  padding-top: 190px;
+  padding-top: 243px;
   @media (max-width: 768px) {
     padding-top: 70px;
     width: 100%;

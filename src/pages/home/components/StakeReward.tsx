@@ -60,7 +60,7 @@ const Desc = styled.div`
   font-family: 'Arial';
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 32px;
   text-align: center;
   color: rgba(180, 183, 193, 1);
