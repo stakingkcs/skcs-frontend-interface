@@ -12,22 +12,22 @@ const StepsWrap = styled.div`
   width: 100%;
   height: auto;
   .ant-collapse {
-    background: #1d1d1d;
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     border: none;
     width: 100%;
   }
 
   .ant-collapse-content {
-    background: #1d1d1d;
     color: #fff;
     border-top: 1px solid #333;
     width: 100%;
+    background: none;
   }
 
   .ant-collapse-item {
     border-bottom: none;
-    border-radius: 8px;
+    border-radius: 16px !important;
     width: 100%;
   }
 
@@ -40,7 +40,6 @@ const StepsWrap = styled.div`
   }
 
   .ant-collapse-header-text {
-    font-family: 'Barlow';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -59,6 +58,7 @@ const StepsWrap = styled.div`
   }
   .ant-collapse-content-box {
     padding-left: 30px;
+    background: rgba(0, 0, 0, 0.1) !important;
   }
   @media (max-width: 768px) {
     padding-top: 20px;
@@ -91,7 +91,6 @@ const Title = styled.div`
 `
 
 const PanelHeader = styled.div`
-  font-family: 'Barlow';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -205,7 +204,7 @@ const FAQ: React.FunctionComponent = () => {
                   key={index}
                   collapsible="header"
                   onChange={handlePanelChange.bind(null, index)}
-                  style={{ borderRadius: '8px' }}
+                  style={{ borderRadius: '16px' }}
                 >
                   <Panel
                     header={

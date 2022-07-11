@@ -1,15 +1,14 @@
 export const MAIN_NETWORKS = {
   321: {
-    name: 'KCC-MAINNET',
+    name: 'KCC Mainnet',
     fullName: 'KCC Mainnet Network',
     abbr: 'KCC',
     rpc: 'https://rpc-mainnet.kcc.network',
     chain_id: 321,
     decimals: 18,
     symbol: 'KCS',
-    browser: 'https://explorer.kcc.io',
+    browser: 'https://explorer.kcc.io/en',
     logo: 'https://cdn.jsdelivr.net/gh/kucoin-community-chain/tokens-info@main/icons/chain-321.png',
-    bridgeCoreAddress: '0xe61dd9cA7364225aFBFB79e15AD33864424e6aE4',
     standard: 'KRC20',
   },
 }
@@ -29,8 +28,8 @@ export const TEST_NETWORKS = {
     fee: 0.01,
   },
   322: {
-    name: 'KCC-TEST',
-    fullName: 'KCC Test Network',
+    name: 'KCC Testnet',
+    fullName: 'KCC Testnet',
     abbr: 'KCC-TEST',
     rpc: 'https://rpc-testnet.kcc.network',
     chain_id: 322,
@@ -67,7 +66,6 @@ export interface NetworkType {
   browser: string
   decimals: number
   logo: string
-  bridgeCoreAddress: string
   standard: string
   fee?: number
   abbr: string
