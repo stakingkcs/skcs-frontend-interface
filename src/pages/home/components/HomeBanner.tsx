@@ -6,7 +6,7 @@ import { useStakerState } from '../../../state/hooks'
 import BN from 'bignumber.js'
 import { Link, useHistory } from 'react-router-dom'
 import DanamicBg from '../../../components/DynamicBg/index'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 const mbg = require('../../../assets/images/home/mbg-header.png').default
 
@@ -91,16 +91,21 @@ const HomeBanner: React.FunctionComponent = () => {
         <DanamicBg />
         <Content>
           <Title>
-            {t('HOME_1', { asset: ' ' })}
-            <NumberText>
-              {' '}
-              {formatNumber(new BN(staker.accumulatedStakedKCSAmount.toString()).div(10 ** 18) ?? 0)}
-            </NumberText>{' '}
-            {t('HOME_2')}
-            <br />
-            <NumberText>{formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18))}</NumberText>{' '}
-            {t('HOME_3')} <br />
-            <NumberText>{formatNumber(staker.apr * 100)}%</NumberText> {t('HOME_4')}
+            {/* {t('HOME_1', {
+              totalKCS: formatNumber(new BN(staker.accumulatedStakedKCSAmount.toString()).div(10 ** 18) ?? 0),
+              totalRewards: formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18)),
+              apy: formatNumber(staker.apr * 100),
+            })} */}
+
+            <Trans
+              i18nKey="HOME_1" // optional -> fallbacks to defaults if not provided
+              values={{
+                totalKCS: formatNumber(new BN(staker.accumulatedStakedKCSAmount.toString()).div(10 ** 18) ?? 0),
+                totalRewards: formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18)),
+                apy: formatNumber(staker.apr * 100),
+              }}
+              components={{ number: <NumberText /> }}
+            />
           </Title>
           <ButtonWarp to="/staking">
             <BannerStyledButton>{t('HOME_5')}</BannerStyledButton>
