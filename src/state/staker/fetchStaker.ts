@@ -14,7 +14,7 @@ export const fetchStakerPublicData = async (): Promise<Partial<StakerState>> => 
     },
     {
       address: getStakerAddress(),
-      name: 'accumulatedRewardKCSAmount',
+      name: 'getAccumulatedRewardKCSAmount',
     },
     {
       address: getStakerAddress(),

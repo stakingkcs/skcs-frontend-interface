@@ -34,11 +34,11 @@ export async function depositKCSToValidator(
 
 export async function requestRedemption(
   stakerContract: Contract,
-  amount: BigNumber | BN,
+  amount: BN,
   account: string
 ): Promise<ContractCallResponse> {
   try {
-    const tx = await stakerContract.requestRedemption(amount.toString(), account)
+    const tx = await stakerContract.requestRedemption(amount.toString(10), account)
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     return { status: 1, data: response }

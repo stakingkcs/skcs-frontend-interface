@@ -991,12 +991,73 @@
   },
   {
     "inputs": [],
+    "name": "getAccumulatedRewardKCSAmount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "getActiveValidators",
     "outputs": [
       {
         "internalType": "address[]",
         "name": "",
         "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_val",
+        "type": "address"
+      }
+    ],
+    "name": "getAvailablePoolInfo",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "exist",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "len",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_val",
+        "type": "address"
+      }
+    ],
+    "name": "getDisablingPoolInfo",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "exist",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "len",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
