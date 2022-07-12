@@ -104,7 +104,7 @@ const HomeBanner: React.FunctionComponent = () => {
                 totalRewards: formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18)),
                 apy: formatNumber(staker.apr * 100),
               }}
-              components={{ number: <NumberText /> }}
+              components={{ number: <NumberText />, wrap: <br /> }}
             />
           </Title>
           <ButtonWarp to="/staking">
