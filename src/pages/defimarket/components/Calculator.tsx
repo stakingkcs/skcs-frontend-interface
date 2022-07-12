@@ -64,7 +64,6 @@ const Calculator: React.FunctionComponent<CaculatorProps> = (props) => {
   const { account, library } = useWeb3React()
   const [inputValue, setInputValue] = React.useState<string>('')
   const [error, setError] = React.useState<{ hasError: boolean; errorInfo: string }>({ hasError: false, errorInfo: '' })
-  const maxDepositKCS = 12
   const renderData = () => {
     if (!isMobile) {
       return (

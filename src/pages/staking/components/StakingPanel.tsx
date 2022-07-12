@@ -185,7 +185,10 @@ const StakingPanel: FunctionComponent = () => {
 
   const maxDepositKCS = React.useMemo(() => {
     if (balance === '') return ZERO
-    return new BigNumber(balance).sub(depositKCSGasFee)
+    if (new BN(balance).div(10 ** 18).lt(0.1)) {
+      return new BigNumber(balance).sub(depositKCSGasFee)
+    }
+    return new BigNumber(balance).sub(new BN(0.1).multipliedBy(10 ** 18).toString(10))
   }, [depositKCSGasFee, balance])
 
   const handleUnstake = React.useCallback(async () => {
@@ -461,7 +464,7 @@ const StakingPanel: FunctionComponent = () => {
                 <>
                   {account && (
                     <BetweenBox style={{ marginTop: '8px' }}>
-                      <SubTitle>{t("STAKE_27")}</SubTitle>
+                      <SubTitle>{t('STAKE_27')}</SubTitle>
                       <SubTitle>{`${formatNumber(
                         new BN(staker.userData?.stakeAmount.toString() ?? 0).div(10 ** 18),
                         2
@@ -495,7 +498,7 @@ const StakingPanel: FunctionComponent = () => {
 
                     {account && (
                       <BetweenBox style={{ marginTop: '8px' }}>
-                        <SubTitle>{t("STAKE_27")}</SubTitle>
+                        <SubTitle>{t('STAKE_27')}</SubTitle>
                         <SubTitle>{`${formatNumber(new BN(balance ?? 0).div(10 ** 18), 2)} KCS`}</SubTitle>
                       </BetweenBox>
                     )}
