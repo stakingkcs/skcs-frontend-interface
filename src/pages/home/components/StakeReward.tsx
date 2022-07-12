@@ -211,16 +211,16 @@ const StakeReward: React.FunctionComponent = () => {
       return (
         <ColumnCenterBox style={{ width: '100%', height: '272px' }} justify="space-between" align="flex-start">
           <DataItem
-            title="APY"
+            title={t("HOME_38")}
             titleExtra={
               <Tooltip placement="top" title={t('HOME_12')}>
-                <InfoCircleOutlined style={{ color: 'rgba(255, 255, 255, 0.01)' }} />
+                <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             }
             balance={`${formatNumber(staker.apr, 2)}%`}
           />
           <DataItem
-            title={t('HOME_16')}
+            title={t("HOME_13")}
             balance={`${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).toString() : 0,
               4
@@ -231,7 +231,7 @@ const StakeReward: React.FunctionComponent = () => {
             )}`}
           />
           <DataItem
-            title={t('HOME_17')}
+            title={t("HOME_14")}
             balance={`${formatNumber(inputValue ? new BN(inputValue).multipliedBy(staker.apr).toString() : 0, 4)}KCS`}
             uBalance={`≈${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).multipliedBy(kcsPrice).toString() : 0,

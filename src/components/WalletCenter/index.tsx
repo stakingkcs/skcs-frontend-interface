@@ -180,23 +180,7 @@ const InputText = styled.div`
   }
 `
 
-const OperateList = [
-  {
-    key: '0',
-    title: 'Copy',
-    icon: <OperateIcon src={require('../../assets/images/Icons/copy.png').default} />,
-  },
-  {
-    key: '1',
-    title: 'View in Blockchain',
-    icon: <OperateIcon src={require('../../assets/images/Icons/share-gray.png').default} />,
-  },
-  {
-    key: '2',
-    title: 'Logout',
-    icon: <OperateIcon src={require('../../assets/images/Icons/logout.png').default} />,
-  },
-]
+
 
 const LogoutModal: React.FunctionComponent<LogoutModalProps> = (props) => {
   const dispatch = useDispatch()
@@ -209,6 +193,23 @@ const LogoutModal: React.FunctionComponent<LogoutModalProps> = (props) => {
   const walletId = useWalletId()
 
   const balance = useBalance()
+  const OperateList = [
+    {
+      key: '0',
+      title: t("COMPONENT_29"),
+      icon: <OperateIcon src={require('../../assets/images/Icons/copy.png').default} />,
+    },
+    {
+      key: '1',
+      title: t("COMPONENT_30"),
+      icon: <OperateIcon src={require('../../assets/images/Icons/share-gray.png').default} />,
+    },
+    {
+      key: '2',
+      title: t("COMPONENT_30"),
+      icon: <OperateIcon src={require('../../assets/images/Icons/logout.png').default} />,
+    },
+  ]
 
   const walletInfo = React.useMemo(() => {
     return getWalletInfo(walletId)

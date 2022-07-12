@@ -119,13 +119,13 @@
   "STAKE_52": "Buy KCS for staking and voting. Users can earn high APY rewards with KCC staking.",
   "STAKE_53": "KuCoin token, KCS, KCC, buy KCS, KCS staking",
   "STAKE_54": "Unstaking confirmed!",
-  "STAKE_55": "Unstake {{asset}} sKCS and receive",
+  "STAKE_55": "Unstake {{inputValue}} sKCS and receive {{totalKSC}} KCS. ",
   "STAKE_56": "View transaction on chain.",
   "STAKE_57": "Unstaking failed!",
   "STAKE_58": "Please try again.",
   "STAKE_59": "Unstaking failed!",
   "STAKE_60": "Please try again.",
-  "STAKE_61": "Stake {{asset}} KCS and receive   ",
+  "STAKE_61": "Stake {{inputValue}} KCS and receive  {{totalsKSC}} sKCS. ",
   "STAKE_62": "Staking failed!",
   "STAKE_63": "Please try again.",
   "STAKE_64": "Connect Wallet",
@@ -209,5 +209,8 @@
   "COMPONENT_26": "Unknown error",
   "COMPONENT_27": "Can't find connector",
   "COMPONENT_28": "The connector config is wrong",
-  "COMPONENT_29": "Can't find connector"
+  "COMPONENT_29": "Can't find connector",
+  "COMPONENT_30": "Copy",
+  "COMPONENT_31": "View in Blockchain",
+  "COMPONENT_32":"Logout"
 }

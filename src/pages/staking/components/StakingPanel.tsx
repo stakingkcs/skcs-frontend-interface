@@ -22,7 +22,7 @@ import { useBalance } from '../../../state/wallet/hooks'
 import { formatNumber } from '../../../utils/bignumber'
 import { stakerContractHelper } from '../../../utils/validator'
 import DataPanel from './DataPanel'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, Trans } from 'react-i18next'
 import { CenterBox, BetweenBox } from '../../../components/index'
 import { useResponsive } from 'utils/responsive'
 
@@ -208,8 +208,10 @@ const StakingPanel: FunctionComponent = () => {
             message: t('STAKE_54'),
             description: (
               <div>
-                {t('STAKE_55', { asset: inputValue })}
-                {formatNumber(new BN(inputValue).multipliedBy(staker.skcsQuetoByKCS.toString()), 3)} KCS.{' '}
+                {t('STAKE_55', {
+                  inputValue: inputValue,
+                  totalKSC: formatNumber(new BN(inputValue).multipliedBy(staker.skcsQuetoByKCS.toString()), 3),
+                })}
                 <ALink
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
@@ -258,8 +260,10 @@ const StakingPanel: FunctionComponent = () => {
             message: t('HOME_7'),
             description: (
               <div>
-                {t('STAKE_61', { asset: inputValue })}
-                {formatNumber(new BN(staker.kcsQuetoBySKCS).multipliedBy(inputValue), 3)} sKCS.{' '}
+                {t('STAKE_61', {
+                  inputValue: inputValue,
+                  totalsKSC: formatNumber(new BN(staker.kcsQuetoBySKCS).multipliedBy(inputValue), 3),
+                })}
                 <ALink
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
@@ -333,7 +337,7 @@ const StakingPanel: FunctionComponent = () => {
                 <>
                   {account && (
                     <BetweenBox style={{ marginTop: '8px' }}>
-                      <SubTitle>Wallet Balance</SubTitle>
+                      <SubTitle>{t('STAKE_27')}</SubTitle>
                       <SubTitle>{`${formatNumber(new BN(balance).div(10 ** 18), 2)} KCS`}</SubTitle>
                     </BetweenBox>
                   )}
@@ -347,7 +351,7 @@ const StakingPanel: FunctionComponent = () => {
                     />
                   </CenterBox>
                   <FlexBox style={{ flexFlow: 'column nowrap' }}>
-                    <SubTitle style={{ marginBottom: '8px' }}>You will receive</SubTitle>
+                    <SubTitle style={{ marginBottom: '8px' }}>{t('STAKE_66')}</SubTitle>
                     <StyledInput
                       showMax={false}
                       suffix="sKCS"
@@ -363,7 +367,7 @@ const StakingPanel: FunctionComponent = () => {
                     />
                     {account && (
                       <BetweenBox style={{ marginTop: '8px' }}>
-                        <SubTitle>Staked Balance</SubTitle>
+                        <SubTitle>{t('STAKE_87')}</SubTitle>
                         <SubTitle>{`${formatNumber(
                           new BN(staker.userData?.stakeAmount.toString() ?? 0).div(10 ** 18),
                           2
