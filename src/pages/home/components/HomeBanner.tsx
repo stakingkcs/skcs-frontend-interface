@@ -7,6 +7,7 @@ import BN from 'bignumber.js'
 import { Link, useHistory } from 'react-router-dom'
 import DanamicBg from '../../../components/DynamicBg/index'
 import { Trans, useTranslation } from 'react-i18next'
+import { useResponsive } from 'utils/responsive'
 
 const mbg = require('../../../assets/images/home/mbg-header.png').default
 
@@ -30,11 +31,11 @@ const Content = styled.div`
   height: 864px;
   background: url(${kcsBg}) right 80% no-repeat;
   background-size: 419px 451px;
-
   @media (max-width: 768px) {
+    background: none;
     width: 100%;
     padding: 0 26px;
-    background: none;
+    background-size: 100% auto;
   }
 `
 
@@ -47,6 +48,7 @@ const Title = styled.div`
   width: 944px;
   color: #ffffff;
   padding-top: 243px;
+
   @media (max-width: 768px) {
     padding-top: 70px;
     width: 100%;
@@ -85,6 +87,8 @@ const HomeBanner: React.FunctionComponent = () => {
   const staker = useStakerState()
   const history = useHistory()
   const { t } = useTranslation()
+  const { isMobile } = useResponsive()
+
   return (
     <>
       <Header>
@@ -98,7 +102,7 @@ const HomeBanner: React.FunctionComponent = () => {
             })} */}
 
             <Trans
-              i18nKey="HOME_1" // optional -> fallbacks to defaults if not provided
+              i18nKey={isMobile ? 'HOME_2' : 'HOME_1'} // optional -> fallbacks to defaults if not provided
               values={{
                 totalKCS: formatNumber(new BN(staker.accumulatedStakedKCSAmount.toString()).div(10 ** 18) ?? 0),
                 totalRewards: formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18)),

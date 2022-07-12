@@ -24,25 +24,6 @@ const HomeWrap = styled.div`
   }
 `
 
-const bannerBg = require('../../assets/images/home/banner.png').default
-const bannerBgH5 = require('../../assets/images/home/banner-h5.png').default
-
-const Banner = styled.div`
-  box-sizing: border-box;
-  height: 600px;
-  width: 100%;
-  background: url(${bannerBg}) bottom center no-repeat;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  @media (max-width: 768px) {
-    background: url(${bannerBgH5}) bottom center no-repeat;
-    height: 320px;
-    background-size: contain;
-  }
-`
-
 const FaqWarp = styled.div`
   display: flex;
   justify-content: center;

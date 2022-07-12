@@ -1,5 +1,6 @@
 {
   "HOME_1": "The sKCS protocol currently has <wrap /> <number>{{totalKCS}}</number> of KCS staked and <wrap /><number>{{totalRewards}}</number> KCS of rewards paid with <wrap /><number>{{apy}}%</number> APY",
+  "HOME_2": "The sKCS protocol currently has <number>{{totalKCS}}</number> of KCS staked and <number>{{totalRewards}}</number> KCS of rewards paid with <number>{{apy}}%</number> APY",
   "HOME_4": "APY",
   "HOME_5": "Stake Now",
   "HOME_6": "Staking, Vote and get rewards in 4 steps",

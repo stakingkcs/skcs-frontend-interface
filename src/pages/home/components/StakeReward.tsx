@@ -39,9 +39,6 @@ const StakeWarp = styled.div`
     border: 1px dashed #ffffff;
     margin: 0 25px;
   }
-  /* @media (max-width: 768px) {
-    background: url(${mbg}) no-repeat center;
-  } */
 `
 const Title = styled.h2`
   font-family: 'Arial';
