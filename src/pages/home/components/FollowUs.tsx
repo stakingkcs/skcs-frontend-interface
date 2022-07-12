@@ -19,6 +19,9 @@ const TipWarp = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   height: 134px;
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `
 const Desc = styled.p`
   font-size: 16px;
