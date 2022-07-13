@@ -80,7 +80,7 @@ const DeFiMarket: React.FunctionComponent = () => {
     <>
       <Helmet>
         <title>{t('DEFI_17')}</title>
-        <meta name={t('DEFI_19')} content={t('DEFI_18')} />
+        <meta name="description" content={t('DEFI_18')} />
         <meta name={t('STAKE_86')} content={t('HOME_64')} />
         <meta name="twitter:description" content={t('DEFI_18')} />
         <meta name="twitter:card" content="summary" />
