@@ -88,7 +88,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
     if (props.readOnly) return
     if (props.checkBalance && new BN(balance).div(10 ** 18).lte(0)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: t("COMPONENT_4") }
+        return { hasError: true, errorInfo: t('COMPONENT_4') }
       })
     }
   }, [balance, props.checkBalance])
@@ -98,7 +98,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
     if (props.readOnly) return
     if (!account) {
       props.setError(() => {
-        return { hasError: true, errorInfo: t("COMPONENT_5") }
+        return { hasError: true, errorInfo: t('COMPONENT_5') }
       })
       props.setVaule(() => input.target.value)
       return
@@ -122,7 +122,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
 
     if (!Reg.test(value)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: t("COMPONENT_6") }
+        return { hasError: true, errorInfo: t('COMPONENT_6') }
       })
       props.setVaule(() => value)
       return
@@ -130,7 +130,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
 
     if (props.maxLimit && Number(value) > Number(props.maxLimit)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: t("COMPONENT_7") }
+        return { hasError: true, errorInfo: t('COMPONENT_7') }
       })
       props.setVaule(() => value)
       return
@@ -138,7 +138,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
 
     if (Number(value) === 0) {
       props.setError(() => {
-        return { hasError: true, errorInfo: t("COMPONENT_8") }
+        return { hasError: true, errorInfo: t('COMPONENT_8') }
       })
       props.setVaule(() => '0')
     }
@@ -154,7 +154,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
         height="54px"
         size="large"
         style={{ color: '#fff' }}
-        placeholder=""
+        placeholder={props.placeholder}
         value={props.inputValue}
         readOnly={props.readOnly}
         suffix={
@@ -170,12 +170,12 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
 
                   if (Number(props.maxLimit) === 0) {
                     props.setError(() => {
-                      return { hasError: true, errorInfo: t("COMPONENT_8") }
+                      return { hasError: true, errorInfo: t('COMPONENT_8') }
                     })
                   }
                 }}
               >
-                {t("COMPONENT_10")}
+                {t('COMPONENT_10')}
               </MaxButton>
             )}
 

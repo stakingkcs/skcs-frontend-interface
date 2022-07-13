@@ -48,6 +48,8 @@ export const useStakeApr = async () => {
 
   try {
     const yesterdayBlock = Number(latestBlock) - Math.floor((48 * 60 * 60) / 3)
+    console.log('yesterdayBlock', yesterdayBlock)
+
     const contract = getContract(
       getStakerAddress(),
       ABI,
@@ -57,7 +59,13 @@ export const useStakeApr = async () => {
       }) as any
     )
 
-    console.log('yesterdayBlock', yesterdayBlock)
+    const deployBlock = 12933281
+
+    // check blocknumber
+    if (yesterdayBlock < deployBlock) {
+      dispatch(updateStakerPublicDataByKey({ key: 'apr', value: 0 }))
+      return
+    }
 
     const response = await contract.functions.exchangeRate({ blockTag: yesterdayBlock })
 

@@ -53,18 +53,12 @@ const HomePage: React.FunctionComponent = () => {
   return (
     <>
       <Helmet>
-        <title>{t("HOME_62")}</title>
-        <meta
-          name={t("HOME_70")}
-          content={t("HOME_63")}
-        />
-        <meta name={t("STAKE_86")}  content={t("HOME_64")} />
-        <meta
-          name={t("HOME_65")}
-          content={t("HOME_66")}
-        />
-        <meta name={t("HOME_67")} content={t("HOME_68")} />
-        <meta name={t("HOME_69")} content={t("HOME_62")} />
+        <title>{t('HOME_62')}</title>
+        <meta name="description" content={t('HOME_63')} />
+        <meta name={t('STAKE_86')} content={t('HOME_64')} />
+        <meta name="twitter:description" content={t('HOME_63')} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={t('HOME_62')} />
       </Helmet>
       <HomeWrap>
         <HomeBanner />

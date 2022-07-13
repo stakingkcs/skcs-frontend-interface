@@ -326,6 +326,7 @@ const StakingPanel: FunctionComponent = () => {
           >
             <ContentWrap>
               <StyledInput
+                placeholder={t('COMPONENT_3')}
                 inputValue={inputValue}
                 setVaule={setInputValue}
                 error={error}
@@ -355,6 +356,7 @@ const StakingPanel: FunctionComponent = () => {
                     <StyledInput
                       showMax={false}
                       suffix="sKCS"
+                      placeholder={t('COMPONENT_3')}
                       readOnly={true}
                       inputValue={formatNumber(
                         new BN(inputValue === '' ? 0 : inputValue).times(staker.kcsQuetoBySKCS.toString()),

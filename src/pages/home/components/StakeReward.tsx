@@ -145,8 +145,10 @@ const StakeReward: React.FunctionComponent = () => {
             message: t('HOME_7'),
             description: (
               <div>
-                {t('HOME_8', { asset: inputValue })}
-                {formatNumber(new BN(staker.kcsQuetoBySKCS).multipliedBy(inputValue), 3)} sKCS.{' '}
+                {t('HOME_8', {
+                  inputValue: inputValue,
+                  skcsAmount: formatNumber(new BN(staker.kcsQuetoBySKCS).multipliedBy(inputValue), 3),
+                })}
                 <ALink
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
@@ -211,7 +213,7 @@ const StakeReward: React.FunctionComponent = () => {
       return (
         <ColumnCenterBox style={{ width: '100%', height: '272px' }} justify="space-between" align="flex-start">
           <DataItem
-            title={t("HOME_38")}
+            title={t('HOME_38')}
             titleExtra={
               <Tooltip placement="top" title={t('HOME_12')}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
@@ -220,7 +222,7 @@ const StakeReward: React.FunctionComponent = () => {
             balance={`${formatNumber(staker.apr, 2)}%`}
           />
           <DataItem
-            title={t("HOME_13")}
+            title={t('HOME_13')}
             balance={`${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).toString() : 0,
               4
@@ -231,7 +233,7 @@ const StakeReward: React.FunctionComponent = () => {
             )}`}
           />
           <DataItem
-            title={t("HOME_14")}
+            title={t('HOME_14')}
             balance={`${formatNumber(inputValue ? new BN(inputValue).multipliedBy(staker.apr).toString() : 0, 4)}KCS`}
             uBalance={`≈${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).multipliedBy(kcsPrice).toString() : 0,
