@@ -124,7 +124,10 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
       props.setError(() => {
         return { hasError: true, errorInfo: t('COMPONENT_6') }
       })
-      props.setVaule(() => value)
+      const arr = value.split('.')
+      if (arr.length > 1 && arr[arr.length - 1].length < 20) {
+        props.setVaule(() => value)
+      }
       return
     }
 
@@ -157,6 +160,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
         placeholder={props.placeholder}
         value={props.inputValue}
         readOnly={props.readOnly}
+        maxLength={37}
         suffix={
           <RowCenterBox>
             {showMax && (

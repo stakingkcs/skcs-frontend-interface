@@ -175,7 +175,7 @@ const StakeReward: React.FunctionComponent = () => {
     }
   }, [dispatch, stakerContract, account, library, inputValue, setInputValue])
 
-  const renderData = () => {
+  const renderData = React.useCallback(() => {
     if (!isMobile) {
       return (
         <RowCenterBox style={{ width: '100%' }} align="flex-start" justify="space-between">
@@ -243,7 +243,7 @@ const StakeReward: React.FunctionComponent = () => {
         </ColumnCenterBox>
       )
     }
-  }
+  }, [inputValue, staker])
 
   return (
     <>

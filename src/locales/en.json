@@ -163,5 +163,6 @@
   "COMPONENT_28": "The connector config is wrong",
   "COMPONENT_30": "Copy",
   "COMPONENT_31": "View in Blockchain",
-  "COMPONENT_32": "Logout"
+  "COMPONENT_32": "Logout",
+  "View on KCC Explorer":"View on KCC Explorer"
 }

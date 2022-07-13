@@ -9,6 +9,7 @@ import { useKCSPrice, useStakerState } from '../../../state/hooks'
 import { formatNumber } from '../../../utils/bignumber'
 import { useResponsive } from '../../../utils/responsive'
 import { useTranslation } from 'react-i18next'
+import { getStakerAddress } from '../../../utils/addressHelpers'
 
 const { Panel } = Collapse
 
@@ -101,23 +102,23 @@ const Statistics: React.FunctionComponent = () => {
     <StepsWrap>
       <Content>
         <RowCenterBox justify="space-between">
-          <Title>{t("STAKE_35")}</Title>
+          <Title>{t('STAKE_35')}</Title>
         </RowCenterBox>
         <DataRowWrap>
-          <RowData title={t("HOME_38")} content={`${formatNumber(staker.apr * 100, 2)}%`} />
+          <RowData title={t('HOME_38')} content={`${formatNumber(staker.apr * 100, 2)}%`} />
           <RowData
             style={{ marginTop: '12px' }}
-            title={t("STAKE_36")}
+            title={t('STAKE_36')}
             content={`${formatNumber(new BN(staker.totalStakeKCSAmount.toString()).div(10 ** 18), 3)} KCS`}
           />
           <RowData
             style={{ marginTop: '12px' }}
-            title={t("STAKE_37")}
+            title={t('STAKE_37')}
             content={formatNumber(staker.totalStaker.toNumber(), 0)}
           />
           <RowData
             style={{ marginTop: '12px' }}
-            title={t("STAKE_38")}
+            title={t('STAKE_38')}
             content={`$ ${formatNumber(
               kcsPrice.times(
                 new BN(staker.totalStakeSKCSAmount.toString())
@@ -130,7 +131,11 @@ const Statistics: React.FunctionComponent = () => {
           />
           {isMobile && <DividerLine />}
           <CenterBox style={{ alignItems: isMobile ? 'center' : 'flex-start' }}>
-            <ExternalLink style={{ marginTop: '20px' }} url="" name="View on KCC Explorer" />
+            <ExternalLink
+              style={{ marginTop: '20px' }}
+              url={`${process.env.REACT_APP_KCC_EXPLORER}/address/${getStakerAddress()}`}
+              name={t('View on KCC Explorer')}
+            />
           </CenterBox>
         </DataRowWrap>
       </Content>

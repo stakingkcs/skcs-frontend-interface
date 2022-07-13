@@ -461,6 +461,7 @@ const StakingPanel: FunctionComponent = () => {
                 inputValue={inputValue}
                 setVaule={setInputValue}
                 error={error}
+                placeholder={t('COMPONENT_3')}
                 setError={setError}
                 suffix="sKCS"
                 maxLimit={new BN(staker.userData.stakeAmount.toString()).div(10 ** 18).toString()}
@@ -499,6 +500,7 @@ const StakingPanel: FunctionComponent = () => {
                       setVaule={setInputValue}
                       error={error}
                       setError={setError}
+                      placeholder={t('COMPONENT_3')}
                       maxLimit={'0'}
                     />
 
