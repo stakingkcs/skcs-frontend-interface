@@ -19,7 +19,7 @@ const GradientButtonWarp = styled.div`
 
 const GradientButtonBg = styled.div`
   position: absolute;
-  width: 99%;
+  width: calc(100% - 2px);
   height: 46px;
   left: 1px;
   top: 1px;
@@ -29,16 +29,13 @@ const GradientButtonBg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
- 
 `
 
 const GradienButton: React.FunctionComponent<ButtonProps> = (props) => {
   return (
     <>
       <GradientButtonWarp>
-        <GradientButtonBg>
-          {props.children}
-        </GradientButtonBg>
+        <GradientButtonBg>{props.children}</GradientButtonBg>
       </GradientButtonWarp>
     </>
   )

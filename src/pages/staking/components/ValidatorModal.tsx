@@ -219,7 +219,7 @@ const ValidatorModal: React.FunctionComponent<
             </RawBox>
             <RawBox style={{ marginLeft: '16px' }}>
               <Text fontSize="14px" color="#7F8393">
-                {t('STAKE_10')}
+                {t('HOME_38')}
               </Text>
               <Text fontSize="18px" color="#040A2D" marginTop="8px" fontWeight={500}>
                 {`${props.validator?.apr}%`}

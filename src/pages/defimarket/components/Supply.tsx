@@ -89,8 +89,8 @@ const Supply: React.FunctionComponent = () => {
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={
             <RowCenterBox>
-              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DIFI_7")}</Text>
-              <Tooltip placement="top" title={t("DIFI_6")}>
+              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DEFI_7")}</Text>
+              <Tooltip placement="top" title={t("DEFI_6")}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
@@ -108,8 +108,8 @@ const Supply: React.FunctionComponent = () => {
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={
             <RowCenterBox>
-              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DIFI_8")}</Text>
-              <Tooltip placement="top" title={t("DIFI_8")}>
+              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DEFI_8")}</Text>
+              <Tooltip placement="top" title={t("DEFI_8")}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
@@ -121,17 +121,17 @@ const Supply: React.FunctionComponent = () => {
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={
             <RowCenterBox>
-              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DIFI_9")}</Text>
-              <Tooltip placement="top" title={t("DIFI_9")}>
+              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DEFI_9")}</Text>
+              <Tooltip placement="top" title={t("DEFI_9")}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
           }
           content={`80%`}
         />
-        <StyledButton style={{ marginTop: '40px', height: '48px' }}>{t("DIFI_10")}</StyledButton>
+        <StyledButton style={{ marginTop: '40px', height: '48px' }}>{t("DEFI_10")}</StyledButton>
         <GradienButton>
-          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t("DIFI_11")}</GradientText>
+          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t("DEFI_11")}</GradientText>
         </GradienButton>
       </Warp>
     </>

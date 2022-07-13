@@ -181,7 +181,7 @@ const StakingPanel: FunctionComponent = () => {
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '24px', width: '300px' }}>
               <DataItem title={t('STAKE_12')} balance={`0.00 sKCS`} uBalance="≈$0.0000" />
               <DataItem
-                title={t('STAKE_10')}
+                title={t('HOME_38')}
                 titleExtra={
                   <Tooltip placement="top" title={t('HOME_12')}>
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
@@ -238,7 +238,7 @@ const StakingPanel: FunctionComponent = () => {
               />
               {!isMobile && (
                 <DataItem
-                  title={t('STAKE_10')}
+                  title={t('HOME_38')}
                   titleExtra={
                     <Tooltip placement="top" title={t('HOME_12')}>
                       <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />

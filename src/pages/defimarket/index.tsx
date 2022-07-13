@@ -79,33 +79,33 @@ const DeFiMarket: React.FunctionComponent = () => {
   return (
     <>
       <Helmet>
-        <title>{t("DIFI_17")}</title>
+        <title>{t("DEFI_17")}</title>
         <meta
-          name={t("DIFI_19")}
-          content={t("DIFI_18")}
+          name={t("DEFI_19")}
+          content={t("DEFI_18")}
         />
         <meta name={t("STAKE_86")} content={t("HOME_64")} />
         <meta
           name={t("HOME_65")}
-          content={t("DIFI_18")}
+          content={t("DEFI_18")}
         />
         <meta name={t("HOME_67")} content={t("HOME_68")} />
-        <meta name={t("HOME_69")} content={t("DIFI_17")} />
+        <meta name={t("HOME_69")} content={t("DEFI_17")} />
       </Helmet>
 
       <Warp>
-        <Title style={{ textAlign: 'center' }}>{t('DIFI_2')}</Title>
+        <Title style={{ textAlign: 'center' }}>{t('DEFI_2')}</Title>
         <Content>
           {/* <DanamicCenterBg /> */}
           <Banlance />
-          <Title>{t('DIFI_1')}</Title>
-          <Desc>{t('DIFI_3')}</Desc>
+          <Title>{t('DEFI_1')}</Title>
+          <Desc>{t('DEFI_3')}</Desc>
           <DataWarp>
             <Liquidity />
             <Liquidity />
           </DataWarp>
-          <Title>{t('DIFI_4')}</Title>
-          <Desc>{t('DIFI_5')}</Desc>
+          <Title>{t('DEFI_4')}</Title>
+          <Desc>{t('DEFI_5')}</Desc>
           <DataWarp>
             <Supply />
             <Supply />
