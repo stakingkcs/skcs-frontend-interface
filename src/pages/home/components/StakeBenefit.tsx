@@ -52,6 +52,10 @@ const StakeItem = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 25px 25px;
+  @media (max-width: 768px) {
+    height: auto;
+    flex-wrap: nowrap;
+  }
 `
 const StakeIcon = styled.img`
   width: 72px;

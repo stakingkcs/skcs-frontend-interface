@@ -183,7 +183,7 @@ const StakingPanel: FunctionComponent = () => {
               <DataItem
                 title={t('STAKE_10')}
                 titleExtra={
-                  <Tooltip placement="top" title={t('STAKE_11')}>
+                  <Tooltip placement="top" title={t('HOME_12')}>
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
@@ -240,7 +240,7 @@ const StakingPanel: FunctionComponent = () => {
                 <DataItem
                   title={t('STAKE_10')}
                   titleExtra={
-                    <Tooltip placement="top" title={t('STAKE_16')}>
+                    <Tooltip placement="top" title={t('HOME_12')}>
                       <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                     </Tooltip>
                   }

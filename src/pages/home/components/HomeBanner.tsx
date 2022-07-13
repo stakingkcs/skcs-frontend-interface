@@ -20,7 +20,8 @@ const Header = styled.div`
   @media (max-width: 768px) {
     padding: 0;
     width: 100%;
-    background: url(${mbg}) no-repeat top;
+    background: url(${mbg}) no-repeat top center;
+    background-size: 100% 120%;
   }
 `
 

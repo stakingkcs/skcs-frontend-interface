@@ -196,17 +196,17 @@ const LogoutModal: React.FunctionComponent<LogoutModalProps> = (props) => {
   const OperateList = [
     {
       key: '0',
-      title: t("COMPONENT_29"),
+      title: t("COMPONENT_30"),
       icon: <OperateIcon src={require('../../assets/images/Icons/copy.png').default} />,
     },
     {
       key: '1',
-      title: t("COMPONENT_30"),
+      title: t("COMPONENT_31"),
       icon: <OperateIcon src={require('../../assets/images/Icons/share-gray.png').default} />,
     },
     {
       key: '2',
-      title: t("COMPONENT_30"),
+      title: t("COMPONENT_32"),
       icon: <OperateIcon src={require('../../assets/images/Icons/logout.png').default} />,
     },
   ]

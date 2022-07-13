@@ -221,7 +221,7 @@ const UnlockButton: React.FunctionComponent = () => {
               alt="wallet icon"
             />
             <GradientText style={{ paddingRight: isMobile ? '0px' : '15px', fontSize: isMobile ? '12px' : '14px' }}>
-              {t("COMPONENT_2")}
+              {t('HOME_21')}
             </GradientText>
           </GradientButtonContent>
         </GradientButton>
