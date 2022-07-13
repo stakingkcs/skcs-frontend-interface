@@ -93,11 +93,11 @@ const StakingPage: React.FunctionComponent = () => {
         <meta name={t("STAKE_75")} content={t("STAKE_76")} />
         <meta name={t("STAKE_86")} content={t("STAKE_77")} />
         <meta
-          name={t("STAKE_78")}
-          content={t("STAKE_79")}
+          name={t("HOME_65")}
+          content={t("STAKE_76")}
         />
-        <meta name={t("STAKE_80")} content={t("STAKE_83")} />
-        <meta name={t("STAKE_81")} content={t("STAKE_82")} />
+        <meta name={t("HOME_67")} content={t("HOME_68")} />
+        <meta name={t("HOME_69")} content={t("STAKE_77")} />
       </Helmet>
       <HomeWrap>
         <Content>

@@ -122,7 +122,7 @@ const Supply: React.FunctionComponent = () => {
           title={
             <RowCenterBox>
               <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DIFI_9")}</Text>
-              <Tooltip placement="top" title={t("DIFI_12")}>
+              <Tooltip placement="top" title={t("DIFI_9")}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>

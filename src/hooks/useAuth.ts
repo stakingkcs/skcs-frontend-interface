@@ -38,7 +38,7 @@ const useAuth = () => {
             message: t("COMPONENT_20"),
             description: t("COMPONENT_21"),
           })
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_22")}))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_20")}))
         } else if (
           error instanceof UserRejectedRequestErrorInjected ||
           error instanceof UserRejectedRequestErrorWalletConnect
@@ -51,7 +51,7 @@ const useAuth = () => {
             message: t("COMPONENT_23"),
             description: t("COMPONENT_24"),
           })
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_25") }))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_23") }))
         } else {
           StyledNotification.error({
             message: t("COMPONENT_26"),
@@ -65,7 +65,7 @@ const useAuth = () => {
         message: t("COMPONENT_27"),
         description: t("COMPONENT_28"),
       })
-      dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_29") }))
+      dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_27") }))
     }
   }, [])
 

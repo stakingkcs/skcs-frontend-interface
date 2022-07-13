@@ -170,7 +170,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
 
                   if (Number(props.maxLimit) === 0) {
                     props.setError(() => {
-                      return { hasError: true, errorInfo: t("COMPONENT_9") }
+                      return { hasError: true, errorInfo: t("COMPONENT_8") }
                     })
                   }
                 }}

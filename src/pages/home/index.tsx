@@ -58,7 +58,7 @@ const HomePage: React.FunctionComponent = () => {
           name={t("HOME_70")}
           content={t("HOME_63")}
         />
-        <meta name={t("DEFI_28")}  content={t("HOME_64")} />
+        <meta name={t("STAKE_86")}  content={t("HOME_64")} />
         <meta
           name={t("HOME_65")}
           content={t("HOME_66")}

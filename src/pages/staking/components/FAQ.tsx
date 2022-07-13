@@ -180,7 +180,7 @@ const FAQ: React.FunctionComponent = () => {
     <StepsWrap>
       <Content>
         <RowCenterBox justify="space-between">
-          <Title>{t('STAKE_22')}</Title>
+          <Title>{t('HOME_52')}</Title>
           <RowCenterBox
             justify="flex-end"
             style={{ cursor: 'pointer', display: isMobile ? 'none' : 'flex' }}

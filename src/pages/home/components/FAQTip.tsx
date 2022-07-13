@@ -65,7 +65,7 @@ const FAQTip: FunctionComponent<Props> = ({ title, desc }) => {
   return (
     <FAQWarp onClick={() => window.open(sKCS.faq, '_blank')}>
       <Title style={{ fontSize: '32px', margin: '0 0 25px 0', textAlign: isMobile ? 'center' : 'left' }}>
-        {t('HOME_71')}
+        {t('HOME_52')}
       </Title>
       <TipWarp>
         <QuesTitle>{title} </QuesTitle>

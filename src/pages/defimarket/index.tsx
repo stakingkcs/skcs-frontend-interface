@@ -84,13 +84,13 @@ const DeFiMarket: React.FunctionComponent = () => {
           name={t("DIFI_19")}
           content={t("DIFI_18")}
         />
-        <meta name={t("DEFI_28")} content={t("HOME_64")} />
+        <meta name={t("STAKE_86")} content={t("HOME_64")} />
         <meta
-          name={t("DIFI_21")}
+          name={t("HOME_65")}
           content={t("DIFI_18")}
         />
-        <meta name={t("DIFI_25")} content={t("DIFI_26")} />
-        <meta name={t("DIFI_27")} content={t("DIFI_20")} />
+        <meta name={t("HOME_67")} content={t("HOME_68")} />
+        <meta name={t("HOME_69")} content={t("DIFI_17")} />
       </Helmet>
 
       <Warp>

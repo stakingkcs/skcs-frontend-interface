@@ -79,7 +79,7 @@ const Calculator: React.FunctionComponent<CaculatorProps> = (props) => {
           />
           <DataItem title={t("DIFI_22")} balance={`10 sKCS`} uBalance={`≈$0.0026`} />
           <DataItem title={t("DIFI_23")} balance={`10.00%`} />
-          <DataItem title={t("DIFI_24")} balance={`$1,600`} />
+          <DataItem title={t("DIFI_23")} balance={`$1,600`} />
         </RowCenterBox>
       )
     } else {

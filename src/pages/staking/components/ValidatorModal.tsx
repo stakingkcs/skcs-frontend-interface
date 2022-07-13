@@ -264,7 +264,7 @@ const ValidatorModal: React.FunctionComponent<
               })
             }}
           >
-            {t('STAKE_19')}
+            {t('HOME_21')}
           </StyledButton>
         )}
 

@@ -205,7 +205,7 @@ const StakingPanel: FunctionComponent = () => {
         console.log('response.data', response.data)
         if (response.data?.status === 1) {
           StyledNotification.success({
-            message: t('STAKE_54'),
+            message: t('STAKE_1'),
             description: (
               <div>
                 {t('STAKE_55', {
@@ -216,7 +216,7 @@ const StakingPanel: FunctionComponent = () => {
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
-                  {t('STAKE_56')}
+                  {t('HOME_9')}
                 </ALink>
               </div>
             ),
@@ -227,15 +227,15 @@ const StakingPanel: FunctionComponent = () => {
         } else {
           StyledNotification.success({
             message: t('STAKE_57'),
-            description: t('STAKE_58'),
+            description: t('HOME_11'),
           })
         }
       }
     } catch (e) {
       console.log(e)
       StyledNotification.success({
-        message: t('STAKE_59'),
-        description: t('STAKE_60'),
+        message: t('STAKE_57'),
+        description: t('HOME_11'),
       })
     } finally {
       setUnstakeLoading(() => false)
@@ -268,7 +268,7 @@ const StakingPanel: FunctionComponent = () => {
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
-                  {t('STAKE_56')}
+                  {t('HOME_9')}
                 </ALink>
               </div>
             ),
@@ -278,7 +278,7 @@ const StakingPanel: FunctionComponent = () => {
           dispatch(fetchStakersUserDataAsync(account))
         } else {
           StyledNotification.success({
-            message: t('STAKE_62'),
+            message: t('HOME_10'),
             description: t('STAKE_63'),
           })
         }
@@ -385,7 +385,7 @@ const StakingPanel: FunctionComponent = () => {
                     dispatch(toggleConnectWalletModalShow({ show: true }))
                   }}
                 >
-                  {t('STAKE_64')}
+                  {t('HOME_21')}
                 </StyledButton>
               ) : (
                 <StyledButton
@@ -430,7 +430,7 @@ const StakingPanel: FunctionComponent = () => {
                 title={
                   <RowCenterBox>
                     <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t('STAKE_68')}</Text>
-                    <Tooltip placement="top" title={t('STAKE_71')}>
+                    <Tooltip placement="top" title={t('STAKE_69')}>
                       <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                     </Tooltip>
                   </RowCenterBox>
@@ -517,7 +517,7 @@ const StakingPanel: FunctionComponent = () => {
                     dispatch(toggleConnectWalletModalShow({ show: true }))
                   }}
                 >
-                  {t('STAKE_64')}
+                  {t('HOME_21')}
                 </StyledButton>
               ) : (
                 <StyledButton
@@ -571,7 +571,7 @@ const StakingPanel: FunctionComponent = () => {
                 content={`${formatNumber(new BN(staker.rewardFee.toString()).div(10000).toString(), 2)}%`}
               />
 
-              {account && <TipsText>{t('STAKE_70')}</TipsText>}
+              {account && <TipsText>{t('STAKE_67')}</TipsText>}
             </ContentWrap>
           </StyledTabPane>
         </StyledTabs>

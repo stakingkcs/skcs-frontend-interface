@@ -128,7 +128,7 @@ const StakingPanel: FunctionComponent = () => {
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
-                  {t('STAKE_3')}
+                  {t('HOME_9')}
                 </ALink>
               </div>
             ),
@@ -137,8 +137,8 @@ const StakingPanel: FunctionComponent = () => {
           dispatch(fetchStakersUserDataAsync(account))
         } else {
           StyledNotification.success({
-            message: t('STAKE_4'),
-            description: t('STAKE_5'),
+            message: t('HOME_10'),
+            description: t('HOME_11'),
           })
         }
       }
@@ -179,7 +179,7 @@ const StakingPanel: FunctionComponent = () => {
         {!account ? (
           <>
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '24px', width: '300px' }}>
-              <DataItem title={t('STAKE_85')} balance={`0.00 sKCS`} uBalance="≈$0.0000" />
+              <DataItem title={t('STAKE_12')} balance={`0.00 sKCS`} uBalance="≈$0.0000" />
               <DataItem
                 title={t('STAKE_10')}
                 titleExtra={
@@ -281,7 +281,7 @@ const StakingPanel: FunctionComponent = () => {
               dispatch(toggleConnectWalletModalShow({ show: true }))
             }}
           >
-            {t('STAKE_19')}
+            {t('HOME_21')}
           </StyledButton>
         )}
       </ContentWrap>
