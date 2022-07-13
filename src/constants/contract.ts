@@ -1,6 +1,6 @@
 export default {
   staker: {
-    322: '0xbc482CfD97f7083A4b18F93880c75b19Be5a1201',
+    322: '0x98475a146663175125359bBfa4757B5aF80d47E6',
     321: '',
   },
 }

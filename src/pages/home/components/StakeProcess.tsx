@@ -1,14 +1,17 @@
-import React, { Children } from 'react'
-import styled from 'styled-components'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { isMobile } from 'react-device-detect'
-import SwiperCore, { Autoplay } from 'swiper'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
-
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
-import 'swiper/swiper.min.css'
-import 'swiper/swiper-bundle.css'
+import styled from 'styled-components'
+import SwiperCore from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { toggleConnectWalletModalShow } from '../../../state/wallet/actions'
+import { useResponsive } from '../../../utils/responsive'
+import { useWeb3React } from '@web3-react/core'
+import { useHistory } from 'react-router-dom'
+import { useAppDispatch } from 'state'
+import { Navigation, Pagination } from 'swiper'
 import 'swiper/components/pagination/pagination.less'
+import 'swiper/swiper-bundle.css'
+import 'swiper/swiper.min.css'
 import './Swiper.css'
 
 const baseStep = require('../../../assets/images/home/base-step.png').default
@@ -135,33 +138,58 @@ const StakeDesc = styled.p`
 
 const StakeProcess: React.FunctionComponent = () => {
   const { t } = useTranslation()
+  const { account } = useWeb3React()
+  const dispatch = useAppDispatch()
+  const history = useHistory()
+  const { isMobile } = useResponsive()
+
   const processList = [
     {
       icon: require('../../../assets/images/home/c-step1.png').default,
-      title: t("HOME_32"),
+      title: t('HOME_32'),
       link: '',
     },
     {
       icon: require('../../../assets/images/home/c-step2.png').default,
-      title: t("HOME_33"),
+      title: t('HOME_33'),
       link: '',
     },
     {
       icon: require('../../../assets/images/home/c-step3.png').default,
-      title: t("HOME_35"),
+      title: t('HOME_35'),
       link: '',
     },
     {
       icon: require('../../../assets/images/home/c-step4.png').default,
-      title: t("HOME_36"),
+      title: t('HOME_36'),
       link: '',
     },
   ]
+
+  const handleClickStep = React.useCallback(
+    (index: number) => {
+      switch (index) {
+        case 0:
+          if (account) return
+          dispatch(toggleConnectWalletModalShow({ show: true }))
+          break
+        case 1:
+        case 2:
+          history.push('/staking')
+          break
+        case 3:
+          history.push('/defi-market')
+          break
+      }
+    },
+    [account, dispatch, history]
+  )
+
   if (isMobile) {
     SwiperCore.use([Pagination, Navigation])
     return (
       <>
-        <Title>{t("HOME_37")}</Title>
+        <Title>{t('HOME_37')}</Title>
         <StakeWarp>
           <Swiper
             navigation={{
@@ -174,9 +202,9 @@ const StakeProcess: React.FunctionComponent = () => {
               clickable: false,
             }}
           >
-            {processList.map((step) => {
+            {processList.map((step, index) => {
               return (
-                <SwiperSlide key={step.title}>
+                <SwiperSlide onClick={handleClickStep.bind(null, index)} key={step.title}>
                   <StakeItem>
                     <StakeIcon src={step.icon} />
                     <StakeBaseIcon />
@@ -188,7 +216,6 @@ const StakeProcess: React.FunctionComponent = () => {
             <div className="swiper-button-prev">
               <img style={{ width: '36px', height: '36px' }} src={aLeft} alt="" />
             </div>
-            x
             <div className="swiper-button-next">
               <img style={{ width: '36px', height: '36px' }} src={aRight} alt="" />
             </div>
@@ -200,12 +227,12 @@ const StakeProcess: React.FunctionComponent = () => {
 
   return (
     <>
-      <Title>{t("HOME_37")}</Title>
+      <Title>{t('HOME_37')}</Title>
       <StakeWarp>
         {processList.map((step, index) => {
           return (
             <>
-              <StakeItem>
+              <StakeItem onClick={handleClickStep.bind(null, index)}>
                 <StakeIcon src={step.icon} />
                 <StakeBaseIcon />
                 <StakeTitle>{step.title}</StakeTitle>
