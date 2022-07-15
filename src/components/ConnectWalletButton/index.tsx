@@ -23,6 +23,7 @@ import { GradientText } from 'components/Text'
 import { WalletList } from '../../constants/wallet'
 import { useWalletId } from '../../state/hooks'
 import { useResponsive } from 'utils/responsive'
+import { useLanguage } from 'state/application/hooks'
 
 const ConnectButton = styled(LanguageButton)`
   width: auto;
@@ -157,6 +158,8 @@ const AnimationBadge = styled(Badge)`
 const UnlockButton: React.FunctionComponent = () => {
   const { t } = useTranslation()
 
+  const language = useLanguage()
+
   const { account, chainId } = useWeb3React()
 
   const [logoutModalShow, setLogoutModalShow] = React.useState<boolean>(false)
@@ -227,7 +230,7 @@ const UnlockButton: React.FunctionComponent = () => {
         </GradientButton>
       )
     }
-  }, [hasError, account, chainId])
+  }, [hasError, account, chainId, language])
 
   return (
     <div style={{ zIndex: 999, position: 'relative' }}>
