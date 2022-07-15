@@ -116,14 +116,16 @@ const StakingPanel: FunctionComponent = () => {
             message: t('STAKE_1'),
             description: (
               <div>
-                {t('STAKE_2')}
-                {formatNumber(new BN(staker.userData.availableBurnSKCSAmount.toString()).div(10 ** 18).toString(10), 3)}
-                sKCS and receive{' '}
-                {formatNumber(
-                  new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
-                  3
-                )}{' '}
-                KCS.{' '}
+                {t('HOME_3', {
+                  skcs: formatNumber(
+                    new BN(staker.userData.availableBurnSKCSAmount.toString()).div(10 ** 18).toString(10),
+                    3
+                  ),
+                  kcs: formatNumber(
+                    new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
+                    3
+                  ),
+                })}
                 <ALink
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"

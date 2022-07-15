@@ -6,6 +6,7 @@ import Supply from './components/Supply'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 import DanamicCenterBg from '../../components/DynamicBg/DynamicCenterBg'
+import { useLanguage } from '../../state/application/hooks'
 
 const gradientBg = require('../../assets/images/gradient-bg.png').default
 
@@ -81,7 +82,7 @@ const DeFiMarket: React.FunctionComponent = () => {
       <Helmet>
         <title>{t('DEFI_17')}</title>
         <meta name="description" content={t('DEFI_18')} />
-        <meta name={t('STAKE_86')} content={t('HOME_64')} />
+        <meta name="keywords" content={t('HOME_64')} />
         <meta name="twitter:description" content={t('DEFI_18')} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={t('DEFI_17')} />

@@ -224,7 +224,7 @@ const LogoutModal: React.FunctionComponent<LogoutModalProps> = (props) => {
   const copyAddress = () => {
     if (account) {
       copy(account)
-      message.success(i18next.t('Copy Success'))
+      message.success(i18next.t('STAKE_73'))
     }
   }
 

@@ -93,6 +93,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
       })
     }
   }, [balance, props.checkBalance])
+  
 
   const checkValue = (input) => {
     console.log('readonly', props.readOnly)

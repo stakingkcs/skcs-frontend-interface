@@ -62,7 +62,7 @@ const HomePage: React.FunctionComponent = () => {
       <Helmet>
         <title>{t('HOME_62')}</title>
         <meta name="description" content={t('HOME_63')} />
-        <meta name={t('STAKE_86')} content={t('HOME_64')} />
+        <meta name="keywords" content={t('HOME_64')} />
         <meta name="twitter:description" content={t('HOME_63')} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={t('HOME_62')} />
