@@ -119,11 +119,10 @@
   "COMPONENT_13": "網絡",
   "COMPONENT_14": "錢包地址",
   "COMPONENT_15": "請選擇一個錢包",
-  "COMPONENT_16": "連接錢包",
-  "COMPONENT_17": "請選擇連接一個錢包服務商",
+  "COMPONENT_17": "請選擇連接一個錢包應用程式",
   "COMPONENT_19": "網絡錯誤",
-  "COMPONENT_20": "服務運營商錯誤",
-  "COMPONENT_21": "未找到應用程序服務商",
+  "COMPONENT_20": "錢包應用程式錯誤",
+  "COMPONENT_21": "未找到應用程式服務商",
   "COMPONENT_23": "授權錯誤",
   "COMPONENT_24": "請完成帳戶授權",
   "COMPONENT_26": "未知錯誤",
@@ -133,8 +132,9 @@
   "COMPONENT_31": "在區塊鏈瀏覽器中查看",
   "COMPONENT_32": "登出",
   "View on KCC Explorer": "在KCC瀏覽器中查看",
-  "Home": "Home",
-  "Staking": "Staking",
-  "DeFi Market": "DeFi Market",
-  "Doc": "Doc"
+  "Home": "首頁",
+  "Doc": "文檔",
+  "Staking": "質押",
+  "DeFi Market": "DeFi市場",
+  "COMPONENT_16": "請連接你的錢包"
 }

@@ -119,7 +119,6 @@
   "COMPONENT_13": "Network",
   "COMPONENT_14": "Wallet Address",
   "COMPONENT_15": "Please select one of the wallets in the list",
-  "COMPONENT_16": "Connect Your Wallet",
   "COMPONENT_17": "Please connect your wallet with one of the wallet providers",
   "COMPONENT_19": "Unsupported Network",
   "COMPONENT_20": "Provider Error",
@@ -134,7 +133,8 @@
   "COMPONENT_32": "Logout",
   "View on KCC Explorer": "View on KCC Explorer",
   "Home": "Home",
+  "Doc": "Doc",
   "Staking": "Staking",
   "DeFi Market": "DeFi Market",
-  "Doc": "Doc"
+  "COMPONENT_16": "Connect Your Wallet"
 }
