@@ -164,5 +164,9 @@
   "COMPONENT_30": "Copy",
   "COMPONENT_31": "View in Blockchain",
   "COMPONENT_32": "Logout",
-  "View on KCC Explorer":"View on KCC Explorer"
+  "View on KCC Explorer": "View on KCC Explorer",
+  "Home": "Home",
+  "Staking": "Staking",
+  "DeFi Market": "DeFi Market",
+  "Doc": "Doc"
 }

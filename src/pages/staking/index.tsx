@@ -80,9 +80,7 @@ const StaticsPanel = styled.div`
 `
 
 const StakingPage: React.FunctionComponent = () => {
-  // const { isMobile, isTablet, isPC } = useResponsive()
   const { t } = useTranslation()
-
   const { account } = useWeb3React()
   const dispatch = useDispatch()
 

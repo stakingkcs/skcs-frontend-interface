@@ -12,6 +12,8 @@ import StakeBenefit from './components/StakeBenefit'
 import StakeProcess from './components/StakeProcess'
 import StakeReward from './components/StakeReward'
 import { useTranslation } from 'react-i18next'
+import { useInterval } from 'hooks/useInterval'
+import { updateBannerData } from 'state/staker/fetchStaker'
 
 const HomeWrap = styled.div`
   height: auto;
@@ -49,6 +51,11 @@ const HomePage: React.FunctionComponent = () => {
       dispatch(fetchStakerPublicDataAsync(account))
     }
   }, [account, dispatch])
+
+  useInterval(() => {
+    console.log('start to update banner data...')
+    updateBannerData()
+  }, 10000)
 
   return (
     <>

@@ -59,7 +59,7 @@ export const useStakeApr = async () => {
       }) as any
     )
 
-    const deployBlock = 12933281
+    const deployBlock = parseInt(process.env.REACT_APP_DEPOLY_BLOCK as string)
 
     // check blocknumber
     if (yesterdayBlock < deployBlock) {

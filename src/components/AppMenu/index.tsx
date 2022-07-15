@@ -169,7 +169,7 @@ const AppMenu: React.FunctionComponent<AppMenuProps> = ({ style }) => {
         to={getNavRoute(navItem.route)}
         key={navItem?.name}
       >
-        <Title>{navItem?.name}</Title>
+        <Title>{t(navItem?.name)}</Title>
       </NavLink>
     )
   }

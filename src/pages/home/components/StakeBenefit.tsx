@@ -29,17 +29,18 @@ const StakeWarp = styled.div`
     scrollbar-width: none; /* firefox */
     -ms-overflow-style: none; /* IE 10+ */
     &::-webkit-scrollbar {
-      // chrome safari
       display: none;
     }
   }
 `
 
 const StakeContent = styled.div`
-  width: 1200px;
+  width: 100%;
   height: 252px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-flow: row nowrap;
 `
 
 const StakeItem = styled.div`
@@ -49,7 +50,7 @@ const StakeItem = styled.div`
   background: rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-start;
   padding: 25px 25px;
   @media (max-width: 768px) {
@@ -80,6 +81,7 @@ const StakeDesc = styled.p`
 
 const StakeBenefit: React.FunctionComponent = () => {
   const { t } = useTranslation()
+
   const fitList = [
     {
       icon: require('../../../assets/images/home/staking-step1.png').default,

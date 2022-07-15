@@ -107,7 +107,7 @@ const HomeBanner: React.FunctionComponent = () => {
               values={{
                 totalKCS: formatNumber(new BN(staker.accumulatedStakedKCSAmount.toString()).div(10 ** 18) ?? 0),
                 totalRewards: formatNumber(new BN(staker.accumulatedReward.toString()).div(10 ** 18)),
-                apy: formatNumber(staker.apr * 100),
+                apy: formatNumber(staker.apr * 100, 2),
               }}
               components={{ number: <NumberText />, wrap: <br /> }}
             />

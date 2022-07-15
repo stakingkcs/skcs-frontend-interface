@@ -44,7 +44,7 @@ export const StakerSlice = createSlice({
       state.apr = staker.apr
       state.updatedAt = new Date().getTime()
     },
-    updateStakerPublicDataByKey: (state, action) => {
+    updateStakerPublicDataByKey: (state, action: { payload: { key: keyof StakerState, value: any } }) => {
       const { key, value } = action.payload
       state[key] = value
     },
