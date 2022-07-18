@@ -124,6 +124,7 @@ const StakingPanel: FunctionComponent = () => {
                   amount: amount,
                 })}
                 <ALink
+                  style={{ marginLeft: '5px' }}
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
