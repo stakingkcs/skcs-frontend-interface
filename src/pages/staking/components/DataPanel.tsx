@@ -146,7 +146,7 @@ const StakingPanel: FunctionComponent = () => {
     } finally {
       setLoading(() => false)
     }
-  }, [dispatch, stakerContract, account, library])
+  }, [dispatch, stakerContract, account, library, staker])
 
   if (!account && isMobile) return null
 
