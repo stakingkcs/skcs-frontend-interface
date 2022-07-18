@@ -487,7 +487,7 @@ const StakingPanel: FunctionComponent = () => {
                     />
                   </CenterBox>
                   <FlexBox style={{ flexFlow: 'column nowrap' }}>
-                    <SubTitle style={{ marginBottom: '8px' }}>You will receive</SubTitle>
+                    <SubTitle style={{ marginBottom: '8px' }}>{t(`STAKE_66`)}</SubTitle>
                     <StyledInput
                       showMax={false}
                       suffix="KCS"
@@ -558,7 +558,7 @@ const StakingPanel: FunctionComponent = () => {
                   content={`${formatNumber(
                     new BN(inputValue === '' ? 0 : inputValue).times(staker.skcsQuetoByKCS.toString()),
                     3
-                  )} sKCS`}
+                  )} KCS`}
                 />
               )}
 
