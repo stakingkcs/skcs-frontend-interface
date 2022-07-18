@@ -113,7 +113,7 @@ const StakingPanel: FunctionComponent = () => {
         console.log('response.data', response.data)
         if (response.data?.status === 1) {
           StyledNotification.success({
-            message: t('STAKE_1'),
+            message: t('HOME_4'),
             description: (
               <div>
                 {t('HOME_3', {
@@ -135,11 +135,13 @@ const StakingPanel: FunctionComponent = () => {
               </div>
             ),
           })
-          updateBalance(library, account)
-          dispatch(fetchStakersUserDataAsync(account))
+          setTimeout(() => {
+            updateBalance(library, account)
+            dispatch(fetchStakersUserDataAsync(account))
+          }, 1000)
         } else {
           StyledNotification.success({
-            message: t('HOME_10'),
+            message: t('Withdraw failed!'),
             description: t('HOME_11'),
           })
         }
@@ -258,9 +260,9 @@ const StakingPanel: FunctionComponent = () => {
                   new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
                   2
                 )} KCS`}
-                uBalance={`≈${formatNumber(
+                uBalance={`≈$${formatNumber(
                   kcsPrice.multipliedBy(new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18)),
-                  4
+                  2
                 )}`}
               />
 
