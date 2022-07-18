@@ -35,7 +35,7 @@
     "HOME_52": "FAQ",
     "HOME_53": "More",
     "HOME_60": "Have more questions?",
-    "HOME_61": "Check out our Gitbook for more information",
+    "HOME_61": "Check out our GitBook for more information",
     "HOME_63": "Stake KCS and get sKCS to accrue staking rewards over time and earn additional yields with high APY",
     "HOME_66": "Stake KCS and get sKCS to accrue staking rewards over time and earn additional yields with high APY",
     "STAKE_1": "Unstaking confirmed!",
@@ -61,7 +61,7 @@
     "STAKE_31": "How can I use sKCS?",
     "STAKE_32": "The sKCS token will have a range of use cases in the KCC ecosystem. They allow you to access DeFi market while enjoying your staking rewards and helping the network. For example:",
     "STAKE_33": "Borrowing\/Lending - sKCS can be used as collateral or borrowed on multiple platforms.",
-    "STAKE_35": "Statistics",
+    "STAKE_35": "Market Data",
     "STAKE_36": "Total staked amount",
     "STAKE_37": "Stakers",
     "STAKE_38": "sKCS market cap",
@@ -134,5 +134,6 @@
     "DEFI_17": "DeFi Market | sKCS",
     "HOME_3": "{{skcs}} sKCS redeemed for {{kcs}} KCS",
     "HOME_4": "Withdrawal confirmed!",
-    "Withdraw failed!": "Withdraw failed!"
+    "Withdraw failed!": "Withdraw failed!",
+    "Withdraw Notification": "Withdraw {{amount}} KCS successfully!"
 }

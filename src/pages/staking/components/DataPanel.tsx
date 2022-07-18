@@ -108,6 +108,10 @@ const StakingPanel: FunctionComponent = () => {
     if (!account) return
     setLoading(() => true)
     try {
+      const amount = formatNumber(
+        new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
+        3
+      )
       const response = await stakerContractHelper.withdrawKCSFromValidator(stakerContract, account)
       if (response.status) {
         console.log('response.data', response.data)
@@ -116,15 +120,8 @@ const StakingPanel: FunctionComponent = () => {
             message: t('HOME_4'),
             description: (
               <div>
-                {t('HOME_3', {
-                  skcs: formatNumber(
-                    new BN(staker.userData.availableBurnSKCSAmount.toString()).div(10 ** 18).toString(10),
-                    3
-                  ),
-                  kcs: formatNumber(
-                    new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
-                    3
-                  ),
+                {t('Withdraw Notification', {
+                  amount: amount,
                 })}
                 <ALink
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
@@ -135,10 +132,8 @@ const StakingPanel: FunctionComponent = () => {
               </div>
             ),
           })
-          setTimeout(() => {
-            updateBalance(library, account)
-            dispatch(fetchStakersUserDataAsync(account))
-          }, 1000)
+          updateBalance(library, account)
+          dispatch(fetchStakersUserDataAsync(account))
         } else {
           StyledNotification.success({
             message: t('Withdraw failed!'),

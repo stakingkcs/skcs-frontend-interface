@@ -134,5 +134,6 @@
     "DEFI_17": "DeFi 市場 | sKCS",
     "HOME_3": "提取{{skcs}}sKCS並收到{{kcs}}KCS。",
     "HOME_4": "取款已確認！",
-    "Withdraw failed!": "取款失敗！"
+    "Withdraw failed!": "取款失敗！",
+    "Withdraw Notification": "您已成功提取 {{amount}} KCS！"
 }
