@@ -14,6 +14,7 @@ import React from 'react'
 import { isMobile } from 'react-device-detect'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { useKCSPrice, useStakerState } from 'state/hooks'
 import { fetchStakersUserDataAsync } from 'state/staker'
 import { toggleConnectWalletModalShow } from 'state/wallet/actions'
@@ -104,76 +105,10 @@ const StakeReward: React.FunctionComponent = () => {
   const balance = useBalance()
   const staker = useStakerState()
   const { account, library } = useWeb3React()
-  const [loading, setLoading] = React.useState<boolean>(false)
-  const [depositKCSGasFee, setDepositKCSGasFee] = React.useState<BigNumber>(ZERO)
+  const history = useHistory()
   const stakerContract = useStakerContract()
   const kcsPrice = useKCSPrice()
   const dispatch = useDispatch()
-  const maxDepositKCS = React.useMemo(() => {
-    if (balance === '') return ZERO
-    return new BigNumber(balance).sub(depositKCSGasFee)
-  }, [depositKCSGasFee, balance])
-
-  React.useEffect(() => {
-    async function getGasFee() {
-      if (!account) return 0
-      const gasFeeRespond = await stakerContract.estimateGas.depositKCS(account, {
-        value: new BigNumber(100).mul(10).toString(),
-      })
-      console.log('gasFee', gasFeeRespond)
-      setDepositKCSGasFee(() => new BigNumber(gasFeeRespond.toString()))
-    }
-
-    getGasFee()
-  }, [stakerContract, account])
-
-  const handleDeposit = React.useCallback(async () => {
-    if (!account) return
-    setLoading(() => true)
-    try {
-      console.log('inputvalue', inputValue)
-      const response = await stakerContractHelper.depositKCSToValidator(
-        stakerContract,
-        new BN(inputValue).times(10 ** 18),
-        account
-      )
-      if (response.status) {
-        console.log('response.data', response.data)
-
-        if (response.data?.status === 1) {
-          StyledNotification.success({
-            message: t('HOME_7'),
-            description: (
-              <div>
-                {t('HOME_8', {
-                  inputValue: inputValue,
-                  skcsAmount: formatNumber(new BN(staker.kcsQuetoBySKCS).multipliedBy(inputValue), 3),
-                })}
-                <ALink
-                  href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
-                  target="_blank"
-                >
-                  {t('HOME_9')}
-                </ALink>
-              </div>
-            ),
-          })
-          setInputValue(() => '')
-          updateBalance(library, account)
-          dispatch(fetchStakersUserDataAsync(account))
-        } else {
-          StyledNotification.success({
-            message: t('HOME_10'),
-            description: t('HOME_11'),
-          })
-        }
-      }
-    } catch (e) {
-      console.log(e)
-    } finally {
-      setLoading(() => false)
-    }
-  }, [dispatch, stakerContract, account, library, inputValue, setInputValue])
 
   const renderData = React.useCallback(() => {
     if (!isMobile) {
@@ -258,7 +193,7 @@ const StakeReward: React.FunctionComponent = () => {
             value={inputValue}
             setError={setError}
             error={error}
-            maxLimit={new BN(maxDepositKCS.toString()).div(10 ** 18).toString()}
+            maxLimit={new BN(balance).div(10 ** 18).toString()}
           />
           <DataPanelWarp>{renderData()}</DataPanelWarp>
           {!account ? (
@@ -271,9 +206,9 @@ const StakeReward: React.FunctionComponent = () => {
             </StyledButton>
           ) : (
             <StyledButton
-              disabled={!account || !inputValue || error.hasError}
-              loading={loading}
-              onClick={handleDeposit}
+              onClick={() => {
+                history.push('/staking')
+              }}
             >
               {t('HOME_22')}
             </StyledButton>
