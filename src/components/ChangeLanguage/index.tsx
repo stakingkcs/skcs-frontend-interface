@@ -143,7 +143,12 @@ const ChangeLanguage: React.FunctionComponent<ChangeLanguageProps> = ({ styles }
   })
   return (
     <MenuWrap style={styles}>
-      <StyledPopover style={{ background: '#000' }} placement="bottom" content={selectOptions} visible={show}>
+      <StyledPopover
+        style={{ background: '#000' }}
+        placement="bottom"
+        content={selectOptions}
+        visible={show}
+      >
         <BrowserView>
           <StyledButton
             onMouseEnter={showPop}
