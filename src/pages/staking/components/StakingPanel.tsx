@@ -133,7 +133,7 @@ const TipsText = styled.div`
   font-weight: 400;
   font-size: 14px;
   color: #7f8393;
-  margin-top: 16px;
+  margin-top: 36px;
 `
 
 const SubTitle = styled.div`
@@ -427,7 +427,7 @@ const StakingPanel: FunctionComponent = () => {
                 />
               )}
 
-              <RowData
+              {/* <RowData
                 style={{ marginTop: '12px' }}
                 title={
                   <RowCenterBox>
@@ -438,9 +438,9 @@ const StakingPanel: FunctionComponent = () => {
                   </RowCenterBox>
                 }
                 content={`${formatNumber(new BN(staker.rewardFee.toString()).div(100).toString(), 2)}%`}
-              />
+              /> */}
 
-              {account && <TipsText>{t('STAKE_67')}</TipsText>}
+              {/* {account && <TipsText>{t('STAKE_67')}</TipsText>} */}
             </ContentWrap>
           </StyledTabPane>
 
@@ -562,7 +562,7 @@ const StakingPanel: FunctionComponent = () => {
                 />
               )}
 
-              <RowData
+              {/* <RowData
                 style={{ marginTop: '12px' }}
                 title={
                   <RowCenterBox>
@@ -572,10 +572,14 @@ const StakingPanel: FunctionComponent = () => {
                     </Tooltip>
                   </RowCenterBox>
                 }
-                content={`${formatNumber(new BN(staker.rewardFee.toString()).div(100).toString(), 2)}%`}
-              />
+                content={`%`}
+              /> */}
 
-              {account && <TipsText>{t('STAKE_67')}</TipsText>}
+              {account && (
+                <TipsText>
+                  {t('STAKE_67', { fee: formatNumber(new BN(staker.rewardFee.toString()).div(100).toString(), 2) })}
+                </TipsText>
+              )}
             </ContentWrap>
           </StyledTabPane>
         </StyledTabs>
