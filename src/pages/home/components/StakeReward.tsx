@@ -192,7 +192,7 @@ const StakeReward: React.FunctionComponent = () => {
             setVaule={setInputValue}
             value={inputValue}
             setError={setError}
-            error={error}
+            error={{ hasError: false, errorInfo: '' }}
             maxLimit={new BN(balance).div(10 ** 18).toString()}
           />
           <DataPanelWarp>{renderData()}</DataPanelWarp>
