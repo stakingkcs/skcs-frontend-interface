@@ -1,81 +1,39 @@
 import React from 'react'
-import styled from 'styled-components'
-// import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
-// import { useResponsive } from '../../utils/responsive'
-import { fetchPoolsUserDataAsync } from 'state/pools'
+import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import Steps from './components/Steps'
-import FAQ from './components/FAQ'
-import BeValidator from './components/BeValidator'
-import Audit from './components/Audit'
+import { fetchStakerPublicDataAsync } from 'state/staker'
+import FAQTip from './components/FAQTip'
+import FollowUs from './components/FollowUs'
+import HomeBanner from './components/HomeBanner'
+import StakeBenefit from './components/StakeBenefit'
+import StakeProcess from './components/StakeProcess'
+import StakeReward from './components/StakeReward'
+import { useTranslation } from 'react-i18next'
+import { useInterval } from 'hooks/useInterval'
+import { updateBannerData } from 'state/staker/fetchStaker'
 
 const HomeWrap = styled.div`
   height: auto;
   min-height: calc(100vh - 320px);
-  width: 100%;
   background: #000;
-`
-
-const bannerBg = require('../../assets/images/home/banner.png').default
-const bannerBgH5 = require('../../assets/images/home/banner-h5.png').default
-
-const Banner = styled.div`
-  box-sizing: border-box;
-  height: 600px;
-  width: 100%;
-  background: url(${bannerBg}) bottom center no-repeat;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
+  padding-bottom: 160px;
+  margin: 0 auto;
   @media (max-width: 768px) {
-    background: url(${bannerBgH5}) bottom center no-repeat;
-    height: 320px;
-    background-size: contain;
-  }
-`
-const StyledH1 = styled.h1`
-  margin-top: 280px;
-  font-family: 'Barlow';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 52px;
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-  @media (max-width: 768px) {
-    font-size: 32px;
-    margin: 103px 0 16px 0;
-    text-align: center;
-    max-width: 300px;
+    padding: 0;
   }
 `
 
-const StakingButton = styled.div`
-  width: 160px;
-  height: 48px;
-  background: #00d092;
-  border-radius: 27px;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
+const FaqWarp = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  color: #ffffff;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    opacity: 0.9;
-  }
   @media (max-width: 768px) {
-    width: 140px;
-    height: 40px;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
   }
 `
 
@@ -83,33 +41,42 @@ const HomePage: React.FunctionComponent = () => {
   // const { isMobile, isTablet, isPC } = useResponsive()
   // const { t, i18n } = useTranslation()
 
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const dispatch = useDispatch()
   const history = useHistory()
 
   React.useEffect(() => {
     if (account) {
-      dispatch(fetchPoolsUserDataAsync(account))
+      dispatch(fetchStakerPublicDataAsync(account))
     }
   }, [account, dispatch])
+
+  useInterval(() => {
+    console.log('start to update banner data...')
+    updateBannerData()
+  }, 10000)
 
   return (
     <>
       <Helmet>
-        <title>KCC Staking | Buy KCS to Vote | KuCoin Community Chain</title>
-        <meta
-          name="description"
-          content="Staking KuCoin token (KCS), vote and enjoy rewards in KuCoin Community Chain (KCC)."
-        />
-        <meta name="keywords" content="KuCoin token, KCS, KCC, buy KCS, KCC staking" />
-        <meta
-          name="twitter:description"
-          content="Staking KuCoin token (KCS), vote and enjoy rewards in KuCoin Community Chain (KCC)."
-        />
+        <title>{t('HOME_62')}</title>
+        <meta name="description" content={t('HOME_63')} />
+        <meta name="keywords" content={t('HOME_64')} />
+        <meta name="twitter:description" content={t('HOME_63')} />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="KCC Staking | Buy KCS to Vote | KuCoin Community Chain" />
+        <meta name="twitter:title" content={t('HOME_62')} />
       </Helmet>
-      <HomeWrap>home</HomeWrap>
+      <HomeWrap>
+        <HomeBanner />
+        <StakeBenefit />
+        <StakeProcess />
+        <StakeReward />
+        <FaqWarp>
+          <FAQTip title={t('HOME_60')} desc={t('HOME_61')} />
+          <FollowUs />
+        </FaqWarp>
+      </HomeWrap>
     </>
   )
 }

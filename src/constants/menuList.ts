@@ -1,4 +1,4 @@
-import { KCC } from './index'
+import { KCC, sKCS } from './index'
 
 export interface NavItemType {
   name: any
@@ -39,7 +39,7 @@ export const HOME_MENU_LIST = [
 export const MENU_LIST = [
   {
     name: 'Home',
-    route: '/',
+    route: '/home',
     hasChildren: false,
   },
   {
@@ -54,12 +54,12 @@ export const MENU_LIST = [
   },
   {
     name: 'Doc',
-    route: '/',
+    route: sKCS.docs,
     hasChildren: false,
   },
   {
     name: 'FAQ',
-    route: '/',
+    route: sKCS.faq,
     hasChildren: false,
   },
 ]

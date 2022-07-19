@@ -1,30 +1,24 @@
 import FullLoading from 'components/FullLoading'
 import WalletListModal from 'components/WalletListModal'
 import Web3ReactManager, { getLibrary } from 'components/Web3ReactManager'
+import { useStakeApr } from 'hooks/useStakerApr'
 import AppLayout from 'layouts/AppLayout'
+import DeFiMarket from 'pages/defimarket'
 import NotFound from 'pages/error'
 import Home from 'pages/home/'
-import DeFiMarket from 'pages/defimarket'
 import Staking from 'pages/staking'
-import Test from 'pages/test'
-import React, { Suspense, useEffect } from 'react'
-import { Route, Switch } from 'react-router-dom'
-import { useFetchPoolsPublicData } from 'state/hooks'
+import { Suspense } from 'react'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import { useFetchStakerPublicData } from 'state/hooks'
 import { useConnectWalletModalShow } from 'state/wallet/hooks'
-import { getPoolAprList } from 'utils/getAprList'
-import { useSortedPools } from '../state/hooks'
+import { useFetchPriceList } from 'utils/prices'
 
 export default function App() {
+  useFetchStakerPublicData()
+  useFetchPriceList()
+  useStakeApr()
+
   const walletListModalShow = useConnectWalletModalShow()
-
-  useFetchPoolsPublicData()
-
-  const pools = useSortedPools()
-  useEffect(() => {
-    setTimeout(() => {
-      getPoolAprList()
-    }, 100)
-  }, [])
 
   return (
     <Suspense fallback={<FullLoading />}>
@@ -32,10 +26,12 @@ export default function App() {
         <AppLayout>
           <WalletListModal visible={walletListModalShow} />
           <Switch>
-            <Route path="/" exact={true} component={Home} />
+            <Route path="/home" exact={true} component={Home} />
             <Route path="/staking" exact={true} component={Staking} />
             <Route path="/defi-market" exact={true} component={DeFiMarket} />
-            {process.env.REACT_APP_NETWORK_ENV !== 'main' && <Route path="/test" exact={true} component={Test} />}
+            <Route path="/" exact={true}>
+              <Redirect to="/home" />
+            </Route>
             <Route path="*" component={NotFound} />
           </Switch>
         </AppLayout>

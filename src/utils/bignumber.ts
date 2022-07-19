@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+import { BigNumber as EBigNumber } from 'ethers/utils'
 
 export function isNaN(value: string | number): boolean {
   return new BigNumber(`${value}`).isNaN()
@@ -125,4 +126,23 @@ export function formatInputDecimals(inputOne: string, inputTwo: string): string 
   const decimals = _nativeAmountDecimalPlaces > 8 ? _nativeAmountDecimalPlaces : 8
   const result = new BigNumber(formatFixedDecimals(inputOne, decimals)).toFormat().replace(/,/g, '')
   return result
+}
+
+export function formatNumber(
+  input: string | number | BigNumber | EBigNumber | undefined,
+  decimal = 3,
+  groupSize = 3,
+  groupSeparator = ',',
+  decimalSeparator = '.'
+): string {
+  if (input === undefined || !input) {
+    return decimal === 0 ? '0' : `0.${'0'.repeat(decimal)}`
+  }
+  if (Number(input) === 0) {
+    return decimal === 0 ? '0' : `0.${'0'.repeat(decimal)}`
+  }
+
+  let n = typeof input === 'string' || typeof input === 'number' ? input : input.toString()
+
+  return new BigNumber(new BigNumber(n).toFixed(decimal, 1)).toFormat({ groupSeparator, groupSize, decimalSeparator })
 }

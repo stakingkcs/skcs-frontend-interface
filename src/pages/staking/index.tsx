@@ -3,34 +3,27 @@ import styled from 'styled-components'
 // import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 // import { useResponsive } from '../../utils/responsive'
-import { fetchPoolsUserDataAsync } from 'state/pools'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
-import Dashboard from './components/DashBoard'
-import Rules from './components/Rules'
-import ValidatorTable from './components/ValidatorTable'
+import StakingPanel from './components/StakingPanel'
+import FAQ from './components/FAQ'
+import Statistics from './components/Statistics'
+import DanamicCenterBg from '../../components/DynamicBg/DynamicCenterBg'
+import { useTranslation } from 'react-i18next'
+
+const gradientBg = require('../../assets/images/gradient-bg.png').default
 
 export const HomeWrap = styled.div`
+  padding-top: 140px;
   height: auto;
+  min-height: calc(100vh - 100px);
   width: 100%;
-`
-
-export const Banner = styled.div`
-  width: 100%;
-  height: 340px;
-  background: #000;
+  background-size: 1600px auto;
+  background: url(${gradientBg}) center -400px no-repeat;
   @media (max-width: 768px) {
-    height: 325px;
-  }
-`
-
-export const ContentWrap = styled.div`
-  background: #ececf0;
-  width: 100%;
-  height: auto;
-  position: relative;
-  @media (max-width: 768px) {
-    padding: 0 20px 20px 20px;
+    background: url(${gradientBg}) top center no-repeat;
+    padding-top: 10px;
+    background-attachment: fixed;
   }
 `
 
@@ -40,58 +33,82 @@ export const Content = styled.div`
   margin: 0 auto;
   position: relative;
   height: auto;
-  top: -174px;
+  z-index: 99;
+`
+
+const BottomPanel = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: auto;
+  padding-top: 64px;
+  padding-bottom: 60px;
   @media (max-width: 768px) {
-    top: -274px;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+    padding-bottom: 22px;
   }
 `
 
-export const PageTitle = styled.h1`
-  font-family: 'Barlow';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 40px;
-  display: flex;
-  align-items: center;
-  color: #ffffff;
+const FaqWrap = styled.div`
+  width: 568px;
+  height: 100%;
+  order: 0;
   @media (max-width: 768px) {
-    font-size: 32px;
+    width: 100%;
+    order: 1;
+  }
+`
+const StaticsPanel = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 600px;
+  height: 100%;
+  border: 1;
+  order: 1;
+  @media (max-width: 768px) {
+    width: 100%;
+    order: 0;
   }
 `
 
 const StakingPage: React.FunctionComponent = () => {
-  // const { isMobile, isTablet, isPC } = useResponsive()
-  // const { t, i18n } = useTranslation()
-
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const dispatch = useDispatch()
-
-  React.useEffect(() => {
-    if (account) {
-      dispatch(fetchPoolsUserDataAsync(account))
-    }
-  }, [account, dispatch])
 
   return (
     <>
       <Helmet>
-        <title>KuCoin Token Staking | Earn KCS Rewards | KuCoin Community Chain</title>
-        <meta
-          name="description"
-          content="Buy KCS for staking and voting. Users can earn high APR rewards with KCC staking."
-        />
-        <meta name="keywords" content="KuCoin token, KCS, KCC, buy KCS, KCS staking" />
+        <title>{t('STAKE_74')}</title>
+        <meta name="description" content={t('STAKE_76')} />
+        <meta name="keywords" content={t('STAKE_77')} />
+        <meta name="twitter:description" content={t('STAKE_76')} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={t('STAKE_77')} />
       </Helmet>
       <HomeWrap>
-        <Banner />
-        <ContentWrap>
-          <Content>
-            <PageTitle>Staking to Vote</PageTitle>
-            <Dashboard />
-            <Rules />
-            <ValidatorTable />
-          </Content>
-        </ContentWrap>
+        <Content>
+          {/* <DanamicCenterBg /> */}
+          <div style={{ position: 'relative', zIndex: 999 }}>
+            <StakingPanel />
+            <BottomPanel>
+              <FaqWrap>
+                <FAQ />
+              </FaqWrap>
+              <StaticsPanel>
+                <Statistics />
+              </StaticsPanel>
+            </BottomPanel>
+          </div>
+        </Content>
       </HomeWrap>
     </>
   )

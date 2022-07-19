@@ -2,19 +2,20 @@ import { debounce } from 'lodash'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
-import { fetchPoolsPublicDataAsync } from './pools'
+import { fetchStakerPublicDataAsync } from './staker'
 import { State } from './types'
 import { useWeb3React } from '@web3-react/core'
 import { sortBy } from 'lodash'
-
-let count = 0
+import { getAddress } from 'utils/addressHelpers'
+import tokens from 'constants/tokens'
+import { multiply } from '../utils/bignumber'
+import BigNumber from 'bignumber.js'
 
 const debounceUseFetchPublicData = debounce((account, dispatch) => {
-  console.log('count++++++++++', count++)
-  dispatch(fetchPoolsPublicDataAsync(account))
+  dispatch(fetchStakerPublicDataAsync(account))
 }, 500)
 
-export const useFetchPoolsPublicData = () => {
+export const useFetchStakerPublicData = () => {
   const { account } = useWeb3React()
   const dispatch = useAppDispatch()
   React.useEffect(() => {
@@ -22,24 +23,22 @@ export const useFetchPoolsPublicData = () => {
   }, [dispatch, account])
 }
 
-export const usePools = () => {
-  return useSelector((state: State) => state.pools.data)
+export const useWalletId = () => {
+  return useSelector((state: State) => state.wallet.walletId)
 }
 
-export const usePoolFromAddress = (address: string) => {
-  const pools = useSelector((state: State) => state.pools.data)
-  for (let i = 0; i < pools.length; i++) {
-    if (pools[i].address.toLowerCase() === address.toLowerCase()) {
-      return pools[i]
-    }
-  }
+export const useStakerState = () => {
+  return useSelector((state: State) => state.staker)
 }
 
-export const useSortedPools = () => {
-  const pools = usePools()
-  return sortBy(pools, (p) => (p?.votes ? -p.votes?.toNumber() : 1))
+export const useSKCSPrice = () => {
+  const wkcsAddress = getAddress(tokens.wkcs.address).toLowerCase()
+  return useSelector((state: State) =>
+    new BigNumber(state.prices.data[wkcsAddress].price).multipliedBy(state.staker.skcsQuetoByKCS.toString() ?? '0')
+  )
 }
 
-export const usePoolsUpdatedTime = () => {
-  return useSelector((state: State) => state.pools.updatedAt)
+export const useKCSPrice = () => {
+  const wkcsAddress = getAddress(tokens.wkcs.address).toLowerCase()
+  return useSelector((state: State) => new BigNumber(state.prices.data[wkcsAddress].price))
 }

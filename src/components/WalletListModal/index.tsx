@@ -20,44 +20,43 @@ export interface WalletListModalProps {
 
 const StyledModal = styled(Modal)`
   .ant-modal-content {
-    background: #f8f9fd;
+    background: #000;
+    backdrop-filter: blur(90px);
+    border-radius: 8px;
   }
 `
 
 const Text = styled.div`
-  font-family: 'Barlow';
+  font-family: 'Arial';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  max-width: 265px;
-  justify-content: center;
-  color: #494e67;
-  margin: 20px 0px 20px 0;
+  color: #b4b7c1;
 `
 
 const WalletListWrap = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-content: center;
+  align-items: center;
+  width: 100%;
 `
 
 const WalletItem = styled.div`
   position: relative;
   margin-top: 16px;
-  background: #ffffff;
   border-radius: 8px;
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
   align-items: center;
-  width: 280px;
-  height: 120px;
+  width: 100%;
+  height: 60px;
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.03);
+  padding: 14px 20px;
   cursor: pointer;
   &:hover {
     box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
@@ -82,15 +81,12 @@ const MoreWalletItem = styled.div`
 `
 
 const Name = styled.span`
-  font-weight: 400;
-  color: #01081e;
-  font-size: 14px;
-  font-family: 'Montserrat';
+  font-family: 'Arial';
   font-style: normal;
-  margin-top: 10px;
-  font-weight: 600;
-  font-size: 12px;
-  color: #000000;
+  font-weight: 400;
+  font-size: 14px;
+  color: #efeff2;
+  margin-left: 12px;
 `
 const Icon = styled.div`
   position: relative;
@@ -147,10 +143,13 @@ const WalletListModal: React.FunctionComponent<WalletListModalProps> = ({ visibl
           dispatch(updateWalletId({ walletId: 1 }))
           break
         default:
-          console.log('No wallet is valid')
+          await login(ConnectorNames.Injected)
+          window.localStorage.setItem(connectorLocalStorageKey, ConnectorNames.Injected)
+          dispatch(toggleConnectWalletModalShow({ show: false }))
+          dispatch(updateWalletId({ walletId: selectedId }))
       }
     } else {
-      message.warn(t(`Please select one of the wallets in the list`))
+      message.warn(t('COMPONENT_15'))
     }
   }
 
@@ -158,41 +157,45 @@ const WalletListModal: React.FunctionComponent<WalletListModalProps> = ({ visibl
     connect(id)
   }
 
-  const walletList = WalletList.map((item, index) => {
-    return (
-      <WalletItem key={index} onClick={handleConnect.bind(null, item.id)}>
-        <Image src={item.logo} width="48px" height="auto" />
-        <Name>{item.name}</Name>
-      </WalletItem>
-    )
-  })
+  const walletList = React.useMemo(() => {
+    const mobileOnly = [2]
+    return WalletList.map((item, index) => {
+      if (isMobile || (!isMobile && !mobileOnly.includes(item.id))) {
+        return (
+          <WalletItem key={index} onClick={handleConnect.bind(null, item.id)}>
+            <Image src={item.logo} width="32px" height="auto" />
+            <Name>{item.name}</Name>
+          </WalletItem>
+        )
+      }
+    }).filter((n) => n)
+  }, [isMobile])
 
   return (
     <StyledModal
       visible={visible}
       footer={null}
       centered
-      width={isMobile ? '300px' : '344px'}
-      style={{ borderRadius: '8px', background: '#f8f9fd' }}
+      width={isMobile ? '300px' : '400px'}
+      style={{ borderRadius: '8px', background: '#000000' }}
       destroyOnClose
+      closeIcon={
+        <Image
+          src={require('../../assets/images/Icons/close-white.png').default}
+          width="20px"
+          height="20px"
+          alt="close-icon"
+        />
+      }
       onCancel={() => {
         dispatch(toggleConnectWalletModalShow({ show: false }))
       }}
     >
-      <ColumnCenterBox>
-        <ModalTitle>{t(`Connect Your Wallet`)}</ModalTitle>
-        <Text>Please connect your wallet with one of the wallet providers</Text>
-        <WalletListWrap>
-          {walletList}
-          {/* <MoreWalletItem>
-          <Name>{t(`Coming Soon...`)}</Name>
-          <EllipsisOutlined />
-        </MoreWalletItem> */}
-        </WalletListWrap>
+      <ColumnCenterBox align="flex-start" style={{ width: '100%' }}>
+        <ModalTitle>{t('COMPONENT_16')}</ModalTitle>
+        <Text style={{ marginTop: '16px' }}>{t('COMPONENT_17')}</Text>
+        <WalletListWrap>{walletList}</WalletListWrap>
       </ColumnCenterBox>
-      {/* <ConnectButton onClick={connect}>
-        {selectedId === -1 ? t(`Please select a wallet`) : t(`Connect Wallet`)}
-      </ConnectButton> */}
     </StyledModal>
   )
 }

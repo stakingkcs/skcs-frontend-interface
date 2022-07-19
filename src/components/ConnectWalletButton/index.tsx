@@ -11,12 +11,19 @@ import { useDispatch } from 'react-redux'
 import { toggleConnectWalletModalShow } from '../../state/wallet/actions'
 import { CenterRow } from '../Row'
 import { Badge } from 'antd'
+import { Image } from 'components'
 
 import { AlertOutlined } from '@ant-design/icons'
 
 import i18next from 'i18next'
 import { getNetworkInfo } from 'utils'
 import { switchNetwork } from '../../utils/wallet'
+import { GradientBgColor } from 'components'
+import { GradientText } from 'components/Text'
+import { WalletList } from '../../constants/wallet'
+import { useWalletId } from '../../state/hooks'
+import { useResponsive } from 'utils/responsive'
+import { useLanguage } from 'state/application/hooks'
 
 const ConnectButton = styled(LanguageButton)`
   width: auto;
@@ -27,10 +34,45 @@ const ConnectButton = styled(LanguageButton)`
   cursor: pointer;
   height: 36px;
   font-size: 14px;
-  font-family: Barlow;
   border: 1.5px solid #00d092;
   background: #000;
+  @media (max-width: 768px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 `
+
+const GradientButton = styled(ConnectButton)`
+  position: relative;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  ${GradientBgColor}
+  &:hover {
+    ${GradientBgColor}
+  }
+`
+
+const GradientButtonContent = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+`
+
+const GradientButtonBg = styled.div`
+  position: absolute;
+  width: 99%;
+  height: 34px;
+  left: 1px;
+  top: 1px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 1;
+`
+
 const Text = styled.span`
   user-select: none;
 `
@@ -48,20 +90,36 @@ const HighlightText = styled.span`
 
 const ErrorButton = styled(ConnectButton)`
   color: #f00;
-  border: 1px solid #fff;
   display: flex;
   padding-right: 15px;
   justify-content: center;
   align-items: center;
+  background: rgba(248, 71, 82, 0.2);
+  border-radius: 30px;
+  border: none;
+  &:hover {
+    background: rgba(248, 71, 82, 0.2) !important;
+  }
 
   ${Text} {
-    color: #fff;
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: #f84752;
   }
 `
 const WalletIcon = styled.img`
   width: 20px;
   height: 20px;
   margin-right: 10px;
+  @media (max-width: 768px) {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+  }
 `
 
 const NetworkWrap = styled(CenterRow)`
@@ -100,56 +158,79 @@ const AnimationBadge = styled(Badge)`
 const UnlockButton: React.FunctionComponent = () => {
   const { t } = useTranslation()
 
+  const language = useLanguage()
+
   const { account, chainId } = useWeb3React()
 
   const [logoutModalShow, setLogoutModalShow] = React.useState<boolean>(false)
 
   const dispatch = useDispatch()
 
+  const walletId = useWalletId()
+
   const { errorInfo, hasError } = useWalletErrorInfo()
 
-  const selectedNetworkInfo = React.useMemo(() => {
-    return getNetworkInfo(chainId as any)
-  }, [chainId])
+  const { isMobile } = useResponsive()
+
+  const walletLogo = React.useMemo(() => {
+    return WalletList[walletId].logo
+  }, [walletId])
 
   const hideLogout = (show: boolean) => {
     setLogoutModalShow(() => show)
   }
 
   const connect = () => {
-    console.log('haha')
     dispatch(toggleConnectWalletModalShow({ show: true }))
   }
 
   const btn = React.useMemo(() => {
-    console.log('account', account)
     if (hasError) {
       return (
         <ErrorButton onClick={() => switchNetwork(process.env.REACT_APP_CHAIN_ID)}>
-          <AlertOutlined style={{ fontSize: '16px', color: '#fff', margin: '-2px 5px 0px 5px' }} />
-          <Text>{i18next.t(`${errorInfo}`)}</Text>
+          <Image
+            src={require('../../assets/images/Icons/wifi.png').default}
+            width="20px"
+            height="20px"
+            alt="wifi-icon"
+          />
+          <Text style={{ marginLeft: '6px', fontSize: isMobile ? '12px' : '14px' }}>{i18next.t(`${errorInfo}`)}</Text>
         </ErrorButton>
       )
     } else if (account) {
       return (
-        <ConnectButton
+        <GradientButton
           onClick={() => {
             setLogoutModalShow(() => true)
           }}
         >
-          <WalletIcon src={require('../../assets/images/Icons/wallet.png').default} alt="wallet icon" />
-          {shortAddress(account)}
-        </ConnectButton>
+          <GradientButtonBg />
+          <GradientButtonContent>
+            <WalletIcon
+              src={account ? walletLogo : require('../../assets/images/Icons/wallet.png').default}
+              alt="wallet-icon"
+            />
+            <GradientText style={{ fontSize: isMobile ? '12px' : '14px' }}>{shortAddress(account)}</GradientText>
+          </GradientButtonContent>
+        </GradientButton>
       )
     } else {
       return (
-        <ConnectButton onClick={connect}>
-          <WalletIcon src={require('../../assets/images/Icons/wallet.png').default} alt="wallet icon" />
-          <Text style={{ paddingRight: '15px' }}>{t(`Connect Wallet`)}</Text>
-        </ConnectButton>
+        <GradientButton onClick={connect}>
+          <GradientButtonBg />
+          <GradientButtonContent>
+            <WalletIcon
+              src={account ? walletLogo : require('../../assets/images/Icons/wallet.png').default}
+              alt="wallet icon"
+            />
+            <GradientText style={{ paddingRight: isMobile ? '0px' : '15px', fontSize: isMobile ? '12px' : '14px' }}>
+              {t('HOME_21')}
+            </GradientText>
+          </GradientButtonContent>
+        </GradientButton>
       )
     }
-  }, [hasError, account, chainId])
+  }, [hasError, account, chainId, language])
 
   return (
     <div style={{ zIndex: 999, position: 'relative' }}>

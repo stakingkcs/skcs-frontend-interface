@@ -43,10 +43,6 @@ export function getDecimals(amount: string) {
   }
 }
 
-export function formatNumber(number: any, precision = 6) {
-  return new BN(new BN(number).toFixed(precision, 1)).toNumber().toString()
-}
-
 
 export function isAddress(value: any): string | false {
   try {

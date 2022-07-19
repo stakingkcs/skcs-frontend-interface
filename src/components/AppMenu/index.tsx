@@ -26,7 +26,6 @@ const MenuWrap = styled.div`
   z-index: 2;
   @media (max-width: 768px) {
     margin-left: 0px;
-    justify-align: flex-end;
     position: absolute;
     top: 70px;
     left: 0px;
@@ -39,18 +38,17 @@ const MenuWrap = styled.div`
 const { SubMenu } = Menu
 
 const NavTitle = styled.span`
-  font-family: Barlow;
-  font-size: 16px;
-  color: ${() => theme.colors.primary};
+  font-family: 'Arial';
+  font-size: 14px;
+  color: #fff;
   letter-spacing: 0;
   text-align: center;
   padding: 0;
-  margin: 0;
+  margin: 0px;
 `
 
 const NavSubTitle = styled.div`
   opacity: 0.6;
-  font-family: Barlow;
   font-size: 12px;
   color: ${() => theme.colors.primary};
   letter-spacing: 0;
@@ -171,7 +169,7 @@ const AppMenu: React.FunctionComponent<AppMenuProps> = ({ style }) => {
         to={getNavRoute(navItem.route)}
         key={navItem?.name}
       >
-        <Title>{navItem?.name}</Title>
+        <Title>{t(navItem?.name)}</Title>
       </NavLink>
     )
   }
@@ -187,10 +185,10 @@ const AppMenu: React.FunctionComponent<AppMenuProps> = ({ style }) => {
                 dispatch(changeMobileMenuShow({ show: false }))
               }}
               href={navItem.route}
-              style={{ color: theme.colors.primary }}
+              style={{ color: '#fff', position: 'relative', top: '-5px' }}
               target="_blank"
             >
-              <NavTitle style={{ position: 'relative', top: '-2px' }}>{t(`${navItem.name}`)}</NavTitle>
+              <NavTitle>{t(`${navItem.name}`)}</NavTitle>
             </a>
           </Menu.Item>
         )
@@ -204,9 +202,9 @@ const AppMenu: React.FunctionComponent<AppMenuProps> = ({ style }) => {
               dispatch(changeMobileMenuShow({ show: false }))
             }}
             activeClassName="selected"
-            style={{ color: theme.colors.primary }}
+            style={{ color: theme.colors.primary, cursor: 'pointer', position: 'relative', top: '-5px' }}
           >
-            <NavTitle style={{ position: 'relative', top: '-2px' }}>{t(`${navItem.name}`)}</NavTitle>
+            <NavTitle>{t(`${navItem.name}`)}</NavTitle>
           </NavLink>
         </Menu.Item>
       )

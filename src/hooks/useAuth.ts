@@ -9,12 +9,12 @@ import {
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
 import { connectorLocalStorageKey } from '../constants/wallet'
-import { notification } from 'antd'
 import { ConnectorNames, connectorsByName, injected } from '../connectors'
 import { updateErrorInfo } from '../state/wallet/actions'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import i18next from 'i18next'
+import StyledNotification from 'components/StyledNotification'
 
 /*  */
 const useAuth = () => {
@@ -32,13 +32,13 @@ const useAuth = () => {
       activate(connector, async (error: Error) => {
         if (error instanceof UnsupportedChainIdError) {
           // error modal
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: 'Unsupported Network' }))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_19") }))
         } else if (error instanceof NoEthereumProviderError) {
-          notification.error({
-            message: i18next.t('Provider Error'),
-            description: i18next.t('No provider was found'),
+          StyledNotification.error({
+            message: t("COMPONENT_20"),
+            description: t("COMPONENT_21"),
           })
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: 'Provider Error' }))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_20")}))
         } else if (
           error instanceof UserRejectedRequestErrorInjected ||
           error instanceof UserRejectedRequestErrorWalletConnect
@@ -47,25 +47,25 @@ const useAuth = () => {
             const walletConnector = connector as WalletConnectConnector
             walletConnector.walletConnectProvider = undefined
           }
-          notification.error({
-            message: i18next.t('Authorization Error'),
-            description: i18next.t('Please authorize to access your account'),
+          StyledNotification.error({
+            message: t("COMPONENT_23"),
+            description: t("COMPONENT_24"),
           })
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: 'Authorization Error' }))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_23") }))
         } else {
-          notification.error({
-            message: i18next.t(`Unknown error`),
-            description: i18next.t(`${error.message}`),
+          StyledNotification.error({
+            message: t("COMPONENT_26"),
+            description: t(`${error.message}`),
           })
-          dispatch(updateErrorInfo({ hasError: true, errorInfo: t(`Unknown error`) }))
+          dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_26") }))
         }
       })
     } else {
-      notification.error({
-        message: i18next.t("Can't find connector"),
-        description: i18next.t('The connector config is wrong'),
+      StyledNotification.error({
+        message: t("COMPONENT_27"),
+        description: t("COMPONENT_28"),
       })
-      dispatch(updateErrorInfo({ hasError: true, errorInfo: "Can't find connector" }))
+      dispatch(updateErrorInfo({ hasError: true, errorInfo: t("COMPONENT_27") }))
     }
   }, [])
 

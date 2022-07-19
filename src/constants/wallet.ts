@@ -13,4 +13,24 @@ export const WalletList = [
     name: 'Wallet Connect',
     logo: require('../assets/images/home/walletlink.png').default,
   },
+  {
+    id: 2,
+    name: 'KuCoin Wallet',
+    logo: require('../assets/images/home/kucoinwallet.svg').default,
+  },
+  {
+    id: 3,
+    name: 'Bitkeep',
+    logo: require('../assets/images/home/bitkeep.png').default,
+  },
+  {
+    id: 4,
+    name: 'Token Pocket',
+    logo: require('../assets/images/home/tp.png').default,
+  },
+  {
+    id: 5,
+    name: 'Trust wallet',
+    logo: require('../assets/images/home/trustwallet.png').default,
+  },
 ]

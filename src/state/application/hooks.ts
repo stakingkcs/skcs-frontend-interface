@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
-import BN from 'bignumber.js'
 
 // import { addPopup, PopupContent, removePopup, toggleWalletModal, toggleSettingsMenu } from './actions'
 import { AppState } from '../index'
+import { useActiveWeb3React } from 'hooks'
 
 export function useDark(): boolean {
   return useSelector((state: AppState) => state.application.darkMode === true)
@@ -16,22 +16,9 @@ export function useMobileMenuShow(): boolean {
   return useSelector((state: AppState) => state.application.mobileMenuShow)
 }
 
-export function useBridgeLoading(): { visible: boolean; status: number } {
-  return useSelector((state: AppState) => {
-    return { visible: state.application.bridgeLoadingVisible, status: state.application.bridgeLoadingStatus }
-  })
-}
-
-export function useBridgeLoadingVisible(): boolean {
-  return useSelector((state: AppState) => {
-    return state.application.bridgeLoadingVisible
-  })
-}
-
-export function useAprList(): { [key: string]: string } {
-  return useSelector((state: AppState) => {
-    return state.application.aprList
-  })
+export function useBlockNumber(): number | undefined {
+  const { chainId } = useActiveWeb3React()
+  return useSelector((state: AppState) => state.application.blockNumber[chainId ?? -1])
 }
 
 // get the list of active popups

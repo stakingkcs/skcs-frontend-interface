@@ -1,5 +1,7 @@
 import { BigNumber } from 'ethers/utils'
 import { PoolConfig, ValidatorStatus } from '../constants/types'
+import { ApplicationState } from './application/reducer'
+import { WalletState } from './wallet/reducer'
 
 export type TranslatableText =
   | string
@@ -27,25 +29,38 @@ export interface Pool extends PoolConfig {
   }
 }
 
-export interface PoolsState {
-  data: Pool[]
+export interface StakerState {
+  accumulatedReward: BigNumber
+  accumulatedStakedKCSAmount: BigNumber
+  totalStakeKCSAmount: BigNumber
+  totalStakeSKCSAmount: BigNumber
+  apr: number
+  kcsQuetoBySKCS: number
+  skcsQuetoByKCS: number
+  totalStaker: BigNumber
   updatedAt: number
+  rewardFee: BigNumber
+  userData: {
+    stakeAmount: BigNumber
+    pendingAmount: BigNumber
+    availableWithdrawKCSAmount: BigNumber
+    availableBurnSKCSAmount: BigNumber
+  }
 }
 
 // API Price State
 export interface PriceApiList {
   /* eslint-disable camelcase */
   [key: string]: {
-    name: string
-    symbol: string
     price: string
-    price_BNB: string
   }
 }
 
 export interface PriceApiListThunk {
   /* eslint-disable camelcase */
-  [key: string]: number
+  [key: string]: {
+    price: string
+  }
 }
 
 export interface PriceApiResponse {
@@ -87,6 +102,8 @@ export interface CollectiblesState {
 
 export interface State {
   prices: PriceState
-  pools: PoolsState
+  staker: StakerState
   block: BlockState
+  application: ApplicationState
+  wallet: WalletState
 }

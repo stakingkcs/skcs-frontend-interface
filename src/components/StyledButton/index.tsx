@@ -3,46 +3,37 @@ import styled from 'styled-components'
 
 const StyledButtonWrap = styled(Button)<{ disabled?: boolean; loading: boolean }>`
   width: 100%;
-  height: 40px;
-  background: ${({ disabled, loading }) => {
-    if (disabled) {
-      return '#B4B7C1 !important'
-    }
+  height: 56px;
+  background: ${({ loading }) => {
     if (loading) {
-      return '#fff !important'
+      return 'linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%) !important'
     }
-    return '#00d092 !important'
+    return 'linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%)'
   }};
-  border: ${({ disabled, loading }) => {
-    if (loading) {
-      return '1px solid #00d092 !important'
-    }
-    if (disabled) {
-      return '1px solid #B4B7C1 !important'
-    }
-    return 'none !important'
-  }};
-
-  color: ${({ disabled, loading }) => {
-    if (loading) {
-      return '#00d092 !important'
-    }
-    return '#fff !important'
-  }};
-  border-radius: 20px;
+  outline: none;
+  box-shadow: none;
+  color: #fff;
+  border: none !important;
+  border-radius: 30px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-family: 'Roboto';
   font-size: 14px;
-  font-weight: 500;
   transition: all 0.3s ease-in-out;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  opacity: ${({ disabled }) => {
+    if (disabled) {
+      return 0.5
+    }
+    return 1
+  }};
   &:hover {
-    background: #00d092;
-    font-weight: bold;
-    box-shadow: none;
+    background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%) !important;
   }
 `
 

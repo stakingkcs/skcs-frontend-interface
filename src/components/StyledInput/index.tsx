@@ -1,56 +1,111 @@
-import React from 'react'
 import { Input, InputProps } from 'antd'
-import styled from 'styled-components'
 import BN from 'bignumber.js'
+import { Image } from 'components'
+import React from 'react'
+import styled from 'styled-components'
 
-import './index.less'
+import { useWeb3React } from '@web3-react/core'
 import { useBalance } from '../../state/wallet/hooks'
+import { RowCenterBox } from '../index'
+import './index.less'
+import { useResponsive } from 'utils/responsive'
+import { useTranslation } from 'react-i18next'
 
 const StyledInputWrap = styled.div`
   width: 100%;
   height: auto;
-  margin: 12px 0;
+  position: relative;
 `
 
 const SInput = styled(Input)`
-  background: #ffffff;
-  border: 1px solid #dbdbe6;
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 8px;
+  padding-left: 18px;
+  .ant-input {
+    margin-left: 10px;
+    color: #fff !important;
+    background: transparent;
+    height: 40px;
+  }
+  @media (max-width: 768px) {
+    padding-left: 0px;
+  }
 `
 
 const ErrorInfo = styled.div`
-  margin: 12px 0;
+  position: absolute;
+  bottom: -26px;
+  left: 0;
   color: red;
+  @media (max-width: 768px) {
+    position: relative;
+    bottom: -5px;
+  }
 `
 
 const SuffixText = styled.div`
-  font-family: 'Barlow';
+  font-family: 'Arial';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  color: #7f8393;
+  color: #fff;
+`
+
+const MaxButton = styled.div`
+  background: rgba(0, 208, 146, 0.16);
+  border-radius: 4px;
+  width: 50px;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #00d092;
+  margin-right: 12px;
+  cursor: pointer;
+  padding: 0 3px;
 `
 
 interface Props {
+  inputValue: string
   setVaule: any
   error: { hasError: boolean; errorInfo: string }
   setError: any
   maxLimit: string
   checkBalance?: boolean
+  showMax?: boolean
 }
 
-const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
+const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = true, ...props }) => {
+  const { isMobile } = useResponsive()
   const balance = useBalance()
+  const { account } = useWeb3React()
+  const { t } = useTranslation()
 
   React.useEffect(() => {
-    if (props.checkBalance && new BN(balance).div(10 ** 18).lte(1)) {
+    if (props.readOnly) return
+    if (props.checkBalance && new BN(balance).div(10 ** 18).lte(0)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: 'Insufficient balance' }
+        return { hasError: true, errorInfo: t('COMPONENT_4') }
       })
     }
   }, [balance, props.checkBalance])
+  
 
   const checkValue = (input) => {
+    console.log('readonly', props.readOnly)
+    if (props.readOnly) return
+    if (!account) {
+      props.setError(() => {
+        return { hasError: true, errorInfo: t('COMPONENT_5') }
+      })
+      props.setVaule(() => input.target.value)
+      return
+    }
+
     const value = input.target.value?.trim()
 
     props.setError(() => {
@@ -61,40 +116,92 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = (props) => {
       props.setError(() => {
         return { hasError: true, errorInfo: '' }
       })
+      props.setVaule(() => '')
       return
     }
 
-    const Reg = /^[1-9][0-9]*$/
+    const Reg = /^([1-9][0-9]*|[0])(\.[0-9]{1,18})?$/
 
     if (!Reg.test(value)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: 'Invalid enterger amount and at least enter 1.' }
+        return { hasError: true, errorInfo: t('COMPONENT_6') }
       })
+      const arr = value.split('.')
+      if (arr.length > 1 && arr[arr.length - 1].length < 20) {
+        props.setVaule(() => value)
+      }
       return
     }
 
     if (props.maxLimit && Number(value) > Number(props.maxLimit)) {
       props.setError(() => {
-        return { hasError: true, errorInfo: "Don't exceed the maximum amount and at least enter 1." }
+        return { hasError: true, errorInfo: t('COMPONENT_7') }
       })
+      props.setVaule(() => value)
       return
     }
 
-    props.setVaule(() => Number(value))
+    if (Number(value) === 0) {
+      props.setError(() => {
+        return { hasError: true, errorInfo: t('COMPONENT_8') }
+      })
+      props.setVaule(() => '0')
+    }
+
+    props.setVaule(() => value)
   }
 
   return (
     <StyledInputWrap>
       <SInput
-        type="number"
         onChange={checkValue}
         width="100%"
-        height="40px"
+        height="54px"
         size="large"
-        placeholder="Please enter an integer amount"
-        suffix={<SuffixText>KCS</SuffixText>}
+        style={{ color: '#fff' }}
+        placeholder={props.placeholder}
+        value={props.inputValue}
+        readOnly={props.readOnly}
+        maxLength={37}
+        suffix={
+          <RowCenterBox>
+            {showMax && (
+              <MaxButton
+                onClick={() => {
+                  props.setError(() => {
+                    return { hasError: false, errorInfo: '' }
+                  })
+
+                  props.setVaule(props.maxLimit)
+
+                  if (Number(props.maxLimit) === 0) {
+                    props.setError(() => {
+                      return { hasError: true, errorInfo: t('COMPONENT_8') }
+                    })
+                  }
+                }}
+              >
+                {t('COMPONENT_10')}
+              </MaxButton>
+            )}
+
+            <SuffixText>{props.suffix ?? 'KCS'}</SuffixText>
+          </RowCenterBox>
+        }
+        prefix={
+          isMobile ? null : (
+            <Image
+              src={require('../../assets/images/Icons/kcs.png').default}
+              width="24px"
+              height="24px"
+              alt="kcs-icon"
+            />
+          )
+        }
       />
-      {props.error.hasError && props.error.errorInfo && <ErrorInfo>{`* ${props.error.errorInfo}`}</ErrorInfo>}
+      {!props.readOnly && props.error.hasError && props.error.errorInfo && (
+        <ErrorInfo>{`* ${props.error.errorInfo}`}</ErrorInfo>
+      )}
     </StyledInputWrap>
   )
 }

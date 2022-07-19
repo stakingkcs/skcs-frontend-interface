@@ -1,31 +1,30 @@
-import { Popover } from 'antd'
-import React, { useState } from 'react'
-import styled from 'styled-components'
 import { DownOutlined } from '@ant-design/icons'
-import { allLanguages } from '../../constants/languageCodes'
+import { Popover } from 'antd'
+import React, { CSSProperties, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RowBetween } from '../Row'
 import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../state/index'
+import styled from 'styled-components'
+import { allLanguages } from '../../constants/languageCodes'
+import { theme } from '../../constants/theme'
 import { changeLanguage } from '../../state/application/actions'
 import { useLanguage } from '../../state/application/hooks'
-import { theme } from '../../constants/theme'
+import { AppDispatch } from '../../state/index'
 import { useResponsive } from '../../utils/responsive'
 import { BrowserView, MobileView } from '../Common'
+import { RowBetween } from '../Row'
 
+import StyledButton from 'components/StyledButton'
+import { RowCenterBox } from '../index'
 import './index.less'
 
-export interface ChangeLanguageProps {}
+export interface ChangeLanguageProps {
+  styles?: CSSProperties
+}
 
 const MenuWrap = styled.div`
   display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  flex: 1;
-  text-align: right;
-
   @media (max-width: 768px) {
-    padding-left: 10px;
+    padding-left: 0px;
   }
 `
 
@@ -34,7 +33,6 @@ const LanguageItem = styled.div``
 const Text = styled.div`
   height: 22px;
   font-size: 14px;
-  font-family: Barlow, URWDIN;
   font-weight: 500;
   color: ${() => theme.colors.primary};
   line-height: 24px;
@@ -70,7 +68,28 @@ export const LanguageButton = styled.div`
   }
 `
 
-const ChangeLanguage: React.FunctionComponent<ChangeLanguageProps> = () => {
+const BgColor = styled.div`
+  position: absolute;
+  width: 98%;
+  height: 96%;
+  left: 1%;
+  top: 2%;
+  z-index: 0;
+  background: #000;
+  border-radius: 28px;
+`
+
+const StyledPopover = styled(Popover)`
+  .ant-popover-inner {
+    background-color: #000000 !important;
+  }
+
+  .ant-popover-arrow-content::before {
+    background: #000 !important;
+  }
+`
+
+const ChangeLanguage: React.FunctionComponent<ChangeLanguageProps> = ({ styles }) => {
   const { isMobile } = useResponsive()
   const { i18n } = useTranslation()
 
@@ -123,20 +142,28 @@ const ChangeLanguage: React.FunctionComponent<ChangeLanguageProps> = () => {
     )
   })
   return (
-    <MenuWrap>
-      <Popover style={{ background: '#000' }} placement="bottom" content={selectOptions} visible={show}>
+    <MenuWrap style={styles}>
+      <StyledPopover style={{ background: '#000' }} placement="bottom" content={selectOptions} visible={show}>
         <BrowserView>
-          <LanguageButton
+          <StyledButton
             onMouseEnter={showPop}
             onMouseLeave={hidePopover}
             onClick={() => {
               setShow(() => !show)
             }}
-            style={{ color: theme.colors.primary, fontSize: isMobile ? '14px' : '12px' }}
+            style={{
+              color: theme.colors.primary,
+              fontSize: isMobile ? '14px' : '12px',
+              height: '36px',
+              position: 'relative',
+            }}
           >
-            {currentLanguage}
-            <DownOutlined style={{ fontSize: '10px', marginLeft: isMobile ? '2px' : '6px' }} />
-          </LanguageButton>
+            <BgColor />
+            <RowCenterBox style={{ position: 'relative', zIndex: 2 }}>
+              {currentLanguage}
+              <DownOutlined style={{ fontSize: '10px', marginLeft: isMobile ? '2px' : '6px' }} />
+            </RowCenterBox>
+          </StyledButton>
         </BrowserView>
         <MobileView>
           <LanguageButton
@@ -149,7 +176,7 @@ const ChangeLanguage: React.FunctionComponent<ChangeLanguageProps> = () => {
             <DownOutlined style={{ fontSize: '10px', marginLeft: isMobile ? '2px' : '6px' }} />
           </LanguageButton>
         </MobileView>
-      </Popover>
+      </StyledPopover>
     </MenuWrap>
   )
 }

@@ -1,0 +1,29 @@
+.swiper-container-horizontal > .swiper-pagination-progressbar,
+.swiper-container-vertical > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
+  bottom: 0 !important;
+  top: auto !important;
+  height: 4px;
+  width: 100%;
+  border-bottom: 1px solid #d04aff;
+}
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: #d04aff !important;
+  height: 4px !important;
+}
+.swiper-button-prev:after,
+.swiper-container-rtl .swiper-button-next:after {
+  content: none;
+}
+.swiper-button-next:after,
+.swiper-container-rtl .swiper-button-prev:after {
+  content: none;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  top: 40% !important;
+}
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
+  left: 24px;
+  right: 24px;
+}

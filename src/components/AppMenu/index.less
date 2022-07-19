@@ -63,12 +63,12 @@
   background-color: transparent;
 }
 
-.ant-drawer-content{
+.ant-drawer-content {
   background-color: transparent !important;
 }
 
 .ant-drawer-wrapper-body {
-  background: linear-gradient(180deg, #000000 0%, #044431 100%);;
+  background: linear-gradient(180deg, #000000 0%, #044431 100%);
 }
 
 .ant-drawer-left .ant-drawer-content-wrapper,
@@ -87,5 +87,37 @@
   }
   .ant-menu-submenu {
     border-top: 1px solid @primary-color;
+  }
+}
+
+.selected {
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%);
+    border-radius: 25px;
+    margin-top: -10px;
+  }
+  &:hover {
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%);
+      border-radius: 25px;
+      margin-top: -10px;
+    }
   }
 }

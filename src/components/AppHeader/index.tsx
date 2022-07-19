@@ -1,16 +1,18 @@
-import React from 'react'
-import styled from 'styled-components'
-import AppMenu from '../AppMenu'
-import { theme } from '../../constants/theme'
 import { MenuOutlined } from '@ant-design/icons'
-import { useMobileMenuShow } from '../../state/application/hooks'
-import { useDispatch } from 'react-redux'
-import { changeMobileMenuShow } from '../../state/application/actions'
-import { useResponsive } from '../../utils/responsive'
-import UnlockButton from '../ConnectWalletButton'
-import { withRouter } from 'react-router-dom'
+import ChangeLanguage from 'components/ChangeLanguage'
 import { BrowserView, MobileView } from 'components/Common'
 import { Image } from 'components/index'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory, withRouter } from 'react-router-dom'
+import styled from 'styled-components'
+import { theme } from '../../constants/theme'
+import { changeMobileMenuShow } from '../../state/application/actions'
+import { useMobileMenuShow } from '../../state/application/hooks'
+import { useResponsive } from '../../utils/responsive'
+import AppMenu from '../AppMenu'
+import UnlockButton from '../ConnectWalletButton'
+import { RowCenterBox } from '../index'
 
 const AppHeaderWrap = styled.div`
   display: flex;
@@ -24,7 +26,7 @@ const AppHeaderWrap = styled.div`
   left: 0;
   position: absolute;
   background: transparent;
-  z-index: 6;
+  z-index: 999;
   @media (max-width: 768px) {
     background: #000000;
     position: relative;
@@ -53,9 +55,13 @@ const AppHeaderContent = styled(HeaderLeftWrap)<{ isMobile: boolean }>`
 `
 
 const KccLogo = styled(Image)`
-  width: 94px;
-  height: 32px;
+  width: 104px;
+  height: auto;
+  padding-left: 10px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 60px;
+  }
 `
 
 const MenuClose = styled.img`
@@ -68,6 +74,8 @@ const AppHeader: React.FunctionComponent = () => {
 
   const show = useMobileMenuShow()
   const { isMobile } = useResponsive()
+
+  const history = useHistory()
 
   const dispatch = useDispatch()
 
@@ -95,18 +103,21 @@ const AppHeader: React.FunctionComponent = () => {
             {show ? <AppMenu style={{ width: '100%' }} /> : null}
           </MobileView>
           <KccLogo
-            src={require('../../assets/images/kcc-logo.svg').default}
+            src={require('../../assets/images/Icons/logo.svg').default}
             alt="kcc-logo"
-            onClick={() => window.open('https://kcc.io', '_blank')}
+            onClick={() => {
+              history.push('/')
+            }}
           />
           <BrowserView>
-            <AppMenu style={{ width: '480px', position: 'relative', top: '3px' }} />
+            <AppMenu style={{ width: '580px', position: 'relative', top: '3px' }} />
           </BrowserView>
         </HeaderLeftWrap>
 
-        <Box>
+        <RowCenterBox justify="flex-end">
           <UnlockButton />
-        </Box>
+          <ChangeLanguage styles={{ marginLeft: '12px' }} />
+        </RowCenterBox>
       </AppHeaderContent>
     </AppHeaderWrap>
   )
