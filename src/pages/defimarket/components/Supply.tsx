@@ -11,10 +11,12 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import RowData from 'components/RowData'
 import Calculator from './Calculator'
+import Mask from './Mask'
 
 const caculatImg = require('../../../assets/images/defimarket/caculator.png').default
 
 const Warp = styled.div`
+  position: relative;
   width: 384px;
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.5);
@@ -36,16 +38,18 @@ const Warp = styled.div`
 
 const SymbolWarp = styled.div`
   display: flex;
+  flex-flow: row nowrap;
   justify-content: flex-start;
+  align-items: center;
 `
 const SymbolIcon = styled.img`
-  object-fit: cover;
   margin-right: 16px;
+  width: 48px;
+  height: 48px;
 `
-const SymbolTitle = styled.p`
+const SymbolTitle = styled.div`
   font-family: Arial;
   font-size: 24px;
-  line-height: 24px;
   color: #ffffff;
   font-weight: bold;
 `
@@ -76,28 +80,29 @@ const GradientButtonContent = styled.div`
 
 const Supply: React.FunctionComponent = () => {
   const { t } = useTranslation()
-  
+
   return (
     <>
       <Warp>
+        <Mask />
         <SymbolWarp>
-          <SymbolIcon src={''} />
-          <SymbolTitle>MJT+sKCS</SymbolTitle>
+          <SymbolIcon src="https://static.kcc.network/logo/skcs.png" alt="token-icon" />
+          <SymbolTitle>sKCS</SymbolTitle>
         </SymbolWarp>
         <RowData
           style={{ marginTop: '12px' }}
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={
             <RowCenterBox>
-              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DEFI_7")}</Text>
-              <Tooltip placement="top" title={t("DEFI_6")}>
+              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t('DEFI_7')}</Text>
+              <Tooltip placement="top" title={t('DEFI_6')}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
           }
           content={
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
-              <p style={{ marginBottom: '0' }}> 100%</p>
+              <p style={{ marginBottom: '0' }}> 6% </p>
               {/* <Calculator visible={true}/> */}
               <CaculatorImg src={caculatImg} onClick={() => {}} />
             </div>
@@ -108,30 +113,30 @@ const Supply: React.FunctionComponent = () => {
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={
             <RowCenterBox>
-              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DEFI_8")}</Text>
-              <Tooltip placement="top" title={t("DEFI_8")}>
+              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t('DEFI_8')}</Text>
+              <Tooltip placement="top" title={t('DEFI_8')}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
           }
-          content={`80%`}
+          content={`10%`}
         />
         <RowData
           style={{ marginTop: '12px' }}
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={
             <RowCenterBox>
-              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t("DEFI_9")}</Text>
-              <Tooltip placement="top" title={t("DEFI_9")}>
+              <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t('DEFI_9')}</Text>
+              <Tooltip placement="top" title={t('DEFI_9')}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
           }
-          content={`80%`}
+          content={`10%`}
         />
-        <StyledButton style={{ marginTop: '40px', height: '48px' }}>{t("DEFI_10")}</StyledButton>
+        <StyledButton style={{ marginTop: '40px', height: '48px' }}>{t('DEFI_10')}</StyledButton>
         <GradienButton>
-          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t("DEFI_11")}</GradientText>
+          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t('DEFI_11')}</GradientText>
         </GradienButton>
       </Warp>
     </>

@@ -8,6 +8,8 @@ import GradienButton from 'components/StyledButton/GradientButton'
 import { GradientText } from 'components/Text'
 import { isMobile } from 'react-device-detect'
 import { useTranslation } from 'react-i18next'
+import Mask from './Mask'
+import DoubleTokenLogo from 'components/DoubleTokenLogo'
 
 const Title = styled.div`
   font-family: 'Arial';
@@ -45,6 +47,7 @@ const LiquidityWarp = styled.div`
   width: 384px;
   height: 386px;
   border-radius: 16px;
+  position: relative;
   background: rgba(0, 0, 0, 0.5);
   padding: 36px 24px;
   margin: 0 25px 25px 0;
@@ -59,6 +62,7 @@ const LiquidityWarp = styled.div`
 const SymbolWarp = styled.div`
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 `
 const SymbolIcon = styled.img`
   object-fit: cover;
@@ -71,6 +75,7 @@ const SymbolTitle = styled.p`
   color: #ffffff;
   font-weight: bold;
   margin-bottom: 0;
+  margin-left: 16px;
 `
 const GradientButton = styled.div`
   position: relative;
@@ -97,8 +102,12 @@ const Liquidity: React.FunctionComponent = () => {
   return (
     <>
       <LiquidityWarp>
+        <Mask />
         <SymbolWarp>
-          <SymbolIcon />
+          <DoubleTokenLogo
+            AToken={require('../../../assets/images/Icons/KCSLOGO.png').default}
+            BToken={require('../../../assets/images/Icons/MJTLOGO.png').default}
+          />
           <SymbolTitle>MJT+SKCS</SymbolTitle>
         </SymbolWarp>
         <RowData
@@ -110,14 +119,14 @@ const Liquidity: React.FunctionComponent = () => {
         />
         <RowData
           style={{ marginTop: isMobile ? '22px' : '23px' }}
-          title={t("DEFI_14")}
-          content={`$690,000,0`}
+          title={t('DEFI_14')}
+          content={`$690,000,000`}
           tstyle={{ fontSize: '18px' }}
           dstyle={{ fontWeight: 700, fontSize: '24px' }}
         />
-        <StyledButton style={{ margin: '35px 0 24px 0', height: '48px' }}>{t("DEFI_15")}</StyledButton>
+        <StyledButton style={{ margin: '35px 0 24px 0', height: '48px' }}>{t('DEFI_15')}</StyledButton>
         <GradienButton>
-          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t("DEFI_16")}</GradientText>
+          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t('DEFI_16')}</GradientText>
         </GradienButton>
       </LiquidityWarp>
     </>

@@ -42,7 +42,7 @@ const Desc = styled.div`
 `
 
 const Warp = styled.div`
-  padding: 85px 0;
+  padding: 85px 24px 85px 24px;
   height: auto;
   min-height: calc(100vh - 100px);
   width: 100%;
@@ -97,13 +97,10 @@ const DeFiMarket: React.FunctionComponent = () => {
           <Desc>{t('DEFI_3')}</Desc>
           <DataWarp>
             <Liquidity />
-            <Liquidity />
           </DataWarp>
           <Title>{t('DEFI_4')}</Title>
           <Desc>{t('DEFI_5')}</Desc>
           <DataWarp>
-            <Supply />
-            <Supply />
             <Supply />
           </DataWarp>
         </Content>
