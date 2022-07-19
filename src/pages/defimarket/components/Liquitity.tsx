@@ -108,7 +108,7 @@ const Liquidity: React.FunctionComponent = () => {
             AToken={require('../../../assets/images/Icons/KCSLOGO.png').default}
             BToken={require('../../../assets/images/Icons/MJTLOGO.png').default}
           />
-          <SymbolTitle>MJT+SKCS</SymbolTitle>
+          <SymbolTitle>MJT+sKCS</SymbolTitle>
         </SymbolWarp>
         <RowData
           style={{ marginTop: isMobile ? '15px' : '23px' }}

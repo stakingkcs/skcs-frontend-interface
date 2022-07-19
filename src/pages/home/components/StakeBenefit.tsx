@@ -19,7 +19,7 @@ const Title = styled.h1`
 const StakeWarp = styled.div`
   width: 1200px;
   margin: 0 auto;
-  height: 252px;
+  height: 281px;
   @media (max-width: 768px) {
     width: 100%;
     padding: 0 32px;
@@ -35,8 +35,8 @@ const StakeWarp = styled.div`
 `
 
 const StakeContent = styled.div`
-  width: 100%;
-  height: 252px;
+  width: 1200px;
+  height: 281px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,10 +52,11 @@ const StakeItem = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
+  align-items: center;
   padding: 25px 25px;
+  box-sizing: border-box;
   @media (max-width: 768px) {
-    height: auto;
-    flex-wrap: nowrap;
+    border-radius: 16px;
   }
 `
 const StakeIcon = styled.img`
@@ -70,6 +71,9 @@ const StakeTitle = styled.p`
   font-size: 24px;
   margin-bottom: 0;
   line-height: 48px;
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 `
 const StakeDesc = styled.p`
   color: rgba(127, 131, 147, 1);

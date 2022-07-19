@@ -211,7 +211,7 @@ const StakingPanel: FunctionComponent = () => {
                             tokenAddress: getStakerAddress(),
                             decimals: 18,
                             image: 'https://s3.ap-northeast-1.amazonaws.com/static.kcc.io/logo/skcs.png',
-                            symbol: 'SKCS',
+                            symbol: 'sKCS',
                           })
                         }}
                         alt="add-token-icon"
