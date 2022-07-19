@@ -575,11 +575,9 @@ const StakingPanel: FunctionComponent = () => {
                 content={`%`}
               /> */}
 
-              {account && (
-                <TipsText>
-                  {t('STAKE_67', { fee: formatNumber(new BN(staker.rewardFee.toString()).div(100).toString(), 2) })}
-                </TipsText>
-              )}
+              <TipsText>
+                {t('STAKE_67', { fee: formatNumber(new BN(staker.rewardFee.toString()).div(100).toString(), 2) })}
+              </TipsText>
             </ContentWrap>
           </StyledTabPane>
         </StyledTabs>

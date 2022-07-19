@@ -61,6 +61,7 @@
     "STAKE_31": "如何使用sKCS？",
     "STAKE_32": "sKCS在KCC生態中擁有強大的使用場景，講讓您一邊獲得質押收益，一邊獲得DeFi市場收益機會，一邊幫助網絡的去中心化。例如：",
     "STAKE_33": "借款或放貸：sKCS可以用作抵押品，或在多個平台上放貸。",
+    "STAKE_34": "提供流動性 - sKCS/XXX 池 - 這些流動性池可能會有無常損失，但可以讓你為大量幣對提供流動性。",
     "STAKE_35": "市場數據",
     "STAKE_36": "總質押量",
     "STAKE_37": "質押者",
@@ -135,6 +136,5 @@
     "HOME_3": "提取{{skcs}}sKCS並收到{{kcs}}KCS。",
     "HOME_4": "取款已確認！",
     "Withdraw failed!": "取款失敗！",
-    "Withdraw Notification": "您已成功提取 {{amount}} KCS！",
-    "STAKE_34": "提供流動性 - sKCS\/XXX 池 - 這些流動性池可能會有無常損失，但可以讓你為大量幣對提供流動性。"
+    "Withdraw Notification": "您已成功提取 {{amount}} KCS！"
 }

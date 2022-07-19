@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Image, RowCenterBox } from '../../../components/index'
 import { useResponsive } from '../../../utils/responsive'
 import { sKCS } from 'constants/index'
+import { useLanguage } from 'state/application/hooks'
 
 const { Panel } = Collapse
 
@@ -133,46 +134,51 @@ const MoreText = styled.div`
 
 const FAQ: React.FunctionComponent = () => {
   const { t } = useTranslation()
-  const faqList = [
-    {
-      title: t('STAKE_24'),
-      desc: (
-        <div>
-          <FaqP>{t('STAKE_25')}</FaqP>
-          <FaqP>{t('STAKE_26')}</FaqP>
-        </div>
-      ),
-    },
-    {
-      title: t('STAKE_28'),
-      desc: (
-        <div>
-          <FaqP>{t('STAKE_29')}</FaqP>
-          <FaqP>{t('STAKE_30')}</FaqP>
-        </div>
-      ),
-    },
-    {
-      title: t('STAKE_31'),
-      desc: (
-        <div>
-          <FaqP>{t('STAKE_32')}</FaqP>
-          <FaqP>{t('STAKE_33')}</FaqP>
-          <FaqP>{t('STAKE_34')}</FaqP>
-          <FaqP>{t('STAKE_84')}</FaqP>
-        </div>
-      ),
-    },
-  ]
 
-  const [activeList, setActiveList] = React.useState<boolean[]>(new Array(faqList.length).fill(false))
+  const language = useLanguage()
+
+  const [activeList, setActiveList] = React.useState<boolean[]>(new Array(3).fill(false))
+
+  const faqList = React.useMemo(() => {
+    return [
+      {
+        title: t('STAKE_24'),
+        desc: (
+          <div>
+            <FaqP>{t('STAKE_25')}</FaqP>
+            <FaqP>{t('STAKE_26')}</FaqP>
+          </div>
+        ),
+      },
+      {
+        title: t('STAKE_28'),
+        desc: (
+          <div>
+            <FaqP>{t('STAKE_29')}</FaqP>
+            <FaqP>{t('STAKE_30')}</FaqP>
+          </div>
+        ),
+      },
+      {
+        title: t('STAKE_31'),
+        desc: (
+          <div>
+            <FaqP>{t('STAKE_32')}</FaqP>
+            <FaqP>{t('STAKE_33')}</FaqP>
+            <FaqP>{t('STAKE_34')}</FaqP>
+            <FaqP>{t('STAKE_84')}</FaqP>
+          </div>
+        ),
+      },
+    ]
+  }, [language, t, activeList])
+
   const { isMobile } = useResponsive()
 
   const handlePanelChange = (index) => {
     setActiveList((oldList) => {
       const list = [...oldList]
       list.splice(index, 1, !oldList[index])
-      console.log('list', list)
       return list
     })
   }
