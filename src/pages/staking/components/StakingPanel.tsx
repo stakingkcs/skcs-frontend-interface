@@ -572,7 +572,7 @@ const StakingPanel: FunctionComponent = () => {
                     </Tooltip>
                   </RowCenterBox>
                 }
-                content={`${formatNumber(new BN(staker.rewardFee.toString()).div(10000).toString(), 2)}%`}
+                content={`${formatNumber(new BN(staker.rewardFee.toString()).div(100).toString(), 2)}%`}
               />
 
               {account && <TipsText>{t('STAKE_67')}</TipsText>}
