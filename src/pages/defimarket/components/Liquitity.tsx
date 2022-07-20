@@ -111,20 +111,20 @@ const Liquidity: React.FunctionComponent = () => {
           <SymbolTitle>MJT+sKCS</SymbolTitle>
         </SymbolWarp>
         <RowData
-          style={{ marginTop: isMobile ? '15px' : '23px' }}
+          style={{ marginTop: isMobile ? '15px' : '24px' }}
           tstyle={{ fontSize: '18px' }}
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={t('DEFI_13')}
           content={`100%`}
         />
         <RowData
-          style={{ marginTop: isMobile ? '22px' : '23px' }}
+          style={{ marginTop: isMobile ? '22px' : '12px' }}
           title={t('DEFI_14')}
           content={`$690,000,000`}
           tstyle={{ fontSize: '18px' }}
           dstyle={{ fontWeight: 700, fontSize: '24px' }}
         />
-        <StyledButton style={{ margin: '35px 0 24px 0', height: '48px' }}>{t('DEFI_15')}</StyledButton>
+        <StyledButton style={{ margin: '24px 0 24px 0' }}>{t('DEFI_15')}</StyledButton>
         <GradienButton>
           <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t('DEFI_16')}</GradientText>
         </GradienButton>

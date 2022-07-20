@@ -7,6 +7,7 @@ import { formatNumber } from '../../../utils/bignumber'
 import BN from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { useStakerContract } from '../../../hooks/useContract'
+import { RowCenterBox } from '../../../components/index'
 
 const walletFile = require('../../../assets/images/home/walletfile.png').default
 const exlink = require('../../../assets/images/home/ex_link.png').default
@@ -19,6 +20,7 @@ const BWarp = styled.div`
   padding: 21px 24px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   @media (max-width: 768px) {
     flex-wrap: wrap;
     width: 343px;
@@ -26,21 +28,23 @@ const BWarp = styled.div`
   }
 `
 const IconWarp = styled.div`
-  background: linear-gradient(120.14deg, #0dc898 -4.82%, #b65cf2 113.33%);
+  background: linear-gradient(120.14deg, rgba(13, 200, 152, 0.5) -4.82%, rgba(182, 92, 242, 0.5) 113.33%);
   width: 56px;
   height: 56px;
   border-radius: 28px;
 `
 const Icon = styled.img`
   object-fit: contain;
+  opacity: 1;
 `
 
 const BanlanceWarp = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
 `
-const BanlanceText = styled.p`
+const BanlanceText = styled.div`
   font-family: Arial;
   font-size: 16px;
   line-height: 24px;
@@ -53,12 +57,16 @@ const BanlanceText = styled.p`
 const BanlanceNum = styled.p`
   font-family: Arial;
   font-size: 24px;
-  line-height: 24px;
   color: #ffffff;
   font-weight: bold;
+  margin-top: 0px;
 `
 const LinkWarp = styled.div`
+  padding-top: 4px;
   display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 `
 const LinkText = styled.p`
   font-family: Arial;
@@ -100,7 +108,9 @@ const Banlance: React.FunctionComponent = () => {
           <Icon src={walletFile} />
         </IconWarp>
         <BanlanceWarp>
-          <BanlanceText>{t('STAKE_49')}</BanlanceText>
+          <RowCenterBox align="flex-start">
+            <BanlanceText>{t('STAKE_49')}</BanlanceText>
+          </RowCenterBox>
           <BanlanceNum>{formatNumber(new BN(skcsBalance).div(10 ** 18), 2)} sKCS</BanlanceNum>
         </BanlanceWarp>
         <LinkWarp>

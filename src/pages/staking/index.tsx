@@ -11,19 +11,18 @@ import Statistics from './components/Statistics'
 import DanamicCenterBg from '../../components/DynamicBg/DynamicCenterBg'
 import { useTranslation } from 'react-i18next'
 
-const gradientBg = require('../../assets/images/gradient-bg.png').default
+const gradientBg = require('../../assets/images/bg.jpg').default
 
 export const HomeWrap = styled.div`
   padding-top: 140px;
   height: auto;
   min-height: calc(100vh - 100px);
   width: 100%;
-  background-size: 1600px auto;
-  background: url(${gradientBg}) center -400px no-repeat;
+  background: url(${gradientBg}) top center no-repeat fixed;
+  background-size: 100% 100%;
   @media (max-width: 768px) {
-    background: url(${gradientBg}) top center no-repeat;
+    background: url(${gradientBg}) top center no-repeat fixed;
     padding-top: 10px;
-    background-attachment: fixed;
   }
 `
 

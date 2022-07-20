@@ -5,10 +5,8 @@ import Liquidity from './components/Liquitity'
 import Supply from './components/Supply'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
-import DanamicCenterBg from '../../components/DynamicBg/DynamicCenterBg'
-import { useLanguage } from '../../state/application/hooks'
 
-const gradientBg = require('../../assets/images/gradient-bg.png').default
+const gradientBg = require('../../assets/images/bg.jpg').default
 
 const Title = styled.div`
   font-family: 'Arial';
@@ -17,7 +15,7 @@ const Title = styled.div`
   font-size: 28px;
   text-align: left;
   color: #ffffff;
-  margin: 52px 0 48px 0;
+  margin: 52px 0 12px 0;
   @media (max-width: 768px) {
     font-size: 24px;
     text-align: center;
@@ -46,9 +44,9 @@ const Warp = styled.div`
   height: auto;
   min-height: calc(100vh - 100px);
   width: 100%;
-  background-size: 1600px auto;
   color: white;
-  background: url(${gradientBg}) no-repeat fixed center;
+  background: url(${gradientBg}) top center no-repeat fixed;
+  background-size: 100% 100%;
   @media (max-width: 768px) {
     background: url(${gradientBg}) no-repeat fixed center;
     text-align: center;
@@ -70,7 +68,8 @@ export const Content = styled.div`
 const DataWarp = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   position: relative;
   z-index: 99;
 `

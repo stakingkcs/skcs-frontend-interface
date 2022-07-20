@@ -1,4 +1,3 @@
-import { RowCenterBox } from 'components'
 import React, { CSSProperties, ReactElement } from 'react'
 import styled from 'styled-components'
 

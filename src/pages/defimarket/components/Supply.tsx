@@ -134,7 +134,7 @@ const Supply: React.FunctionComponent = () => {
           }
           content={`10%`}
         />
-        <StyledButton style={{ marginTop: '40px', height: '48px' }}>{t('DEFI_10')}</StyledButton>
+        <StyledButton style={{ marginTop: '40px', height: '48px', marginBottom: '24px' }}>{t('DEFI_10')}</StyledButton>
         <GradienButton>
           <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t('DEFI_11')}</GradientText>
         </GradienButton>
