@@ -165,7 +165,7 @@ const FAQ: React.FunctionComponent = () => {
           <div>
             <FaqP>{t('STAKE_32')}</FaqP>
             <FaqP>{t('STAKE_33')}</FaqP>
-            <FaqP>{t('STAKE_34')}</FaqP>
+            <FaqP>{t("STAKE_32")}</FaqP>
             <FaqP>{t('STAKE_84')}</FaqP>
           </div>
         ),

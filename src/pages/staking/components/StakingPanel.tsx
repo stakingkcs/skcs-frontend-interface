@@ -403,7 +403,7 @@ const StakingPanel: FunctionComponent = () => {
               <RowData
                 style={{ marginTop: '32px' }}
                 title={t('STAKE_65')}
-                content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 4)}KCS`}
+                content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 6)}KCS`}
               />
               {isMobile ? (
                 <RowData
@@ -537,7 +537,7 @@ const StakingPanel: FunctionComponent = () => {
               <RowData
                 style={{ marginTop: '32px' }}
                 title={t('STAKE_65')}
-                content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 4)}KCS`}
+                content={`1sKCS = ${formatNumber(staker.skcsQuetoByKCS, 6)}KCS`}
               />
 
               {isMobile ? (
@@ -575,9 +575,11 @@ const StakingPanel: FunctionComponent = () => {
                 content={`%`}
               /> */}
 
-              <TipsText>
-                {t('STAKE_67', { fee: formatNumber(new BN(staker.rewardFee.toString()).div(100).toString(), 2) })}
-              </TipsText>
+              {account && (
+                <TipsText>
+                  {t('STAKE_67', { fee: formatNumber(new BN(staker.rewardFee.toString()).div(100).toString(), 2) })}
+                </TipsText>
+              )}
             </ContentWrap>
           </StyledTabPane>
         </StyledTabs>
