@@ -266,7 +266,7 @@ const StakingPanel: FunctionComponent = () => {
                 loading={loading}
                 disabled={!account || staker.userData.availableWithdrawKCSAmount.eq(0)}
                 onClick={handleWithdraw}
-                style={{ width: '232px' }}
+                style={{ width: isMobile ? '140px' : '232px' }}
               >
                 {t('STAKE_18')}
               </StyledButton>
