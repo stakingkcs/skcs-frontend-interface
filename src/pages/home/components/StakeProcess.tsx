@@ -108,11 +108,9 @@ const StakeItem = styled.a`
 const StakeDashed = styled.div`
   width: 120px;
   height: 1px;
-  border: 1px dashed #ffffff;
-  opacity: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.5);
   margin-top: 153px;
-  /* left: auto;
-  right: auto; */
+  opacity: 0.5;
 `
 
 const StakeContent = styled.div`
@@ -195,7 +193,7 @@ const StakeProcess: React.FunctionComponent = () => {
             navigation={{
               nextEl: '.swiper-button-next',
               prevEl: '.swiper-button-prev',
-              disabledClass: 'disable', //
+              disabledClass: 'disable',
             }}
             pagination={{
               type: 'progressbar',

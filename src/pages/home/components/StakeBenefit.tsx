@@ -1,8 +1,6 @@
 import React from 'react'
-import { isMobile } from 'react-device-detect'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { width } from 'styled-system'
 
 const Title = styled.h1`
   font-family: 'Arial';
@@ -52,11 +50,12 @@ const StakeItem = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   padding: 25px 25px;
   box-sizing: border-box;
   @media (max-width: 768px) {
     border-radius: 16px;
+    align-items: center;
   }
 `
 const StakeIcon = styled.img`
@@ -84,6 +83,7 @@ const StakeDesc = styled.p`
 `
 
 const StakeBenefit: React.FunctionComponent = () => {
+  
   const { t } = useTranslation()
 
   const fitList = [
@@ -108,6 +108,7 @@ const StakeBenefit: React.FunctionComponent = () => {
       desc: t('HOME_30'),
     },
   ]
+
   return (
     <>
       <Title>{t('HOME_31')}</Title>

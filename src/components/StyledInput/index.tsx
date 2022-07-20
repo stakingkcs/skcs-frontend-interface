@@ -22,11 +22,13 @@ const SInput = styled(Input)`
   border: none;
   border-radius: 8px;
   padding-left: 18px;
+  font-family: Arial;
   .ant-input {
     margin-left: 10px;
     color: #fff !important;
     background: transparent;
     height: 40px;
+    font-family: Arial;
   }
   @media (max-width: 768px) {
     padding-left: 0px;
@@ -38,6 +40,7 @@ const ErrorInfo = styled.div`
   bottom: -26px;
   left: 0;
   color: red;
+  font-family: Arial;
   @media (max-width: 768px) {
     position: relative;
     bottom: -5px;
@@ -93,7 +96,6 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
       })
     }
   }, [balance, props.checkBalance])
-  
 
   const checkValue = (input) => {
     console.log('readonly', props.readOnly)

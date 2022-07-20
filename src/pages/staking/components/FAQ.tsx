@@ -93,6 +93,7 @@ const Title = styled.div`
 `
 
 const PanelHeader = styled.div`
+  font-family: 'Arial';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -112,6 +113,7 @@ const PanelHeader = styled.div`
 `
 
 const FaqP = styled.div`
+  font-family: 'Arial';
   line-height: 1.4;
   &:not(:first-child) {
     margin-top: 5px;
@@ -216,7 +218,7 @@ const FAQ: React.FunctionComponent = () => {
                   <Panel
                     header={
                       <PanelHeader>
-                        <span style={{ textAlign: 'left' }}>{`${index + 1}. ${faq.title}`}</span>
+                        <span style={{ textAlign: 'left', fontFamily: 'Arial' }}>{`${index + 1}. ${faq.title}`}</span>
                         {!activeList[index] ? (
                           <Image
                             src={require('../../../assets/images/Icons/purple-plus.png').default}
@@ -235,7 +237,7 @@ const FAQ: React.FunctionComponent = () => {
                       </PanelHeader>
                     }
                     showArrow={false}
-                    key={faq.title}
+                    key={index}
                   >
                     {faq.desc}
                   </Panel>

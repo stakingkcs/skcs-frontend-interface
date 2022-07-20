@@ -26,8 +26,8 @@ const StyledButtonWrap = styled(Button)<{ disabled?: boolean; loading: boolean }
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
-  opacity: ${({ disabled }) => {
-    if (disabled) {
+  opacity: ${({ disabled, loading }) => {
+    if (disabled || loading) {
       return 0.5
     }
     return 1

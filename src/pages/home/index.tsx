@@ -30,6 +30,7 @@ const FaqWarp = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: -80px;
   @media (max-width: 768px) {
     flex-flow: column;
     justify-content: center;
