@@ -46,7 +46,7 @@ const Title = styled.div`
   font-size: 54px;
   line-height: 62px;
   text-align: left;
-  width: 944px;
+  width: 960px;
   color: #ffffff;
   padding-top: 243px;
 
