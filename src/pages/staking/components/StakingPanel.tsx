@@ -25,6 +25,7 @@ import DataPanel from './DataPanel'
 import { useTranslation, Trans } from 'react-i18next'
 import { CenterBox, BetweenBox } from '../../../components/index'
 import { useResponsive } from 'utils/responsive'
+import GreenExternalLink from 'components/ExternalLink/GreenExternalLink'
 
 const { TabPane } = Tabs
 
@@ -212,12 +213,16 @@ const StakingPanel: FunctionComponent = () => {
                   inputValue: inputValue,
                   totalKSC: formatNumber(new BN(inputValue).multipliedBy(staker.skcsQuetoByKCS.toString()), 3),
                 })}
-                <ALink
+                {/* <ALink
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
                   {t('HOME_9')}
-                </ALink>
+                </ALink> */}
+                <GreenExternalLink
+                  name={t('HOME_9')}
+                  url={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
+                />
               </div>
             ),
           })
@@ -264,12 +269,16 @@ const StakingPanel: FunctionComponent = () => {
                   inputValue: inputValue,
                   totalsKSC: formatNumber(new BN(staker.kcsQuetoBySKCS).multipliedBy(inputValue), 3),
                 })}
-                <ALink
+                {/* <ALink
                   href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
                   target="_blank"
                 >
                   {t('HOME_9')}
-                </ALink>
+                </ALink> */}
+                <GreenExternalLink
+                  name={t('HOME_9')}
+                  url={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
+                />
               </div>
             ),
           })

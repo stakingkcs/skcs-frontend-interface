@@ -22,6 +22,7 @@ import { getStakerAddress } from '../../../utils/addressHelpers'
 import { formatNumber } from '../../../utils/bignumber'
 import { stakerContractHelper } from '../../../utils/validator'
 import { addTokenToWallet } from '../../../utils/wallet'
+import GreenExternalLink from '../../../components/ExternalLink/GreenExternalLink';
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -123,13 +124,12 @@ const StakingPanel: FunctionComponent = () => {
                 {t('Withdraw Notification', {
                   amount: amount,
                 })}
-                <ALink
-                  style={{ marginLeft: '5px' }}
-                  href={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
-                  target="_blank"
-                >
-                  {t('HOME_9')}
-                </ALink>
+                {/* <ALink style={{ marginLeft: '5px' }} href={} target="_blank"></ALink> */}
+                
+                <GreenExternalLink
+                  name={t('HOME_9')}
+                  url={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
+                />
               </div>
             ),
           })

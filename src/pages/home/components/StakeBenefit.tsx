@@ -55,7 +55,6 @@ const StakeItem = styled.div`
   box-sizing: border-box;
   @media (max-width: 768px) {
     border-radius: 16px;
-    align-items: center;
   }
 `
 const StakeIcon = styled.img`
