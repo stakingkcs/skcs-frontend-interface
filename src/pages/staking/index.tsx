@@ -12,6 +12,7 @@ import DanamicCenterBg from '../../components/DynamicBg/DynamicCenterBg'
 import { useTranslation } from 'react-i18next'
 
 const gradientBg = require('../../assets/images/bg.jpg').default
+const mGradientBg = require('../../assets/images/mobile_bg.jpg').default
 
 export const HomeWrap = styled.div`
   padding-top: 140px;
@@ -21,7 +22,7 @@ export const HomeWrap = styled.div`
   background: url(${gradientBg}) top center no-repeat fixed;
   background-size: 100% 100%;
   @media (max-width: 768px) {
-    background: url(${gradientBg}) top center no-repeat fixed;
+    background: url(${mGradientBg}) top center no-repeat fixed;
     padding-top: 10px;
   }
 `

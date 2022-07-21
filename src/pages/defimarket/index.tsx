@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 
 const gradientBg = require('../../assets/images/bg.jpg').default
+const mGradientBg = require('../../assets/images/mobile_bg.jpg').default
 
 const Title = styled.div`
   font-family: 'Arial';
@@ -48,7 +49,8 @@ const Warp = styled.div`
   background: url(${gradientBg}) top center no-repeat fixed;
   background-size: 100% 100%;
   @media (max-width: 768px) {
-    background: url(${gradientBg}) no-repeat fixed center;
+    background: url(${mGradientBg}) no-repeat fixed center top;
+    background-size: 100% 100%;
     text-align: center;
   }
 `
