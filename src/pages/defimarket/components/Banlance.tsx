@@ -9,7 +9,7 @@ import { useWeb3React } from '@web3-react/core'
 import { useStakerContract } from '../../../hooks/useContract'
 import { RowCenterBox } from '../../../components/index'
 
-const walletFile = require('../../../assets/images/home/walletfile.png').default
+const walletFile = require('../../../assets/images/Icons/grandient-wallet.png').default
 const exlink = require('../../../assets/images/home/ex_link.png').default
 
 const BWarp = styled.div`
@@ -28,14 +28,14 @@ const BWarp = styled.div`
   }
 `
 const IconWarp = styled.div`
-  background: linear-gradient(120.14deg, rgba(13, 200, 152, 0.5) -4.82%, rgba(182, 92, 242, 0.5) 113.33%);
   width: 56px;
   height: 56px;
   border-radius: 28px;
 `
 const Icon = styled.img`
-  object-fit: contain;
   opacity: 1;
+  width: 56px;
+  height: 56px;
 `
 
 const BanlanceWarp = styled.div`
@@ -54,12 +54,14 @@ const BanlanceText = styled.div`
   }
 `
 
-const BanlanceNum = styled.p`
+const BanlanceNum = styled.div`
   font-family: Arial;
   font-size: 24px;
   color: #ffffff;
   font-weight: bold;
   margin-top: 0px;
+  text-align: left;
+  width: 100%;
 `
 const LinkWarp = styled.div`
   padding-top: 4px;
@@ -108,9 +110,7 @@ const Banlance: React.FunctionComponent = () => {
           <Icon src={walletFile} />
         </IconWarp>
         <BanlanceWarp>
-          <RowCenterBox align="flex-start">
-            <BanlanceText>{t('STAKE_49')}</BanlanceText>
-          </RowCenterBox>
+          <BanlanceText>{t('STAKE_49')}</BanlanceText>
           <BanlanceNum>{formatNumber(new BN(skcsBalance).div(10 ** 18), 2)} sKCS</BanlanceNum>
         </BanlanceWarp>
         <LinkWarp>

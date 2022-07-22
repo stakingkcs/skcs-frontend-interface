@@ -1,5 +1,5 @@
 {
-  "HOME_1": "There is currently <number>{{totalKCS}}</number> KCS staked in the sKCS protocol with <number>{{totalRewards}}</number> KCS in rewards having been paid out, which amounts to an APY of <number>{{apy}}%</number>",
+  "HOME_1": "sKCS protocol currently has <number>{{totalKCS}}</number> KCS staked, with <number>{{totalRewards}}</number> rewards already paid out and an APY of <number>{{apy}}%</number>",
   "HOME_2": "There is currently <number>{{totalKCS}}</number> KCS staked in the sKCS protocol with <number>{{totalRewards}}</number> KCS in rewards having been paid out, which amounts to an APY of <number>{{apy}}%</number>",
   "HOME_5": "Stake Now",
   "HOME_7": "Staking confirmed!",

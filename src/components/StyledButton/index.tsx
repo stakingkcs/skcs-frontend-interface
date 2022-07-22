@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const StyledButtonWrap = styled(Button)<{ disabled?: boolean; loading: boolean }>`
   width: 100%;
   height: 56px;
+  position: relative;
   background: ${({ loading }) => {
     if (loading) {
       return 'linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%) !important'
@@ -32,8 +33,17 @@ const StyledButtonWrap = styled(Button)<{ disabled?: boolean; loading: boolean }
     }
     return 1
   }};
+ 
   &:hover {
-    background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%) !important;
+    color: #fff;
+    &::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background: rgba(255, 255, 255, 0.3);
+    }
   }
 `
 

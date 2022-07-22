@@ -421,7 +421,7 @@ const StakingPanel: FunctionComponent = () => {
                   content={
                     <Text color="#00D092">{`${formatNumber(
                       new BN(staker.apr.toString()).multipliedBy(100).toString(),
-                      3
+                      2
                     )} %`}</Text>
                   }
                 />
@@ -556,7 +556,7 @@ const StakingPanel: FunctionComponent = () => {
                   content={
                     <Text color="#00D092">{`${formatNumber(
                       new BN(staker.apr.toString()).multipliedBy(100).toString(),
-                      3
+                      2
                     )} %`}</Text>
                   }
                 />

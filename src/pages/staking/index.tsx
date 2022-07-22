@@ -23,6 +23,7 @@ export const HomeWrap = styled.div`
   background-size: 100% 100%;
   @media (max-width: 768px) {
     background: url(${mGradientBg}) top center no-repeat fixed;
+    background-size: 100% 100%;
     padding-top: 10px;
   }
 `

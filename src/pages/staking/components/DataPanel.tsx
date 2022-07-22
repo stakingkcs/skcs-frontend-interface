@@ -66,10 +66,8 @@ const ContentWrap = styled.div<{ connected: boolean }>`
     }
     return '24px'
   }};
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(20px);
+  /* background: rgba(0, 0, 0, 0.5); */
   border-radius: 16px;
-  padding: 36px 32px;
   height: ${({ connected }) => {
     if (connected) {
       return '495px'
@@ -81,10 +79,27 @@ const ContentWrap = styled.div<{ connected: boolean }>`
   }
 `
 
+const Card = styled.div`
+  background: rgba(0, 0, 0, 0.5);
+  padding: 32px;
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+`
+
 const PlusIcon = styled.img`
   width: 16px;
   height: 16px;
   cursor: pointer;
+`
+
+const ImportText = styled.div`
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #d04aff;
+  cursor: pointer;
+  margin-left: 8px;
 `
 
 const StakingPanel: FunctionComponent = () => {
@@ -159,25 +174,25 @@ const StakingPanel: FunctionComponent = () => {
           <Desc>{t('STAKE_7')}</Desc>
         </HeaderPanel>
       )}
-      <ContentWrap connected={Boolean(account)}>
-        {!isMobile && (
-          <RowCenterBox>
-            <DataItem
-              title={t('STAKE_8')}
-              balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
-              titleExtra={
-                <ExternalLink
-                  style={{ marginLeft: '10px' }}
-                  url="https://app.mojitoswap.finance/swap"
-                  name={t('STAKE_9')}
-                />
-              }
-            />
-          </RowCenterBox>
-        )}
 
+      <ContentWrap connected={Boolean(account)}>
         {!account ? (
-          <>
+          <Card style={{ padding: '36px 32px' }}>
+            {!isMobile && (
+              <RowCenterBox>
+                <DataItem
+                  title={t('STAKE_8')}
+                  balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
+                  titleExtra={
+                    <ExternalLink
+                      style={{ marginLeft: '10px' }}
+                      url="https://app.mojitoswap.finance/swap"
+                      name={t('STAKE_9')}
+                    />
+                  }
+                />
+              </RowCenterBox>
+            )}
             <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '24px', width: '300px' }}>
               <DataItem title={t('STAKE_12')} balance={`0.00 sKCS`} uBalance="≈$0.0000" />
               <DataItem
@@ -190,22 +205,44 @@ const StakingPanel: FunctionComponent = () => {
                 balance={`${formatNumber(staker.apr * 100, 2)}%`}
               />
             </RowCenterBox>
-          </>
+            {!account && (
+              <StyledButton
+                style={{ marginTop: '32px' }}
+                onClick={() => {
+                  dispatch(toggleConnectWalletModalShow({ show: true }))
+                }}
+              >
+                {t('HOME_21')}
+              </StyledButton>
+            )}
+          </Card>
         ) : (
           <>
-            {!isMobile && (
-              <RowCenterBox style={{ marginTop: '32px' }}>
+            <Card>
+              <RowCenterBox>
                 <DataItem
-                  title={t('STAKE_12')}
-                  balance={`${formatNumber(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18), 2)} sKCS`}
-                  uBalance={`≈$${formatNumber(
-                    skcsPrice.multipliedBy(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18)),
-                    2
-                  )}`}
-                  balanceExtra={
-                    <Tooltip placement="top" title={t('STAKE_13')}>
-                      <PlusIcon
-                        src={require('../../../assets/images/Icons/plus.png').default}
+                  title={t('STAKE_8')}
+                  balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
+                  titleExtra={
+                    <ExternalLink
+                      style={{ marginLeft: '10px' }}
+                      url="https://app.mojitoswap.finance/swap"
+                      name={t('STAKE_9')}
+                    />
+                  }
+                />
+              </RowCenterBox>
+              {!isMobile && (
+                <RowCenterBox style={{ marginTop: '16px' }}>
+                  <DataItem
+                    title={t('STAKE_12')}
+                    balance={`${formatNumber(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18), 2)} sKCS`}
+                    uBalance={`≈$${formatNumber(
+                      skcsPrice.multipliedBy(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18)),
+                      2
+                    )}`}
+                    titleExtra={
+                      <ImportText
                         onClick={() => {
                           addTokenToWallet({
                             tokenAddress: getStakerAddress(),
@@ -214,75 +251,66 @@ const StakingPanel: FunctionComponent = () => {
                             symbol: 'sKCS',
                           })
                         }}
-                        alt="add-token-icon"
-                      />
-                    </Tooltip>
-                  }
-                />
-              </RowCenterBox>
-            )}
-
-            <RowCenterBox align="flex-start" justify="space-between" style={{ marginTop: '32px', width: '300px' }}>
-              <DataItem
-                title={t('STAKE_14')}
-                balance={`${formatNumber(new BN(staker.userData.pendingAmount.toString()).div(10 ** 18), 2)} KCS`}
-                uBalance={`≈$${formatNumber(
-                  kcsPrice.multipliedBy(new BN(staker.userData.pendingAmount.toString()).div(10 ** 18)),
-                  2
-                )}`}
-                titleExtra={
-                  <Tooltip placement="top" title={t('STAKE_15')}>
-                    <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
-                  </Tooltip>
-                }
-              />
-              {!isMobile && (
+                      >
+                        {t('STAKE_13')}
+                      </ImportText>
+                    }
+                  />
+                </RowCenterBox>
+              )}
+            </Card>
+            <Card style={{ marginTop: '24px' }}>
+              <RowCenterBox align="flex-start" justify="space-between" style={{ width: '300px' }}>
                 <DataItem
-                  title={t('HOME_38')}
+                  title={t('STAKE_14')}
+                  balance={`${formatNumber(new BN(staker.userData.pendingAmount.toString()).div(10 ** 18), 2)} KCS`}
+                  uBalance={`≈$${formatNumber(
+                    kcsPrice.multipliedBy(new BN(staker.userData.pendingAmount.toString()).div(10 ** 18)),
+                    2
+                  )}`}
                   titleExtra={
-                    <Tooltip placement="top" title={t('HOME_12')}>
+                    <Tooltip placement="top" title={t('STAKE_15')}>
                       <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                     </Tooltip>
                   }
-                  balance={`${formatNumber(staker.apr * 100, 2)}%`}
                 />
-              )}
-            </RowCenterBox>
+                {!isMobile && (
+                  <DataItem
+                    title={t('HOME_38')}
+                    titleExtra={
+                      <Tooltip placement="top" title={t('HOME_12')}>
+                        <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
+                      </Tooltip>
+                    }
+                    balance={`${formatNumber(staker.apr * 100, 2)}%`}
+                  />
+                )}
+              </RowCenterBox>
 
-            <RowCenterBox align="center" justify="space-between" style={{ marginTop: '32px', width: '100%' }}>
-              <DataItem
-                title={t('STAKE_17')}
-                balance={`${formatNumber(
-                  new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
-                  2
-                )} KCS`}
-                uBalance={`≈$${formatNumber(
-                  kcsPrice.multipliedBy(new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18)),
-                  2
-                )}`}
-              />
+              <RowCenterBox align="center" justify="space-between" style={{ marginTop: '17px', width: '100%' }}>
+                <DataItem
+                  title={t('STAKE_17')}
+                  balance={`${formatNumber(
+                    new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18).toString(10),
+                    2
+                  )} KCS`}
+                  uBalance={`≈$${formatNumber(
+                    kcsPrice.multipliedBy(new BN(staker.userData.availableWithdrawKCSAmount.toString()).div(10 ** 18)),
+                    2
+                  )}`}
+                />
 
-              <StyledButton
-                loading={loading}
-                disabled={!account || staker.userData.availableWithdrawKCSAmount.eq(0)}
-                onClick={handleWithdraw}
-                style={{ width: isMobile ? '140px' : '232px' }}
-              >
-                {t('STAKE_18')}
-              </StyledButton>
-            </RowCenterBox>
+                <StyledButton
+                  loading={loading}
+                  disabled={!account || staker.userData.availableWithdrawKCSAmount.eq(0)}
+                  onClick={handleWithdraw}
+                  style={{ width: isMobile ? '140px' : '232px' }}
+                >
+                  {t('STAKE_18')}
+                </StyledButton>
+              </RowCenterBox>
+            </Card>
           </>
-        )}
-
-        {!account && (
-          <StyledButton
-            style={{ marginTop: '32px' }}
-            onClick={() => {
-              dispatch(toggleConnectWalletModalShow({ show: true }))
-            }}
-          >
-            {t('HOME_21')}
-          </StyledButton>
         )}
       </ContentWrap>
     </>
