@@ -29,6 +29,7 @@ const StepsWrap = styled.div`
   .ant-collapse-item {
     border-bottom: none;
     border-radius: 16px !important;
+    overflow: hidden;
     width: 100%;
   }
 
@@ -59,7 +60,18 @@ const StepsWrap = styled.div`
   }
   .ant-collapse-content-box {
     padding-left: 30px;
+    position: relative;
     background: rgba(0, 0, 0, 0.1) !important;
+    &::before {
+      position: absolute;
+      content: '';
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
+      height: 2px;
+      z-index: 4;
+      background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%);
+    }
   }
   @media (max-width: 768px) {
     padding-top: 20px;
