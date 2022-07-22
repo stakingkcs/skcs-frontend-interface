@@ -22,7 +22,7 @@ import { getStakerAddress } from '../../../utils/addressHelpers'
 import { formatNumber } from '../../../utils/bignumber'
 import { stakerContractHelper } from '../../../utils/validator'
 import { addTokenToWallet } from '../../../utils/wallet'
-import GreenExternalLink from '../../../components/ExternalLink/GreenExternalLink';
+import GreenExternalLink from '../../../components/ExternalLink/GreenExternalLink'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -125,7 +125,7 @@ const StakingPanel: FunctionComponent = () => {
                   amount: amount,
                 })}
                 {/* <ALink style={{ marginLeft: '5px' }} href={} target="_blank"></ALink> */}
-                
+
                 <GreenExternalLink
                   name={t('HOME_9')}
                   url={`${process.env.REACT_APP_KCC_EXPLORER}/tx/${response.data.transactionHash}`}
@@ -187,7 +187,7 @@ const StakingPanel: FunctionComponent = () => {
                     <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
                   </Tooltip>
                 }
-                balance={`${formatNumber(staker.apr, 2)}%`}
+                balance={`${formatNumber(staker.apr * 100, 2)}%`}
               />
             </RowCenterBox>
           </>
