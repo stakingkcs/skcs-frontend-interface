@@ -218,21 +218,21 @@ const StakingPanel: FunctionComponent = () => {
           </Card>
         ) : (
           <>
-            <Card>
-              <RowCenterBox>
-                <DataItem
-                  title={t('STAKE_8')}
-                  balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
-                  titleExtra={
-                    <ExternalLink
-                      style={{ marginLeft: '10px' }}
-                      url="https://app.mojitoswap.finance/swap"
-                      name={t('STAKE_9')}
-                    />
-                  }
-                />
-              </RowCenterBox>
-              {!isMobile && (
+            {!isMobile && (
+              <Card>
+                <RowCenterBox>
+                  <DataItem
+                    title={t('STAKE_8')}
+                    balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
+                    titleExtra={
+                      <ExternalLink
+                        style={{ marginLeft: '10px' }}
+                        url="https://app.mojitoswap.finance/swap"
+                        name={t('STAKE_9')}
+                      />
+                    }
+                  />
+                </RowCenterBox>
                 <RowCenterBox style={{ marginTop: '16px' }}>
                   <DataItem
                     title={t('STAKE_12')}
@@ -257,8 +257,8 @@ const StakingPanel: FunctionComponent = () => {
                     }
                   />
                 </RowCenterBox>
-              )}
-            </Card>
+              </Card>
+            )}
             <Card style={{ marginTop: '24px' }}>
               <RowCenterBox align="flex-start" justify="space-between" style={{ width: '300px' }}>
                 <DataItem
@@ -300,15 +300,27 @@ const StakingPanel: FunctionComponent = () => {
                   )}`}
                 />
 
+                {!isMobile && (
+                  <StyledButton
+                    loading={loading}
+                    disabled={!account || staker.userData.availableWithdrawKCSAmount.eq(0)}
+                    onClick={handleWithdraw}
+                    style={{ width: isMobile ? '140px' : '232px' }}
+                  >
+                    {t('STAKE_18')}
+                  </StyledButton>
+                )}
+              </RowCenterBox>
+              {isMobile && (
                 <StyledButton
                   loading={loading}
                   disabled={!account || staker.userData.availableWithdrawKCSAmount.eq(0)}
                   onClick={handleWithdraw}
-                  style={{ width: isMobile ? '140px' : '232px' }}
+                  style={{ width: '100%', marginTop: '24px' }}
                 >
                   {t('STAKE_18')}
                 </StyledButton>
-              </RowCenterBox>
+              )}
             </Card>
           </>
         )}
