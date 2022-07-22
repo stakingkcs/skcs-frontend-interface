@@ -38,6 +38,7 @@ const IconWarp = styled.div`
 
   @media (max-width: 768px) {
     flex-wrap: wrap;
+    margin-top: 24px;
   }
 `
 const ItemImg = styled.img`
@@ -45,11 +46,14 @@ const ItemImg = styled.img`
   transition: all 0.3s ease-in;
 `
 const ItemLink = styled.a`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   width: 72px;
   height: 72px;
   border-radius: 36px;
   text-align: center;
-  line-height: 72px;
   transition: all 0.3s ease-in;
   background: rgba(255, 255, 255, 0.12);
   &:hover {
@@ -58,17 +62,17 @@ const ItemLink = styled.a`
   }
   @media (max-width: 768px) {
     width: 120px;
-    height: 130px;
+    height: 110px;
     border-radius: 12px;
     margin-bottom: 16px;
   }
 `
-const ItemText = styled.p`
+const ItemText = styled.div`
   font-family: 'Arial';
   font-style: normal;
   font-size: 14px;
-  line-height: 24px;
   color: #ffffff;
+  margin-top: 20px;
 `
 
 const FollowUs: FunctionComponent = () => {
@@ -79,7 +83,7 @@ const FollowUs: FunctionComponent = () => {
         {t('HOME_39')}
       </Title>
       <TipWarp>
-        <Desc>{t("HOME_40")}</Desc>
+        <Desc>{t('HOME_40')}</Desc>
         <IconWarp>
           {mediaList.map((item) => {
             return (

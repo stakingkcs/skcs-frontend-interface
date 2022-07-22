@@ -64,10 +64,7 @@ const SymbolWarp = styled.div`
   justify-content: flex-start;
   align-items: center;
 `
-const SymbolIcon = styled.img`
-  object-fit: cover;
-  margin-right: 16px;
-`
+
 const SymbolTitle = styled.p`
   font-family: Arial;
   font-size: 24px;
@@ -88,14 +85,6 @@ const GradientButton = styled.div`
   }
 `
 
-const GradientButtonContent = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-`
 
 const Liquidity: React.FunctionComponent = () => {
   const { t } = useTranslation()

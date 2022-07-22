@@ -55,15 +55,17 @@ const DataPanelWarp = styled.div`
 `
 
 export interface CaculatorProps {
-    visible: boolean
-    toggleVisible?: any
-  }
-  
+  visible: boolean
+  toggleVisible?: any
+}
+
 const Calculator: React.FunctionComponent<CaculatorProps> = (props) => {
   const { t } = useTranslation()
   const { account, library } = useWeb3React()
   const [inputValue, setInputValue] = React.useState<string>('')
   const [error, setError] = React.useState<{ hasError: boolean; errorInfo: string }>({ hasError: false, errorInfo: '' })
+  const [isHover, setIsHover] = React.useState<boolean>(false)
+
   const renderData = () => {
     if (!isMobile) {
       return (
@@ -72,14 +74,18 @@ const Calculator: React.FunctionComponent<CaculatorProps> = (props) => {
             title="APR"
             titleExtra={
               <Tooltip placement="top" title={t('HOME_12')}>
-                <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
+                <InfoCircleOutlined
+                  onMouseEnter={() => setIsHover(() => true)}
+                  onMouseLeave={() => setIsHover(() => false)}
+                  style={{ color: isHover ? '#00CA87' : '#B4B7C1' }}
+                />
               </Tooltip>
             }
             balance={`10.00%`}
           />
-          <DataItem title={t("DEFI_22")} balance={`10 sKCS`} uBalance={`≈$0.0026`} />
-          <DataItem title={t("DEFI_23")} balance={`10.00%`} />
-          <DataItem title={t("DEFI_23")} balance={`$1,600`} />
+          <DataItem title={t('DEFI_22')} balance={`10 sKCS`} uBalance={`≈$0.0026`} />
+          <DataItem title={t('DEFI_23')} balance={`10.00%`} />
+          <DataItem title={t('DEFI_23')} balance={`$1,600`} />
         </RowCenterBox>
       )
     } else {

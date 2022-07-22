@@ -91,6 +91,9 @@ const DataRowWrap = styled.div`
   border-radius: 16px;
   margin-top: 28px;
   padding: 32px;
+  @media (max-width: 768px) {
+    padding: 32px 16px;
+  }
 `
 
 const Statistics: React.FunctionComponent = () => {

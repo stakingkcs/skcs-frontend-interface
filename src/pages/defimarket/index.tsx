@@ -20,7 +20,7 @@ const Title = styled.div`
   @media (max-width: 768px) {
     font-size: 24px;
     text-align: center;
-    margin: 36px 0 12px 0;
+    margin: 36px 0 8px 0;
   }
 `
 const Desc = styled.div`
@@ -31,7 +31,6 @@ const Desc = styled.div`
   line-height: 14px;
   text-align: left;
   color: rgba(180, 183, 193, 1);
-  margin-bottom: 24px;
   max-width: 900px;
   @media (max-width: 768px) {
     font-size: 14px;

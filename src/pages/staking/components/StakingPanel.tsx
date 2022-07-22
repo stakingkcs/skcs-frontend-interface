@@ -82,7 +82,7 @@ const ContentWrap = styled.div`
   padding: 34px 32px;
   width: 100%;
   @media (max-width: 768px) {
-    padding: 16px 16px;
+    padding: 20px 16px;
   }
 `
 
@@ -119,7 +119,8 @@ const StyledTabs = styled(Tabs)`
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      padding: 10px 0 5px 0;
+      padding: 20px 0 5px 0px;
+      margin-left: 10px;
     }
     .ant-tabs-nav-list {
       width: 180px;

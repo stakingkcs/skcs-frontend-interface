@@ -120,6 +120,10 @@ const StakingPanel: FunctionComponent = () => {
 
   const stakerContract = useStakerContract()
 
+  const [isHover, setIsHover] = React.useState<boolean>(false)
+  
+  const [isHover1, setIsHover1] = React.useState<boolean>(false)
+
   const handleWithdraw = React.useCallback(async () => {
     if (!account) return
     setLoading(() => true)
@@ -199,7 +203,11 @@ const StakingPanel: FunctionComponent = () => {
                 title={t('HOME_38')}
                 titleExtra={
                   <Tooltip placement="top" title={t('HOME_12')}>
-                    <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
+                    <QuestionCircleOutlined
+                      onMouseEnter={() => setIsHover(() => true)}
+                      onMouseLeave={() => setIsHover(() => false)}
+                      style={{ color: isHover ? '#00CA87' : '#B4B7C1' }}
+                    />
                   </Tooltip>
                 }
                 balance={`${formatNumber(staker.apr * 100, 2)}%`}
@@ -270,7 +278,11 @@ const StakingPanel: FunctionComponent = () => {
                   )}`}
                   titleExtra={
                     <Tooltip placement="top" title={t('STAKE_15')}>
-                      <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
+                      <QuestionCircleOutlined
+                        onMouseEnter={() => setIsHover1(() => true)}
+                        onMouseLeave={() => setIsHover1(() => false)}
+                        style={{ color: isHover1 ? '#00CA87' : '#B4B7C1' }}
+                      />
                     </Tooltip>
                   }
                 />
@@ -279,7 +291,11 @@ const StakingPanel: FunctionComponent = () => {
                     title={t('HOME_38')}
                     titleExtra={
                       <Tooltip placement="top" title={t('HOME_12')}>
-                        <QuestionCircleOutlined style={{ color: '#B4B7C1' }} />
+                        <QuestionCircleOutlined
+                          onMouseEnter={() => setIsHover(() => true)}
+                          onMouseLeave={() => setIsHover(() => false)}
+                          style={{ color: isHover ? '#00CA87' : '#B4B7C1' }}
+                        />
                       </Tooltip>
                     }
                     balance={`${formatNumber(staker.apr * 100, 2)}%`}

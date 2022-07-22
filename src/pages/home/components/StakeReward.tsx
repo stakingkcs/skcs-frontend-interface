@@ -104,6 +104,8 @@ const StakeReward: React.FunctionComponent = () => {
   const kcsPrice = useKCSPrice()
   const dispatch = useDispatch()
 
+  const [isHover, setIsHover] = React.useState<boolean>(false)
+
   const renderData = React.useCallback(() => {
     if (!isMobile) {
       return (
@@ -112,7 +114,11 @@ const StakeReward: React.FunctionComponent = () => {
             title={t('HOME_38')}
             titleExtra={
               <Tooltip placement="top" title={t('HOME_12')}>
-                <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
+                <InfoCircleOutlined
+                  onMouseEnter={() => setIsHover(() => true)}
+                  onMouseLeave={() => setIsHover(() => false)}
+                  style={{ color: isHover ? '#00CA87' : '#B4B7C1' }}
+                />
               </Tooltip>
             }
             balance={`${formatNumber(staker.apr * 100, 2)}%`}
@@ -145,7 +151,11 @@ const StakeReward: React.FunctionComponent = () => {
             title={t('HOME_38')}
             titleExtra={
               <Tooltip placement="top" title={t('HOME_12')}>
-                <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
+                <InfoCircleOutlined
+                  onMouseEnter={() => setIsHover(() => true)}
+                  onMouseLeave={() => setIsHover(() => false)}
+                  style={{ color: isHover ? '#00CA87' : '#B4B7C1' }}
+                />
               </Tooltip>
             }
             balance={`${formatNumber(staker.apr, 2)}%`}
@@ -172,7 +182,7 @@ const StakeReward: React.FunctionComponent = () => {
         </ColumnCenterBox>
       )
     }
-  }, [inputValue, staker])
+  }, [inputValue, staker, isHover])
 
   return (
     <>
