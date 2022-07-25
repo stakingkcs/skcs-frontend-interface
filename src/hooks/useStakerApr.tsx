@@ -19,6 +19,7 @@ import BN from 'bignumber.js'
  * @param performanceFee performance fee as percentage
  * @returns APY as decimal
  */
+
 export const getApy = (apr: number, compoundFrequency = 1, days = 365, performanceFee = 0) => {
   const daysAsDecimalOfYear = days / 365
   const aprAsDecimal = apr / 100
@@ -47,7 +48,7 @@ export const useStakeApr = async () => {
   }
 
   try {
-    const yesterdayBlock = Number(latestBlock) - Math.floor((48 * 60 * 60) / 3)
+    const yesterdayBlock = Number(latestBlock) - Math.floor((24 * 60 * 60) / 3)
     console.log('yesterdayBlock', yesterdayBlock)
 
     const contract = getContract(
@@ -79,10 +80,14 @@ export const useStakeApr = async () => {
 
       console.log('preSkcsQuetoByKCS', preSkcsQuetoByKCS)
 
-      const apr = (staker.skcsQuetoByKCS - Number(preSkcsQuetoByKCS)) * 180
+      const apr = ((staker.skcsQuetoByKCS - Number(preSkcsQuetoByKCS)) / Number(preSkcsQuetoByKCS)) * 365
+
       console.log('apr', apr)
 
-      dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apr }))
+      const apy = getApy(apr)
+
+      dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apy }))
+
     }
   } catch (e) {
     console.log(e)
