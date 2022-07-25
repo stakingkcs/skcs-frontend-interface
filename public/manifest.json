@@ -1,14 +1,16 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "sKCS",
+  "name": "KCS Staking | sKCS",
+  "description": "Stake KCS and get sKCS to accrue staking rewards over time and earn additional yields with high APY",
+  "iconPath": "https://static.kcc.network/logo/skcs-media-image.png",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://static.kcc.network/logo/skcs-media-image.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "orientation": "portrait",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

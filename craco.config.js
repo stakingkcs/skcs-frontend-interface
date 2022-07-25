@@ -4,6 +4,14 @@ const CracoLessPlugin = require('craco-less')
 const TerserPlugin = require('terser-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 module.exports = {
+  devServer: (devServerConfig, { env, paths, proxy, allowedHost }) => {
+    devServerConfig.headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    }
+    return devServerConfig
+  },
   plugins: [
     {
       plugin: CracoLessPlugin,
