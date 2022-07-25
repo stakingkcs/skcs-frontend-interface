@@ -2,10 +2,10 @@
   "short_name": "sKCS",
   "name": "KCS Staking | sKCS",
   "description": "Stake KCS and get sKCS to accrue staking rewards over time and earn additional yields with high APY",
-  "iconPath": "https://static.kcc.network/logo/skcs-media-image.png",
+  "iconPath": "https://static.kcc.network/logo/skcs.png",
   "icons": [
     {
-      "src": "https://static.kcc.network/logo/skcs-media-image.png",
+      "src": "https://static.kcc.network/logo/skcs.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     }
