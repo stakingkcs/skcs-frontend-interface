@@ -84,9 +84,9 @@ export const useStakeApr = async () => {
 
       console.log('apr', apr)
 
-      const apy = getApy(apr)
+      // const apy = getApy(apr)
 
-      dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apy }))
+      dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apr }))
 
     }
   } catch (e) {
