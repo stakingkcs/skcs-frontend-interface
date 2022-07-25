@@ -1,15 +1,12 @@
 import { JsonRpcProvider } from '@ethersproject/providers'
+import BN from 'bignumber.js'
 import ABI from 'constants/abi/Validators.json'
-import { ZERO } from 'constants/number'
-import { Zero } from 'ethers/constants'
-import { BigNumber } from 'ethers/utils'
 import { useBlockNumber } from 'state/application/hooks'
 import { useStakerState } from 'state/hooks'
 import { updateStakerPublicDataByKey } from 'state/staker'
 import { getContract } from 'utils'
 import { getStakerAddress } from 'utils/addressHelpers'
 import { useAppDispatch } from '../state/index'
-import BN from 'bignumber.js'
 
 /**
  * Given APR returns APY
@@ -84,9 +81,11 @@ export const useStakeApr = async () => {
 
       console.log('apr', apr)
 
-      // const apy = getApy(apr)
+      const apy = getApy(apr * 100)
 
-      dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apr }))
+      console.log('apy', apy)
+
+      dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apy }))
 
     }
   } catch (e) {
