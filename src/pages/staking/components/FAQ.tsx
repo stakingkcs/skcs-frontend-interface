@@ -68,7 +68,7 @@ const StepsWrap = styled.div`
       bottom: 0px;
       left: 0px;
       width: 100%;
-      height: 2px;
+      height: 4px;
       z-index: 4;
       background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%);
     }

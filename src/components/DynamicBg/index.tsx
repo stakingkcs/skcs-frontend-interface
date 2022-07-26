@@ -60,8 +60,8 @@ const PurpleCircle = styled.div`
   height: 400px;
   right: 154px;
   top: 164px;
-  background: #ab84ff;
-  filter: blur(350px);
+  background: #A187F3;
+  filter: blur(200px);
   animation: ${purpleAnimation} 12s infinite ease;
 `
 

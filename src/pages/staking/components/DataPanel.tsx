@@ -2,7 +2,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons'
 import { useWeb3React } from '@web3-react/core'
 import { Tooltip } from 'antd'
 import BN from 'bignumber.js'
-import { ALink, RowCenterBox } from 'components'
+import { ALink, Image, RowCenterBox } from 'components'
 import DataItem from 'components/DataItem'
 import StyledButton from 'components/StyledButton'
 import StyledNotification from 'components/StyledNotification'
@@ -17,12 +17,14 @@ import ExternalLink from '../../../components/ExternalLink/index'
 import { useStakerContract } from '../../../hooks/useContract'
 import { useKCSPrice, useSKCSPrice, useStakerState } from '../../../state/hooks'
 import { toggleConnectWalletModalShow } from '../../../state/wallet/actions'
-import { useBalance } from '../../../state/wallet/hooks'
+import { useBalance, useWalletId } from '../../../state/wallet/hooks';
 import { getStakerAddress } from '../../../utils/addressHelpers'
 import { formatNumber } from '../../../utils/bignumber'
 import { stakerContractHelper } from '../../../utils/validator'
 import { addTokenToWallet } from '../../../utils/wallet'
 import GreenExternalLink from '../../../components/ExternalLink/GreenExternalLink'
+import { WalletList } from '../../../constants/wallet';
+import { find } from 'lodash'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -100,6 +102,10 @@ const ImportText = styled.div`
   color: #d04aff;
   cursor: pointer;
   margin-left: 8px;
+  display:flex;
+  flex-flow:row nowrap;
+  justify-content:center;
+  align-items:center;
 `
 
 const StakingPanel: FunctionComponent = () => {
@@ -121,7 +127,7 @@ const StakingPanel: FunctionComponent = () => {
   const stakerContract = useStakerContract()
 
   const [isHover, setIsHover] = React.useState<boolean>(false)
-  
+
   const [isHover1, setIsHover1] = React.useState<boolean>(false)
 
   const handleWithdraw = React.useCallback(async () => {
@@ -168,6 +174,12 @@ const StakingPanel: FunctionComponent = () => {
     }
   }, [dispatch, stakerContract, account, library, staker])
 
+  const walletId = useWalletId()
+
+  const walletInfo = React.useMemo(() => {
+    return find(WalletList, { id: walletId })
+  }, [walletId, WalletList])
+
   if (!account && isMobile) return null
 
   return (
@@ -189,7 +201,7 @@ const StakingPanel: FunctionComponent = () => {
                   balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
                   titleExtra={
                     <ExternalLink
-                      style={{ marginLeft: '10px' }}
+                      style={{ marginLeft: '10px', fontSize: '14px' }}
                       url="https://app.mojitoswap.finance/swap"
                       name={t('STAKE_9')}
                     />
@@ -234,7 +246,7 @@ const StakingPanel: FunctionComponent = () => {
                     balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
                     titleExtra={
                       <ExternalLink
-                        style={{ marginLeft: '10px' }}
+                        style={{ marginLeft: '10px', fontSize: '14px' }}
                         url="https://app.mojitoswap.finance/swap"
                         name={t('STAKE_9')}
                       />
@@ -250,18 +262,20 @@ const StakingPanel: FunctionComponent = () => {
                       2
                     )}`}
                     titleExtra={
-                      <ImportText
-                        onClick={() => {
-                          addTokenToWallet({
-                            tokenAddress: getStakerAddress(),
-                            decimals: 18,
-                            image: 'https://s3.ap-northeast-1.amazonaws.com/static.kcc.io/logo/skcs.png',
-                            symbol: 'sKCS',
-                          })
-                        }}
-                      >
-                        {t('STAKE_13')}
-                      </ImportText>
+                      walletId === 0 ? (
+                        <ImportText
+                          onClick={() => {
+                            addTokenToWallet({
+                              tokenAddress: getStakerAddress(),
+                              decimals: 18,
+                              image: 'https://static.kcc.network/logo/skcs.png',
+                              symbol: 'sKCS',
+                            })
+                          }}
+                        >
+                          <Image src={walletInfo?.logo} width="16px" height="auto" alt="icon" style={{ marginRight: '8px' }} />
+                          {t('STAKE_13')}
+                        </ImportText>) : undefined
                     }
                   />
                 </RowCenterBox>
