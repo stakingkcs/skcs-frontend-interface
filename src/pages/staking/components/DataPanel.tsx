@@ -17,13 +17,13 @@ import ExternalLink from '../../../components/ExternalLink/index'
 import { useStakerContract } from '../../../hooks/useContract'
 import { useKCSPrice, useSKCSPrice, useStakerState } from '../../../state/hooks'
 import { toggleConnectWalletModalShow } from '../../../state/wallet/actions'
-import { useBalance, useWalletId } from '../../../state/wallet/hooks';
+import { useBalance, useWalletId } from '../../../state/wallet/hooks'
 import { getStakerAddress } from '../../../utils/addressHelpers'
 import { formatNumber } from '../../../utils/bignumber'
 import { stakerContractHelper } from '../../../utils/validator'
 import { addTokenToWallet } from '../../../utils/wallet'
 import GreenExternalLink from '../../../components/ExternalLink/GreenExternalLink'
-import { WalletList } from '../../../constants/wallet';
+import { WalletList } from '../../../constants/wallet'
 import { find } from 'lodash'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
@@ -102,10 +102,10 @@ const ImportText = styled.div`
   color: #d04aff;
   cursor: pointer;
   margin-left: 8px;
-  display:flex;
-  flex-flow:row nowrap;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
 `
 
 const StakingPanel: FunctionComponent = () => {
@@ -273,9 +273,16 @@ const StakingPanel: FunctionComponent = () => {
                             })
                           }}
                         >
-                          <Image src={walletInfo?.logo} width="16px" height="auto" alt="icon" style={{ marginRight: '8px' }} />
+                          <Image
+                            src={require('../../../assets/images/Icons/add.png').default}
+                            width="16px"
+                            height="auto"
+                            alt="icon"
+                            style={{ marginRight: '8px' }}
+                          />
                           {t('STAKE_13')}
-                        </ImportText>) : undefined
+                        </ImportText>
+                      ) : undefined
                     }
                   />
                 </RowCenterBox>
