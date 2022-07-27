@@ -129,7 +129,7 @@ const StakeReward: React.FunctionComponent = () => {
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).toString() : 0,
               4
             )}KCS`}
-            uBalance={`≈${formatNumber(
+            uBalance={`≈$${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).multipliedBy(kcsPrice).toString() : 0,
               4
             )}`}
@@ -137,7 +137,7 @@ const StakeReward: React.FunctionComponent = () => {
           <DataItem
             title={t('HOME_14')}
             balance={`${formatNumber(inputValue ? new BN(inputValue).multipliedBy(staker.apr).toString() : 0, 4)}KCS`}
-            uBalance={`≈${formatNumber(
+            uBalance={`≈$${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).multipliedBy(kcsPrice).toString() : 0,
               4
             )}`}
@@ -166,7 +166,7 @@ const StakeReward: React.FunctionComponent = () => {
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).toString() : 0,
               4
             )}KCS`}
-            uBalance={`≈${formatNumber(
+            uBalance={`≈$${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).div(12).multipliedBy(kcsPrice).toString() : 0,
               4
             )}`}
@@ -174,7 +174,7 @@ const StakeReward: React.FunctionComponent = () => {
           <DataItem
             title={t('HOME_14')}
             balance={`${formatNumber(inputValue ? new BN(inputValue).multipliedBy(staker.apr).toString() : 0, 4)}KCS`}
-            uBalance={`≈${formatNumber(
+            uBalance={`≈$${formatNumber(
               inputValue ? new BN(inputValue).multipliedBy(staker.apr).multipliedBy(kcsPrice).toString() : 0,
               4
             )}`}
