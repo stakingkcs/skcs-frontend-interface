@@ -158,7 +158,7 @@ const StakeReward: React.FunctionComponent = () => {
                 />
               </Tooltip>
             }
-            balance={`${formatNumber(staker.apr, 2)}%`}
+            balance={`${formatNumber(staker.apr * 100, 2)}%`}
           />
           <DataItem
             title={t('HOME_13')}
