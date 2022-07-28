@@ -72,13 +72,15 @@ const NumberText = styled.span`
   }
 `
 const ButtonWarp = styled(Link)`
-  width: 160px;
+  width: auto;
+  max-width: 200px;
   height: 50px;
   margin: 40px 0;
   display: block;
 `
 
 const BannerStyledButton = styled(StyledButton)`
+  padding: 0 10px;
   &:hover {
     opacity: 0.5;
   }

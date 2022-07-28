@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next'
 import store from '../state'
 
 // loaded language
-const LanguageList = ['en', 'zh-TW']
+const LanguageList = ['en', 'zh_TW', 'fr_FR', 'ja_JP', 'nl_NL', 'tr_TR','de_DE']
 
 // load language templates
 const templates = require.context('../locales/', true, /\.json$/)
@@ -29,7 +29,7 @@ export default i18n
     } as any,
     lng: store.getState().application.language,
     fallbackLng: 'en',
-    preload: ['en', 'zh-CN'],
+    preload: ['en'],
     interpolation: {
       escapeValue: false,
     },

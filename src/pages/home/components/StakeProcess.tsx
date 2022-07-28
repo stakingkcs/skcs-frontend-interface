@@ -83,6 +83,7 @@ const StakeTitle = styled.p`
   font-weight: bold;
   font-size: 20px;
   margin-top: -25px;
+  white-space: nowrap;
   @media (max-width: 768px) {
     font-size: 16px;
     margin: 0 8px 40px 8px;

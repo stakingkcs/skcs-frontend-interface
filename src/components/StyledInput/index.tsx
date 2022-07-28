@@ -58,7 +58,7 @@ const SuffixText = styled.div`
 const MaxButton = styled.div`
   background: rgba(0, 208, 146, 0.16);
   border-radius: 4px;
-  width: 50px;
+  width: auto;
   height: 24px;
   text-align: center;
   line-height: 24px;
@@ -69,7 +69,7 @@ const MaxButton = styled.div`
   color: #00d092;
   margin-right: 12px;
   cursor: pointer;
-  padding: 0 3px;
+  padding: 0 5px;
 `
 
 interface Props {

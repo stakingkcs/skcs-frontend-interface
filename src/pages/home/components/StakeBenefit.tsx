@@ -62,13 +62,17 @@ const StakeIcon = styled.img`
   height: 72px;
   object-fit: cover;
 `
-const StakeTitle = styled.p`
+const StakeTitle = styled.div`
   font-family: Arial;
   color: #ffffff;
   font-weight: bold;
   font-size: 24px;
   margin-bottom: 0;
-  line-height: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+
   @media (max-width: 768px) {
     font-size: 18px;
   }
@@ -82,7 +86,6 @@ const StakeDesc = styled.p`
 `
 
 const StakeBenefit: React.FunctionComponent = () => {
-  
   const { t } = useTranslation()
 
   const fitList = [

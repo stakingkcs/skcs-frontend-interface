@@ -1,5 +1,5 @@
 {
-    "HOME_1": "sKCS協議當前已有<wrap \/><number>{{totalKCS}}<\/number>KCS的質押量，<wrap \/><number>{{totalRewards}}<\/number>KCS的已支付收益，APY是<wrap \/><number>{{apy}}%<\/number>。",
+    "HOME_1": "sKCS協議當前已有<number>{{totalKCS}}<\/number>KCS的質押量，<number>{{totalRewards}}<\/number>KCS的已支付收益，APY是<number>{{apy}}%<\/number>。",
     "HOME_2": "sKCS協議當前已有<number>{{totalKCS}}<\/number>KCS的質押量，<number>{{totalRewards}}<\/number> KCS的已支付收益，APY是<number>{{apy}}%<\/number>。",
     "HOME_5": "立即質押",
     "HOME_7": "已確認質押！",
@@ -7,7 +7,7 @@
     "HOME_9": "在鏈上查看交易。",
     "HOME_10": "質押失敗！",
     "HOME_11": "請重試一次。",
-    "HOME_12": "APY是基於sKCS計算的，而不是USD。該計算是基於近2天的sKCS\/KCS匯率，不保證或承諾回報或利潤。\nAPY=（此時的兌換價-48小時前的兌換價）*180*100%。",
+    "HOME_12": "APY指的是持有 sKCS 1 年的預計年收益率，是復利的。收益是基於最近24小時的sKCS兌KCS的匯率計算的，並且扣除了獎勵手續費。",
     "HOME_13": "月收益",
     "HOME_14": "年收益",
     "HOME_18": "收益計算器",

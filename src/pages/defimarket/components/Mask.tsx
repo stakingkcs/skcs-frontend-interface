@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import styled from 'styled-components'
 
@@ -8,7 +9,7 @@ const MaskWrap = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  z-index:99;
+  z-index: 99;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 16px;
   display: flex;
@@ -16,7 +17,6 @@ const MaskWrap = styled.div`
   justify-content: center;
   align-items: center;
 `
-
 
 const Text = styled.div`
   font-family: 'Arial';
@@ -32,9 +32,10 @@ const Text = styled.div`
 `
 
 const Mask: React.FunctionComponent = () => {
+  const { t } = useTranslation()
   return (
     <MaskWrap>
-      <Text>Coming Soon</Text>
+      <Text>{t('Coming Soon')}</Text>
     </MaskWrap>
   )
 }

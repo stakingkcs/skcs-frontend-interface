@@ -27,11 +27,16 @@ const TipWarp = styled.div`
   background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
   border-radius: 16px;
-  padding: 32px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
   font-family: Arial;
+  padding: 0 32px;
   @media (max-width: 768px) {
-    width: 327px;
+    width: 100%;
     height: 204px;
+    padding: 0 32px 0 16px;
   }
 `
 const IconArrow = styled.img`
@@ -40,13 +45,16 @@ const IconArrow = styled.img`
   object-fit: cover;
   top: 45%;
   @media (max-width: 768px) {
-    top: 33%;
+    top: 45%;
   }
 `
 const QuesTitle = styled.p`
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 0;
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 `
 const Desc = styled(Text)`
   font-size: 16px;

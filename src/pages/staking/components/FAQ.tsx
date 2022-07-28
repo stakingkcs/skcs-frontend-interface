@@ -96,7 +96,9 @@ const Title = styled.div`
   line-height: 28px;
   text-align: left;
   color: #ffffff;
-  width: 200px;
+  flex: 1;
+  width: 340px;
+  white-space: nowrap;
   @media (max-width: 768px) {
     text-align: center;
     margin-top: 40px;
