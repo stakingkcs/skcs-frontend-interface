@@ -1,6 +1,6 @@
 {
-    "HOME_1": "Das sKCS-Protokoll hat derzeit <number> {{totalKCS}} <\/number> KCS gestaked, mit <number> {{totalRewards}} <\/number> Belohnungen, die bereits ausgezahlt wurden, und einem APY von <number> {{apy}} % <\/number>",
-    "HOME_2": "Das sKCS-Protokoll hat derzeit <number> {{totalKCS}} <\/number> KCS gestaked, mit <number> {{totalRewards}} <\/number> Belohnungen, die bereits ausgezahlt wurden, und einem APY von <number> {{apy}} % <\/number>",
+    "HOME_1": "Das sKCS-Protokoll hat derzeit <number> {{totalKCS}} <\/number> KCS gestaked, mit <number> {{totalRewards}} <\/number> Belohnungen, die bereits ausgezahlt wurden, und einem APY von <number>{{apy}} % <\/number>",
+    "HOME_2": "Das sKCS-Protokoll hat derzeit <number> {{totalKCS}} <\/number> KCS gestaked, mit <number> {{totalRewards}} <\/number> Belohnungen, die bereits ausgezahlt wurden, und einem APY von <number>{{apy}} % <\/number>",
     "HOME_5": "Jetzt staken",
     "HOME_7": "Staking bestätigt!",
     "HOME_8": "Sie erhalten {{skcsAmount}} KCS für das Staking von {{inputValue}} KCS.",

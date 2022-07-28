@@ -1,6 +1,6 @@
 {
     "HOME_1": "sKCS協議當前已有<number>{{totalKCS}}<\/number>KCS的質押量，<number>{{totalRewards}}<\/number>KCS的已支付收益，APY是<number>{{apy}}%<\/number>。",
-    "HOME_2": "sKCS協議當前已有<number>{{totalKCS}}<\/number>KCS的質押量，<number>{{totalRewards}}<\/number> KCS的已支付收益，APY是<number>{{apy}}%<\/number>。",
+    "HOME_2": "sKCS協議當前已有<number>{{totalKCS}}<\/number>KCS的質押量，<number>{{totalRewards}}<\/number>KCS的已支付收益，APY是<number>{{apy}}%<\/number>。",
     "HOME_5": "立即質押",
     "HOME_7": "已確認質押！",
     "HOME_8": "質押 {{inputValue}} KCS將收到 {{skcsAmount}} sKCS",
