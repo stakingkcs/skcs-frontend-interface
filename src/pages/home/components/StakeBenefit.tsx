@@ -34,7 +34,7 @@ const StakeWarp = styled.div`
 
 const StakeContent = styled.div`
   width: 1200px;
-  height: 281px;
+  height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,7 +43,7 @@ const StakeContent = styled.div`
 
 const StakeItem = styled.div`
   width: 281px;
-  height: 281px;
+  height: auto;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.12);
   display: flex;
@@ -51,7 +51,9 @@ const StakeItem = styled.div`
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: flex-start;
+  align-self: stretch;
   padding: 25px 25px;
+  padding-right: 10px;
   box-sizing: border-box;
   @media (max-width: 768px) {
     border-radius: 16px;
@@ -72,6 +74,7 @@ const StakeTitle = styled.div`
   text-overflow: ellipsis;
   width: 100%;
   white-space: nowrap;
+  margin: 12px 0px;
 
   @media (max-width: 768px) {
     font-size: 18px;
