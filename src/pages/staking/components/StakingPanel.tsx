@@ -135,7 +135,7 @@ const TipsText = styled.div`
   font-weight: 400;
   font-size: 14px;
   color: #7f8393;
-  margin-top: 36px;
+  margin-top: 16px;
 `
 
 const SubTitle = styled.div`
