@@ -160,14 +160,17 @@ const AppMenu: React.FunctionComponent<AppMenuProps> = ({ style }) => {
     return route
   }
 
+  // mobile
   const renderMenu = (navItem) => {
     return (
       <NavLink
         onClick={() => {
           dispatch(changeMobileMenuShow({ show: false }))
         }}
-        to={getNavRoute(navItem.route)}
+        to={navItem.route.startsWith('http') ? { pathname: navItem.route } : getNavRoute(navItem.route)}
         key={navItem?.name}
+        target={navItem.route.startsWith('http') ? '_blank' : '_self'}
+        replace={navItem.route.startsWith('http') ? true : false}
       >
         <Title>{t(navItem?.name)}</Title>
       </NavLink>
