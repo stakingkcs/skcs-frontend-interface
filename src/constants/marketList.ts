@@ -14,6 +14,17 @@ const marketList = {
         'https://app.mojitoswap.finance/add/0x0039f574ee5cc39bdd162e9a88e3eb1f111baf48/0x00ee2d494258d6c5a30d6b6472a09b27121ef451',
     },
   ],
+  lending: [
+    {
+      logo: require('../assets/images/token/skcs.png').default,
+      name: 'sKCS',
+      supplyAPY: 6,
+      borrowAPY: 10,
+      collateralFactor: 0.8,
+      supplyUrl: 'https://www.torches.finance/en/crypto-bank',
+      borrowUrl: 'https://www.torches.finance/en/crypto-bank',
+    },
+  ],
 }
 
 export default marketList

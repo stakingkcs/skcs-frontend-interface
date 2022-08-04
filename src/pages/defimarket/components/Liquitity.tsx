@@ -1,17 +1,14 @@
+import DoubleTokenLogo from 'components/DoubleTokenLogo'
 import RowData from 'components/RowData'
 import StyledButton from 'components/StyledButton'
-import React from 'react'
-import styled from 'styled-components'
-import GhostButton from 'components/StyledButton/GhostButton'
-import { GradientBgColor } from 'components'
 import GradienButton from 'components/StyledButton/GradientButton'
 import { GradientText } from 'components/Text'
+import React from 'react'
 import { isMobile } from 'react-device-detect'
 import { useTranslation } from 'react-i18next'
-import Mask from './Mask'
-import DoubleTokenLogo from 'components/DoubleTokenLogo'
-import marketList from '../../../constants/marketList'
+import styled from 'styled-components'
 import { formatNumber } from 'utils/bignumber'
+import marketList from '../../../constants/marketList'
 
 const Title = styled.div`
   font-family: 'Arial';
@@ -93,7 +90,7 @@ const Liquidity: React.FunctionComponent<{
           tstyle={{ fontSize: '18px' }}
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={t('DEFI_13')}
-          content={`${liquidity.apr}%`}
+          content={`${formatNumber(liquidity.apr, 2)}%`}
         />
         <RowData
           style={{ marginTop: isMobile ? '22px' : '12px' }}
@@ -108,8 +105,13 @@ const Liquidity: React.FunctionComponent<{
         >
           {t('DEFI_15')}
         </StyledButton>
-        <GradienButton onClick={() => window.open(liquidity.swapUrl, '_blank')}>
-          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t('DEFI_16')}</GradientText>
+        <GradienButton>
+          <GradientText
+            onClick={() => window.open(liquidity.swapUrl, '_blank')}
+            style={{ fontSize: '18px', fontWeight: 700 }}
+          >
+            {t('DEFI_16')}
+          </GradientText>
         </GradienButton>
       </LiquidityWarp>
     </>

@@ -8,6 +8,7 @@ const GradientButtonWarp = styled.div`
   border: none;
   box-shadow: none;
   overflow: hidden;
+  cursor: pointer;
   ${GradientBgColor}
   &:hover {
     ${GradientBgColor}

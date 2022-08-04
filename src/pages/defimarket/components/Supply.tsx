@@ -12,6 +12,8 @@ import styled from 'styled-components'
 import RowData from 'components/RowData'
 import Calculator from './Calculator'
 import Mask from './Mask'
+import marketList from 'constants/marketList'
+import { formatNumber } from 'utils/bignumber'
 
 const caculatImg = require('../../../assets/images/defimarket/caculator.png').default
 
@@ -67,6 +69,7 @@ const GradientButton = styled.div`
 const CaculatorImg = styled.img`
   width: 20px;
   height: 20px;
+  cursor: pointer;
 `
 
 const GradientButtonContent = styled.div`
@@ -78,16 +81,19 @@ const GradientButtonContent = styled.div`
   z-index: 2;
 `
 
-const Supply: React.FunctionComponent = () => {
+const Supply: React.FunctionComponent<{ lending: typeof marketList.lending[0] }> = ({ lending }) => {
   const { t } = useTranslation()
+
+  const [visible, setVisible] = React.useState<boolean>(true)
 
   return (
     <>
       <Warp>
-        <Mask />
+        {/* <Mask /> */}
+        {visible && <Calculator lending={lending} setVisible={setVisible} visible={visible} />}
         <SymbolWarp>
           <SymbolIcon src="https://static.kcc.network/logo/skcs.png" alt="token-icon" />
-          <SymbolTitle>sKCS</SymbolTitle>
+          <SymbolTitle>{lending.name ?? 'sKCS'}</SymbolTitle>
         </SymbolWarp>
         <RowData
           style={{ marginTop: '12px' }}
@@ -95,16 +101,15 @@ const Supply: React.FunctionComponent = () => {
           title={
             <RowCenterBox>
               <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t('DEFI_7')}</Text>
-              <Tooltip placement="top" title={t('DEFI_6')}>
+              <Tooltip placement="top" title={t('Displayed APY tip')}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
           }
           content={
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
-              <p style={{ marginBottom: '0' }}> 6% </p>
-              {/* <Calculator visible={true}/> */}
-              <CaculatorImg src={caculatImg} onClick={() => {}} />
+              <div style={{ marginBottom: '0', marginRight: '4px' }}> {lending.supplyAPY}% </div>
+              <CaculatorImg src={caculatImg} onClick={() => setVisible(true)} />
             </div>
           }
         />
@@ -114,12 +119,12 @@ const Supply: React.FunctionComponent = () => {
           title={
             <RowCenterBox>
               <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t('DEFI_8')}</Text>
-              <Tooltip placement="top" title={t('DEFI_8')}>
+              <Tooltip placement="top" title={t('Borrow APY tip')}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
           }
-          content={`10%`}
+          content={`${formatNumber(lending.borrowAPY, 2)}%`}
         />
         <RowData
           style={{ marginTop: '12px' }}
@@ -127,16 +132,26 @@ const Supply: React.FunctionComponent = () => {
           title={
             <RowCenterBox>
               <Text style={{ fontSize: '16px', fontWeight: 400, marginRight: '5px' }}>{t('DEFI_9')}</Text>
-              <Tooltip placement="top" title={t('DEFI_9')}>
+              <Tooltip placement="top" title={t('Collateral factor tip')}>
                 <InfoCircleOutlined style={{ color: '#B4B7C1' }} />
               </Tooltip>
             </RowCenterBox>
           }
-          content={`10%`}
+          content={`${formatNumber(lending.collateralFactor * 100, 2)}%`}
         />
-        <StyledButton style={{ marginTop: '40px', height: '48px', marginBottom: '24px' }}>{t('DEFI_10')}</StyledButton>
+        <StyledButton
+          onClick={() => window.open(lending.supplyUrl, '_blank')}
+          style={{ marginTop: '40px', height: '48px', marginBottom: '24px' }}
+        >
+          {t('DEFI_10')}
+        </StyledButton>
         <GradienButton>
-          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t('DEFI_11')}</GradientText>
+          <GradientText
+            onClick={() => window.open(lending.borrowUrl, '_blank')}
+            style={{ fontSize: '18px', fontWeight: 700 }}
+          >
+            {t('DEFI_11')}
+          </GradientText>
         </GradienButton>
       </Warp>
     </>

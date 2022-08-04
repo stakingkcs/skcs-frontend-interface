@@ -136,5 +136,14 @@
     "HOME_4": "Withdrawal confirmed!",
     "Withdraw failed!": "Withdraw failed!",
     "Withdraw Notification": "Successfully withdrawn {{amount}} KCS!",
-    "STAKE_34": "Liquidity provision - sKCS\/XXX pools. There may be potential losses but these pools will allow you to provide liquidity for a large number of pairs."
+    "STAKE_34": "Liquidity provision - sKCS\/XXX pools. There may be potential losses but these pools will allow you to provide liquidity for a large number of pairs.",
+    "Supply Now": "Supply Now",
+    "Suuply APY": "Supply APY",
+    "Enter the supply amount": "Enter the supply amount",
+    "Yearly interest": "Yearly interest",
+    "Borrowable value": "Borrowable value",
+    "Collateral factor tip": "Collateral factor represents the maximum borrowing ratio when a specific asset is used as collateral. For example, if sKCS is collateral at 80% and the current price is 20 USD, then 1 sKCS can be borrowed in the market for up to 16 USD (0.8 * 20) of other assets.",
+    "Borrowable value tip": "Borrowable value= value of collateral assets * collateral factor. For example, if sKCS is collateral at 80% and the current price is 2 USD, then 100 sKCS can be borrowed in the market for up to 160 USD (0.8 * 2*100) of other assets.",
+    "Displayed APY tip": "Displayed APY is based on the current supply APY and rewards.",
+    "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards."
 }

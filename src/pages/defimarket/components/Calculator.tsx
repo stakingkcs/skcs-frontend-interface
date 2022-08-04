@@ -4,31 +4,41 @@ import React from 'react'
 import styled from 'styled-components'
 import BN from 'bignumber.js'
 import { ColumnCenterBox, RowCenterBox } from 'components'
-import { isMobile } from 'react-device-detect'
 import DataItem from 'components/DataItem'
-import { Tooltip } from 'antd'
+import { Modal, Tooltip } from 'antd'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import StyledButton from 'components/StyledButton'
 import { useTranslation } from 'react-i18next'
+import { Image } from '../../../components/index'
+import marketList from 'constants/marketList'
+import { formatNumber } from '../../../utils/bignumber'
+import { useSKCSPrice } from '../../../state/hooks'
+import { useResponsive } from '../../../utils/responsive'
+
+const closeIcon = require('../../../assets/images/Icons/close.png').default
+
+const CloseIcon = styled.div`
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+`
 
 const Warp = styled.div<{ visible: boolean }>`
-  display: ${({ visible }) => {
-    if (visible) {
-      return 'flex'
-    }
-    return 'none'
-  }};
+  display: flex;
   position: fixed;
   width: 100%;
   height: 100vh;
   inset: 0;
   z-index: 9999999;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `
 const Panel = styled.div`
+  position: relative;
   width: 600px;
   height: 362px;
   padding: 32px;
@@ -37,83 +47,134 @@ const Panel = styled.div`
   margin: auto;
   padding: 40px 32px;
   @media (max-width: 768px) {
-    width: 327px;
-    height: 544px;
+    width: 96%;
+    height: auto;
     padding: 32px 24px;
-    margin: 40px 0 0 0;
+    margin: 40px auto 0 auto;
+    box-sizing: border-box;
   }
 `
-const PanelText = styled.p`
+const PanelText = styled.div`
   font-family: 'Arial';
   font-style: normal;
   font-size: 14px;
   color: #ffffff;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 16px;
 `
 const DataPanelWarp = styled.div`
   width: 100%;
   margin: 32px 0;
+  @media (max-width: 768px) {
+    margin: 32px 0;
+  }
 `
 
 export interface CaculatorProps {
   visible: boolean
+  setVisible: any
+  lending: typeof marketList.lending[0]
   toggleVisible?: any
 }
 
-const Calculator: React.FunctionComponent<CaculatorProps> = (props) => {
+const Calculator: React.FunctionComponent<CaculatorProps> = ({ lending, ...props }) => {
   const { t } = useTranslation()
   const { account, library } = useWeb3React()
+  const { isMobile } = useResponsive()
   const [inputValue, setInputValue] = React.useState<string>('')
   const [error, setError] = React.useState<{ hasError: boolean; errorInfo: string }>({ hasError: false, errorInfo: '' })
   const [isHover, setIsHover] = React.useState<boolean>(false)
+  const [isHover1, setIsHover1] = React.useState<boolean>(false)
+  const [isHover2, setIsHover2] = React.useState<boolean>(false)
+  const skcsPrice = useSKCSPrice()
 
-  const renderData = () => {
-    if (!isMobile) {
-      return (
-        <RowCenterBox style={{ width: '100%' }} align="flex-start" justify="space-between">
-          <DataItem
-            title="APR"
-            titleExtra={
-              <Tooltip placement="top" title={t('HOME_12')}>
-                <InfoCircleOutlined
-                  onMouseEnter={() => setIsHover(() => true)}
-                  onMouseLeave={() => setIsHover(() => false)}
-                  style={{ color: isHover ? '#00CA87' : '#B4B7C1' }}
-                />
-              </Tooltip>
-            }
-            balance={`10.00%`}
-          />
-          <DataItem title={t('DEFI_22')} balance={`10 sKCS`} uBalance={`≈$0.0026`} />
-          <DataItem title={t('DEFI_23')} balance={`10.00%`} />
-          <DataItem title={t('DEFI_23')} balance={`$1,600`} />
-        </RowCenterBox>
-      )
-    } else {
-      return (
-        <ColumnCenterBox style={{ width: '100%', height: '272px' }} justify="space-between" align="flex-start">
-          <DataItem
-            title="APY"
-            titleExtra={
-              <Tooltip placement="top" title={t('HOME_12')}>
-                <InfoCircleOutlined style={{ color: 'rgba(255, 255, 255, 0.01)' }} />
-              </Tooltip>
-            }
-            balance={`100%`}
-          />
-          <DataItem title={t('HOME_16')} balance={`222KCS`} uBalance={`22`} />
-          <DataItem title={t('HOME_17')} balance={`11`} uBalance={`33`} />
-        </ColumnCenterBox>
-      )
+  const formatInput = React.useMemo(() => {
+    if (error.hasError || inputValue === '') {
+      return 0
     }
-  }
+    return Number(inputValue)
+  }, [inputValue, error])
 
   return (
     <Warp visible={props.visible}>
       <Panel>
-        <PanelText>{t('HOME_20')}</PanelText>
-        <StyledInput inputValue={``} setVaule={``} value={``} setError={setError} error={error} maxLimit={``} />
-        <DataPanelWarp>{renderData()}</DataPanelWarp>
-        {!account ? <StyledButton>{t('HOME_21')}</StyledButton> : <StyledButton>{t('HOME_22')}</StyledButton>}
+        <CloseIcon onClick={() => props.setVisible(() => false)}>
+          <Image src={closeIcon} width="20px" height="auto" alt="close-icon" />
+        </CloseIcon>
+        <PanelText>{t('Enter the supply amount')}</PanelText>
+        <StyledInput
+          checkBalance={false}
+          checkAccount={false}
+          inputValue={inputValue}
+          setVaule={setInputValue}
+          setError={setError}
+          error={error}
+          showMax={false}
+          maxLimit={String(Math.pow(10, 18))}
+          showPrefix={false}
+          suffix="sKCS"
+        />
+        <DataPanelWarp>
+          <RowCenterBox
+            style={{ width: '100%', flexFlow: isMobile ? 'column nowrap' : 'row nowrap' }}
+            align="flex-start"
+            justify={isMobile ? 'flex-start' : 'space-between'}
+          >
+            <DataItem
+              title="APY"
+              titleExtra={
+                <Tooltip placement="top" title={t('Displayed APY tip')}>
+                  <InfoCircleOutlined
+                    onMouseEnter={() => setIsHover(() => true)}
+                    onMouseLeave={() => setIsHover(() => false)}
+                    style={{ color: isHover ? '#00CA87' : '#B4B7C1' }}
+                  />
+                </Tooltip>
+              }
+              balance={`${formatNumber(lending.supplyAPY, 2)}%`}
+            />
+
+            <DataItem
+              title={t('Yearly interest')}
+              balance={`${formatNumber(new BN(formatInput).multipliedBy(lending.supplyAPY).div(100), 2)} sKCS`}
+              uBalance={`≈$${formatNumber(
+                new BN(formatInput).multipliedBy(lending.supplyAPY).multipliedBy(skcsPrice).div(100).toString(),
+                2
+              )}`}
+            />
+            <DataItem
+              titleExtra={
+                <Tooltip placement="top" title={t('Collateral factor tip')}>
+                  <InfoCircleOutlined
+                    onMouseEnter={() => setIsHover1(() => true)}
+                    onMouseLeave={() => setIsHover1(() => false)}
+                    style={{ color: isHover1 ? '#00CA87' : '#B4B7C1' }}
+                  />
+                </Tooltip>
+              }
+              title={t('DEFI_23')}
+              balance={`${formatNumber(lending.collateralFactor * 100, 2)}%`}
+            />
+            <DataItem
+              title={t('Borrowable value')}
+              titleExtra={
+                <Tooltip placement="top" title={t('Borrowable value tip')}>
+                  <InfoCircleOutlined
+                    onMouseEnter={() => setIsHover2(() => true)}
+                    onMouseLeave={() => setIsHover2(() => false)}
+                    style={{ color: isHover2 ? '#00CA87' : '#B4B7C1' }}
+                  />
+                </Tooltip>
+              }
+              balance={`$${formatNumber(
+                new BN(formatInput).multipliedBy(lending.collateralFactor).multipliedBy(skcsPrice).toString(),
+                2
+              )}`}
+            />
+          </RowCenterBox>
+        </DataPanelWarp>
+        <StyledButton onClick={() => window.open(lending.supplyUrl, '_blank')}>{t('Supply Now')}</StyledButton>
       </Panel>
     </Warp>
   )

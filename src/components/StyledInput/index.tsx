@@ -74,15 +74,22 @@ const MaxButton = styled.div`
 
 interface Props {
   inputValue: string
+  checkAccount?: boolean
   setVaule: any
   error: { hasError: boolean; errorInfo: string }
   setError: any
   maxLimit: string
   checkBalance?: boolean
+  showPrefix?: boolean
   showMax?: boolean
 }
 
-const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = true, ...props }) => {
+const StyledInput: React.FunctionComponent<InputProps & Props> = ({
+  checkAccount = true,
+  showPrefix = true,
+  showMax = true,
+  ...props
+}) => {
   const { isMobile } = useResponsive()
   const balance = useBalance()
   const { account } = useWeb3React()
@@ -100,7 +107,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
   const checkValue = (input) => {
     console.log('readonly', props.readOnly)
     if (props.readOnly) return
-    if (!account) {
+    if (!account && checkAccount) {
       props.setError(() => {
         return { hasError: true, errorInfo: t('COMPONENT_5') }
       })
@@ -191,7 +198,7 @@ const StyledInput: React.FunctionComponent<InputProps & Props> = ({ showMax = tr
           </RowCenterBox>
         }
         prefix={
-          isMobile ? null : (
+          isMobile || !showPrefix ? null : (
             <Image
               src={require('../../assets/images/Icons/kcs.png').default}
               width="24px"

@@ -9,6 +9,11 @@ const DataItemWrap = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   overflow: hidden;
+  @media (max-width: 768px) {
+    & + & {
+      margin-top: 10px;
+    }
+  }
 `
 
 const Title = styled.div`

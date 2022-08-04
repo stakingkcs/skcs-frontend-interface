@@ -106,7 +106,9 @@ const DeFiMarket: React.FunctionComponent = () => {
           <Title>{t('DEFI_4')}</Title>
           <Desc>{t('DEFI_5')}</Desc>
           <DataWarp>
-            <Supply />
+             {marketList.lending.map((lending, index) => {
+              return <Supply lending={lending} key={index} />
+            })}
           </DataWarp>
         </Content>
       </Warp>
