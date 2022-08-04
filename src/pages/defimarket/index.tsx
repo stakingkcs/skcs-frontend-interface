@@ -5,6 +5,7 @@ import Liquidity from './components/Liquitity'
 import Supply from './components/Supply'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
+import marketList from 'constants/marketList'
 
 const gradientBg = require('../../assets/images/bg.jpg').default
 const mGradientBg = require('../../assets/images/mobile_bg.jpg').default
@@ -98,7 +99,9 @@ const DeFiMarket: React.FunctionComponent = () => {
           <Title>{t('DEFI_1')}</Title>
           <Desc>{t('DEFI_3')}</Desc>
           <DataWarp>
-            <Liquidity />
+            {marketList.liquidity.map((liquidity, index) => {
+              return <Liquidity liquidity={liquidity} key={index} />
+            })}
           </DataWarp>
           <Title>{t('DEFI_4')}</Title>
           <Desc>{t('DEFI_5')}</Desc>
