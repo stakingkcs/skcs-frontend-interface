@@ -14,7 +14,7 @@ const initialState: WalletState = {
     hasError: false,
     errorInfo: '',
     connectWalletModalShow: false,
-    balance: '',
+    balance: '0',
     walletId: 0
 }
 

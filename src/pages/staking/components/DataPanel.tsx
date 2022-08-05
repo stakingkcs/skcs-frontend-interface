@@ -243,7 +243,7 @@ const StakingPanel: FunctionComponent = () => {
                 <RowCenterBox>
                   <DataItem
                     title={t('STAKE_8')}
-                    balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
+                    balance={`${account ? formatNumber(new BN(balance ?? 0).div(10 ** 18), 2) : '0.00'} KCS`}
                     titleExtra={
                       <ExternalLink
                         style={{ marginLeft: '10px', fontSize: '14px' }}
@@ -256,7 +256,13 @@ const StakingPanel: FunctionComponent = () => {
                 <RowCenterBox style={{ marginTop: '16px' }}>
                   <DataItem
                     title={t('STAKE_12')}
-                    balance={`${formatNumber(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18), 2)} sKCS`}
+                    balance={`${formatNumber(
+                      new BN(staker.userData.stakeAmount.toString()).div(10 ** 18),
+                      new BN(staker.userData.stakeAmount.toString()).gte(1) ||
+                        new BN(staker.userData.stakeAmount.toString()).eq(0)
+                        ? 2
+                        : 4
+                    )} sKCS`}
                     uBalance={`≈$${formatNumber(
                       skcsPrice.multipliedBy(new BN(staker.userData.stakeAmount.toString()).div(10 ** 18)),
                       2
