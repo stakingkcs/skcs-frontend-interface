@@ -111,7 +111,7 @@ export const mediaList = [
   {
     icon: require('../../assets/images/home/f2.png').default,
     name: 'Discord',
-    link: 'https://discord.gg/26VN2syXdm',
+    link: 'https://discord.gg/5pRc7U78Xd',
   },
   {
     icon: require('../../assets/images/home/f4.png').default,
