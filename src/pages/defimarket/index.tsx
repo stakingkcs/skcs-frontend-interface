@@ -54,6 +54,7 @@ const Warp = styled.div`
     background: url(${mGradientBg}) no-repeat fixed center top;
     background-size: 100% 100%;
     text-align: center;
+    padding: 45px 24px 45px 24px;
   }
 `
 export const Content = styled.div`
@@ -106,7 +107,7 @@ const DeFiMarket: React.FunctionComponent = () => {
           <Title>{t('DEFI_4')}</Title>
           <Desc>{t('DEFI_5')}</Desc>
           <DataWarp>
-             {marketList.lending.map((lending, index) => {
+            {marketList.lending.map((lending, index) => {
               return <Supply lending={lending} key={index} />
             })}
           </DataWarp>

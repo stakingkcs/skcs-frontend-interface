@@ -22,9 +22,9 @@ const BWarp = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   @media (max-width: 768px) {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 343px;
-    padding: 21px 16px;
+    align-items: flex-start;
   }
 `
 const IconWarp = styled.div`
@@ -49,7 +49,6 @@ const BanlanceWarp = styled.div`
   align-items: center;
   @media (max-width: 768px) {
     position: relative;
-    top: 5px;
   }
 `
 const BanlanceText = styled.div`
@@ -70,6 +69,9 @@ const BanlanceNum = styled.div`
   margin-top: 0px;
   text-align: left;
   width: 100%;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `
 const LinkWarp = styled.div`
   padding-top: 4px;
@@ -79,7 +81,8 @@ const LinkWarp = styled.div`
   align-items: flex-start;
   @media (max-width: 768px) {
     position: relative;
-    top: -18px;
+    padding-top: 0px;
+    top: 0px;
   }
 `
 const LinkText = styled.p`
@@ -89,7 +92,9 @@ const LinkText = styled.p`
   margin-right: 8px;
   line-height: 18px;
   cursor: pointer;
-  
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `
 const LinkIcon = styled.img`
   width: 16px;
