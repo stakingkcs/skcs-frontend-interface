@@ -84,12 +84,12 @@ const GradientButtonContent = styled.div`
 const Supply: React.FunctionComponent<{ lending: typeof marketList.lending[0] }> = ({ lending }) => {
   const { t } = useTranslation()
 
-  const [visible, setVisible] = React.useState<boolean>(true)
+  const [visible, setVisible] = React.useState<boolean>(false)
 
   return (
     <>
       <Warp>
-        {/* <Mask /> */}
+        <Mask />
         {visible && <Calculator lending={lending} setVisible={setVisible} visible={visible} />}
         <SymbolWarp>
           <SymbolIcon src="https://static.kcc.network/logo/skcs.png" alt="token-icon" />
