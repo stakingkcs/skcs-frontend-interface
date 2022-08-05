@@ -105,13 +105,8 @@ const Liquidity: React.FunctionComponent<{
         >
           {t('DEFI_15')}
         </StyledButton>
-        <GradienButton>
-          <GradientText
-            onClick={() => window.open(liquidity.swapUrl, '_blank')}
-            style={{ fontSize: '18px', fontWeight: 700 }}
-          >
-            {t('DEFI_16')}
-          </GradientText>
+        <GradienButton onClick={() => window.open(liquidity.swapUrl, '_blank')}>
+          <GradientText style={{ fontSize: '18px', fontWeight: 700 }}>{t('DEFI_16')}</GradientText>
         </GradienButton>
       </LiquidityWarp>
     </>

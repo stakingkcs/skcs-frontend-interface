@@ -1,13 +1,12 @@
+import { ButtonProps } from 'antd'
 import { GradientBgColor } from 'components'
 import React from 'react'
 import styled from 'styled-components'
-import { Button, ButtonProps } from 'antd'
 
 const GradientButtonWarp = styled.div`
   position: relative;
   border: none;
   box-shadow: none;
-  overflow: hidden;
   cursor: pointer;
   ${GradientBgColor}
   &:hover {
@@ -26,7 +25,7 @@ const GradientButtonBg = styled.div`
   top: 1px;
   background: #000;
   border-radius: 31px;
-  z-index: 1;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,11 +33,9 @@ const GradientButtonBg = styled.div`
 
 const GradienButton: React.FunctionComponent<ButtonProps> = (props) => {
   return (
-    <>
-      <GradientButtonWarp>
-        <GradientButtonBg>{props.children}</GradientButtonBg>
-      </GradientButtonWarp>
-    </>
+    <GradientButtonWarp>
+      <GradientButtonBg onClick={props.onClick}>{props.children}</GradientButtonBg>
+    </GradientButtonWarp>
   )
 }
 
