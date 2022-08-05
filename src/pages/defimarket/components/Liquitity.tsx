@@ -90,12 +90,12 @@ const Liquidity: React.FunctionComponent<{
           tstyle={{ fontSize: '18px' }}
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={t('DEFI_13')}
-          content={`${formatNumber(liquidity.apr, 2)}%`}
+          content={`${formatNumber(liquidity.apr, 2)}%+`}
         />
         <RowData
           style={{ marginTop: isMobile ? '22px' : '12px' }}
           title={t('DEFI_14')}
-          content={`$${formatNumber(liquidity.liquidity, 0)}`}
+          content={`$${formatNumber(liquidity.liquidity, 0)}+`}
           tstyle={{ fontSize: '18px' }}
           dstyle={{ fontWeight: 700, fontSize: '24px' }}
         />
