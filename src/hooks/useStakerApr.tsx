@@ -8,6 +8,8 @@ import { getContract } from 'utils'
 import { getStakerAddress } from 'utils/addressHelpers'
 import { useAppDispatch } from '../state/index'
 
+let hasApr = false
+
 /**
  * Given APR returns APY
  * @param apr APR as percentage
@@ -38,6 +40,10 @@ export const useStakeApr = async () => {
   const dispatch = useAppDispatch()
 
   const latestBlock = useBlockNumber()
+
+  if (hasApr) {
+    return
+  }
 
   if (!latestBlock || staker.skcsQuetoByKCS == 0 || !latestBlock) {
     dispatch(updateStakerPublicDataByKey({ key: 'apr', value: 0 }))
@@ -87,6 +93,7 @@ export const useStakeApr = async () => {
 
       dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apy }))
 
+      hasApr = true
     }
   } catch (e) {
     console.log(e)
