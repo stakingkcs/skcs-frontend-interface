@@ -41,7 +41,6 @@ export const StakerSlice = createSlice({
       state.skcsQuetoByKCS = staker.skcsQuetoByKCS
       state.totalStaker = staker.totalStaker
       state.rewardFee = staker.rewardFee
-      state.apr = staker.apr
       state.updatedAt = new Date().getTime()
     },
     updateStakerPublicDataByKey: (state, action: { payload: { key: keyof StakerState, value: any } }) => {

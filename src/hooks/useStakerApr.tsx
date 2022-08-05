@@ -84,9 +84,6 @@ export const useStakeApr = async () => {
       console.log('preSkcsQuetoByKCS', preSkcsQuetoByKCS)
 
       const apr = ((staker.skcsQuetoByKCS - Number(preSkcsQuetoByKCS)) / Number(preSkcsQuetoByKCS)) * 365
-
-      console.log('apr', apr)
-
       const apy = getApy(apr * 100)
 
       console.log('apy', apy)
