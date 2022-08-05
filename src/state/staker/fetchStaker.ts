@@ -5,12 +5,10 @@ import { getStakerAddress } from 'utils/addressHelpers'
 import multicall from 'utils/multicall'
 import { ZERO } from '../../constants/number'
 import BN from 'bignumber.js'
-import { updateStakerPublicDataByKey } from 'state/staker';
+import { updateStakerPublicDataByKey } from 'state/staker'
 import state from 'state'
 
-
 export const updateBannerData = async () => {
-
   const dispatch = state.dispatch
 
   const allStakerPropertyCalls = [
@@ -25,15 +23,13 @@ export const updateBannerData = async () => {
   ]
 
   const allStakerPropertyCallsRespond = await multicall(VALIDATOR_ABI, allStakerPropertyCalls)
-  
-  dispatch(updateStakerPublicDataByKey({ key: 'accumulatedStakedKCSAmount', value: allStakerPropertyCallsRespond[0][0] }))
+
+  dispatch(
+    updateStakerPublicDataByKey({ key: 'accumulatedStakedKCSAmount', value: allStakerPropertyCallsRespond[0][0] })
+  )
 
   dispatch(updateStakerPublicDataByKey({ key: 'accumulatedReward', value: allStakerPropertyCallsRespond[1][0] }))
-
 }
-
-
-
 
 export const fetchStakerPublicData = async (): Promise<Partial<StakerState>> => {
   const allStakerPropertyCalls = [
@@ -82,6 +78,5 @@ export const fetchStakerPublicData = async (): Promise<Partial<StakerState>> => 
     totalStakeSKCSAmount: allStakerPropertyCallsRespond[2][1],
     kcsQuetoBySKCS,
     skcsQuetoByKCS,
-    apr: 0,
   }
 }
