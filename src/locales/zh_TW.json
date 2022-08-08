@@ -1,6 +1,6 @@
 {
     "HOME_1": "sKCS協議當前已有<number>{{totalKCS}}<\/number>KCS的質押量，<number>{{totalRewards}}<\/number>KCS的已支付收益，APY是<number>{{apy}}%<\/number>。",
-    "HOME_2": "sKCS協議當前已有<number>{{totalKCS}}<\/number>KCS的質押量，<number>{{totalRewards}}<\/number>KCS的已支付收益，APY是<number>{{apy}}%<\/number>。",
+    "HOME_2": "sKCS協議當前已有<number>{{totalKCS}}<\/number>KCS的質押量，<number>{{totalRewards}}<\/number> KCS的已支付收益，APY是<number>{{apy}}%<\/number>。",
     "HOME_5": "立即質押",
     "HOME_7": "已確認質押！",
     "HOME_8": "質押 {{inputValue}} KCS將收到 {{skcsAmount}} sKCS",
@@ -136,5 +136,14 @@
     "HOME_4": "取款已確認！",
     "Withdraw failed!": "取款失敗！",
     "Withdraw Notification": "您已成功提取 {{amount}} KCS！",
-    "STAKE_34": "提供流動性 - sKCS\/XXX 池 - 這些流動性池可能會有無常損失，但可以讓你為大量幣對提供流動性。"
+    "STAKE_34": "提供流動性 - sKCS\/XXX 池 - 這些流動性池可能會有無常損失，但可以讓你為大量幣對提供流動性。",
+    "Supply Now": "立即存款",
+    "Suuply APY": "存款APY",
+    "Enter the supply amount": "請輸入存款金額",
+    "Yearly interest": "预估年存款回報",
+    "Collateral factor": "抵押率",
+    "Borrowable value": "可借額度",
+    "Collateral factor tip": "抵押率表示特定資產作為抵押物時的最大借貸比例。例如，如果sKCS的抵押率是80%，當前價格是20美元，那麽1個sKCS可以在借貸市場上最多可借到16美元（0.8*20）的其他資產。",
+    "Borrowable value tip": "可借額度=抵押資產的價值*抵押率。\n例如，如果sKCS的抵押率是80%，目前的價格是20美元，那麽1個sKCS可以在市場上借到最多16美元（0.8*20*100）的其他資產。",
+    "Displayed APY tip": "顯示的APY是基於當前存款利率及其獎勵收益。"
 }

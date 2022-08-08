@@ -9,7 +9,7 @@
     "HOME_11": "Probeer het alstublieft opnieuw.",
     "HOME_12": "De APY is het verwachte samengestelde rendement op jaarbasis wanneer u sKCS 1 jaar bezit. De rendementsberekeningen zijn gebaseerd op de sKCS\/KCS wisselkoers van de afgelopen 24 uur na aftrek van de beloningsprovisie.",
     "HOME_13": "Beloningen per maand",
-    "HOME_14": "Beloningen per jaar",
+    "HOME_14": "Jaarlijkse beloningen",
     "HOME_18": "Beloningen berekenen",
     "HOME_19": "Bereken nu uw stakingsbeloningen en stake uw KCS",
     "HOME_20": "Voer het te staken aantal in",
@@ -136,5 +136,14 @@
     "HOME_4": "Opname bevestigd!",
     "Withdraw failed!": "Opname mislukt!",
     "Withdraw Notification": "U heeft met succes {{amount}} KCS opgenomen!",
-    "STAKE_34": "Liquiditeitsvoorziening - sKCS\/XXX pools. Er bestaat de mogelijkheid dat u geld verliest, maar met deze pools kunt u een groot aantal paren van liquiditeit voorzien."
+    "STAKE_34": "Liquiditeitsvoorziening - sKCS\/XXX pools. Er bestaat de mogelijkheid dat u geld verliest, maar met deze pools kunt u een groot aantal paren van liquiditeit voorzien.",
+    "Supply Now": "Storten",
+    "Suuply APY": "Deposito APY",
+    "Enter the supply amount": "Voer het stortingsbedrag in",
+    "Yearly interest": "Jaarlijkse rente (geschat)",
+    "Collateral factor": "Onderpand factor",
+    "Borrowable value": "Leenbaar bedrag",
+    "Collateral factor tip": "De onderpand factor is de maximale leenratio wanneer een specifiek activum als onderpand wordt gebruikt. Als de onderpand factor voor sKCS bijvoorbeeld 80% bedraagt en de sKCS prijs op het moment 20 USD is, kan 1 sKCS als onderpand worden gebruikt om andere activa ter waarde van maximaal 16 (0,8*20) USD op de markt te lenen.",
+    "Borrowable value tip": "Leenbaar bedrag = (onderpand waarde) * (onderpand factor). Als de onderpand factor voor sKCS bijvoorbeeld 80% is en de sKCS prijs op het moment 20 USD bedraagt, kan 1 sKCS als onderpand worden gebruikt om andere activa ter waarde van maximaal 16 (0,8*20) USD op de markt te lenen.",
+    "Displayed APY tip": "De weergegeven APY is gebaseerd op de deposito APY en de inkomsten van beloningen."
 }

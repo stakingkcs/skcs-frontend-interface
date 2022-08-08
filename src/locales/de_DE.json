@@ -1,6 +1,6 @@
 {
-    "HOME_1": "Das sKCS-Protokoll hat derzeit <number> {{totalKCS}} <\/number> KCS gestaked, mit <number> {{totalRewards}} <\/number> Belohnungen, die bereits ausgezahlt wurden, und einem APY von <number>{{apy}} % <\/number>",
-    "HOME_2": "Das sKCS-Protokoll hat derzeit <number> {{totalKCS}} <\/number> KCS gestaked, mit <number> {{totalRewards}} <\/number> Belohnungen, die bereits ausgezahlt wurden, und einem APY von <number>{{apy}} % <\/number>",
+    "HOME_1": "Das sKCS-Protokoll hat derzeit <number> {{totalKCS}} <\/number> KCS gestaked, mit <number> {{totalRewards}} <\/number> Belohnungen, die bereits ausgezahlt wurden, und einem APY von <number> {{apy}} % <\/number>",
+    "HOME_2": "Das sKCS-Protokoll hat derzeit <number> {{totalKCS}} <\/number> KCS gestaked, mit <number> {{totalRewards}} <\/number> Belohnungen, die bereits ausgezahlt wurden, und einem APY von <number> {{apy}} % <\/number>",
     "HOME_5": "Jetzt staken",
     "HOME_7": "Staking bestätigt!",
     "HOME_8": "Sie erhalten {{skcsAmount}} KCS für das Staking von {{inputValue}} KCS.",
@@ -136,5 +136,14 @@
     "HOME_4": "Auszahlung bestätigt!",
     "Withdraw failed!": "Auszahlung fehlgeschlagen!",
     "Withdraw Notification": "Erfolgreich {{amount}} KCS ausgezahlt!",
-    "STAKE_34": "Liquiditätsbereitstellung - sKCS\/XXX-Pools. Es kann zu Verlusten kommen, aber diese Pools ermöglichen es Ihnen, Liquidität für eine große Anzahl von Paaren bereitzustellen."
+    "STAKE_34": "Liquiditätsbereitstellung - sKCS\/XXX-Pools. Es kann zu Verlusten kommen, aber diese Pools ermöglichen es Ihnen, Liquidität für eine große Anzahl von Paaren bereitzustellen.",
+    "Supply Now": "Einzahlung",
+    "Suuply APY": "APY einzahlen",
+    "Enter the supply amount": "Einzahlungsbetrag eingeben",
+    "Yearly interest": "Jährliche Zinsen (Schätzung)",
+    "Collateral factor": "Sicherheitsfaktor",
+    "Borrowable value": "Beleihbarer Betrag",
+    "Collateral factor tip": "Der Sicherheitenfaktor stellt die maximale Kreditaufnahmequote dar, wenn ein bestimmtes Kapital als Sicherheit verwendet wird. Wenn der Besicherungsfaktor für sKCS beispielsweise 80% beträgt und der Preis von sKCS derzeit bei 20 USD liegt, dann kann 1 sKCS als Sicherheit verwendet werden, um bis zu 16 (0,8*20) USD an sonstigem Kapital auf dem Markt aufzunehmen.",
+    "Borrowable value tip": "Beleihbarer Betrag = (Wert der Sicherheit) * (Sicherheitenfaktor). Wenn der Besicherungsfaktor für sKCS beispielsweise 80% beträgt und der Preis von sKCS derzeit bei 20 USD liegt, dann kann 1 sKCS als Sicherheit verwendet werden, um bis zu 16 (0,8*20) USD an sonstigem Kapital auf dem Markt aufzunehmen.",
+    "Displayed APY tip": "Der angezeigte APY basiert auf dem APY der Einzahlung und dem Ertrag der Belohnung."
 }

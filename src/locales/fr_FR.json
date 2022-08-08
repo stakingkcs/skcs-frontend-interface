@@ -136,5 +136,14 @@
     "HOME_4": "Retrait confirmé !",
     "Withdraw failed!": "Échec du retrait !",
     "Withdraw Notification": "Retrait réussi de {{amount}} KCS !",
-    "STAKE_34": "Fourniture de liquidité : pools sKCS\/XXX. Il peut y avoir des pertes potentielles mais ces pools vous permettront de fournir de la liquidité pour un grand nombre de paires."
+    "STAKE_34": "Fourniture de liquidité : pools sKCS\/XXX. Il peut y avoir des pertes potentielles mais ces pools vous permettront de fournir de la liquidité pour un grand nombre de paires.",
+    "Supply Now": "Dépôt",
+    "Suuply APY": "APY de dépôt",
+    "Enter the supply amount": "Saisissez le montant du dépôt",
+    "Yearly interest": "Intérêt annuel (estimé)",
+    "Collateral factor": "Facteur de garantie",
+    "Borrowable value": "Montant empruntable",
+    "Collateral factor tip": "Le facteur de garantie correspond au taux d'emprunt maximum lorsqu'un actif spécifique est utilisé comme garantie. Par exemple, si le facteur de garantie des sKCS est de 80 % et que le prix des sKCS est actuellement de 20 USD, 1 sKCS peut être utilisé comme garantie pour emprunter jusqu'à 16 (0,8 * 20) USD autres actifs sur le marché.",
+    "Borrowable value tip": "Montant empruntable = (valeur de la garantie) * (facteur de garantie). Par exemple, si le facteur de garantie des sKCS est de 80 % et que le prix des sKCS est actuellement de 20 USD, 1 sKCS peut être utilisé comme garantie pour emprunter jusqu'à 16 (0,8*20) USD autres actifs sur le marché.",
+    "Displayed APY tip": "L'APY affiché est calculé sur la base de l'APY de dépôt et des gains de récompense."
 }

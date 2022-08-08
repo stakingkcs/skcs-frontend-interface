@@ -136,5 +136,14 @@
     "HOME_4": "出金を確認しました。",
     "Withdraw failed!": "出金に失敗しました。",
     "Withdraw Notification": "{{amount}} KCSを正常に出金しました。",
-    "STAKE_34": "流動性の提供 - sKCS\/XXXプール。これらのプールを使用して多数のペアに流動性を提供することができますが、潜在的な損失が発生する可能性があります。"
+    "STAKE_34": "流動性の提供 - sKCS\/XXXプール。これらのプールを使用して多数のペアに流動性を提供することができますが、潜在的な損失が発生する可能性があります。",
+    "Supply Now": "貸出",
+    "Suuply APY": "貸出APY",
+    "Enter the supply amount": "貸出数量を入力",
+    "Yearly interest": "年利（推定）",
+    "Collateral factor": "担保係数",
+    "Borrowable value": "借入可能額",
+    "Collateral factor tip": "担保係数は、特定の資産を担保とした場合の最大借入比率を表します。例えば、sKCSの担保係数が80%で、sKCSの価格が20ドルの場合、1 sKCSを担保として使用して、市場にある他の資産を最大16(0.8 x 20)ドル借りることができます。",
+    "Borrowable value tip": "借入可能額 = (担保価値) x (担保係数)。例えば、sKCSの担保係数が80%で、sKCSの価格が20ドルの場合、1 sKCSを担保として使用して、市場にある他の資産を最大16(0.8 x 20)ドル借りることができます。",
+    "Displayed APY tip": "表示されるAPYは、貸出APYと報酬収益に基づいています。"
 }

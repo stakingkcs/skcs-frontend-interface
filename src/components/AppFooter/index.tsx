@@ -1,15 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import Row from '../Row'
-import Column from '../Column/index'
 import { useTranslation } from 'react-i18next'
-import { RowBetween, CenterRow } from '../Row/index'
-import { FOOTER_LIST } from '../../constants/footerList'
-import { useHistory } from 'react-router'
-import { BrowserView, MobileView } from '../Common'
-import { KCC } from '../../constants'
-import { Image } from 'components'
-import { RowCenterBox } from '../index'
+import styled from 'styled-components'
 import { useResponsive } from 'utils/responsive'
 
 export interface AppFooterProps {}
