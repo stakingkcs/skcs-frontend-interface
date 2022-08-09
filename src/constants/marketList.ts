@@ -5,9 +5,9 @@ const marketList = {
       lpName: 'sKCS+USDT',
       AToken: require('../assets/images/token/skcs.png').default,
       BToken: require('../assets/images/token/usdt.png').default,
-      liquidity: 10000,
-      apr: 100,
-      apiUrl: '',
+      liquidity: 0,
+      apr: 0,
+      apiUrl: 'https://nft.mojitoswap.finance/mojito/v1/market/apy/skcs/usdt',
       swapUrl:
         'https://app.mojitoswap.finance/swap?inputCurrency=0x0039f574ee5cc39bdd162e9a88e3eb1f111baf48&outputCurrency=0x00ee2d494258d6c5a30d6b6472a09b27121ef451',
       addLiquidityUrl:
@@ -18,9 +18,9 @@ const marketList = {
       lpName: 'sKCS+KCS',
       AToken: require('../assets/images/token/skcs.png').default,
       BToken: require('../assets/images/token/kcs.png').default,
-      liquidity: 10000,
-      apr: 100,
-      apiUrl: '',
+      liquidity: 0,
+      apr: 0,
+      apiUrl: 'https://nft.mojitoswap.finance/mojito/v1/market/apy/skcs/kcs',
       swapUrl:
         'https://app.mojitoswap.finance/swap?inputCurrency=0x00ee2d494258d6c5a30d6b6472a09b27121ef451&outputCurrency=KCS',
       addLiquidityUrl: 'https://app.mojitoswap.finance/add/0x00ee2d494258d6c5a30d6b6472a09b27121ef451/KCS',

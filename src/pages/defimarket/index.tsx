@@ -6,6 +6,7 @@ import Supply from './components/Supply'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 import marketList from 'constants/marketList'
+import axios from 'axios'
 
 const gradientBg = require('../../assets/images/bg.jpg').default
 const mGradientBg = require('../../assets/images/mobile_bg.jpg').default
@@ -81,6 +82,33 @@ const DataWarp = styled.div`
 
 const DeFiMarket: React.FunctionComponent = () => {
   const { t } = useTranslation()
+
+  const [liquidityList, setLiquidityList] = React.useState<typeof marketList.liquidity>(marketList.liquidity)
+
+  React.useEffect(() => {
+    async function updateliquidityList() {
+      if (liquidityList[0].apr !== 0) {
+        return
+      }
+      const promises = liquidityList.map((l) => axios({ method: 'get', url: l.apiUrl }))
+      const responses = await Promise.all(promises)
+
+      const newLiquidityList = liquidityList.map((l, i) => {
+        return {
+          ...liquidityList[i],
+          apr: responses[i].data.data.apy,
+          liquidity: responses[i].data.data.totalLiquidity,
+        }
+      })
+
+      console.log('newLiquidityList',newLiquidityList)
+
+      setLiquidityList(() => newLiquidityList)
+    }
+
+    updateliquidityList()
+  }, [liquidityList])
+
   return (
     <>
       <Helmet>
@@ -100,7 +128,7 @@ const DeFiMarket: React.FunctionComponent = () => {
           <Title>{t('DEFI_1')}</Title>
           <Desc>{t('DEFI_3')}</Desc>
           <DataWarp>
-            {marketList.liquidity.map((liquidity, index) => {
+            {liquidityList.map((liquidity, index) => {
               return <Liquidity liquidity={liquidity} key={index} />
             })}
           </DataWarp>
