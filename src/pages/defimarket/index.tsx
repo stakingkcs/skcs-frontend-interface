@@ -90,20 +90,23 @@ const DeFiMarket: React.FunctionComponent = () => {
       if (liquidityList[0].apr !== 0) {
         return
       }
-      const promises = liquidityList.map((l) => axios({ method: 'get', url: l.apiUrl }))
-      const responses = await Promise.all(promises)
+      try {
+        const promises = liquidityList.map((l) => axios({ method: 'get', url: l.apiUrl }))
+        const responses = await Promise.all(promises)
 
-      const newLiquidityList = liquidityList.map((l, i) => {
-        return {
-          ...liquidityList[i],
-          apr: responses[i].data.data.apy,
-          liquidity: responses[i].data.data.totalLiquidity,
-        }
-      })
+        const newLiquidityList = liquidityList.map((l, i) => {
+          return {
+            ...l,
+            apr: responses[i].data.data.apy ?? 0,
+            liquidity: responses[i].data.data.totalLiquidity ?? 0,
+          }
+        })
 
-      console.log('newLiquidityList',newLiquidityList)
-
-      setLiquidityList(() => newLiquidityList)
+        console.log('newLiquidityList', newLiquidityList)
+        setLiquidityList(() => newLiquidityList)
+      } catch {
+        console.log('get data error')
+      }
     }
 
     updateliquidityList()
