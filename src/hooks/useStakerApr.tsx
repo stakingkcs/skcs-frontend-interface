@@ -7,6 +7,7 @@ import { updateStakerPublicDataByKey } from 'state/staker'
 import { getContract } from 'utils'
 import { getStakerAddress } from 'utils/addressHelpers'
 import { useAppDispatch } from '../state/index'
+import { useWeb3React } from '@web3-react/core'
 
 let hasApr = false
 
@@ -39,7 +40,10 @@ export const useStakeApr = async () => {
   const staker = useStakerState()
   const dispatch = useAppDispatch()
 
-  const latestBlock = useBlockNumber()
+  const provider = new JsonRpcProvider(process.env.REACT_APP_NETWORK_URL)
+
+  const latestBlock = await provider.getBlockNumber()
+  console.log('latestBlock', latestBlock)
 
   if (hasApr) {
     return
