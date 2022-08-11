@@ -145,5 +145,6 @@
     "Borrowable value": "Beleihbarer Betrag",
     "Collateral factor tip": "Der Sicherheitenfaktor stellt die maximale Kreditaufnahmequote dar, wenn ein bestimmtes Kapital als Sicherheit verwendet wird. Wenn der Besicherungsfaktor für sKCS beispielsweise 80% beträgt und der Preis von sKCS derzeit bei 20 USD liegt, dann kann 1 sKCS als Sicherheit verwendet werden, um bis zu 16 (0,8*20) USD an sonstigem Kapital auf dem Markt aufzunehmen.",
     "Borrowable value tip": "Beleihbarer Betrag = (Wert der Sicherheit) * (Sicherheitenfaktor). Wenn der Besicherungsfaktor für sKCS beispielsweise 80% beträgt und der Preis von sKCS derzeit bei 20 USD liegt, dann kann 1 sKCS als Sicherheit verwendet werden, um bis zu 16 (0,8*20) USD an sonstigem Kapital auf dem Markt aufzunehmen.",
-    "Displayed APY tip": "Der angezeigte APY basiert auf dem APY der Einzahlung und dem Ertrag der Belohnung."
+    "Displayed APY tip": "Der angezeigte APY basiert auf dem APY der Einzahlung und dem Ertrag der Belohnung.",
+    "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards."
 }

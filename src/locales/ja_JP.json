@@ -145,5 +145,6 @@
     "Borrowable value": "借入可能額",
     "Collateral factor tip": "担保係数は、特定の資産を担保とした場合の最大借入比率を表します。例えば、sKCSの担保係数が80%で、sKCSの価格が20ドルの場合、1 sKCSを担保として使用して、市場にある他の資産を最大16(0.8 x 20)ドル借りることができます。",
     "Borrowable value tip": "借入可能額 = (担保価値) x (担保係数)。例えば、sKCSの担保係数が80%で、sKCSの価格が20ドルの場合、1 sKCSを担保として使用して、市場にある他の資産を最大16(0.8 x 20)ドル借りることができます。",
-    "Displayed APY tip": "表示されるAPYは、貸出APYと報酬収益に基づいています。"
+    "Displayed APY tip": "表示されるAPYは、貸出APYと報酬収益に基づいています。",
+    "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards."
 }

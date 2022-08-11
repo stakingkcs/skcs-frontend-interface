@@ -145,5 +145,6 @@
     "Borrowable value": "Leenbaar bedrag",
     "Collateral factor tip": "De onderpand factor is de maximale leenratio wanneer een specifiek activum als onderpand wordt gebruikt. Als de onderpand factor voor sKCS bijvoorbeeld 80% bedraagt en de sKCS prijs op het moment 20 USD is, kan 1 sKCS als onderpand worden gebruikt om andere activa ter waarde van maximaal 16 (0,8*20) USD op de markt te lenen.",
     "Borrowable value tip": "Leenbaar bedrag = (onderpand waarde) * (onderpand factor). Als de onderpand factor voor sKCS bijvoorbeeld 80% is en de sKCS prijs op het moment 20 USD bedraagt, kan 1 sKCS als onderpand worden gebruikt om andere activa ter waarde van maximaal 16 (0,8*20) USD op de markt te lenen.",
-    "Displayed APY tip": "De weergegeven APY is gebaseerd op de deposito APY en de inkomsten van beloningen."
+    "Displayed APY tip": "De weergegeven APY is gebaseerd op de deposito APY en de inkomsten van beloningen.",
+    "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards."
 }

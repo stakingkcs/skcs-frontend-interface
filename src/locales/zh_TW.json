@@ -145,5 +145,6 @@
     "Borrowable value": "可借額度",
     "Collateral factor tip": "抵押率表示特定資產作為抵押物時的最大借貸比例。例如，如果sKCS的抵押率是80%，當前價格是20美元，那麽1個sKCS可以在借貸市場上最多可借到16美元（0.8*20）的其他資產。",
     "Borrowable value tip": "可借額度=抵押資產的價值*抵押率。\n例如，如果sKCS的抵押率是80%，目前的價格是20美元，那麽1個sKCS可以在市場上借到最多16美元（0.8*20*100）的其他資產。",
-    "Displayed APY tip": "顯示的APY是基於當前存款利率及其獎勵收益。"
+    "Displayed APY tip": "顯示的APY是基於當前存款利率及其獎勵收益。",
+    "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards."
 }
