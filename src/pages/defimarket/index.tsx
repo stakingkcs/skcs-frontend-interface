@@ -130,8 +130,8 @@ const DeFiMarket: React.FunctionComponent = () => {
         const newLendingList: typeof marketList.lending = [
           {
             ...lendingList[0],
-            borrowAPY: skcs.borrowsRate + skcs.supplyFildaRate,
-            supplyAPY: skcs.supplyRate + skcs.borrowFildaRate,
+            borrowAPY: skcs.borrowsRate - skcs.borrowFildaRate,
+            supplyAPY: skcs.supplyRate + skcs.supplyFildaRate,
             collateralFactor: skcs?.collateralFactor ?? 0,
           },
         ]

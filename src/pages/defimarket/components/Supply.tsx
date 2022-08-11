@@ -110,7 +110,7 @@ const Supply: React.FunctionComponent<{ lending: typeof marketList.lending[0] }>
               <div style={{ marginBottom: '0', marginRight: '4px' }}>
                 {`${formatNumber(lending.supplyAPY * 100, 2)}%`}
               </div>
-              <CaculatorImg src={caculatImg} onClick={() => setVisible(true)} />
+              {/* <CaculatorImg src={caculatImg} onClick={() => setVisible(true)} /> */}
             </div>
           }
         />
@@ -127,7 +127,7 @@ const Supply: React.FunctionComponent<{ lending: typeof marketList.lending[0] }>
           }
           content={`${formatNumber(lending.borrowAPY * 100, 2)}%`}
         />
-        <RowData
+        {/* <RowData
           style={{ marginTop: '12px' }}
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
           title={
@@ -139,7 +139,7 @@ const Supply: React.FunctionComponent<{ lending: typeof marketList.lending[0] }>
             </RowCenterBox>
           }
           content={`${formatNumber(lending.collateralFactor * 100, 2)}%`}
-        />
+        /> */}
         <StyledButton
           onClick={() => window.open(lending.supplyUrl, '_blank')}
           style={{ marginTop: '40px', height: '48px', marginBottom: '24px' }}
