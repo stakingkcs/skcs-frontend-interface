@@ -39,8 +39,9 @@ const Warp = styled.div<{ visible: boolean }>`
 `
 const Panel = styled.div`
   position: relative;
-  width: 600px;
-  height: 362px;
+  width: 700px;
+  min-height: 362px;
+  height: auto;
   padding: 32px;
   background: #000000;
   border-radius: 16px;
@@ -132,14 +133,14 @@ const Calculator: React.FunctionComponent<CaculatorProps> = ({ lending, ...props
                   />
                 </Tooltip>
               }
-              balance={`${formatNumber(lending.supplyAPY, 2)}%`}
+              balance={`${formatNumber(lending.supplyAPY * 100, 2)}%`}
             />
 
             <DataItem
               title={t('Yearly interest')}
-              balance={`${formatNumber(new BN(formatInput).multipliedBy(lending.supplyAPY).div(100), 2)} sKCS`}
+              balance={`${formatNumber(new BN(formatInput).multipliedBy(lending.supplyAPY), 2)} sKCS`}
               uBalance={`≈$${formatNumber(
-                new BN(formatInput).multipliedBy(lending.supplyAPY).multipliedBy(skcsPrice).div(100).toString(),
+                new BN(formatInput).multipliedBy(lending.supplyAPY).multipliedBy(skcsPrice).toString(),
                 2
               )}`}
             />

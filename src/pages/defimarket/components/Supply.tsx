@@ -89,7 +89,6 @@ const Supply: React.FunctionComponent<{ lending: typeof marketList.lending[0] }>
   return (
     <>
       <Warp>
-        <Mask />
         {visible && <Calculator lending={lending} setVisible={setVisible} visible={visible} />}
         <SymbolWarp>
           <SymbolIcon src="https://static.kcc.network/logo/skcs.png" alt="token-icon" />
@@ -108,7 +107,9 @@ const Supply: React.FunctionComponent<{ lending: typeof marketList.lending[0] }>
           }
           content={
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
-              <div style={{ marginBottom: '0', marginRight: '4px' }}> {lending.supplyAPY}% </div>
+              <div style={{ marginBottom: '0', marginRight: '4px' }}>
+                {`${formatNumber(lending.supplyAPY * 100, 2)}%`}
+              </div>
               <CaculatorImg src={caculatImg} onClick={() => setVisible(true)} />
             </div>
           }
@@ -124,7 +125,7 @@ const Supply: React.FunctionComponent<{ lending: typeof marketList.lending[0] }>
               </Tooltip>
             </RowCenterBox>
           }
-          content={`${formatNumber(lending.borrowAPY, 2)}%`}
+          content={`${formatNumber(lending.borrowAPY * 100, 2)}%`}
         />
         <RowData
           style={{ marginTop: '12px' }}

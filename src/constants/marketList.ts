@@ -30,9 +30,10 @@ const marketList = {
     {
       logo: require('../assets/images/token/skcs.png').default,
       name: 'sKCS',
-      supplyAPY: 6,
-      borrowAPY: 10,
-      collateralFactor: 0.8,
+      supplyAPY: 0,
+      borrowAPY: 0,
+      apiUrl: 'https://api.torches.finance/assets/torches/kcc',
+      collateralFactor: 0,
       supplyUrl: 'https://www.torches.finance/en/crypto-bank',
       borrowUrl: 'https://www.torches.finance/en/crypto-bank',
     },

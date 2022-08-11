@@ -84,6 +84,7 @@ const DeFiMarket: React.FunctionComponent = () => {
   const { t } = useTranslation()
 
   const [liquidityList, setLiquidityList] = React.useState<typeof marketList.liquidity>(marketList.liquidity)
+  const [lendingList, setLendingList] = React.useState<typeof marketList.lending>(marketList.lending)
 
   React.useEffect(() => {
     async function updateliquidityList() {
@@ -112,6 +113,37 @@ const DeFiMarket: React.FunctionComponent = () => {
     updateliquidityList()
   }, [liquidityList])
 
+  React.useEffect(() => {
+    async function updateLendingList() {
+      if (lendingList[0]?.borrowAPY !== 0) {
+        return
+      }
+      try {
+        const responses: any = await axios.get(lendingList[0].apiUrl)
+
+        console.log('————————————', responses)
+
+        const { skcs } = responses.data
+
+        console.log('skcs', skcs)
+
+        const newLendingList: typeof marketList.lending = [
+          {
+            ...lendingList[0],
+            borrowAPY: skcs.borrowsRate + skcs.supplyFildaRate,
+            supplyAPY: skcs.supplyRate + skcs.borrowFildaRate,
+            collateralFactor: skcs?.collateralFactor ?? 0,
+          },
+        ]
+        console.log('newLendingList', newLendingList)
+        setLendingList(() => newLendingList)
+      } catch {
+        console.log('get data error')
+      }
+    }
+    updateLendingList()
+  }, [lendingList])
+
   return (
     <>
       <Helmet>
@@ -138,7 +170,7 @@ const DeFiMarket: React.FunctionComponent = () => {
           <Title>{t('DEFI_4')}</Title>
           <Desc>{t('DEFI_5')}</Desc>
           <DataWarp>
-            {marketList.lending.map((lending, index) => {
+            {lendingList.map((lending, index) => {
               return <Supply lending={lending} key={index} />
             })}
           </DataWarp>
