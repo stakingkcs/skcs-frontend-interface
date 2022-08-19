@@ -84,7 +84,6 @@ const StakingPage: React.FunctionComponent = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const dispatch = useDispatch()
-
   return (
     <>
       <Helmet>

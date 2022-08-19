@@ -43,7 +43,6 @@ export const useStakeApr = async () => {
   const provider = new JsonRpcProvider(process.env.REACT_APP_NETWORK_URL)
 
   const latestBlock = await provider.getBlockNumber()
-  console.log('latestBlock', latestBlock)
 
   if (hasApr) {
     return
@@ -56,7 +55,6 @@ export const useStakeApr = async () => {
 
   try {
     const yesterdayBlock = Number(latestBlock) - Math.floor((24 * 60 * 60) / 3)
-    console.log('yesterdayBlock', yesterdayBlock)
 
     const contract = getContract(
       getStakerAddress(),
@@ -77,20 +75,14 @@ export const useStakeApr = async () => {
 
     const response = await contract.functions.exchangeRate({ blockTag: yesterdayBlock })
 
-    console.log('response', response)
-
     if (response[0]) {
       const preSkcsQuetoByKCS = new BN(response[0].toString())
         .div(10 ** 18)
         .div(new BN(response[1].toString()).div(10 ** 18))
         .toString()
 
-      console.log('preSkcsQuetoByKCS', preSkcsQuetoByKCS)
-
       const apr = ((staker.skcsQuetoByKCS - Number(preSkcsQuetoByKCS)) / Number(preSkcsQuetoByKCS)) * 365
       const apy = getApy(apr * 100)
-
-      console.log('apy', apy)
 
       dispatch(updateStakerPublicDataByKey({ key: 'apr', value: apy }))
 

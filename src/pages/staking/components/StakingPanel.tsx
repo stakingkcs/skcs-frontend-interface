@@ -178,7 +178,6 @@ const StakingPanel: FunctionComponent = () => {
       const gasFeeRespond = await stakerContract.estimateGas.depositKCS(account, {
         value: new BigNumber(100).mul(10).toString(),
       })
-      console.log('gasFee', gasFeeRespond)
       setDepositKCSGasFee(() => new BigNumber(gasFeeRespond.toString()))
     }
 

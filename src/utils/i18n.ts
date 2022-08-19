@@ -11,7 +11,6 @@ let lngTemplates: { [key: string]: { translation: string } } = {}
 templates.keys().forEach((lng: string) => {
   const lngName = lng.slice(2, lng.lastIndexOf('.'))
   if (LanguageList.includes(lngName)) {
-    console.log(`${lngName} loaded`)
     lngTemplates[lngName] = {
       translation: templates(lng),
     }

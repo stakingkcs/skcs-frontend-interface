@@ -48,7 +48,6 @@ export const switchNetwork = async (id: any) => {
   const dispatch = store.dispatch
 
   if (width <= 768) {
-    console.log('is mobile')
     await addNetwork(selectedNetworkInfo)
     dispatch(updateErrorInfo({ hasError: false, errorInfo: '' }))
   } else {

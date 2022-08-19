@@ -21,10 +21,15 @@ export async function depositKCSToValidator(
   account: string
 ): Promise<ContractCallResponse> {
   try {
-    console.log('___', amount.toString())
     const tx = await stakerContract.depositKCS(account, { value: new BN(amount.toString(10)).toString(10) })
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
+    if (window.gtag) {
+      console.log('gtag sending')
+      window.gtag('event', 'stake', {
+        value: Number(new BN(amount.toString()).div(10 ** 18).toFixed(2)),
+      })
+    }
     return { status: 1, data: response }
   } catch (e) {
     console.error('contract call error', e)
@@ -41,6 +46,11 @@ export async function requestRedemption(
     const tx = await stakerContract.requestRedemption(amount.toString(10), account)
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
+    if (window.gtag) {
+      window.gtag('event', 'unstake', {
+        value: Number(new BN(amount.toString()).div(10 ** 18).toFixed(2)),
+      })
+    }
     return { status: 1, data: response }
   } catch (e) {
     console.error('contract call error', e)

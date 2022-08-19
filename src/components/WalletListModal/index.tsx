@@ -126,7 +126,6 @@ const WalletListModal: React.FunctionComponent<WalletListModalProps> = ({ visibl
   const dispatch = useDispatch()
 
   const connect = async (selectedId: number) => {
-    console.log('selectedId', selectedId)
     if (selectedId !== -1) {
       switch (selectedId) {
         case 0:

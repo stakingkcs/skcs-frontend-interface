@@ -11,4 +11,5 @@ interface Window {
     chainId?: string | undefined | null
   }
   web3?: any
+  gtag?: any
 }
