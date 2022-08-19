@@ -25,10 +25,7 @@ export async function depositKCSToValidator(
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     if (window.gtag) {
-      console.log('gtag sending')
-      window.gtag('event', 'stake', {
-        value: Number(new BN(amount.toString()).div(10 ** 18).toFixed(2)),
-      })
+      window.gtag('event', 'stake')
     }
     return { status: 1, data: response }
   } catch (e) {
@@ -47,9 +44,7 @@ export async function requestRedemption(
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     if (window.gtag) {
-      window.gtag('event', 'unstake', {
-        value: Number(new BN(amount.toString()).div(10 ** 18).toFixed(2)),
-      })
+      window.gtag('event', 'unstake')
     }
     return { status: 1, data: response }
   } catch (e) {
