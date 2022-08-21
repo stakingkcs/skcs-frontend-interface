@@ -1,7 +1,6 @@
 import { Tooltip } from 'antd'
 import { GradientBgColor, RowCenterBox } from 'components'
 import { InfoCircleOutlined } from '@ant-design/icons'
-import DataItem from 'components/DataItem'
 import StyledButton from 'components/StyledButton'
 import GradienButton from 'components/StyledButton/GradientButton'
 import Text from 'components/Text'
@@ -11,9 +10,11 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import RowData from 'components/RowData'
 import Calculator from './Calculator'
-import Mask from './Mask'
 import marketList from 'constants/marketList'
 import { formatNumber } from 'utils/bignumber'
+import { RowBetween } from 'components/Row'
+import { Image } from 'components/index'
+import { useResponsive } from 'utils/responsive'
 
 const caculatImg = require('../../../assets/images/defimarket/caculator.png').default
 
@@ -65,35 +66,54 @@ const GradientButton = styled.div`
     ${GradientBgColor}
   }
 `
-
-const CaculatorImg = styled.img`
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
+const AppContainer = styled.div`
+  width: 74px;
+  height: 60px;
+  background: linear-gradient(88.02deg, #565762 20.61%, #282835aa 112.87%);
+  position: relative;
+  right: -24px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+   @media (max-width: 768px) {
+    width: 64px;
+    height: 50px;
+  }
 `
 
-const GradientButtonContent = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 2;
+const AppLogoWrap = styled.div`
+  padding: 6px;
+  border-radius: 50%;
+  @media (max-width: 768px) {
+    padding-left: 0px;
+  }
 `
 
 const Supply: React.FunctionComponent<{ lending: typeof marketList.lending[0] }> = ({ lending }) => {
   const { t } = useTranslation()
-
+  const { isMobile } = useResponsive()
   const [visible, setVisible] = React.useState<boolean>(false)
 
   return (
     <>
       <Warp>
         {visible && <Calculator lending={lending} setVisible={setVisible} visible={visible} />}
-        <SymbolWarp>
-          <SymbolIcon src="https://static.kcc.network/logo/skcs.png" alt="token-icon" />
-          <SymbolTitle>{lending.name ?? 'sKCS'}</SymbolTitle>
-        </SymbolWarp>
+        <RowBetween style={{ width: '100%' }}>
+          <SymbolWarp>
+            <SymbolIcon src="https://static.kcc.network/logo/skcs.png" alt="token-icon" />
+            <SymbolTitle>{lending.name ?? 'sKCS'}</SymbolTitle>
+          </SymbolWarp>
+          <AppContainer>
+            <AppLogoWrap>
+              <Image
+                style={{ borderRadius: '50%' }}
+                width={isMobile ? '36px' : '48px'}
+                height={isMobile ? '36px' : '48px'}
+                src={lending.appLogo}
+                alt="app-logo"
+              />
+            </AppLogoWrap>
+          </AppContainer>
+        </RowBetween>
         <RowData
           style={{ marginTop: '12px' }}
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}

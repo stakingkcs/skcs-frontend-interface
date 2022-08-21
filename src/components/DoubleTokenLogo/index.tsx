@@ -2,6 +2,7 @@ import { Image } from 'components'
 import React from 'react'
 
 import styled from 'styled-components'
+import { useResponsive } from '../../utils/responsive'
 
 interface Props {
   AToken: string
@@ -28,13 +29,14 @@ const BImageWrap = styled.div`
 `
 
 const DoubleTokenLogo: React.FunctionComponent<Props> = ({ AToken, BToken }) => {
+  const { isMobile } = useResponsive()
   return (
     <ImageWrap>
       <AImageWrap>
-        <Image src={AToken} width="48px" height="48px" alt="atoken-icon" />
+        <Image src={AToken} width={isMobile ? '36px' : '48px'} height={isMobile ? '36px' : '48px'} alt="atoken-icon" />
       </AImageWrap>
       <BImageWrap>
-        <Image src={BToken} width="48px" height="48px" alt="atoken-icon" />
+        <Image src={BToken} width={isMobile ? '36px' : '48px'} height={isMobile ? '36px' : '48px'} alt="atoken-icon" />
       </BImageWrap>
     </ImageWrap>
   )

@@ -1,14 +1,16 @@
+import { Image } from 'components'
 import DoubleTokenLogo from 'components/DoubleTokenLogo'
+import { RowBetween } from 'components/Row'
 import RowData from 'components/RowData'
 import StyledButton from 'components/StyledButton'
 import GradienButton from 'components/StyledButton/GradientButton'
 import { GradientText } from 'components/Text'
 import React from 'react'
-import { isMobile } from 'react-device-detect'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { formatNumber } from 'utils/bignumber'
 import marketList from '../../../constants/marketList'
+import { useResponsive } from '../../../utils/responsive'
 
 const Title = styled.div`
   font-family: 'Arial';
@@ -43,6 +45,7 @@ const Desc = styled.div`
 `
 
 const LiquidityWarp = styled.div`
+  position: relative;
   width: 384px;
   height: 386px;
   border-radius: 16px;
@@ -72,19 +75,58 @@ const SymbolTitle = styled.p`
   font-weight: bold;
   margin-bottom: 0;
   margin-left: 16px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-left: 6px;
+  }
+`
+
+const AppContainer = styled.div`
+  width: 74px;
+  height: 60px;
+  background: linear-gradient(88.02deg, #565762 20.61%, #282835aa 112.87%);
+  position: relative;
+  right: -24px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  @media (max-width: 768px) {
+    width: 64px;
+    height: 50px;
+  }
+`
+
+const AppLogoWrap = styled.div`
+  padding: 6px;
+  @media (max-width: 768px) {
+    padding-left: 0px;
+  }
 `
 
 const Liquidity: React.FunctionComponent<{
   liquidity: typeof marketList.liquidity[0]
 }> = ({ liquidity }) => {
+  const { isMobile } = useResponsive()
   const { t } = useTranslation()
   return (
     <>
       <LiquidityWarp>
-        <SymbolWarp>
-          <DoubleTokenLogo AToken={liquidity.AToken} BToken={liquidity.BToken} />
-          <SymbolTitle>{liquidity.lpName}</SymbolTitle>
-        </SymbolWarp>
+        <RowBetween style={{ width: '100%' }}>
+          <SymbolWarp>
+            <DoubleTokenLogo AToken={liquidity.AToken} BToken={liquidity.BToken} />
+            <SymbolTitle>{liquidity.lpName}</SymbolTitle>
+          </SymbolWarp>
+          <AppContainer>
+            <AppLogoWrap>
+              <Image
+                style={{ borderRadius: '50%' }}
+                width={isMobile ? '36px' : '48px'}
+                height={isMobile ? '36px' : '48px'}
+                src={liquidity.appLogo}
+                alt="app-logo"
+              />
+            </AppLogoWrap>
+          </AppContainer>
+        </RowBetween>
         <RowData
           style={{ marginTop: isMobile ? '15px' : '24px' }}
           tstyle={{ fontSize: '18px' }}
