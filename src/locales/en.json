@@ -154,5 +154,19 @@
     "sKCSWin.H": "H",
     "sKCSWin.M": "M",
     "sKCSWin.S": "S",
-    "sKCSWin.EndButtonText":"This Campaign was End"
+    "sKCSWin.EndButtonText": "This Campaign was End",
+    "sKCSWin.ParticipateTitle": "How to participate?",
+    "sKCSWin.LeaderBoardTitle": "Staking Leaderboard",
+    "Campaign Rules": "Campaign Rules",
+    "Upcoming Campaign": "Upcoming Campaign",
+    "Past Campaign": "Past Campaign",
+    "sKCSWin.Step1.Desc": "Connect Wallet and register to join this campaign.",
+    "sKCSWin.Step2.Desc": "Stake KCS in the campaign period to accumulate staking amount ranking.",
+    "sKCSWin.Step3.Desc": "Daily snapshot and update TOP 10 ranking on the leaderboard.",
+    "Register": "Register",
+    "Registered": "Registered",
+    "Use sKCS in DeFi": "Use sKCS in DeFi",
+    "KCS Balance": "KCS Balance",
+    "sKCS Balance": "sKCS Balance",
+    "sKCSWin.PrizePool.Title": "Prize Pool - ${{poolPrize}}"
 }

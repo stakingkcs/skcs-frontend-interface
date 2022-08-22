@@ -1,4 +1,3 @@
-// @ts-nocheck
 import dayjs from 'dayjs'
 import 'dayjs/locale/en.js'
 import 'dayjs/locale/fr.js'
@@ -18,6 +17,7 @@ import { useLanguage } from '../../state/application/hooks'
 import { formatNumber } from '../../utils/bignumber'
 import { Image } from 'components'
 import { Carousel } from 'antd'
+import { useResponsive } from '../../utils/responsive'
 
 const addLeadingZeros = (value: any) => {
   let value1 = String(value)
@@ -199,6 +199,7 @@ const Crousel = styled.div`
 const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity }) => {
   const { t } = useTranslation()
   const lan = useLanguage()
+  const { isMobile } = useResponsive()
 
   const [isEnd, setIsEnd] = React.useState<boolean>(false)
 
@@ -286,7 +287,7 @@ const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity 
       <Crousel>
         <Marquee direction="right" speed={50} gradientWidth={0}>
           <RowCenterBox style={{ width: '100%' }}>
-            {new Array(12).fill(0).map((n, index) => {
+            {new Array(isMobile ? 4 : 12).fill(0).map((n, index) => {
               return (
                 <ImageWrap key={index}>
                   <Image
