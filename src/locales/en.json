@@ -146,5 +146,13 @@
     "Collateral factor tip": "The collateral factor represents the maximum borrowing ratio when a specific asset is used as collateral. For example, if the collateral factor for sKCS is 80%, and sKCS price is currently 20 USD, then 1 sKCS can be used as collateral to borrow up to 16 (0.8*20) USD of other assets in the market.",
     "Borrowable value tip": "Borrowable amount = (collateral value) * (collateral factor). For example, if the collateral factor for sKCS is 80%, and sKCS price is currently 20 USD, then 1 sKCS can be used as collateral to borrow up to 16 (0.8*20) USD of other assets in the market.",
     "Displayed APY tip": "The APY shown is based on the Deposit APY and reward earnings.",
-    "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards."
+    "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards.",
+    "sKCSWin.Title": "Stake to Earn ${{poolPrize}} in sKCS",
+    "sKCSWin.Rules": "Skcs. IO reserves the right to disqualify and revoke awards for accounts that fraudulently obtain campaign bonuses.Skcs. IO reserves the right to disqualify and revoke awards for accounts that fraudulently obtain campaign bonuses.Skcs. IO reserves the right to disqualify and revoke awards for accounts that fraudulently obtain campaign bonuses.Skcs. IO reserves the right to disqualify and revoke awards for accounts that fraudulently obtain campaign bonuses.Skcs.",
+    "sKCSWin.CutdownTitle": "Current Campaign will End in",
+    "sKCSWin.D": "D",
+    "sKCSWin.H": "H",
+    "sKCSWin.M": "M",
+    "sKCSWin.S": "S",
+    "sKCSWin.EndButtonText":"This Campaign was End"
 }

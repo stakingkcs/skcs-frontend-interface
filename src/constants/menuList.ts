@@ -53,6 +53,11 @@ export const MENU_LIST = [
     hasChildren: false,
   },
   {
+    name: 'sKCS Win',
+    route: '/skcs-win',
+    hasChildren: false,
+  },
+  {
     name: 'Doc',
     route: sKCS.docs,
     hasChildren: false,

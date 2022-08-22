@@ -8,6 +8,7 @@ import DeFiMarket from 'pages/defimarket'
 import NotFound from 'pages/error'
 import Home from 'pages/home/'
 import Staking from 'pages/staking'
+import SKCSWIN from 'pages/skcswin'
 import { Suspense, useEffect } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { useFetchStakerPublicData } from 'state/hooks'
@@ -41,6 +42,7 @@ export default function App() {
             <Route path="/home" exact={true} component={Home} />
             <Route path="/staking" exact={true} component={Staking} />
             <Route path="/defi-market" exact={true} component={DeFiMarket} />
+            <Route path="/skcs-win" exact={true} component={SKCSWIN} />
             <Route path="/" exact={true}>
               <Redirect to="/home" />
             </Route>

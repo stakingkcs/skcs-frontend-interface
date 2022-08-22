@@ -110,7 +110,7 @@ const AppHeader: React.FunctionComponent = () => {
             }}
           />
           <BrowserView>
-            <AppMenu style={{ width: '580px', position: 'relative', top: '3px' }} />
+            <AppMenu style={{ width: '680px', position: 'relative', top: '3px' }} />
           </BrowserView>
         </HeaderLeftWrap>
 
