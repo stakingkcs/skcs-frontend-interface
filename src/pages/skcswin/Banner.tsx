@@ -256,7 +256,6 @@ const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity 
               <EndButton>{t('sKCSWin.EndButtonText')}</EndButton>
             ) : (
               <>
-                {' '}
                 <CutdownTitle>{t('sKCSWin.CutdownTitle')}</CutdownTitle>
                 <RowCenterBox style={{ marginTop: '16px' }} justify="center">
                   <TimeItem>

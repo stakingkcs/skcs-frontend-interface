@@ -168,5 +168,18 @@
     "Use sKCS in DeFi": "Use sKCS in DeFi",
     "KCS Balance": "KCS Balance",
     "sKCS Balance": "sKCS Balance",
-    "sKCSWin.PrizePool.Title": "Prize Pool - ${{poolPrize}}"
+    "sKCSWin.PrizePool.Title": "Prize Pool - ${{poolPrize}}",
+    "TOP 4-23": "TOP 4-23",
+    "TOP 24-123": "TOP 24-123",
+    "YourPrize": "Your Prize:",
+    "Prize Result": "Your Won <gradientText>{{rank}}</gradientText> ,will earn <gradientText>{{rewards}}</gradientText> bonus",
+    "Staking Leaderboard": "Staking Leaderboard",
+    "sKCSWin.UpdateTime": "Update at {{time}} (UTC)",
+    "Block Height": "Block Height: {{blockHeight}}",
+    "No": "No",
+    "Address": "Address",
+    "Daily Staking Amount": "Daily Staking Amount",
+    "Prize": "Prize",
+    "You": "You",
+    "SKCS RULES": "SKCS RULES"
 }

@@ -5,6 +5,8 @@ import { RowCenterBox } from '../../components/index'
 import Participate from './Participate'
 import PrizePool from './PrizePool'
 import { RowBetween } from '../../components/Row/index'
+import Leaderboard from './Leaderboard'
+import Rules from './Rules'
 
 const SKCSWINWrap = styled.div``
 
@@ -13,7 +15,8 @@ const contentBg = require('../../assets/images/skcswin/content-background.png').
 const SKCSWinContentWrap = styled.div`
   width: 100%;
   background: url(${contentBg}) top center no-repeat;
-  background-size: 100% auto;
+  background-size: 100% 100%;
+  padding-bottom: 60px;
 `
 const Content = styled.div`
   max-width: 1200px;
@@ -28,11 +31,15 @@ const activity = {
   title: 'sKCSWin.Title',
   startTime: '2022-08-10 10:00:00',
   endTime: '2022-08-25 10:00:00',
-  rules: 'sKCS.Rules',
+  rules: 'sKCSWin.Rules',
   registered: false,
   rank: 0,
   stakingAmount: 0,
-  top10List: [],
+  top10List: {
+    list: [],
+    lastUpdate: new Date(),
+    blockHeight: 1000,
+  },
   firstPrize: {
     poolPrize: 500,
     perPrize: 500,
@@ -73,6 +80,10 @@ const SKCSWIN: React.FunctionComponent = () => {
           <Row1>
             <Participate userActivityData={userActivityData} />
             <PrizePool userActivityData={userActivityData} />
+          </Row1>
+          <Row1>
+            <Leaderboard userActivityData={userActivityData} />
+            <Rules userActivityData={userActivityData} />
           </Row1>
         </Content>
       </SKCSWinContentWrap>
