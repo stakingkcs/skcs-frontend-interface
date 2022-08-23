@@ -21,6 +21,7 @@ const DecorateImage = styled.div`
   position: absolute;
   top: 20px;
   right: 5px;
+  z-index: 2;
 `
 
 const row1Bg = require('../../assets/images/skcswin/row-one-bg.png').default

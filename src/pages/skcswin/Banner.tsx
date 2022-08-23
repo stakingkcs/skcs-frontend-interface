@@ -32,7 +32,7 @@ const bg = require('../../assets/images/skcswin/skcs-win-bg.png').default
 const Wrap = styled.div`
   width: 100%;
   height: 400px;
-  background: url(${bg}) bottom right no-repeat, #050c26;
+  background: url(${bg}) 60% bottom no-repeat, #040b2a;
   background-size: auto 100%;
 `
 
@@ -41,6 +41,10 @@ const BannerContent = styled.div`
   margin: 0 auto;
   padding-top: 104px;
   padding-bottom: 34px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
 `
 
 const Content = styled.div`
@@ -66,6 +70,8 @@ const Title = styled.h1`
   font-size: 40px;
   line-height: 54px;
   padding: 0;
+  margin: 0;
+  margin-bottom: 9px;
 `
 
 const borderBg = require('../../assets/images/skcswin/border.png').default
@@ -283,6 +289,7 @@ const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity 
           </Content>
         </BannerContent>
       </Wrap>
+
       <Crousel>
         <Marquee direction="right" speed={50} gradientWidth={0}>
           <RowCenterBox style={{ width: '100%' }}>
