@@ -2,55 +2,22 @@ import Axios, { HttpResponse } from './axios'
 
 // bridge-list
 
-export class BridgeService {
+export class AcitivityService {
   /**
    * @description get pair list
    * @return {HttpResponse} result
    */
-  static pairList(): Promise<any> {
+  static register(account: string): Promise<HttpResponse<any>> {
     return Axios({
-      method: 'get',
-      url: '/pair/list',
+      method: 'post',
+      url: '/register',
     })
   }
 
-  static inWhiteList(address: string): Promise<HttpResponse<any>> {
+  static leaderBoard(account: string): Promise<HttpResponse<any>> {
     return Axios({
       method: 'get',
-      url: '/white/in',
-      params: {
-        addr: address,
-      },
-    })
-  }
-
-  static inBlackList(address: string): Promise<HttpResponse<any>> {
-    return Axios({
-      method: 'get',
-      url: '/black/in',
-      params: {
-        addr: address,
-      },
-    })
-  }
-
-  static transitionList(address: string, page: number, limit = 50, hash = ''): Promise<HttpResponse<any>> {
-    return Axios({
-      method: 'get',
-      url: '/trans/list',
-      params: {
-        srcAccount: address,
-        page,
-        limit,
-        srcTxHash: hash,
-      },
-    })
-  }
-
-  static getBridgeStatus(): Promise<HttpResponse<any>> {
-    return Axios({
-      method: 'get',
-      url: '/fusing',
+      url: account ? `/leaderBoard?for=${account}` : '/leaderBoard',
     })
   }
 }

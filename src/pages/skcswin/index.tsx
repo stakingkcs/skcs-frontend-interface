@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Banner from './Banner'
-import { RowCenterBox } from '../../components/index'
 import Participate from './Participate'
 import PrizePool from './PrizePool'
 import { RowBetween } from '../../components/Row/index'
@@ -31,7 +30,18 @@ const activity = {
   title: 'sKCSWin.Title',
   startTime: '2022-08-10 10:00:00',
   endTime: '2022-08-25 10:00:00',
-  rules: 'sKCSWin.Rules',
+  rules: {
+    title: 'sKCSWin.RulesTitle',
+    keyList: [
+      'sKCSWin.Rules1',
+      'sKCSWin.Rules2',
+      'sKCSWin.Rules3',
+      'sKCSWin.Rules4',
+      'sKCSWin.Rules5',
+      'sKCSWin.Rules6',
+      'sKCSWin.Rules7',
+    ],
+  },
   registered: false,
   rank: 0,
   stakingAmount: 0,

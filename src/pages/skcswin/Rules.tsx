@@ -29,7 +29,8 @@ const row1Bg = require('../../assets/images/skcswin/row-one-bg.png').default
 const Content = styled.div`
   box-sizing: border-box;
   width: 584px;
-  height: 292px;
+  /* height: 292px; */
+  height: 574px;
   background: url(${row1Bg}) top center no-repeat;
   background-size: 99% 99%;
   border-radius: 12px;
@@ -96,10 +97,17 @@ const Rules: React.FunctionComponent<{ userActivityData: ActivityType }> = ({ us
       <SKCSWinTitle title={t('Campaign Rules')} />
       <Content style={{ marginBottom: '32px' }}>
         <GradientText>{t('SKCS RULES')}</GradientText>
-        <RulesText>{t(userActivityData.rules)}</RulesText>
+        {userActivityData.rules.keyList.map((key, index) => {
+          return (
+            <RulesText key={index}>
+              {`${index + 1}:`}
+              {t(key)}
+            </RulesText>
+          )
+        })}
       </Content>
-      <SKCSWinTitle title={t('Upcoming Campaign')} />
-      <Upcoming />
+      {/* <SKCSWinTitle title={t('Upcoming Campaign')} /> */}
+      {/* <Upcoming /> */}
     </ParticipateWrap>
   )
 }

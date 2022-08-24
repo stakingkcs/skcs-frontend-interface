@@ -148,7 +148,6 @@
     "Displayed APY tip": "The APY shown is based on the Deposit APY and reward earnings.",
     "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards.",
     "sKCSWin.Title": "Stake to Earn ${{poolPrize}} in sKCS",
-    "sKCSWin.Rules": "Skcs. IO reserves the right to disqualify and revoke awards for accounts that fraudulently obtain campaign bonuses.Skcs. IO reserves the right to disqualify and revoke awards for accounts that fraudulently obtain campaign bonuses.Skcs. IO reserves the right to disqualify and revoke awards for accounts that fraudulently obtain campaign bonuses.Skcs. IO reserves the right to disqualify and revoke awards for accounts that fraudulently obtain campaign bonuses.Skcs.",
     "sKCSWin.CutdownTitle": "Current Campaign will End in",
     "sKCSWin.D": "D",
     "sKCSWin.H": "H",
@@ -181,5 +180,16 @@
     "Daily Staking Amount": "Daily Staking Amount",
     "Prize": "Prize",
     "You": "You",
-    "SKCS RULES": "SKCS RULES"
+    "SKCS RULES": "SKCS RULES",
+    "Staking Competition is Underway": "Staking Competition is Underway",
+    "sKCSWin.BannerTitle": "Stake KCS to Share <number>${{prizePool}}</number> in sKCS",
+    "sKCSWin.Rules1": "计算规则：系统每日不定时快照一次sKCS持仓量（包含Wallet/MojitoSwap LP/Torches Deposit），并按日均数量排名。",
+    "sKCSWin.Rules2": "日均持仓数量=（钱包sKCS持有量+Mojito中sKCS LP持有量+Torches存款sKCS持有量）/活动开始至统计时间的自然日天数。",
+    "sKCSWin.Rules3": "排行榜按照日均持仓数量从高到低每日更新排名，若持仓相同导致并列同一名次，下一位用户排名则顺位退后一名。",
+    "sKCSWin.Rules4": "系统每日不定时进行一次快照，建议您长期持有sKCS，取消质押或转移等都可能导致您的排名下降。请确保活动最后一天全天持有，否则将直接取消最终排名。",
+    "sKCSWin.Rules5": "獎勵將於活動結束後審查，並在3個工作日內空投到参赛账户地址中。",
+    "sKCSWin.Rules6": "sKCS.io有权对存在欺诈和造假的行为做出惩罚，取消参赛资格和奖励。",
+    "sKCSWin.Rules7": "其他未列出规则请以sKCS.io官方发布的信息为准。",
+    "NetworkError": "Network Error",
+    "Register Respond": "报名成功"
 }
