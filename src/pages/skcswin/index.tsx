@@ -32,8 +32,8 @@ const Row1 = styled(RowBetween)`
 
 const activity = {
   title: 'sKCSWin.Title',
-  startTime: '2022-08-10 10:00:00',
-  endTime: '2022-08-25 10:00:00',
+  startTime: '2022-08-20 10:00:00',
+  endTime: '2022-08-31 10:00:00',
   rules: {
     title: 'sKCSWin.RulesTitle',
     keyList: [
