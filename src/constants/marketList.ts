@@ -30,7 +30,7 @@ const marketList = {
     {
       appLogo: require('../assets/images/defimarket/kuswap.png').default,
       lpAddress: '0x77a8d0ef377e7bccda40203acce300c170017570',
-      lpName: 'sKCS+KCS',
+      lpName: 'sKCS+KUS',
       AToken: require('../assets/images/token/skcs.png').default,
       BToken: require('../assets/images/defimarket/kuswap.png').default,
       liquidity: 0,
