@@ -98,11 +98,15 @@ const SKCSWIN: React.FunctionComponent = () => {
         setuserActivityData((data) => {
           return { ...data, registered: true }
         })
-        return
+      } else {
+        setuserActivityData((data) => {
+          return { ...data, registered: false }
+        })
       }
 
       try {
         const { data } = await AcitivityService.hasRegister(account)
+
         if (!data.code) {
           const register = data.data.registered
           // update status

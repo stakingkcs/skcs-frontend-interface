@@ -1,4 +1,7 @@
 const getPrizeIndex = (rank: number) => {
+  if (rank === 0) {
+    return 0
+  }
   const rankLevel = [1, 2, 3, 23, 123]
   for (let i = 0; i < rankLevel.length; i++) {
     if (rank <= rankLevel[i]) {
