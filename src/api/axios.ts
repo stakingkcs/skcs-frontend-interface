@@ -68,7 +68,7 @@ const getErrorCode2text = (response: AxiosResponse): string => {
  * service.get<{data: string; code: number}>('/test').then(({data}) => { console.log(data.code) })
  */
 const service = Axios.create({
-  baseURL: process.env.REACT_APP_API_URL + '/v1/bridge/server/',
+  baseURL: 'https://campaign.skcs.io',
   timeout: 10000,
 })
 

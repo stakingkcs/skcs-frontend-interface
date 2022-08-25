@@ -14,7 +14,14 @@ export class AcitivityService {
     })
   }
 
-  static leaderBoard(account: string): Promise<HttpResponse<any>> {
+  static hasRegister(account: string): Promise<HttpResponse<any>> {
+    return Axios({
+      method: 'get',
+      url: `/register?account=${account}`,
+    })
+  }
+
+  static leaderBoard(account?: string | null): Promise<HttpResponse<any>> {
     return Axios({
       method: 'get',
       url: account ? `/leaderBoard?for=${account}` : '/leaderBoard',

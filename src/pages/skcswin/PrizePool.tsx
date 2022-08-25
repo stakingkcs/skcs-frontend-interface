@@ -89,7 +89,9 @@ const GradientText = styled.div`
   text-fill-color: transparent;
 `
 
-const PrizePool: React.FunctionComponent<{ userActivityData: ActivityType }> = ({ userActivityData }) => {
+const PrizePool: React.FunctionComponent<{ userActivityData: ActivityType; registerByAccount: any }> = ({
+  userActivityData,
+}) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()

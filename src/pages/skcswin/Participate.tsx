@@ -115,7 +115,9 @@ const RegisteredButton = styled.div`
   align-items: center;
 `
 
-const Participate: React.FunctionComponent<{ userActivityData: ActivityType }> = ({ userActivityData }) => {
+const Participate: React.FunctionComponent<{ userActivityData: ActivityType; registerByAccount: any }> = ({
+  userActivityData,
+}) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()

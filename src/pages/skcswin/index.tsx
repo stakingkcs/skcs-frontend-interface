@@ -6,6 +6,8 @@ import PrizePool from './PrizePool'
 import { RowBetween } from '../../components/Row/index'
 import Leaderboard from './Leaderboard'
 import Rules from './Rules'
+import { useWeb3React } from '@web3-react/core'
+import { AcitivityService } from 'api/activity'
 
 const SKCSWINWrap = styled.div``
 
@@ -80,7 +82,54 @@ const activity = {
 export type ActivityType = typeof activity
 
 const SKCSWIN: React.FunctionComponent = () => {
+  const { account } = useWeb3React()
   const [userActivityData, setuserActivityData] = React.useState<ActivityType>(activity)
+
+  React.useEffect(() => {
+    async function queryRegister() {
+      if (!account) {
+        return
+      }
+      const hasRegitered = localStorage.getItem(`${account}-registerd`)
+      if (hasRegitered) {
+        return
+      }
+
+      try {
+        const response = await AcitivityService.hasRegister(account)
+
+        console.log('response', response)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    queryRegister()
+  }, [account, setuserActivityData])
+
+  React.useEffect(() => {
+    async function getLeaderBoard() {
+      try {
+        const response = await AcitivityService.leaderBoard(account)
+
+        console.log('response', response)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    getLeaderBoard()
+  }, [account, setuserActivityData])
+
+  const registerByAccount = React.useCallback(async () => {
+    if (!account) return
+    try {
+      const response = await AcitivityService.register(account)
+      console.log('response', response)
+    } catch (e) {
+      console.log(e)
+    }
+  }, [account])
 
   return (
     <SKCSWINWrap>
@@ -88,8 +137,8 @@ const SKCSWIN: React.FunctionComponent = () => {
       <SKCSWinContentWrap>
         <Content>
           <Row1>
-            <Participate userActivityData={userActivityData} />
-            <PrizePool userActivityData={userActivityData} />
+            <Participate userActivityData={userActivityData} registerByAccount={registerByAccount} />
+            <PrizePool userActivityData={userActivityData} registerByAccount={registerByAccount} />
           </Row1>
           <Row1>
             <Leaderboard userActivityData={userActivityData} />
