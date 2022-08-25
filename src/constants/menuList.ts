@@ -5,6 +5,7 @@ export interface NavItemType {
   hasChildren?: boolean
   hasGroup?: boolean
   route?: string
+  suffix?: boolean
   childrens?: NavItemChildrenType[] | NavItemGroupType[]
 }
 
@@ -55,6 +56,7 @@ export const MENU_LIST = [
   {
     name: 'sKCS Win',
     route: '/skcs-win',
+    suffix: true,
     hasChildren: false,
   },
   {
