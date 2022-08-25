@@ -16,7 +16,6 @@ import { RowCenterBox } from '../../components/index'
 import { useLanguage } from '../../state/application/hooks'
 import { formatNumber } from '../../utils/bignumber'
 import { Image } from 'components'
-import { Carousel } from 'antd'
 import { useResponsive } from '../../utils/responsive'
 
 const addLeadingZeros = (value: any) => {

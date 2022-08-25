@@ -1,5 +1,6 @@
-import Axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios'
 import { message } from 'antd'
+import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import StyledNotification from 'components/StyledNotification'
 import i18next from 'i18next'
 
 export interface HttpResponse<T> {
@@ -7,7 +8,7 @@ export interface HttpResponse<T> {
   statusText: string
   data: {
     code: number
-    msg: string
+    error: string
     data: T
   }
 }
@@ -68,7 +69,7 @@ const getErrorCode2text = (response: AxiosResponse): string => {
  * service.get<{data: string; code: number}>('/test').then(({data}) => { console.log(data.code) })
  */
 const service = Axios.create({
-  baseURL: 'https://campaign.skcs.io',
+  baseURL: process.env.NODE_ENV === 'development' ? '/api' : 'https://campain.skcs.io/api/v1/campaign',
   timeout: 10000,
 })
 
@@ -92,12 +93,12 @@ service.interceptors.response.use(
   async (response: AxiosResponse) => {
     if (response.status === 200) {
       if (response.data.code === 500) {
-        message.error(response.data.msg)
+        StyledNotification.error({ message: response.data.error })
       }
       return Promise.resolve(response)
     } else {
       const __text = getErrorCode2text(response)
-      message.error(i18next.t(__text))
+      StyledNotification.error({ message: __text })
       return Promise.reject(new Error(__text))
     }
   },
@@ -117,7 +118,7 @@ service.interceptors.response.use(
     if (__emsg?.indexOf('timeout') >= 0) {
       __emsg = 'timeout'
     }
-    message.error(i18next.t(__emsg))
+    StyledNotification.error({ message: __emsg })
     return Promise.reject(new Error(__emsg))
   }
 )

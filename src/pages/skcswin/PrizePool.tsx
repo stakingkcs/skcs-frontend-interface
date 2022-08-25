@@ -10,6 +10,7 @@ import styled from 'styled-components'
 import { formatNumber } from '../../utils/bignumber'
 import SKCSWinTitle from './components/SKCSTitle'
 import { ActivityType } from './index'
+import { getPrizeByRank } from '../../utils/skcsWin'
 
 const ParticipateWrap = styled.div`
   position: relative;
@@ -150,7 +151,7 @@ const PrizePool: React.FunctionComponent<{ userActivityData: ActivityType; regis
                 i18nKey="Prize Result"
                 values={{
                   rank: `TOP ${userActivityData.rank}`,
-                  rewards: formatNumber(1000, 0),
+                  rewards: formatNumber(getPrizeByRank(userActivityData.rank), 0),
                 }}
                 components={{ gradientText: <GradientText /> }}
               />

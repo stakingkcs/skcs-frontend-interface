@@ -117,6 +117,7 @@ const RegisteredButton = styled.div`
 
 const Participate: React.FunctionComponent<{ userActivityData: ActivityType; registerByAccount: any }> = ({
   userActivityData,
+  registerByAccount,
 }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
@@ -125,6 +126,16 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType; reg
 
   const kcsBalance = useBalance()
   const skcsBalance = useStakerState().userData?.stakeAmount
+  const [loading, setLoading] = React.useState<boolean>(false)
+
+  const register = async () => { 
+    setLoading(() => true)
+    try {
+      await registerByAccount()
+    } finally {
+      setLoading(() => false)
+    }
+  }
 
   return (
     <ParticipateWrap>
@@ -170,7 +181,8 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType; reg
 
               {account && !userActivityData.registered && (
                 <StyledButton
-                  onClick={() => dispatch(toggleConnectWalletModalShow({ show: true }))}
+                  loading={loading}
+                  onClick={register}
                   style={{ width: '160px', height: '40px', fontSize: '14px' }}
                 >
                   {t('Register')}

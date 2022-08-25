@@ -8,6 +8,8 @@ import Leaderboard from './Leaderboard'
 import Rules from './Rules'
 import { useWeb3React } from '@web3-react/core'
 import { AcitivityService } from 'api/activity'
+import StyledNotification from 'components/StyledNotification'
+import { useTranslation } from 'react-i18next'
 
 const SKCSWINWrap = styled.div``
 
@@ -46,11 +48,11 @@ const activity = {
   },
   registered: false,
   rank: 0,
-  stakingAmount: 0,
+  stakingAmount: '0',
   top10List: {
-    list: [],
-    lastUpdate: new Date(),
-    blockHeight: 1000,
+    list: [] as any[],
+    lastUpdate: new Date().getTime(),
+    blockHeight: 0,
   },
   firstPrize: {
     poolPrize: 500,
@@ -82,6 +84,7 @@ const activity = {
 export type ActivityType = typeof activity
 
 const SKCSWIN: React.FunctionComponent = () => {
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const [userActivityData, setuserActivityData] = React.useState<ActivityType>(activity)
 
@@ -92,13 +95,26 @@ const SKCSWIN: React.FunctionComponent = () => {
       }
       const hasRegitered = localStorage.getItem(`${account}-registerd`)
       if (hasRegitered) {
+        setuserActivityData((data) => {
+          return { ...data, registered: true }
+        })
         return
       }
 
       try {
-        const response = await AcitivityService.hasRegister(account)
-
-        console.log('response', response)
+        const { data } = await AcitivityService.hasRegister(account)
+        if (!data.code) {
+          const register = data.data.registered
+          // update status
+          if (register) {
+            setuserActivityData((data) => {
+              return { ...data, registered: true }
+            })
+            localStorage.setItem(`${account}-registerd`, 'true')
+          }
+        } else {
+          StyledNotification.error({ message: data.error })
+        }
       } catch (e) {
         console.log(e)
       }
@@ -107,29 +123,53 @@ const SKCSWIN: React.FunctionComponent = () => {
     queryRegister()
   }, [account, setuserActivityData])
 
-  React.useEffect(() => {
-    async function getLeaderBoard() {
-      try {
-        const response = await AcitivityService.leaderBoard(account)
-
-        console.log('response', response)
-      } catch (e) {
-        console.log(e)
+  const getLeaderBoard = async (account) => {
+    try {
+      const { data } = await AcitivityService.leaderBoard(account)
+      const { code } = data
+      if (!code) {
+        const { leader, snapshot_block_number, snapshot_time, user } = data.data
+        setuserActivityData((oldData) => {
+          return {
+            ...oldData,
+            top10List: {
+              list: leader ?? [],
+              lastUpdate: snapshot_time,
+              blockHeight: snapshot_block_number,
+            },
+            rank: user?.rank ?? 0,
+            stakingAmount: user?.amount,
+          }
+        })
       }
+      console.log('response', data)
+    } catch (e) {
+      console.log(e)
     }
+  }
 
-    getLeaderBoard()
+  React.useEffect(() => {
+    getLeaderBoard(account)
   }, [account, setuserActivityData])
 
   const registerByAccount = React.useCallback(async () => {
     if (!account) return
     try {
-      const response = await AcitivityService.register(account)
-      console.log('response', response)
+      const { data } = await AcitivityService.register(account)
+      if (!data.code) {
+        setuserActivityData((data) => {
+          return { ...data, registered: true }
+        })
+        localStorage.setItem(`${account}-registerd`, 'true')
+        StyledNotification.success({ message: t('Register Respond') })
+        getLeaderBoard(account)
+      } else {
+        StyledNotification.error({ message: data.error })
+      }
     } catch (e) {
       console.log(e)
     }
-  }, [account])
+  }, [account, setuserActivityData])
 
   return (
     <SKCSWINWrap>

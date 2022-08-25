@@ -1,16 +1,19 @@
 import { useWeb3React } from '@web3-react/core'
-import { Image, RowCenterBox } from 'components'
-import { RowBetween } from 'components/Row'
-import StyledButton from 'components/StyledButton'
+import BN from 'bignumber.js'
+import { Image } from 'components'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useAppDispatch } from 'state'
-import { toggleConnectWalletModalShow } from 'state/wallet/actions'
 import styled from 'styled-components'
 import { formatNumber } from '../../utils/bignumber'
+import { getPrizeByRank } from '../../utils/skcsWin'
 import SKCSWinTitle from './components/SKCSTitle'
 import { ActivityType } from './index'
-import dayjs from 'dayjs'
+import { LoadingOutlined } from '@ant-design/icons'
+
+dayjs.extend(utc)
 
 const ParticipateWrap = styled.div`
   position: relative;
@@ -37,8 +40,8 @@ const Content = styled.div`
   padding: 64px 0px 0px 0px;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   position: relative;
 `
 
@@ -69,7 +72,7 @@ const Table = styled.div`
 
 const rowBg = require('../../assets/images/skcswin/row-bg.png').default
 
-const TableRow = styled.div<{ isCurrentUser?: boolean }>`
+const TableRow = styled.div<{ isCurrentUser?: boolean; rank?: number }>`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -80,14 +83,26 @@ const TableRow = styled.div<{ isCurrentUser?: boolean }>`
   & + & {
     padding: 9px 62px 9px 32px;
   }
+  margin: ${({ isCurrentUser, rank }) => {
+    if (isCurrentUser && rank && rank < 11) {
+      return `5px 0px`
+    }
+    return '0px'
+  }};
 
-  background: ${({ isCurrentUser }) => {
+  background: ${({ isCurrentUser, rank }) => {
     if (isCurrentUser) {
       return `url(${rowBg}) top center no-repeat`
     }
     return ''
   }};
-  background-size: 100% 100%;
+
+  background-size: ${({ isCurrentUser, rank }) => {
+    if (isCurrentUser && rank && rank < 11) {
+      return `100% 115%`
+    }
+    return '100% 100%'
+  }};
 `
 
 const NoCol = styled.div`
@@ -105,6 +120,7 @@ const AddressCol = styled.div`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
+  text-align: justify;
 `
 
 const AmountCol = styled.div`
@@ -134,6 +150,11 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
+  const shortAddress = (address: string) => {
+    console.log('address', address)
+    return `${address.slice(0, 4)}......${address.slice(-4)}`
+  }
+
   return (
     <ParticipateWrap>
       <DecorateImage>
@@ -146,41 +167,54 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
       </DecorateImage>
       <SKCSWinTitle title={t('Staking Leaderboard')} />
       <Content>
-        <UpdateTimeArea>
-          {t('sKCSWin.UpdateTime', { time: dayjs(userActivityData.top10List.lastUpdate).format('hh:mm, MMM') })}
-          &nbsp;&nbsp;&nbsp;
-          {t('Block Height', { blockHeight: formatNumber(userActivityData.top10List.blockHeight, 0) })}
-        </UpdateTimeArea>
-        <Table>
-          <TableRow>
-            <NoCol>{t('No')}</NoCol>
-            <AddressCol>{t('Address')}</AddressCol>
-            <AmountCol>{t('Daily Staking Amount')}</AmountCol>
-            <PrizeCol>{t('Prize')}</PrizeCol>
-          </TableRow>
-          {new Array(10).fill(0).map((n, i) => {
-            return (
-              <TableRow key={i}>
-                {i < 3 ? (
-                  <NoCol>
-                    <Image src={prizeIcon[i]} alt="prize-icon" width="24px" height="24px" />
-                  </NoCol>
-                ) : (
-                  <NoCol>{i + 1}</NoCol>
-                )}
-                <AddressCol>0x12......26sd</AddressCol>
-                <AmountCol>100</AmountCol>
-                <PrizeCol>200</PrizeCol>
+        {userActivityData.top10List.list.length < 1 ? (
+          <LoadingOutlined style={{ fontSize: '40px', color: '#A176C5' }} />
+        ) : (
+          <>
+            <UpdateTimeArea>
+              {t('sKCSWin.UpdateTime', {
+                time: dayjs(userActivityData.top10List.lastUpdate * 1000)
+                  .utc()
+                  .format('hh:mm, MMM D'),
+              })}
+              &nbsp;&nbsp;&nbsp;
+              {t('Block Height', { blockHeight: formatNumber(userActivityData.top10List.blockHeight, 0) })}
+            </UpdateTimeArea>
+            <Table>
+              <TableRow>
+                <NoCol>{t('No')}</NoCol>
+                <AddressCol>{t('Address')}</AddressCol>
+                <AmountCol>{t('Daily Staking Amount')}</AmountCol>
+                <PrizeCol>{t('Prize')}</PrizeCol>
               </TableRow>
-            )
-          })}
-          <TableRow isCurrentUser={true} style={{ flex: 1, alignItems: 'stretch', paddingTop: '12px' }}>
-            <NoCol>{userActivityData.rank}</NoCol>
-            <AddressCol>{t('You')}</AddressCol>
-            <AmountCol>100</AmountCol>
-            <PrizeCol>200</PrizeCol>
-          </TableRow>
-        </Table>
+              {userActivityData.top10List.list.map((list, i) => {
+                console.log('list', list)
+                return (
+                  <TableRow key={i} isCurrentUser={account === list.address} rank={list.rank}>
+                    {i < 3 ? (
+                      <NoCol>
+                        <Image src={prizeIcon[i]} alt="prize-icon" width="24px" height="24px" />
+                      </NoCol>
+                    ) : (
+                      <NoCol>{list.rank}</NoCol>
+                    )}
+                    <AddressCol>{account === list.address ? t('You') : shortAddress(list.address)}</AddressCol>
+                    <AmountCol>{formatNumber(new BN(list.amount).div(10 ** 18), 0)}</AmountCol>
+                    <PrizeCol>{getPrizeByRank(list.rank)}</PrizeCol>
+                  </TableRow>
+                )
+              })}
+              {account && userActivityData.registered && userActivityData.rank > 10 && (
+                <TableRow isCurrentUser={true} style={{ flex: 1, alignItems: 'stretch', paddingTop: '12px' }}>
+                  <NoCol>{userActivityData.rank}</NoCol>
+                  <AddressCol>{t('You')}</AddressCol>
+                  <AmountCol>{userActivityData.stakingAmount}</AmountCol>
+                  <PrizeCol>{getPrizeByRank(userActivityData.rank)}</PrizeCol>
+                </TableRow>
+              )}
+            </Table>
+          </>
+        )}
       </Content>
     </ParticipateWrap>
   )
