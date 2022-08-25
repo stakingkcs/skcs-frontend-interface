@@ -92,10 +92,22 @@ const GradientText = styled.div`
 
 const PrizePool: React.FunctionComponent<{ userActivityData: ActivityType; registerByAccount: any }> = ({
   userActivityData,
+  registerByAccount,
 }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
+
+  const [loading, setLoading] = React.useState<boolean>(false)
+
+  const register = async () => {
+    setLoading(() => true)
+    try {
+      await registerByAccount()
+    } finally {
+      setLoading(() => false)
+    }
+  }
 
   return (
     <ParticipateWrap>
@@ -139,7 +151,8 @@ const PrizePool: React.FunctionComponent<{ userActivityData: ActivityType; regis
           )}
           {account && !userActivityData.registered && (
             <StyledButton
-              onClick={() => dispatch(toggleConnectWalletModalShow({ show: true }))}
+              loading={loading}
+              onClick={register}
               style={{ width: '160px', height: '40px', fontSize: '14px' }}
             >
               {t('Register')}
