@@ -20,16 +20,16 @@ const SubTitle = styled.div`
   background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%);
   border-top-right-radius: 17px;
   border-bottom-right-radius: 17px;
-  width: 301px;
+  width: auto;
   height: 30px;
-  padding-left: 15px;
+  padding: 0 15px;
+  padding-right: 30px;
   font-family: 'Arial';
   font-style: normal;
+  display: inline-block;
   font-weight: 500;
   font-size: 16px;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  line-height: 30px;
   color: #ffffff;
 `
 

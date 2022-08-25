@@ -5,14 +5,14 @@ const getPrizeIndex = (rank: number) => {
       return i
     }
   }
-  return rankLevel.length - 1
+  return rankLevel.length
 }
 
 export const getPrizeByRank = (rank: number) => {
   if (rank === 0) {
     return 0
   }
-  const prizeLevel = [500, 300, 200, 20, 10]
+  const prizeLevel = [500, 300, 200, 20, 10, 0]
   const userPrizeIndex = getPrizeIndex(rank)
   return prizeLevel[userPrizeIndex]
 }

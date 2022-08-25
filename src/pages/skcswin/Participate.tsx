@@ -128,7 +128,7 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType; reg
   const skcsBalance = useStakerState().userData?.stakeAmount
   const [loading, setLoading] = React.useState<boolean>(false)
 
-  const register = async () => { 
+  const register = async () => {
     setLoading(() => true)
     try {
       await registerByAccount()
@@ -192,9 +192,10 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType; reg
               {account && userActivityData.registered && (
                 <RegisteredButton
                   style={{
-                    width: '160px',
+                    width: 'auto',
                     height: '40px',
                     fontSize: '14px',
+                    padding: '0 20px',
                   }}
                 >
                   <Image
@@ -210,7 +211,7 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType; reg
           </RowCenterBox>
         </Box>
 
-        <Box style={{ marginTop: '44px' }}>
+        <Box style={{ marginTop: '34px' }}>
           <RowCenterBox>
             <LeftWrap>
               <NumberText>2</NumberText>
@@ -256,7 +257,7 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType; reg
           </RowCenterBox>
         </Box>
 
-        <Box style={{ marginTop: '32px' }}>
+        <Box style={{ marginTop: '24px' }}>
           <RowCenterBox>
             <LeftWrap>
               <NumberText>3</NumberText>
@@ -265,7 +266,7 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType; reg
               <SubText>{t('sKCSWin.Step3.Desc')}</SubText>
             </RightWrap>
           </RowCenterBox>
-          <RowCenterBox>
+          <RowCenterBox style={{ marginTop: '10px' }}>
             <LeftWrap></LeftWrap>
             <RightWrap>
               {!account && (
@@ -280,7 +281,7 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType; reg
               {account && (
                 <StyledButton
                   onClick={() => history.push('/defi-market')}
-                  style={{ width: '160px', height: '40px', fontSize: '14px' }}
+                  style={{ width: 'auto', height: '40px', fontSize: '14px', padding: '0 20px' }}
                 >
                   {t('Use sKCS in DeFi')}
                 </StyledButton>

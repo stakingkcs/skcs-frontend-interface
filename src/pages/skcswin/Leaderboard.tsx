@@ -106,7 +106,7 @@ const TableRow = styled.div<{ isCurrentUser?: boolean; rank?: number }>`
 `
 
 const NoCol = styled.div`
-  width: 24px;
+  width: 30px;
   height: 24px;
   display: flex;
   justify-content: center;
@@ -115,7 +115,7 @@ const NoCol = styled.div`
 
 const AddressCol = styled.div`
   width: 99px;
-  margin-left: 64px;
+  margin-left: 58px;
   font-family: 'Arial';
   font-style: normal;
   font-weight: 700;
@@ -124,7 +124,7 @@ const AddressCol = styled.div`
 `
 
 const AmountCol = styled.div`
-  width: 166px;
+  width: 176px;
   margin-left: 40px;
   font-family: 'Arial';
   font-style: normal;

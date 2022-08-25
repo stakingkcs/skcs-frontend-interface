@@ -141,7 +141,7 @@ const SKCSWIN: React.FunctionComponent = () => {
               lastUpdate: snapshot_time,
               blockHeight: snapshot_block_number,
             },
-            rank: user?.rank ?? 0,
+            rank: user?.rank ?? leader.length + 1,
             stakingAmount: user?.amount,
           }
         })
