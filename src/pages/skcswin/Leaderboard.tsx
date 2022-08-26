@@ -12,13 +12,14 @@ import { getPrizeByRank } from '../../utils/skcsWin'
 import SKCSWinTitle from './components/SKCSTitle'
 import { ActivityType } from './index'
 import { LoadingOutlined } from '@ant-design/icons'
+import { useResponsive } from '../../utils/responsive'
 
 dayjs.extend(utc)
 
 const ParticipateWrap = styled.div`
   position: relative;
   width: 584px;
-  @media (width: 768px) {
+  @media (max-width: 768px) {
     width: 100%;
   }
 `
@@ -28,6 +29,9 @@ const DecorateImage = styled.div`
   top: 20px;
   right: 5px;
   z-index: 2;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const row1Bg = require('../../assets/images/skcswin/row-one-bg.png').default
@@ -46,8 +50,12 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  @media (width: 768px) {
+  @media (max-width: 768px) {
     width: 100%;
+    height: auto;
+    min-height: 200px;
+    background-size: 99% 99%;
+    padding: 64px 0px 20px 0px;
   }
 `
 
@@ -82,6 +90,7 @@ const TableRow = styled.div<{ isCurrentUser?: boolean; rank?: number }>`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  text-align: left;
   align-items: center;
   width: 100%;
   color: #efeff2;
@@ -109,6 +118,12 @@ const TableRow = styled.div<{ isCurrentUser?: boolean; rank?: number }>`
     }
     return '100% 100%'
   }};
+  @media (max-width: 768px) {
+    padding: 0 16px 0 16px;
+    & + & {
+      padding: 9px 16px 9px 16px;
+    }
+  }
 `
 
 const NoCol = styled.div`
@@ -117,6 +132,9 @@ const NoCol = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 768px) {
+    width: 30px;
+  }
 `
 
 const AddressCol = styled.div`
@@ -127,6 +145,11 @@ const AddressCol = styled.div`
   font-weight: 700;
   font-size: 16px;
   text-align: justify;
+  @media (max-width: 768px) {
+    margin-left: 26px;
+    width: 85px;
+    font-size: 14px;
+  }
 `
 
 const AmountCol = styled.div`
@@ -136,6 +159,11 @@ const AmountCol = styled.div`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
+  @media (max-width: 768px) {
+    margin-left: 27px;
+    flex: 1;
+    font-size: 14px;
+  }
 `
 const PrizeCol = styled.div`
   width: 41px;
@@ -143,6 +171,10 @@ const PrizeCol = styled.div`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    width: 32px;
+  }
 `
 
 const No1 = require('../../assets/images/skcswin/gold.png').default
@@ -155,6 +187,7 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
+  const { isMobile } = useResponsive()
 
   const shortAddress = (address: string) => {
     console.log('address', address)
@@ -183,8 +216,12 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
                   .utc()
                   .format('hh:mm, MMM D'),
               })}
-              &nbsp;&nbsp;&nbsp;
-              {t('Block Height', { blockHeight: formatNumber(userActivityData.top10List.blockHeight, 0) })}
+              {!isMobile ?? (
+                <>
+                  &nbsp;&nbsp;&nbsp;
+                  {t('Block Height', { blockHeight: formatNumber(userActivityData.top10List.blockHeight, 0) })}
+                </>
+              )}
             </UpdateTimeArea>
             <Table>
               <TableRow>

@@ -29,6 +29,9 @@ const DecorateImage = styled.div`
   position: absolute;
   top: 17px;
   right: 5px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const row1Bg = require('../../assets/images/skcswin/row-one-bg.png').default
@@ -44,6 +47,9 @@ const Content = styled.div`
   padding: 30px;
   @media (max-width: 768px) {
     width: 100%;
+    background-size: 99% 99%;
+    padding: 34px 20px;
+    height: auto;
   }
 `
 
@@ -63,6 +69,11 @@ const RightWrap = styled.div`
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 `
 
 const BalanceText = styled.div`
@@ -74,6 +85,12 @@ const BalanceText = styled.div`
   align-items: center;
   color: #d04aff;
   margin-left: 20px;
+
+  @media (max-width: 768px) {
+    margin-left: 0px;
+    font-size: 14px;
+    margin-top: 16px;
+  }
 `
 
 const Box = styled.div``

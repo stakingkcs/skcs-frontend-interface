@@ -21,6 +21,7 @@ const SKCSWinContentWrap = styled.div`
   background: url(${contentBg}) top center no-repeat;
   background-size: 100% 100%;
   padding-bottom: 60px;
+
 `
 const Content = styled.div`
   max-width: 1200px;
@@ -33,7 +34,7 @@ const Row1 = styled(RowBetween)`
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-    padding: 44px 12px;
+    padding: 44px 12px 20px 12px;
   }
 `
 
@@ -168,11 +169,15 @@ const SKCSWIN: React.FunctionComponent = () => {
         <Content>
           <Row1>
             <Participate userActivityData={userActivityData} registerByAccount={registerByAccount} />
-            <PrizePool userActivityData={userActivityData} registerByAccount={registerByAccount} />
+            <PrizePool
+              styles={{ marginTop: isMobile ? '48px' : '0px' }}
+              userActivityData={userActivityData}
+              registerByAccount={registerByAccount}
+            />
           </Row1>
           <Row1>
             <Leaderboard userActivityData={userActivityData} />
-            <Rules userActivityData={userActivityData} />
+            <Rules styles={{ marginTop: isMobile ? '48px' : '0px' }} userActivityData={userActivityData} />
           </Row1>
         </Content>
       </SKCSWinContentWrap>

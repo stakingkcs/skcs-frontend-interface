@@ -1,5 +1,5 @@
 import { Image } from 'components'
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useLanguage } from '../../state/application/hooks'
@@ -20,6 +20,9 @@ const DecorateImage = styled.div`
   top: 20px;
   right: 5px;
   z-index: 2;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const row1Bg = require('../../assets/images/skcswin/row-one-bg.png').default
@@ -108,14 +111,17 @@ const Upcoming = styled.div`
   margin-top: 22px;
 `
 
-const Rules: React.FunctionComponent<{ userActivityData: ActivityType }> = ({ userActivityData }) => {
+const Rules: React.FunctionComponent<{ userActivityData: ActivityType; styles?: CSSProperties }> = ({
+  userActivityData,
+  styles,
+}) => {
   const { t } = useTranslation()
   const { isMobile } = useResponsive()
   const lang = useLanguage()
   const [unfold, setUnfold] = React.useState<boolean>(false)
 
   return (
-    <ParticipateWrap>
+    <ParticipateWrap style={styles}>
       <DecorateImage>
         <Image
           src={require('../../assets/images/skcswin/decorate-4.png').default}

@@ -2,7 +2,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Image, RowCenterBox } from 'components'
 import { RowBetween } from 'components/Row'
 import StyledButton from 'components/StyledButton'
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useAppDispatch } from 'state'
 import { toggleConnectWalletModalShow } from 'state/wallet/actions'
@@ -11,6 +11,7 @@ import { formatNumber } from '../../utils/bignumber'
 import SKCSWinTitle from './components/SKCSTitle'
 import { ActivityType } from './index'
 import { getPrizeByRank } from '../../utils/skcsWin'
+import { useResponsive } from '../../utils/responsive'
 
 const ParticipateWrap = styled.div`
   position: relative;
@@ -24,6 +25,9 @@ const DecorateImage = styled.div`
   position: absolute;
   top: 17px;
   right: 5px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const row1Bg = require('../../assets/images/skcswin/row-one-bg.png').default
@@ -43,6 +47,10 @@ const Content = styled.div`
   align-items: flex-start;
   @media (max-width: 768px) {
     width: 100%;
+    align-items: center;
+    background-size: 99% 99%;
+    padding: 36px 20px;
+    height: auto;
   }
 `
 const GreenDot = styled.div`
@@ -61,6 +69,10 @@ const RankText = styled.div`
   align-items: center;
   color: #efeff2;
   margin: 0 12px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin: 0 8px;
+  }
 `
 
 const BorderLine = styled.div`
@@ -96,13 +108,15 @@ const GradientText = styled.div`
   text-fill-color: transparent;
 `
 
-const PrizePool: React.FunctionComponent<{ userActivityData: ActivityType; registerByAccount: any }> = ({
-  userActivityData,
-  registerByAccount,
-}) => {
+const PrizePool: React.FunctionComponent<{
+  userActivityData: ActivityType
+  registerByAccount: any
+  styles?: CSSProperties
+}> = ({ userActivityData, registerByAccount, styles }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
+  const { isMobile } = useResponsive()
 
   const [loading, setLoading] = React.useState<boolean>(false)
 
@@ -116,7 +130,7 @@ const PrizePool: React.FunctionComponent<{ userActivityData: ActivityType; regis
   }
 
   return (
-    <ParticipateWrap>
+    <ParticipateWrap style={styles}>
       <DecorateImage>
         <Image
           src={require('../../assets/images/skcswin/decorate-2.png').default}
@@ -129,8 +143,8 @@ const PrizePool: React.FunctionComponent<{ userActivityData: ActivityType; regis
       <Content>
         <Image
           src={require('../../assets/images/skcswin/prize.png').default}
-          width="492px"
-          height="197px"
+          width={isMobile ? '95%' : '492px'}
+          height={isMobile ? 'auto' : '197px'}
           alt="prize"
         />
         <PrizeItem style={{ marginTop: '34px' }}>

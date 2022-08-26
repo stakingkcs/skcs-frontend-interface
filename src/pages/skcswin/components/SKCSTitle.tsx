@@ -26,27 +26,30 @@ const TitleText = styled.h2`
   margin: 0;
   padding: 0;
   margin-left: 16px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `
 
 const SKCSWinTitle: React.FunctionComponent<Props> = ({ title }) => {
   const { isMobile } = useResponsive()
   return (
-    <RowCenterBox>
+    <RowCenterBox style={{ width: isMobile ? '100%' : 'auto' }} justify={isMobile ? 'center' : 'flex-start'}>
       <ImageWrap>
         <Image
           src={require('../../../assets/images/skcswin/title-icon.png').default}
-          width="32px"
-          height="40px"
+          width={isMobile ? '20px' : '32px'}
+          height={isMobile ? '25px' : '40px'}
           alt="title-icon"
         />
       </ImageWrap>
       <TitleText>{title}</TitleText>
       {isMobile && (
-        <ImageWrap>
+        <ImageWrap style={{ marginLeft: '12px' }}>
           <Image
             src={require('../../../assets/images/skcswin/title-icon.png').default}
-            width="32px"
-            height="40px"
+            width="20px"
+            height="25px"
             alt="title-icon"
           />
         </ImageWrap>
