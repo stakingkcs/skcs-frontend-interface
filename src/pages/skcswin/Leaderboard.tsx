@@ -18,6 +18,9 @@ dayjs.extend(utc)
 const ParticipateWrap = styled.div`
   position: relative;
   width: 584px;
+  @media (width: 768px) {
+    width: 100%;
+  }
 `
 
 const DecorateImage = styled.div`
@@ -43,6 +46,9 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  @media (width: 768px) {
+    width: 100%;
+  }
 `
 
 const UpdateTimeArea = styled.div`
@@ -204,7 +210,8 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
                   </TableRow>
                 )
               })}
-              {account && userActivityData.registered && userActivityData.rank > 10 && (
+
+              {account && userActivityData.registered && Number(userActivityData.stakingAmount) > 1 && (
                 <TableRow isCurrentUser={true} style={{ flex: 1, alignItems: 'stretch', paddingTop: '12px' }}>
                   <NoCol>{userActivityData.rank}</NoCol>
                   <AddressCol>{t('You')}</AddressCol>

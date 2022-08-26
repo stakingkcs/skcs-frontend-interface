@@ -15,6 +15,9 @@ import { getPrizeByRank } from '../../utils/skcsWin'
 const ParticipateWrap = styled.div`
   position: relative;
   width: 584px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const DecorateImage = styled.div`
@@ -38,6 +41,9 @@ const Content = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 const GreenDot = styled.div`
   width: 9px;
@@ -163,8 +169,11 @@ const PrizePool: React.FunctionComponent<{ userActivityData: ActivityType; regis
               <Trans
                 i18nKey="Prize Result"
                 values={{
-                  rank: `TOP ${userActivityData.rank}`,
-                  rewards: formatNumber(getPrizeByRank(userActivityData.rank), 0),
+                  rank: Number(userActivityData.stakingAmount) > 0 ? `TOP ${userActivityData.rank}` : '-',
+                  rewards:
+                    Number(userActivityData.stakingAmount) > 0
+                      ? formatNumber(getPrizeByRank(userActivityData.rank), 0)
+                      : 0,
                 }}
                 components={{ gradientText: <GradientText /> }}
               />

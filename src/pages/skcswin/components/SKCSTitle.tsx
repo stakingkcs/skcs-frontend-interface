@@ -3,6 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { RowCenterBox } from 'components'
 import { Image } from 'components'
+import { useResponsive } from 'utils/responsive'
 
 type Props = {
   title: string
@@ -28,6 +29,7 @@ const TitleText = styled.h2`
 `
 
 const SKCSWinTitle: React.FunctionComponent<Props> = ({ title }) => {
+  const { isMobile } = useResponsive()
   return (
     <RowCenterBox>
       <ImageWrap>
@@ -39,6 +41,16 @@ const SKCSWinTitle: React.FunctionComponent<Props> = ({ title }) => {
         />
       </ImageWrap>
       <TitleText>{title}</TitleText>
+      {isMobile && (
+        <ImageWrap>
+          <Image
+            src={require('../../../assets/images/skcswin/title-icon.png').default}
+            width="32px"
+            height="40px"
+            alt="title-icon"
+          />
+        </ImageWrap>
+      )}
     </RowCenterBox>
   )
 }

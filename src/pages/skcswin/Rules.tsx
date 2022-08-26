@@ -1,22 +1,18 @@
-import { useWeb3React } from '@web3-react/core'
-import { Image, RowCenterBox } from 'components'
-import { RowBetween } from 'components/Row'
-import StyledButton from 'components/StyledButton'
+import { Image } from 'components'
 import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useAppDispatch } from 'state'
-import { toggleConnectWalletModalShow } from 'state/wallet/actions'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { formatNumber } from '../../utils/bignumber'
+import { useLanguage } from '../../state/application/hooks'
+import { useResponsive } from '../../utils/responsive'
 import SKCSWinTitle from './components/SKCSTitle'
 import { ActivityType } from './index'
-import dayjs from 'dayjs'
-import { useResponsive } from '../../utils/responsive'
-import { useLanguage } from '../../state/application/hooks'
 
 const ParticipateWrap = styled.div`
   position: relative;
   width: 584px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const DecorateImage = styled.div`
@@ -54,6 +50,9 @@ const Content = styled.div<{ isMobile: boolean; lang: string; unfold: boolean }>
   justify-content: flex-start;
   align-items: flex-start;
   position: relative;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const GradientText = styled.div`

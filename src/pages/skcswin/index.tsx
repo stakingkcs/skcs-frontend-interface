@@ -33,7 +33,7 @@ const Row1 = styled(RowBetween)`
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 12px;
+    padding: 44px 12px;
   }
 `
 
@@ -60,31 +60,6 @@ const activity = {
     list: [] as any[],
     lastUpdate: new Date().getTime(),
     blockHeight: 0,
-  },
-  firstPrize: {
-    poolPrize: 500,
-    perPrize: 500,
-    rank: 1,
-  },
-  secondPrize: {
-    poolPrize: 300,
-    perPrize: 300,
-    rank: 2,
-  },
-  firthPrize: {
-    poolPrize: 200,
-    perPrize: 200,
-    rank: 3,
-  },
-  fouthPrize: {
-    poolPrize: 400,
-    perPrize: 20,
-    rank: [4, 23],
-  },
-  fifth: {
-    poolPrize: 600,
-    perPrize: 6,
-    rank: [24, 123],
   },
 }
 
@@ -149,8 +124,8 @@ const SKCSWIN: React.FunctionComponent = () => {
               lastUpdate: snapshot_time,
               blockHeight: snapshot_block_number,
             },
-            rank: user?.rank ?? leader.length + 1,
-            stakingAmount: user?.amount,
+            rank: user?.rank ?? 0,
+            stakingAmount: user?.amount ?? '0',
           }
         })
       }

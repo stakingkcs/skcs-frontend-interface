@@ -20,8 +20,8 @@ import { formatNumber } from '../../utils/bignumber'
 const ParticipateWrap = styled.div`
   position: relative;
   width: 584px;
-  @media (max-width:768px){
-    
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `
 
@@ -42,6 +42,9 @@ const Content = styled.div`
   border-radius: 12px;
   margin-top: 27px;
   padding: 30px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const circleBg = require('../../assets/images/skcswin/circle-bg.png').default
