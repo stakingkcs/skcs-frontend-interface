@@ -208,7 +208,11 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
                 <TableRow isCurrentUser={true} style={{ flex: 1, alignItems: 'stretch', paddingTop: '12px' }}>
                   <NoCol>{userActivityData.rank}</NoCol>
                   <AddressCol>{t('You')}</AddressCol>
-                  <AmountCol>{userActivityData.stakingAmount ?? '-'}</AmountCol>
+                  <AmountCol>
+                    {userActivityData.stakingAmount
+                      ? formatNumber(new BN(userActivityData.stakingAmount).div(10 ** 18), 0)
+                      : '-'}
+                  </AmountCol>
                   <PrizeCol>{getPrizeByRank(userActivityData.rank)}</PrizeCol>
                 </TableRow>
               )}

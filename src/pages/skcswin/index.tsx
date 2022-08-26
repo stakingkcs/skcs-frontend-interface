@@ -10,6 +10,7 @@ import { useWeb3React } from '@web3-react/core'
 import { AcitivityService } from 'api/activity'
 import StyledNotification from 'components/StyledNotification'
 import { useTranslation } from 'react-i18next'
+import { useResponsive } from 'utils/responsive'
 
 const SKCSWINWrap = styled.div``
 
@@ -28,6 +29,12 @@ const Content = styled.div`
 
 const Row1 = styled(RowBetween)`
   padding: 44px 0px;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 12px;
+  }
 `
 
 const activity = {
@@ -85,6 +92,7 @@ export type ActivityType = typeof activity
 
 const SKCSWIN: React.FunctionComponent = () => {
   const { t } = useTranslation()
+  const { isMobile } = useResponsive()
   const { account } = useWeb3React()
   const [userActivityData, setuserActivityData] = React.useState<ActivityType>(activity)
 
@@ -156,24 +164,27 @@ const SKCSWIN: React.FunctionComponent = () => {
     getLeaderBoard(account)
   }, [account, setuserActivityData])
 
-  const registerByAccount = React.useCallback(async () => {
-    if (!account) return
-    try {
-      const { data } = await AcitivityService.register(account)
-      if (!data.code) {
-        setuserActivityData((data) => {
-          return { ...data, registered: true }
-        })
-        localStorage.setItem(`${account}-registerd`, 'true')
-        StyledNotification.success({ message: t('Register Respond') })
-        getLeaderBoard(account)
-      } else {
-        StyledNotification.error({ message: data.error })
+  const registerByAccount = React.useCallback(
+    async (account) => {
+      if (!account) return
+      try {
+        const { data } = await AcitivityService.register(account)
+        if (!data.code) {
+          setuserActivityData((data) => {
+            return { ...data, registered: true }
+          })
+          localStorage.setItem(`${account}-registerd`, 'true')
+          StyledNotification.success({ message: t('Register Respond') })
+          getLeaderBoard(account)
+        } else {
+          StyledNotification.error({ message: data.error })
+        }
+      } catch (e) {
+        console.log(e)
       }
-    } catch (e) {
-      console.log(e)
-    }
-  }, [account, setuserActivityData])
+    },
+    [account, setuserActivityData]
+  )
 
   return (
     <SKCSWINWrap>

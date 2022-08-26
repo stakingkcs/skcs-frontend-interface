@@ -27,12 +27,17 @@ const addLeadingZeros = (value: any) => {
 }
 
 const bg = require('../../assets/images/skcswin/skcs-win-bg.png').default
-
+const mBg = require('../../assets/images/skcswin/m-banner-bg.png').default
 const Wrap = styled.div`
   width: 100%;
   height: 400px;
   background: url(${bg}) 60% bottom no-repeat, #040b2a;
   background-size: auto 100%;
+  @media (max-width: 768px) {
+    height: 672px;
+    background: url(${mBg}) bottom center no-repeat, #040b2a;
+    background-size: 100% auto;
+  }
 `
 
 const BannerContent = styled.div`
@@ -44,6 +49,9 @@ const BannerContent = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: flex-start;
+  @media (max-width: 768px) {
+    padding-top: 54px;
+  }
 `
 
 const Content = styled.div`
@@ -71,6 +79,10 @@ const Title = styled.h1`
   padding: 0;
   margin: 0;
   margin-bottom: 9px;
+  @media (max-width: 768px) {
+    font-size: 36px;
+    line-height: 48px;
+  }
 `
 
 const borderBg = require('../../assets/images/skcswin/border.png').default

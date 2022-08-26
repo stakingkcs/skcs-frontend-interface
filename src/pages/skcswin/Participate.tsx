@@ -20,6 +20,9 @@ import { formatNumber } from '../../utils/bignumber'
 const ParticipateWrap = styled.div`
   position: relative;
   width: 584px;
+  @media (max-width:768px){
+    
+  }
 `
 
 const DecorateImage = styled.div`
