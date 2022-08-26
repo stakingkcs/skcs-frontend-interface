@@ -130,10 +130,12 @@ const NoCol = styled.div`
   width: 30px;
   height: 24px;
   display: flex;
+  font-size: 16px;
   justify-content: center;
   align-items: center;
   @media (max-width: 768px) {
     width: 30px;
+    font-size: 14px;
   }
 `
 
