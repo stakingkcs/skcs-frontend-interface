@@ -11,6 +11,8 @@ import { formatNumber } from '../../utils/bignumber'
 import SKCSWinTitle from './components/SKCSTitle'
 import { ActivityType } from './index'
 import dayjs from 'dayjs'
+import { useResponsive } from '../../utils/responsive'
+import { useLanguage } from '../../state/application/hooks'
 
 const ParticipateWrap = styled.div`
   position: relative;
@@ -26,11 +28,22 @@ const DecorateImage = styled.div`
 
 const row1Bg = require('../../assets/images/skcswin/row-one-bg.png').default
 
-const Content = styled.div`
+const Content = styled.div<{ isMobile: boolean; lang: string; unfold: boolean }>`
   box-sizing: border-box;
   width: 584px;
   /* height: 292px; */
-  height: 574px;
+  overflow: hidden;
+  height: ${({ isMobile, lang, unfold }) => {
+    if (isMobile) {
+      return 'auto'
+    }
+
+    if (lang === 'en' && unfold === true) {
+      return 'auto'
+    }
+
+    return '574px'
+  }};
   background: url(${row1Bg}) top center no-repeat;
   background-size: 99% 99%;
   border-radius: 12px;
@@ -72,6 +85,21 @@ const RulesText = styled.div`
 
 const bg = require('../../assets/images/skcswin/upcoming.png').default
 
+const RuleItems = styled.div<{ isMobile: boolean; lang: string; unfold: boolean }>`
+  overflow: hidden;
+  height: ${({ isMobile, lang, unfold }) => {
+    if (isMobile || lang !== 'en') {
+      return 'auto'
+    }
+
+    if (lang === 'en' && unfold === true) {
+      return 'auto'
+    }
+
+    return '430px'
+  }};
+`
+
 const Upcoming = styled.div`
   width: 584px;
   height: 182px;
@@ -83,6 +111,9 @@ const Upcoming = styled.div`
 
 const Rules: React.FunctionComponent<{ userActivityData: ActivityType }> = ({ userActivityData }) => {
   const { t } = useTranslation()
+  const { isMobile } = useResponsive()
+  const lang = useLanguage()
+  const [unfold, setUnfold] = React.useState<boolean>(false)
 
   return (
     <ParticipateWrap>
@@ -95,16 +126,23 @@ const Rules: React.FunctionComponent<{ userActivityData: ActivityType }> = ({ us
         />
       </DecorateImage>
       <SKCSWinTitle title={t('Campaign Rules')} />
-      <Content style={{ marginBottom: '32px' }}>
+      <Content style={{ marginBottom: '32px' }} isMobile={isMobile} lang={lang} unfold={unfold}>
         <GradientText>{t('SKCS RULES')}</GradientText>
-        {userActivityData.rules.keyList.map((key, index) => {
-          return (
-            <RulesText key={index}>
-              {`${index + 1}:`}
-              {t(key)}
-            </RulesText>
-          )
-        })}
+        <RuleItems isMobile={isMobile} lang={lang} unfold={unfold}>
+          {userActivityData.rules.keyList.map((key, index) => {
+            return (
+              <RulesText key={index}>
+                {`${index + 1}:`}
+                {t(key)}
+              </RulesText>
+            )
+          })}
+        </RuleItems>
+        {lang === 'en' && (
+          <RulesText style={{ cursor: 'pointer', color: '#CB40D2' }} onClick={() => setUnfold((fold) => !fold)}>
+            {unfold ? 'Fold' : 'Unfold'}
+          </RulesText>
+        )}
       </Content>
       {/* <SKCSWinTitle title={t('Upcoming Campaign')} /> */}
       {/* <Upcoming /> */}
