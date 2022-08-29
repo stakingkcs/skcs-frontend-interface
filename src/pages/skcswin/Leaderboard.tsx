@@ -13,6 +13,7 @@ import SKCSWinTitle from './components/SKCSTitle'
 import { ActivityType } from './index'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useResponsive } from '../../utils/responsive'
+import { find } from 'lodash'
 
 dayjs.extend(utc)
 
@@ -196,6 +197,11 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
     return `${address.slice(0, 4)}......${address.slice(-4)}`
   }
 
+  const userInTop10 = React.useMemo(() => {
+    if (!account) return false
+    return find(userActivityData.top10List.list, { address: account })
+  }, [userActivityData, account])
+
   return (
     <ParticipateWrap>
       <DecorateImage>
@@ -250,18 +256,22 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
                 )
               })}
 
-              {account && userActivityData.registered && Number(userActivityData.stakingAmount) > 1 && (
-                <TableRow isCurrentUser={true} style={{ flex: 1, alignItems: 'stretch', paddingTop: '12px' }}>
-                  <NoCol>{userActivityData.rank}</NoCol>
-                  <AddressCol>{t('You')}</AddressCol>
-                  <AmountCol>
-                    {userActivityData.stakingAmount
-                      ? formatNumber(new BN(userActivityData.stakingAmount).div(10 ** 18), 0)
-                      : '-'}
-                  </AmountCol>
-                  <PrizeCol>{getPrizeByRank(userActivityData.rank)}</PrizeCol>
-                </TableRow>
-              )}
+              {account &&
+                userActivityData.registered &&
+                Number(userActivityData.stakingAmount) > 1 &&
+                userActivityData.top10List.list.length >= 10 &&
+                !userInTop10 && (
+                  <TableRow isCurrentUser={true} style={{ flex: 1, alignItems: 'stretch', paddingTop: '12px' }}>
+                    <NoCol>{userActivityData.rank}</NoCol>
+                    <AddressCol>{t('You')}</AddressCol>
+                    <AmountCol>
+                      {userActivityData.stakingAmount
+                        ? formatNumber(new BN(userActivityData.stakingAmount).div(10 ** 18), 0)
+                        : '-'}
+                    </AmountCol>
+                    <PrizeCol>{getPrizeByRank(userActivityData.rank)}</PrizeCol>
+                  </TableRow>
+                )}
             </Table>
           </>
         )}
