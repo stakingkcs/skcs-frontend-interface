@@ -224,7 +224,7 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
                   .utc()
                   .format('hh:mm, MMM D'),
               })}
-              {!isMobile ?? (
+              {!isMobile && (
                 <>
                   &nbsp;&nbsp;&nbsp;
                   {t('Block Height', { blockHeight: formatNumber(userActivityData.top10List.blockHeight, 0) })}
