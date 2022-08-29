@@ -264,7 +264,7 @@ const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity 
       <Wrap>
         <BannerContent>
           <Content>
-            <Title>{t(activity.title, { poolPrize: formatNumber(2000, 0, 3) })}</Title>
+            <Title>{t(activity.title, { poolPrize: formatNumber(5000, 0, 3) })}</Title>
             <TimeWrap>
               <TimeContent>{`${startTime} ~ ${endTime}`}</TimeContent>
             </TimeWrap>

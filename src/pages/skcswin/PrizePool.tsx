@@ -139,7 +139,7 @@ const PrizePool: React.FunctionComponent<{
           alt="decorate-img"
         />
       </DecorateImage>
-      <SKCSWinTitle title={t('sKCSWin.PrizePool.Title', { poolPrize: formatNumber(2000, 0) })} />
+      <SKCSWinTitle title={t('sKCSWin.PrizePool.Title', { poolPrize: formatNumber(5000, 0) })} />
       <Content>
         <Image
           src={require('../../assets/images/skcswin/prize.png').default}
@@ -147,19 +147,25 @@ const PrizePool: React.FunctionComponent<{
           height={isMobile ? 'auto' : '197px'}
           alt="prize"
         />
-        <PrizeItem style={{ marginTop: '34px' }}>
+        <PrizeItem style={{ marginTop: '24px' }}>
           <GreenDot />
-          <RankText>{t('TOP 4-23')}</RankText>
+          <RankText>{t('TOP 4-13')}</RankText>
           <BorderLine />
-          <RankText style={{ marginLeft: '22px' }}>400 USDT</RankText>
+          <RankText style={{ marginLeft: '22px' }}>1000 USDT</RankText>
         </PrizeItem>
-        <PrizeItem style={{ marginTop: '15px' }}>
+        <PrizeItem style={{ marginTop: '10px' }}>
+          <GreenDot />
+          <RankText>{t('TOP 14-23')}</RankText>
+          <BorderLine />
+          <RankText style={{ marginLeft: '22px' }}>500 USDT</RankText>
+        </PrizeItem>
+        <PrizeItem style={{ marginTop: '10px' }}>
           <GreenDot />
           <RankText>{t('TOP 24-123')}</RankText>
           <BorderLine />
-          <RankText style={{ marginLeft: '22px' }}>600 USDT</RankText>
+          <RankText style={{ marginLeft: '22px' }}>1000 USDT</RankText>
         </PrizeItem>
-        <RowCenterBox style={{ marginTop: '25px' }}>
+        <RowCenterBox style={{ marginTop: '15px' }}>
           {!userActivityData.registered || !account ? <PrizeText>{t('YourPrize')}</PrizeText> : null}
           {!account && (
             <StyledButton

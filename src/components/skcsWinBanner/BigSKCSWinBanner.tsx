@@ -67,7 +67,7 @@ const BigSKCSWinBanner: React.FunctionComponent = () => {
         <Trans
           i18nKey="sKCSWin.BannerTitle"
           values={{
-            prizePool: formatNumber(2000, 0),
+            prizePool: formatNumber(5000, 0),
           }}
           components={{ number: <Number /> }}
         />
