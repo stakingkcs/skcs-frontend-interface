@@ -128,7 +128,7 @@ const TableRow = styled.div<{ isCurrentUser?: boolean; rank?: number }>`
 `
 
 const NoCol = styled.div`
-  width: 30px;
+  width: 34px;
   height: 24px;
   display: flex;
   font-size: 16px;
