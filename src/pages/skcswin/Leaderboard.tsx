@@ -249,7 +249,7 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
                       <NoCol>{list.rank}</NoCol>
                     )}
                     <AddressCol>{account === list.address ? t('You') : shortAddress(list.address)}</AddressCol>
-                    <AmountCol>{list.amount ? formatNumber(new BN(list.amount).div(10 ** 18), 0) : '-'}</AmountCol>
+                    <AmountCol>{list.amount ? formatNumber(new BN(list.amount).div(10 ** 18), 2) : '-'}</AmountCol>
                     <PrizeCol>{getPrizeByRank(list.rank)}</PrizeCol>
                   </TableRow>
                 )
@@ -265,7 +265,7 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
                     <AddressCol>{t('You')}</AddressCol>
                     <AmountCol>
                       {userActivityData.stakingAmount
-                        ? formatNumber(new BN(userActivityData.stakingAmount).div(10 ** 18), 0)
+                        ? formatNumber(new BN(userActivityData.stakingAmount).div(10 ** 18), 2)
                         : '-'}
                     </AmountCol>
                     <PrizeCol>{getPrizeByRank(userActivityData.rank)}</PrizeCol>
