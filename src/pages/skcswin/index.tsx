@@ -21,7 +21,6 @@ const SKCSWinContentWrap = styled.div`
   background: url(${contentBg}) top center no-repeat;
   background-size: 100% 100%;
   padding-bottom: 60px;
-
 `
 const Content = styled.div`
   max-width: 1200px;
@@ -141,7 +140,8 @@ const SKCSWIN: React.FunctionComponent = () => {
   }, [account, setuserActivityData])
 
   const registerByAccount = React.useCallback(
-    async (account) => {
+    async () => {
+      console.log('acccount', account)
       if (!account) return
       try {
         const { data } = await AcitivityService.register(account)

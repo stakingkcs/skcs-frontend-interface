@@ -239,7 +239,6 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
                 <PrizeCol>{t('Prize')}</PrizeCol>
               </TableRow>
               {userActivityData.top10List.list.map((list, i) => {
-                console.log('list', list)
                 return (
                   <TableRow key={i} isCurrentUser={account === list.address} rank={list.rank}>
                     {i < 3 ? (

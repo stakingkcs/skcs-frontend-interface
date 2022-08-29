@@ -252,7 +252,6 @@ const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity 
       return false
     }
     const time1 = calculateCountdown(activity.endTime)
-    console.log('time1', time1)
     if (time1) {
       setTime(() => time1)
     } else {
