@@ -151,7 +151,7 @@ const PrizePool: React.FunctionComponent<{
           <GreenDot />
           <RankText>{t('TOP 4-13')}</RankText>
           <BorderLine />
-          <RankText style={{ marginLeft: '22px' }}>1000 USDT</RankText>
+          <RankText style={{ marginLeft: '22px' }}>1,000 USDT</RankText>
         </PrizeItem>
         <PrizeItem style={{ marginTop: '10px' }}>
           <GreenDot />
@@ -163,7 +163,7 @@ const PrizePool: React.FunctionComponent<{
           <GreenDot />
           <RankText>{t('TOP 24-123')}</RankText>
           <BorderLine />
-          <RankText style={{ marginLeft: '22px' }}>1000 USDT</RankText>
+          <RankText style={{ marginLeft: '22px' }}>1,000 USDT</RankText>
         </PrizeItem>
         <RowCenterBox style={{ marginTop: '15px' }}>
           {!userActivityData.registered || !account ? <PrizeText>{t('YourPrize')}</PrizeText> : null}

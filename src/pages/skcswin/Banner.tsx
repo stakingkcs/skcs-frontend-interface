@@ -90,7 +90,8 @@ const borderBg = require('../../assets/images/skcswin/border.png').default
 const TimeWrap = styled.div`
   background: url(${borderBg}) top center no-repeat;
   background-size: 100% 100%;
-  width: 249px;
+  width: auto;
+  padding: 0 10px;
   height: 32px;
   display: flex;
   flex-flow: column nowrap;
@@ -266,7 +267,7 @@ const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity 
           <Content>
             <Title>{t(activity.title, { poolPrize: formatNumber(5000, 0, 3) })}</Title>
             <TimeWrap>
-              <TimeContent>{`${startTime} ~ ${endTime}`}</TimeContent>
+              <TimeContent>{`${startTime} ~ ${endTime} (UTC)`}</TimeContent>
             </TimeWrap>
             {isEnd ? (
               <EndButton>{t('sKCSWin.EndButtonText')}</EndButton>
