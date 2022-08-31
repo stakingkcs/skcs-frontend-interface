@@ -61,7 +61,7 @@ export const switchNetwork = async (id: any) => {
           await addNetwork(selectedNetworkInfo)
           dispatch(updateErrorInfo({ hasError: false, errorInfo: '' }))
         } catch (addError) {
-          message.error(i18next.t(`Switch Network failed`))
+          // message.error(i18next.t(`Switch Network failed`))
         }
       }
     }
