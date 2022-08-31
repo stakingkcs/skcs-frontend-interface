@@ -63,7 +63,7 @@ const Content = styled.div`
 `
 
 const Title = styled.h1`
-  display: flex;
+  display: inline-block;
   align-items: center;
   text-align: center;
   background: linear-gradient(93.69deg, #41e6af 0.42%, #b65cf1 82.72%);
@@ -107,7 +107,7 @@ const TimeContent = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  display: flex;
+  display: inline-block;
   align-items: center;
   background-size: 100% 100%;
   -webkit-background-clip: text;

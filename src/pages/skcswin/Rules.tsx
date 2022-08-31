@@ -63,7 +63,7 @@ const GradientText = styled.div`
   font-style: normal;
   font-weight: 800;
   font-size: 16px;
-  display: flex;
+  display: inline-block;
   align-items: center;
   text-transform: uppercase;
   background: linear-gradient(93.69deg, #41e6af 0.42%, #b65cf1 82.72%);

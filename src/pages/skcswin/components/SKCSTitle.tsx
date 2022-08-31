@@ -16,7 +16,7 @@ const TitleText = styled.h2`
   font-style: normal;
   font-weight: 800;
   font-size: 30px;
-  display: flex;
+  display: inline-block;
   align-items: center;
   background: linear-gradient(93.69deg, #41e6af 0.42%, #b65cf1 82.72%);
   -webkit-background-clip: text;
