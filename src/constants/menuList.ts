@@ -57,6 +57,7 @@ export const MENU_LIST = [
     name: 'sKCS Win',
     route: '/skcs-win',
     hasChildren: false,
+    suffix: true,
   },
   {
     name: 'Doc',
