@@ -93,3 +93,4 @@ export const getApy = (apr: number, compoundFrequency = 1, days = 365, performan
   }
   return apyAsDecimal
 }
+

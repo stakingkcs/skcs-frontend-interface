@@ -1,20 +1,18 @@
-import { useWeb3React } from '@web3-react/core'
-import { Image, RowCenterBox } from 'components'
-import { RowBetween } from 'components/Row'
-import StyledButton from 'components/StyledButton'
-import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useAppDispatch } from 'state'
-import { toggleConnectWalletModalShow } from 'state/wallet/actions'
+import { Image } from 'components'
+import React, { CSSProperties } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { formatNumber } from '../../utils/bignumber'
+import { useLanguage } from '../../state/application/hooks'
+import { useResponsive } from '../../utils/responsive'
 import SKCSWinTitle from './components/SKCSTitle'
 import { ActivityType } from './index'
-import dayjs from 'dayjs'
 
 const ParticipateWrap = styled.div`
   position: relative;
   width: 584px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const DecorateImage = styled.div`
@@ -22,14 +20,29 @@ const DecorateImage = styled.div`
   top: 20px;
   right: 5px;
   z-index: 2;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const row1Bg = require('../../assets/images/skcswin/row-one-bg.png').default
 
-const Content = styled.div`
+const Content = styled.div<{ isMobile: boolean; lang: string; unfold: boolean }>`
   box-sizing: border-box;
   width: 584px;
-  height: 292px;
+  /* height: 292px; */
+  overflow: hidden;
+  height: ${({ isMobile, lang, unfold }) => {
+    if (isMobile) {
+      return 'auto'
+    }
+
+    if (lang === 'en' && unfold === true) {
+      return 'auto'
+    }
+
+    return '574px'
+  }};
   background: url(${row1Bg}) top center no-repeat;
   background-size: 99% 99%;
   border-radius: 12px;
@@ -40,6 +53,9 @@ const Content = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   position: relative;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const GradientText = styled.div`
@@ -71,6 +87,21 @@ const RulesText = styled.div`
 
 const bg = require('../../assets/images/skcswin/upcoming.png').default
 
+const RuleItems = styled.div<{ isMobile: boolean; lang: string; unfold: boolean }>`
+  overflow: hidden;
+  height: ${({ isMobile, lang, unfold }) => {
+    if (isMobile || lang !== 'en') {
+      return 'auto'
+    }
+
+    if (lang === 'en' && unfold === true) {
+      return 'auto'
+    }
+
+    return '430px'
+  }};
+`
+
 const Upcoming = styled.div`
   width: 584px;
   height: 182px;
@@ -80,11 +111,17 @@ const Upcoming = styled.div`
   margin-top: 22px;
 `
 
-const Rules: React.FunctionComponent<{ userActivityData: ActivityType }> = ({ userActivityData }) => {
+const Rules: React.FunctionComponent<{ userActivityData: ActivityType; styles?: CSSProperties }> = ({
+  userActivityData,
+  styles,
+}) => {
   const { t } = useTranslation()
+  const { isMobile } = useResponsive()
+  const lang = useLanguage()
+  const [unfold, setUnfold] = React.useState<boolean>(false)
 
   return (
-    <ParticipateWrap>
+    <ParticipateWrap style={styles}>
       <DecorateImage>
         <Image
           src={require('../../assets/images/skcswin/decorate-4.png').default}
@@ -94,12 +131,26 @@ const Rules: React.FunctionComponent<{ userActivityData: ActivityType }> = ({ us
         />
       </DecorateImage>
       <SKCSWinTitle title={t('Campaign Rules')} />
-      <Content style={{ marginBottom: '32px' }}>
+      <Content style={{ marginBottom: '32px' }} isMobile={isMobile} lang={lang} unfold={unfold}>
         <GradientText>{t('SKCS RULES')}</GradientText>
-        <RulesText>{t(userActivityData.rules)}</RulesText>
+        <RuleItems isMobile={isMobile} lang={lang} unfold={unfold}>
+          {userActivityData.rules.keyList.map((key, index) => {
+            return (
+              <RulesText key={index}>
+                {`${index + 1}:`}
+                {t(key)}
+              </RulesText>
+            )
+          })}
+        </RuleItems>
+        {lang === 'en' && (
+          <RulesText style={{ cursor: 'pointer', color: '#CB40D2' }} onClick={() => setUnfold((fold) => !fold)}>
+            {unfold ? 'Fold' : 'Unfold'}
+          </RulesText>
+        )}
       </Content>
-      <SKCSWinTitle title={t('Upcoming Campaign')} />
-      <Upcoming />
+      {/* <SKCSWinTitle title={t('Upcoming Campaign')} /> */}
+      {/* <Upcoming /> */}
     </ParticipateWrap>
   )
 }

@@ -6,8 +6,6 @@ dayjs.extend(utc)
 export function calculateCountdown(endDate: string) {
   let diff = dayjs(endDate).utc().unix() - dayjs(new Date()).utc().unix()
 
-  console.log('diff', diff)
-
   // clear countdown when date is reached
   if (diff <= 0) return false
 

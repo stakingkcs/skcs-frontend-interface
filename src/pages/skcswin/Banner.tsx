@@ -16,7 +16,6 @@ import { RowCenterBox } from '../../components/index'
 import { useLanguage } from '../../state/application/hooks'
 import { formatNumber } from '../../utils/bignumber'
 import { Image } from 'components'
-import { Carousel } from 'antd'
 import { useResponsive } from '../../utils/responsive'
 
 const addLeadingZeros = (value: any) => {
@@ -28,12 +27,17 @@ const addLeadingZeros = (value: any) => {
 }
 
 const bg = require('../../assets/images/skcswin/skcs-win-bg.png').default
-
+const mBg = require('../../assets/images/skcswin/m-banner-bg.png').default
 const Wrap = styled.div`
   width: 100%;
   height: 400px;
   background: url(${bg}) 60% bottom no-repeat, #040b2a;
   background-size: auto 100%;
+  @media (max-width: 768px) {
+    height: 672px;
+    background: url(${mBg}) bottom center no-repeat, #040b2a;
+    background-size: 100% auto;
+  }
 `
 
 const BannerContent = styled.div`
@@ -45,6 +49,9 @@ const BannerContent = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: flex-start;
+  @media (max-width: 768px) {
+    padding-top: 54px;
+  }
 `
 
 const Content = styled.div`
@@ -72,6 +79,10 @@ const Title = styled.h1`
   padding: 0;
   margin: 0;
   margin-bottom: 9px;
+  @media (max-width: 768px) {
+    font-size: 36px;
+    line-height: 48px;
+  }
 `
 
 const borderBg = require('../../assets/images/skcswin/border.png').default
@@ -79,7 +90,8 @@ const borderBg = require('../../assets/images/skcswin/border.png').default
 const TimeWrap = styled.div`
   background: url(${borderBg}) top center no-repeat;
   background-size: 100% 100%;
-  width: 249px;
+  width: auto;
+  padding: 0 10px;
   height: 32px;
   display: flex;
   flex-flow: column nowrap;
@@ -227,13 +239,21 @@ const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity 
     nl_NL: 'nl',
   }
 
+  const formatString = React.useMemo(() => {
+    return lan === 'en' ? 'hh:mm MMM D,YYYY' : 'YYYY年MM月DD日 hh:mm'
+  }, [lan])
+
+  const formatString1 = React.useMemo(() => {
+    return lan === 'en' ? 'hh:mm MMM D' : 'MM月DD日 hh:mm'
+  }, [lan])
+
   const startTime = React.useMemo(() => {
     dayjs.locale(translateTable[lan])
-    return dayjs(activity.startTime).format('hh:mm MMM D')
+    return dayjs(activity.startTime).format(formatString1)
   }, [lan, activity, t])
 
   const endTime = React.useMemo(() => {
-    return dayjs(activity.endTime).format('hh:mm MMM D,YYYY')
+    return dayjs(activity.endTime).format(formatString)
   }, [lan, activity, t])
 
   useInterval(() => {
@@ -241,7 +261,6 @@ const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity 
       return false
     }
     const time1 = calculateCountdown(activity.endTime)
-    console.log('time1', time1)
     if (time1) {
       setTime(() => time1)
     } else {
@@ -254,9 +273,9 @@ const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity 
       <Wrap>
         <BannerContent>
           <Content>
-            <Title>{t(activity.title, { poolPrize: formatNumber(2000, 0, 3) })}</Title>
+            <Title>{t(activity.title, { poolPrize: formatNumber(5000, 0, 3) })}</Title>
             <TimeWrap>
-              <TimeContent>{`${startTime} ~ ${endTime}`}</TimeContent>
+              <TimeContent>{`${startTime} ~ ${endTime} (UTC)`}</TimeContent>
             </TimeWrap>
             {isEnd ? (
               <EndButton>{t('sKCSWin.EndButtonText')}</EndButton>

@@ -1,5 +1,6 @@
 import { DownOutlined } from '@ant-design/icons'
-import { Menu, Drawer } from 'antd'
+import { Drawer, Menu } from 'antd'
+import { Image, RowCenterBox } from 'components'
 import React, { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -9,8 +10,8 @@ import { KCC } from '../../constants/index'
 import { MENU_LIST, NavItemChildrenType, NavItemGroupType, NavItemType } from '../../constants/menuList'
 import { theme } from '../../constants/theme'
 import { changeMobileMenuShow } from '../../state/application/actions'
-import { useResponsive } from '../../utils/responsive'
 import { useMobileMenuShow } from '../../state/application/hooks'
+import { useResponsive } from '../../utils/responsive'
 import Column from '../Column'
 import { BrowserView, MobileView } from '../Common'
 import Row, { RowBetween } from '../Row/index'
@@ -45,6 +46,12 @@ const NavTitle = styled.span`
   text-align: center;
   padding: 0;
   margin: 0px;
+`
+
+const InlineBox = styled.div`
+  position: absolute;
+  right: -22px;
+  top: -16px;
 `
 
 const NavSubTitle = styled.div`
@@ -207,7 +214,19 @@ const AppMenu: React.FunctionComponent<AppMenuProps> = ({ style }) => {
             activeClassName="selected"
             style={{ color: theme.colors.primary, cursor: 'pointer', position: 'relative', top: '-5px' }}
           >
-            <NavTitle>{t(`${navItem.name}`)}</NavTitle>
+            <NavTitle>
+              {t(`${navItem.name}`)}{' '}
+              {navItem?.suffix && (
+                <InlineBox>
+                  <Image
+                    src={require('../../assets/images/skcswin/cup.png').default}
+                    width="20px"
+                    height="20px"
+                    alt="cup-icon"
+                  />
+                </InlineBox>
+              )}
+            </NavTitle>
           </NavLink>
         </Menu.Item>
       )

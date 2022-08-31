@@ -25,6 +25,7 @@ import { addTokenToWallet } from '../../../utils/wallet'
 import GreenExternalLink from '../../../components/ExternalLink/GreenExternalLink'
 import { WalletList } from '../../../constants/wallet'
 import { find } from 'lodash'
+import BigSKCSWinBanner from 'components/skcsWinBanner/BigSKCSWinBanner'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -185,10 +186,11 @@ const StakingPanel: FunctionComponent = () => {
   return (
     <>
       {!account && (
-        <HeaderPanel>
-          <Title>{t('STAKE_6')}</Title>
-          <Desc>{t('STAKE_7')}</Desc>
-        </HeaderPanel>
+        // <HeaderPanel>
+        //   <Title>{t('STAKE_6')}</Title>
+        //   <Desc>{t('STAKE_7')}</Desc>
+        // </HeaderPanel>
+        <BigSKCSWinBanner />
       )}
 
       <ContentWrap connected={Boolean(account)}>

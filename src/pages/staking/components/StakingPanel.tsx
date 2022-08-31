@@ -26,6 +26,7 @@ import { useTranslation, Trans } from 'react-i18next'
 import { CenterBox, BetweenBox } from '../../../components/index'
 import { useResponsive } from 'utils/responsive'
 import GreenExternalLink from 'components/ExternalLink/GreenExternalLink'
+import SmallSKCSWinBanner from 'components/skcsWinBanner/SmallSKCSWinBanner'
 
 const { TabPane } = Tabs
 
@@ -450,6 +451,7 @@ const StakingPanel: FunctionComponent = () => {
               /> */}
 
               {/* {account && <TipsText>{t('STAKE_67')}</TipsText>} */}
+              {account && <SmallSKCSWinBanner />}
             </ContentWrap>
           </StyledTabPane>
 

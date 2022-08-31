@@ -20,12 +20,18 @@ import { formatNumber } from '../../utils/bignumber'
 const ParticipateWrap = styled.div`
   position: relative;
   width: 584px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const DecorateImage = styled.div`
   position: absolute;
   top: 17px;
   right: 5px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const row1Bg = require('../../assets/images/skcswin/row-one-bg.png').default
@@ -39,6 +45,12 @@ const Content = styled.div`
   border-radius: 12px;
   margin-top: 27px;
   padding: 30px;
+  @media (max-width: 768px) {
+    width: 100%;
+    background-size: 99% 99%;
+    padding: 34px 20px;
+    height: auto;
+  }
 `
 
 const circleBg = require('../../assets/images/skcswin/circle-bg.png').default
@@ -57,6 +69,11 @@ const RightWrap = styled.div`
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 `
 
 const BalanceText = styled.div`
@@ -68,6 +85,12 @@ const BalanceText = styled.div`
   align-items: center;
   color: #d04aff;
   margin-left: 20px;
+
+  @media (max-width: 768px) {
+    margin-left: 0px;
+    font-size: 14px;
+    margin-top: 16px;
+  }
 `
 
 const Box = styled.div``
@@ -115,7 +138,10 @@ const RegisteredButton = styled.div`
   align-items: center;
 `
 
-const Participate: React.FunctionComponent<{ userActivityData: ActivityType }> = ({ userActivityData }) => {
+const Participate: React.FunctionComponent<{ userActivityData: ActivityType; registerByAccount: any }> = ({
+  userActivityData,
+  registerByAccount,
+}) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
@@ -123,6 +149,16 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType }> =
 
   const kcsBalance = useBalance()
   const skcsBalance = useStakerState().userData?.stakeAmount
+  const [loading, setLoading] = React.useState<boolean>(false)
+
+  const register = async () => {
+    setLoading(() => true)
+    try {
+      await registerByAccount()
+    } finally {
+      setLoading(() => false)
+    }
+  }
 
   return (
     <ParticipateWrap>
@@ -168,7 +204,8 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType }> =
 
               {account && !userActivityData.registered && (
                 <StyledButton
-                  onClick={() => dispatch(toggleConnectWalletModalShow({ show: true }))}
+                  loading={loading}
+                  onClick={register}
                   style={{ width: '160px', height: '40px', fontSize: '14px' }}
                 >
                   {t('Register')}
@@ -178,9 +215,10 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType }> =
               {account && userActivityData.registered && (
                 <RegisteredButton
                   style={{
-                    width: '160px',
+                    width: 'auto',
                     height: '40px',
                     fontSize: '14px',
+                    padding: '0 20px',
                   }}
                 >
                   <Image
@@ -196,7 +234,7 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType }> =
           </RowCenterBox>
         </Box>
 
-        <Box style={{ marginTop: '44px' }}>
+        <Box style={{ marginTop: '34px' }}>
           <RowCenterBox>
             <LeftWrap>
               <NumberText>2</NumberText>
@@ -242,7 +280,7 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType }> =
           </RowCenterBox>
         </Box>
 
-        <Box style={{ marginTop: '32px' }}>
+        <Box style={{ marginTop: '24px' }}>
           <RowCenterBox>
             <LeftWrap>
               <NumberText>3</NumberText>
@@ -251,7 +289,7 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType }> =
               <SubText>{t('sKCSWin.Step3.Desc')}</SubText>
             </RightWrap>
           </RowCenterBox>
-          <RowCenterBox>
+          <RowCenterBox style={{ marginTop: '10px' }}>
             <LeftWrap></LeftWrap>
             <RightWrap>
               {!account && (
@@ -266,7 +304,7 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType }> =
               {account && (
                 <StyledButton
                   onClick={() => history.push('/defi-market')}
-                  style={{ width: '160px', height: '40px', fontSize: '14px' }}
+                  style={{ width: 'auto', height: '40px', fontSize: '14px', padding: '0 20px' }}
                 >
                   {t('Use sKCS in DeFi')}
                 </StyledButton>

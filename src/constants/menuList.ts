@@ -5,6 +5,7 @@ export interface NavItemType {
   hasChildren?: boolean
   hasGroup?: boolean
   route?: string
+  suffix?: boolean
   childrens?: NavItemChildrenType[] | NavItemGroupType[]
 }
 
