@@ -4,7 +4,7 @@ import utc from 'dayjs/plugin/utc'
 dayjs.extend(utc)
 
 export function calculateCountdown(endDate: string) {
-  let diff = dayjs('2022-09-08 18:00:00').utc().unix() - dayjs(new Date().getTime()).utc().unix()
+  let diff = dayjs('2022/09/08 18:00:00').utc().unix() - dayjs(new Date().getTime()).utc().unix()
 
   // clear countdown when date is reached
   if (diff <= 0) return false
