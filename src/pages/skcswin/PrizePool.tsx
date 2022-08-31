@@ -112,7 +112,8 @@ const PrizePool: React.FunctionComponent<{
   userActivityData: ActivityType
   registerByAccount: any
   styles?: CSSProperties
-}> = ({ userActivityData, registerByAccount, styles }) => {
+  isEnd: boolean
+}> = ({ userActivityData, registerByAccount, styles, isEnd }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
@@ -177,6 +178,7 @@ const PrizePool: React.FunctionComponent<{
           )}
           {account && !userActivityData.registered && (
             <StyledButton
+              disabled={isEnd}
               loading={loading}
               onClick={register}
               style={{ width: '160px', height: '40px', fontSize: '14px' }}

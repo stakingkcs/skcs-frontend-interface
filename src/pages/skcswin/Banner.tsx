@@ -214,12 +214,14 @@ const Crousel = styled.div`
   background-size: 100% 100%;
 `
 
-const Banner: React.FunctionComponent<{ activity: ActivityType }> = ({ activity }) => {
+const Banner: React.FunctionComponent<{ activity: ActivityType; isEnd: boolean; setIsEnd: any }> = ({
+  activity,
+  isEnd,
+  setIsEnd,
+}) => {
   const { t } = useTranslation()
   const lan = useLanguage()
   const { isMobile } = useResponsive()
-
-  const [isEnd, setIsEnd] = React.useState<boolean>(false)
 
   const [time, setTime] = React.useState({
     years: 0,

@@ -138,10 +138,11 @@ const RegisteredButton = styled.div`
   align-items: center;
 `
 
-const Participate: React.FunctionComponent<{ userActivityData: ActivityType; registerByAccount: any }> = ({
-  userActivityData,
-  registerByAccount,
-}) => {
+const Participate: React.FunctionComponent<{
+  userActivityData: ActivityType
+  registerByAccount: any
+  isEnd: boolean
+}> = ({ userActivityData, registerByAccount, isEnd }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
@@ -204,6 +205,7 @@ const Participate: React.FunctionComponent<{ userActivityData: ActivityType; reg
 
               {account && !userActivityData.registered && (
                 <StyledButton
+                  disabled={isEnd}
                   loading={loading}
                   onClick={register}
                   style={{ width: '160px', height: '40px', fontSize: '14px' }}

@@ -71,6 +71,7 @@ const SKCSWIN: React.FunctionComponent = () => {
   const { account } = useWeb3React()
   const [userActivityData, setuserActivityData] = React.useState<ActivityType>(activity)
   const [requested, setRequested] = React.useState<boolean>(true)
+  const [isEnd, setIsEnd] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     async function queryRegister() {
@@ -169,15 +170,16 @@ const SKCSWIN: React.FunctionComponent = () => {
 
   return (
     <SKCSWINWrap>
-      <Banner activity={activity} />
+      <Banner activity={activity} isEnd={isEnd} setIsEnd={setIsEnd} />
       <SKCSWinContentWrap>
         <Content>
           <Row1>
-            <Participate userActivityData={userActivityData} registerByAccount={registerByAccount} />
+            <Participate userActivityData={userActivityData} registerByAccount={registerByAccount} isEnd={isEnd} />
             <PrizePool
               styles={{ marginTop: isMobile ? '48px' : '0px' }}
               userActivityData={userActivityData}
               registerByAccount={registerByAccount}
+              isEnd={isEnd}
             />
           </Row1>
           <Row1>
