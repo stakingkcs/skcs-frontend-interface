@@ -53,12 +53,12 @@ export const MENU_LIST = [
     route: '/defi-market',
     hasChildren: false,
   },
-  {
-    name: 'sKCS Win',
-    route: '/skcs-win',
-    hasChildren: false,
-    suffix: true,
-  },
+  // {
+  //   name: 'sKCS Win',
+  //   route: '/skcs-win',
+  //   hasChildren: false,
+  //   suffix: true,
+  // },
   {
     name: 'Doc',
     route: sKCS.docs,
