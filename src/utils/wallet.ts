@@ -61,6 +61,7 @@ export const switchNetwork = async (id: any) => {
           await addNetwork(selectedNetworkInfo)
           dispatch(updateErrorInfo({ hasError: false, errorInfo: '' }))
         } catch (addError) {
+          console.log(addError)
           // message.error(i18next.t(`Switch Network failed`))
         }
       }
@@ -68,8 +69,12 @@ export const switchNetwork = async (id: any) => {
   }
 }
 
-export const addTokenToWallet = async (token: { tokenAddress: string, symbol: string, decimals: number, image: string }) => {
-
+export const addTokenToWallet = async (token: {
+  tokenAddress: string
+  symbol: string
+  decimals: number
+  image: string
+}) => {
   if (!window.ethereum) return
   await window.ethereum
     .request({
@@ -86,9 +91,6 @@ export const addTokenToWallet = async (token: { tokenAddress: string, symbol: st
     })
     .catch(console.error)
 }
-
-
-
 
 export const updateBalance = async (library: any, account: string) => {
   const walletId = store.getState().wallet.walletId
