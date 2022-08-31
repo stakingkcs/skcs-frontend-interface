@@ -180,13 +180,23 @@ const PrizeCol = styled.div`
   }
 `
 
+const NoData = styled.div`
+  color: #fff;
+  font-family: 'Arial';
+  font-size: 16px;
+  margin-top: -100px;
+`
+
 const No1 = require('../../assets/images/skcswin/gold.png').default
 const No2 = require('../../assets/images/skcswin/sliver.png').default
 const No3 = require('../../assets/images/skcswin/bronze.png').default
 
 const prizeIcon = [No1, No2, No3]
 
-const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> = ({ userActivityData }) => {
+const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType; requested: boolean }> = ({
+  userActivityData,
+  requested,
+}) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
@@ -202,6 +212,10 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
     return find(userActivityData.top10List.list, { address: account })
   }, [userActivityData, account])
 
+  const isEmptyLeaderboard = React.useMemo(() => {
+    return requested && userActivityData.top10List.list?.length === 0
+  }, [requested, userActivityData])
+
   return (
     <ParticipateWrap>
       <DecorateImage>
@@ -214,9 +228,9 @@ const Leaderboard: React.FunctionComponent<{ userActivityData: ActivityType }> =
       </DecorateImage>
       <SKCSWinTitle title={t('Staking Leaderboard')} />
       <Content>
-        {userActivityData.top10List.list.length < 1 ? (
-          <LoadingOutlined style={{ fontSize: '40px', color: '#A176C5' }} />
-        ) : (
+        {!requested && <LoadingOutlined style={{ fontSize: '40px', color: '#A176C5' }} />}
+        {isEmptyLeaderboard && <NoData>{t('No ranking data available at this time')}</NoData>}
+        {userActivityData.top10List.list.length > 0 && (
           <>
             <UpdateTimeArea>
               {t('sKCSWin.UpdateTime', {

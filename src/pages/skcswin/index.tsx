@@ -70,34 +70,29 @@ const SKCSWIN: React.FunctionComponent = () => {
   const { isMobile } = useResponsive()
   const { account } = useWeb3React()
   const [userActivityData, setuserActivityData] = React.useState<ActivityType>(activity)
+  const [requested, setRequested] = React.useState<boolean>(true)
 
   React.useEffect(() => {
     async function queryRegister() {
       if (!account) {
         return
       }
-      const hasRegitered = localStorage.getItem(`${account}-registerd`)
-      if (hasRegitered) {
-        setuserActivityData((data) => {
-          return { ...data, registered: true }
-        })
-      } else {
-        setuserActivityData((data) => {
-          return { ...data, registered: false }
-        })
-      }
+
+      setuserActivityData((data) => {
+        return { ...data, registered: false }
+      })
 
       try {
         const { data } = await AcitivityService.hasRegister(account)
 
-        if (!data.code) {
+        if (!data?.code) {
           const register = data.data.registered
           // update status
           if (register) {
             setuserActivityData((data) => {
               return { ...data, registered: true }
             })
-            localStorage.setItem(`${account}-registerd`, 'true')
+            // localStorage.setItem(`${account}-registerd`, 'true')
           }
         } else {
           StyledNotification.error({ message: data.error })
@@ -112,22 +107,35 @@ const SKCSWIN: React.FunctionComponent = () => {
 
   const getLeaderBoard = async (account) => {
     try {
+      setRequested(() => false)
+      setuserActivityData((oldData) => {
+        return {
+          ...oldData,
+          top10List: {
+            ...oldData.top10List,
+            list: [],
+          },
+        }
+      })
       const { data } = await AcitivityService.leaderBoard(account)
       const { code } = data
       if (!code) {
         const { leader, snapshot_block_number, snapshot_time, user } = data.data
-        setuserActivityData((oldData) => {
-          return {
-            ...oldData,
-            top10List: {
-              list: leader ?? [],
-              lastUpdate: snapshot_time,
-              blockHeight: snapshot_block_number,
-            },
-            rank: user?.rank ?? 0,
-            stakingAmount: user?.amount ?? '0',
-          }
-        })
+        setRequested(() => true)
+        if (leader?.length) {
+          setuserActivityData((oldData) => {
+            return {
+              ...oldData,
+              top10List: {
+                list: leader ?? [],
+                lastUpdate: snapshot_time,
+                blockHeight: snapshot_block_number,
+              },
+              rank: user?.rank ?? 0,
+              stakingAmount: user?.amount ?? '0',
+            }
+          })
+        }
       }
       console.log('response', data)
     } catch (e) {
@@ -139,28 +147,25 @@ const SKCSWIN: React.FunctionComponent = () => {
     getLeaderBoard(account)
   }, [account, setuserActivityData])
 
-  const registerByAccount = React.useCallback(
-    async () => {
-      console.log('acccount', account)
-      if (!account) return
-      try {
-        const { data } = await AcitivityService.register(account)
-        if (!data.code) {
-          setuserActivityData((data) => {
-            return { ...data, registered: true }
-          })
-          localStorage.setItem(`${account}-registerd`, 'true')
-          StyledNotification.success({ message: t('Register Respond') })
-          getLeaderBoard(account)
-        } else {
-          StyledNotification.error({ message: data.error })
-        }
-      } catch (e) {
-        console.log(e)
+  const registerByAccount = React.useCallback(async () => {
+    console.log('acccount', account)
+    if (!account) return
+    try {
+      const { data } = await AcitivityService.register(account)
+      if (!data.code) {
+        setuserActivityData((data) => {
+          return { ...data, registered: true }
+        })
+        localStorage.setItem(`${account}-registerd`, 'true')
+        StyledNotification.success({ message: t('Register Respond') })
+        getLeaderBoard(account)
+      } else {
+        StyledNotification.error({ message: data.error })
       }
-    },
-    [account, setuserActivityData]
-  )
+    } catch (e) {
+      console.log(e)
+    }
+  }, [account, setuserActivityData])
 
   return (
     <SKCSWINWrap>
@@ -176,7 +181,7 @@ const SKCSWIN: React.FunctionComponent = () => {
             />
           </Row1>
           <Row1>
-            <Leaderboard userActivityData={userActivityData} />
+            <Leaderboard userActivityData={userActivityData} requested={requested} />
             <Rules styles={{ marginTop: isMobile ? '48px' : '0px' }} userActivityData={userActivityData} />
           </Row1>
         </Content>

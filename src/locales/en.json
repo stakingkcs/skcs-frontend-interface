@@ -192,5 +192,7 @@
     "sKCSWin.Rules6": "sKCS.io reserves the right to penalize falsification or fraudulent behavior by disqualifying participants or withholding prizes.",
     "sKCSWin.Rules7": "Additional rules not listed here may be announced by sKCS.io through other official channels.",
     "NetworkError": "Network Error",
-    "Register Respond": "Successfully registered"
+    "Register Respond": "Successfully registered",
+    "No ranking data available at this time":"No ranking data available at this time."
+
 }
