@@ -9,7 +9,7 @@ const bg = require('../../assets/images/skcswin/big-banner-bg.png').default
 const BigSKCSWinBannerWrap = styled.div`
   width: 100%;
   height: 102px;
-  background: url(${bg}) center right no-repeat;
+  background: url(${bg}) center right no-repeat, #050c28;
   cursor: pointer;
   border-radius: 16px;
   padding-top: 12px;

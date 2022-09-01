@@ -1,8 +1,8 @@
 import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
+import { useHistory } from 'react-router'
 import styled from 'styled-components'
 import { formatNumber } from 'utils/bignumber'
-import { useHistory } from 'react-router'
 
 const bg = require('../../assets/images/skcswin/small-banner-bg.png').default
 
