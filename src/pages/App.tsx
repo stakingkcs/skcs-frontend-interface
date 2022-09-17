@@ -1,19 +1,24 @@
-import { useSafeAppConnection, SafeAppConnector } from '@gnosis.pm/safe-apps-web3-react'
+import { SafeAppConnector, useSafeAppConnection } from '@gnosis.pm/safe-apps-web3-react'
 import FullLoading from 'components/FullLoading'
 import WalletListModal from 'components/WalletListModal'
 import Web3ReactManager, { getLibrary } from 'components/Web3ReactManager'
 import { useStakeApr } from 'hooks/useStakerApr'
 import AppLayout from 'layouts/AppLayout'
-import DeFiMarket from 'pages/defimarket'
-import NotFound from 'pages/error'
+
+
 import Home from 'pages/home/'
-import Staking from 'pages/staking'
-import SKCSWIN from 'pages/skcswin'
-import { Suspense, useEffect } from 'react'
+
+import { lazy, Suspense, useEffect } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { useFetchStakerPublicData } from 'state/hooks'
 import { useConnectWalletModalShow } from 'state/wallet/hooks'
 import { useFetchPriceList } from 'utils/prices'
+
+const Staking = lazy(() => import(/* webpackChunkName:'Staking' */ 'pages/staking'))
+const SKCSWIN = lazy(() => import(/* webpackChunkName:'SKCSWIN' */ 'pages/skcswin'))
+const DeFiMarket = lazy(() => import(/* webpackChunkName:'DeFiMarket' */ 'pages/defimarket'))
+const NotFound = lazy(() => import(/* webpackChunkName:'NotFound' */ 'pages/error'))
+
 
 const safeMultisigConnector = new SafeAppConnector()
 
