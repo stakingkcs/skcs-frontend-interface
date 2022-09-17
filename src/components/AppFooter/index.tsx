@@ -1,7 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useResponsive } from 'utils/responsive'
 
 export interface AppFooterProps {}
 
@@ -117,12 +116,11 @@ export const mediaList = [
 ]
 
 const AppFooter: React.FunctionComponent<AppFooterProps> = () => {
-  const { t, i18n } = useTranslation()
-  const { isMobile } = useResponsive()
+  const { t } = useTranslation()
   return (
     <AppFooterWrap>
       <AppFooterContentWrap>
-        <CopyRightText>{t("COMPONENT_1", {asset: new Date().getFullYear()})}</CopyRightText>
+        <CopyRightText>{t('COMPONENT_1', { asset: new Date().getFullYear() })}</CopyRightText>
         <IconWarp>
           {mediaList.map((item) => {
             return (
@@ -132,7 +130,7 @@ const AppFooter: React.FunctionComponent<AppFooterProps> = () => {
                   window.open(item.link, '_blank')
                 }}
               >
-                <ItemImg src={item.icon} />
+                <ItemImg width="20px" height="auto" src={item.icon} alt="media-link" />
               </ItemLink>
             )
           })}

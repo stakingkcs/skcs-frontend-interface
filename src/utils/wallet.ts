@@ -1,5 +1,3 @@
-import { message } from 'antd'
-import i18next from 'i18next'
 import { getNetworkInfo, web3Utils } from './index'
 import { Metamask } from './metamask'
 import store from '../state'
