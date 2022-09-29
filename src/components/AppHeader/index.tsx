@@ -93,8 +93,8 @@ const AppHeader: React.FunctionComponent = () => {
               />
             ) : (
               <MenuClose
-                width="100%"
-                height="auto"
+                width="24px"
+                height="24px"
                 src={require('assets/images/Icons/menu-close.png').default}
                 onClick={() => {
                   dispatch(changeMobileMenuShow({ show: false }))
@@ -106,7 +106,7 @@ const AppHeader: React.FunctionComponent = () => {
           </MobileView>
           <KccLogo
             width="104px"
-            height="auto"
+            height="35px"
             src={require('../../assets/images/Icons/logo.svg').default}
             alt="kcc-logo"
             onClick={() => {

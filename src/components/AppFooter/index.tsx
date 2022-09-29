@@ -130,7 +130,7 @@ const AppFooter: React.FunctionComponent<AppFooterProps> = () => {
                   window.open(item.link, '_blank')
                 }}
               >
-                <ItemImg width="20px" height="auto" src={item.icon} alt="media-link" />
+                <ItemImg width="20px" height="20px" src={item.icon} alt="media-link" />
               </ItemLink>
             )
           })}

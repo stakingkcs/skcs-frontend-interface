@@ -20,8 +20,15 @@ export function useResponsive() {
     }
   }
 
-  calc()
-  
+  React.useEffect(() => {
+    if (document.body.clientWidth)
+    {
+      calc()
+    }
+    return () => calc()
+  },[])
+
+
   const m = isMobile
   const t = isTablet
   const p = !(m || t)
