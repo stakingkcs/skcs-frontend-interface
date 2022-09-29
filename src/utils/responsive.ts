@@ -19,14 +19,9 @@ export function useResponsive() {
       setIsTablet(false)
     }
   }
-  useEffect(() => {
-    calc()
-    window.addEventListener('resize', calc)
-    return () => {
-      window.removeEventListener('resize', calc)
-    }
-  }, [])
 
+  calc()
+  
   const m = isMobile
   const t = isTablet
   const p = !(m || t)
