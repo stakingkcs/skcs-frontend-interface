@@ -37,7 +37,7 @@ module.exports = {
       'bignumber.js': path.resolve(process.cwd(), 'node_modules', 'bignumber.js'),
     },
     configure: (config) => {
-      config.devtool = process.env.NODE_ENV === 'production' ? false : 'source-map'
+      // config.devtool = process.env.NODE_ENV === 'production' ? false : 'source-map'
       if (process.env.NODE_ENV !== 'development') {
         config.optimization = {
           splitChunks: {
