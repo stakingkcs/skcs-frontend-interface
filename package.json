@@ -84,7 +84,7 @@
     "@types/styled-components": "^5.1.9",
     "@types/styled-system": "^5.1.12",
     "@types/uuid": "^8.3.0",
-    "@types/webpack-env": "^1.16.2",
+    "@types/webpack-env": "^1.18.0",
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
     "@web3-react/walletconnect-connector": "^6.2.13",

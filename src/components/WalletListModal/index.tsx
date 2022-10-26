@@ -156,19 +156,14 @@ const WalletListModal: React.FunctionComponent<WalletListModalProps> = ({ visibl
     connect(id)
   }
 
-  const walletList = React.useMemo(() => {
-    const mobileOnly = [2]
-    return WalletList.map((item, index) => {
-      if (isMobile || (!isMobile && !mobileOnly.includes(item.id))) {
-        return (
-          <WalletItem key={index} onClick={handleConnect.bind(null, item.id)}>
-            <Image src={item.logo} width="32px" height="auto" />
-            <Name>{item.name}</Name>
-          </WalletItem>
-        )
-      }
-    }).filter((n) => n)
-  }, [isMobile])
+  const walletList = WalletList.map((item, index) => {
+    return (
+      <WalletItem key={index} onClick={handleConnect.bind(null, item.id)}>
+        <Image src={item.logo} width="32px" height="auto" />
+        <Name>{item.name}</Name>
+      </WalletItem>
+    )
+  })
 
   return (
     <StyledModal
