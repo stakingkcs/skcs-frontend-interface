@@ -261,6 +261,17 @@ const StakeBenefit: React.FunctionComponent = () => {
   const { t } = useTranslation()
   const staker = useStakerState()
   const { isMobile } = useResponsive()
+
+  const show = React.useMemo(() => {
+    if (!staker.apr || !staker.kcsBonusApy) {
+      return false
+    }
+    if (staker.kcsBonusApy >= staker.apr) {
+      return false
+    }
+    return true
+  }, [staker])
+
   const fitList = [
     {
       icon: require('../../../assets/images/home/staking-step1.png').default,
@@ -299,85 +310,86 @@ const StakeBenefit: React.FunctionComponent = () => {
             )
           })}
         </StakeContent>
+        {show && (
+          <StakeContent1 style={{ padding: isMobile ? '0px 0 24px 0' : '0' }}>
+            <InnerWrap>
+              <CopyStakeItem>
+                <StakeIcon
+                  src={require('../../../assets/images/home/compare-icon.png').default}
+                  width="72px"
+                  height="72px"
+                  alt="compare-icon"
+                />
+                <StakeTitle>Maximize the benefits for KCS holders</StakeTitle>
+                <StakeDesc style={{ maxWidth: '522px' }}>
+                  For KCS holders, sKCS.io not only has higher earnings compared to KCS Bonus, obviously, but also
+                  sKCS.io has more advantages.
+                </StakeDesc>
+                <FlexBox style={{ marginTop: '20px' }} />
+                <GradienButton />
+                <FlexBox style={{ marginBottom: '26px' }} />
+              </CopyStakeItem>
 
-        <StakeContent1 style={{ padding: isMobile ? '0px 0 24px 0' : '0' }}>
-          <InnerWrap>
-            <CopyStakeItem>
-              <StakeIcon
-                src={require('../../../assets/images/home/compare-icon.png').default}
-                width="72px"
-                height="72px"
-                alt="compare-icon"
-              />
-              <StakeTitle>Maximize the benefits for KCS holders</StakeTitle>
-              <StakeDesc style={{ maxWidth: '522px' }}>
-                For KCS holders, sKCS.io not only has higher earnings compared to KCS Bonus, obviously, but also sKCS.io
-                has more advantages.
-              </StakeDesc>
-              <FlexBox style={{ marginTop: '20px' }} />
-              <GradienButton />
-              <FlexBox style={{ marginBottom: '26px' }} />
-            </CopyStakeItem>
+              <TableWrap>
+                <Table>
+                  {/* table header */}
+                  <TableRow>
+                    <NameColumn />
+                    <KCSColumn>
+                      <TokenIcon src="/logo/kcs.png" alt="kcs-log" />
+                      <Td>KCS Bonus</Td>
+                    </KCSColumn>
+                    <SKCSColumn>
+                      <TokenIcon src="/logo/skcs.png" alt="kcs-log" />
+                      <Td>sKCS</Td>
+                    </SKCSColumn>
+                  </TableRow>
 
-            <TableWrap>
-              <Table>
-                {/* table header */}
-                <TableRow>
-                  <NameColumn />
-                  <KCSColumn>
-                    <TokenIcon src="/logo/kcs.png" alt="kcs-log" />
-                    <Td>KCS Bonus</Td>
-                  </KCSColumn>
-                  <SKCSColumn>
-                    <TokenIcon src="/logo/skcs.png" alt="kcs-log" />
-                    <Td>sKCS</Td>
-                  </SKCSColumn>
-                </TableRow>
+                  <TableRow>
+                    <NameColumn>{t('Annualized Yield')}</NameColumn>
+                    <KCSColumn>
+                      <Td>{`${formatNumber(staker.kcsBonusApy * 100, 2)}%`}</Td>
+                    </KCSColumn>
+                    <SKCSColumn>
+                      <Td style={{ color: '#00D092' }}>{`${formatNumber(staker.apr * 100, 2)}%`}</Td>
+                      <UpIcon src={require('../../../assets/images/home/up.svg').default} alt="up-icon" />
+                    </SKCSColumn>
+                  </TableRow>
 
-                <TableRow>
-                  <NameColumn>{t('Annualized Yield')}</NameColumn>
-                  <KCSColumn>
-                    <Td>{`${formatNumber(staker.kcsBonusApy * 100, 1)}%`}</Td>
-                  </KCSColumn>
-                  <SKCSColumn>
-                    <Td style={{ color: '#00D092' }}>{`${formatNumber(staker.apr * 100, 1)}%`}</Td>
-                    <UpIcon src={require('../../../assets/images/home/up.svg').default} alt="up-icon" />
-                  </SKCSColumn>
-                </TableRow>
+                  <TableRow>
+                    <NameColumn>{t('Liquid staking token')}</NameColumn>
+                    <KCSColumn>
+                      <StatusIcon supported={false} />
+                    </KCSColumn>
+                    <SKCSColumn>
+                      <StatusIcon supported={true} />
+                    </SKCSColumn>
+                  </TableRow>
 
-                <TableRow>
-                  <NameColumn>{t('Liquid staking token')}</NameColumn>
-                  <KCSColumn>
-                    <StatusIcon supported={false} />
-                  </KCSColumn>
-                  <SKCSColumn>
-                    <StatusIcon supported={true} />
-                  </SKCSColumn>
-                </TableRow>
+                  <TableRow>
+                    <NameColumn>{t('Decentralization')}</NameColumn>
+                    <KCSColumn>
+                      <StatusIcon supported={false} />
+                    </KCSColumn>
+                    <SKCSColumn>
+                      <StatusIcon supported={true} />
+                    </SKCSColumn>
+                  </TableRow>
 
-                <TableRow>
-                  <NameColumn>{t('Decentralization')}</NameColumn>
-                  <KCSColumn>
-                    <StatusIcon supported={false} />
-                  </KCSColumn>
-                  <SKCSColumn>
-                    <StatusIcon supported={true} />
-                  </SKCSColumn>
-                </TableRow>
-
-                <TableRow>
-                  <NameColumn>{t('Minimum required')}</NameColumn>
-                  <KCSColumn>
-                    <Td>6</Td>
-                  </KCSColumn>
-                  <SKCSColumn>
-                    <Td>0</Td>
-                  </SKCSColumn>
-                </TableRow>
-              </Table>
-            </TableWrap>
-          </InnerWrap>
-        </StakeContent1>
+                  <TableRow>
+                    <NameColumn>{t('Minimum required')}</NameColumn>
+                    <KCSColumn>
+                      <Td>6</Td>
+                    </KCSColumn>
+                    <SKCSColumn>
+                      <Td>0</Td>
+                    </SKCSColumn>
+                  </TableRow>
+                </Table>
+              </TableWrap>
+            </InnerWrap>
+          </StakeContent1>
+        )}
       </StakeWarp>
     </>
   )

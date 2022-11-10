@@ -151,7 +151,7 @@ const ApyCompare: React.FunctionComponent = () => {
   return (
     <CompareWrap show={show}>
       <KCSBonusWrap>
-        <KCSNumber>{formatNumber(staker.kcsBonusApy * 100, 1)}%</KCSNumber>
+        <KCSNumber>{formatNumber(staker.kcsBonusApy * 100, 2)}%</KCSNumber>
         <KCSBonusBg>
           <Text>KCS Bonus APY</Text>
           <Tooltip placement="top" title={t('KCSBonusAPY')} style={{ marginTop: '10px' }}>
@@ -180,7 +180,7 @@ const ApyCompare: React.FunctionComponent = () => {
         />
       </SkcsWrap>
       <SkcsWrap>
-        <SKCSNumber>{formatNumber(staker.apr * 100, 1)}%</SKCSNumber>
+        <SKCSNumber>{formatNumber(staker.apr * 100, 2)}%</SKCSNumber>
         <SKCSBg>
           <Text>sKCS APY</Text>
         </SKCSBg>
