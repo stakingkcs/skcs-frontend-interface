@@ -329,7 +329,7 @@ const StakeBenefit: React.FunctionComponent = () => {
                     <Td>KCS Bonus</Td>
                   </KCSColumn>
                   <SKCSColumn>
-                    <TokenIcon src="/logo/kcs.png" alt="kcs-log" />
+                    <TokenIcon src="/logo/skcs.png" alt="kcs-log" />
                     <Td>sKCS</Td>
                   </SKCSColumn>
                 </TableRow>
