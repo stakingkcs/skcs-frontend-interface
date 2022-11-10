@@ -16,6 +16,7 @@ const initialState: StakerState = {
   totalStaker: ZERO,
   rewardFee: ZERO,
   apr: 0,
+  kcsBonusApy:0,
   kcsQuetoBySKCS: 0,
   skcsQuetoByKCS: 0,
   updatedAt: new Date().getTime(),

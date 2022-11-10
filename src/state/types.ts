@@ -35,6 +35,7 @@ export interface StakerState {
   totalStakeKCSAmount: BigNumber
   totalStakeSKCSAmount: BigNumber
   apr: number
+  kcsBonusApy: number
   kcsQuetoBySKCS: number
   skcsQuetoByKCS: number
   totalStaker: BigNumber

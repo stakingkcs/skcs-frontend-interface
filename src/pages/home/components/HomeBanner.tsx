@@ -8,35 +8,32 @@ import { Link, useHistory } from 'react-router-dom'
 import DanamicBg from '../../../components/DynamicBg/index'
 import { Trans, useTranslation } from 'react-i18next'
 import { useResponsive } from 'utils/responsive'
-
-const mbg = require('../../../assets/images/home/mbg-header.png').default
+import ApyCompare from './ApyCompare'
 
 const Header = styled.div`
   margin: 0 auto;
   text-align: center;
   position: relative;
   z-index: 6;
-
   @media (max-width: 768px) {
     padding: 0;
     width: 100%;
-    background: url(${mbg}) no-repeat top center;
     background-size: 100% 120%;
   }
 `
 
-const kcsBg = require('../../../assets/images/home/kcs-bg.png').default
 const Content = styled.div`
   margin: 0 auto;
   width: 1200px;
   height: 864px;
-  background: url(${kcsBg}) right 80% no-repeat;
   background-size: 419px 451px;
+  position: relative;
   @media (max-width: 768px) {
     background: none;
     width: 100%;
     padding: 0 26px;
     background-size: 100% auto;
+    height: auto;
   }
 `
 
@@ -88,7 +85,6 @@ const BannerStyledButton = styled(StyledButton)`
 
 const HomeBanner: React.FunctionComponent = () => {
   const staker = useStakerState()
-  const history = useHistory()
   const { t } = useTranslation()
   const { isMobile } = useResponsive()
 
@@ -117,6 +113,7 @@ const HomeBanner: React.FunctionComponent = () => {
           <ButtonWarp to="/staking">
             <BannerStyledButton>{t('HOME_5')}</BannerStyledButton>
           </ButtonWarp>
+          <ApyCompare />
         </Content>
       </Header>
     </>

@@ -146,5 +146,6 @@
     "Collateral factor tip": "Teminat faktörü, belirli bir varlık teminat olarak kullanıldığında maksimum borçlanma oranını temsil eder. Örneğin, sKCS için teminat faktörü %80 ise ve sKCS fiyatı şu anda 20 USD ise, 1 sKCS; piyasadaki diğer varlıklardan 16 (0.8*20) USD'ye kadar borçlanmak için teminat olarak kullanılabilir.",
     "Borrowable value tip": "Borçlanılabilir miktar = (teminat değeri) * (teminat faktörü). Örneğin, sKCS için teminat faktörü %80 ise ve sKCS fiyatı şu anda 20 USD ise, 1 sKCS; piyasadaki diğer varlıklardan 16 (0.8*20) USD'ye kadar borçlanmak için teminat olarak kullanılabilir.",
     "Displayed APY tip": "Gösterilen APY; yatırma APY'sine ve kazanılan ödüllere dayanmaktadır.",
-    "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards."
+    "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards.",
+    "KCSBonusAPY": "KCS Bonus, KCS sahipleri ve KuCoin ekosistem kurucuları için benzersiz bir teşvik mekanizmasıdır. En az 6 KCS'ye sahip olanlar, KuCoin'in günlük işlem komisyon gelirinin %50'sinden gelen günlük ödülü almaya hak kazanırlar."
 }

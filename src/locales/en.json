@@ -193,6 +193,6 @@
     "sKCSWin.Rules7": "Additional rules not listed here may be announced by sKCS.io through other official channels.",
     "NetworkError": "Network Error",
     "Register Respond": "Successfully registered",
-    "No ranking data available at this time":"No ranking data available at this time."
-
+    "No ranking data available at this time": "No ranking data available at this time.",
+    "KCSBonusAPY": "KCS Bonus is a unique incentive mechanism for KCS holders and KuCoin ecosystem builders. Those who hold at least 6 KCS qualify for a daily reward that comes from 50% of KuCoin's daily trading fee revenue."
 }
