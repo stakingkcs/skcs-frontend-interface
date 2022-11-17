@@ -147,5 +147,11 @@
     "Borrowable value tip": "Beleihbarer Betrag = (Wert der Sicherheit) * (Sicherheitenfaktor). Wenn der Besicherungsfaktor für sKCS beispielsweise 80% beträgt und der Preis von sKCS derzeit bei 20 USD liegt, dann kann 1 sKCS als Sicherheit verwendet werden, um bis zu 16 (0,8*20) USD an sonstigem Kapital auf dem Markt aufzunehmen.",
     "Displayed APY tip": "Der angezeigte APY basiert auf dem APY der Einzahlung und dem Ertrag der Belohnung.",
     "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards.",
-    "KCSBonusAPY": "Der KCS-Bonus ist ein einzigartiger Anreizmechanismus für KCS-Besitzer und KuCoin-Ökosystem-Bauherren. Diejenigen, die mindestens 6 KCS besitzen, qualifizieren sich für eine tägliche Belohnung, die aus 50% der täglichen Einnahmen aus Trading-Gebühren von KuCoin stammt."
+    "KCSBonusAPY": "Der KCS-Bonus ist ein einzigartiger Anreizmechanismus für KCS-Besitzer und KuCoin-Ökosystem-Bauherren. Diejenigen, die mindestens 6 KCS besitzen, qualifizieren sich für eine tägliche Belohnung, die aus 50% der täglichen Einnahmen aus Trading-Gebühren von KuCoin stammt.",
+    "addition1": "Maximierung der Vorteile von KCS-Inhabern",
+    "addition2": "Im Vergleich zu KCS Bonus bietet sKCS.io mehr Gewinne und Vorteile.",
+    "addition3": "effektiver Jahreszins (APR)",
+    "addition4": "Staking",
+    "addition5": "Dezentralisiert",
+    "addition6": "Bestände erforderlich"
 }

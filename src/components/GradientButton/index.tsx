@@ -10,6 +10,7 @@ const ButtonWrap = styled.div`
   height: 44px;
   background: linear-gradient(90.14deg, #00d092 -4.82%, #d04aff 113.33%);
   border-radius: 25px;
+  cursor: pointer;
 `
 
 const Button = styled.div`

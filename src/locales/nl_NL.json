@@ -147,5 +147,11 @@
     "Borrowable value tip": "Leenbaar bedrag = (onderpand waarde) * (onderpand factor). Als de onderpand factor voor sKCS bijvoorbeeld 80% is en de sKCS prijs op het moment 20 USD bedraagt, kan 1 sKCS als onderpand worden gebruikt om andere activa ter waarde van maximaal 16 (0,8*20) USD op de markt te lenen.",
     "Displayed APY tip": "De weergegeven APY is gebaseerd op de deposito APY en de inkomsten van beloningen.",
     "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards.",
-    "KCSBonusAPY": "De KCS Bonus is een uniek beloningsmechanisme voor KCS houders en degenen die het KuCoin ecosysteem verder uitbouwen. Gebruikers die tenminste 6 KCS bezitten komen in aanmerking voor een dagelijkse beloning die voortvloeit uit 50% van KuCoin's dagelijkse inkomsten van de handelskosten."
+    "KCSBonusAPY": "De KCS Bonus is een uniek beloningsmechanisme voor KCS houders en degenen die het KuCoin ecosysteem verder uitbouwen. Gebruikers die tenminste 6 KCS bezitten komen in aanmerking voor een dagelijkse beloning die voortvloeit uit 50% van KuCoin's dagelijkse inkomsten van de handelskosten.",
+    "addition1": "De voordelen van KCS-eigenaren maximaliseren",
+    "addition2": "Vergeleken met de KCS Bonus biedt sKCS.io meer winst en voordelen.",
+    "addition3": "APR",
+    "addition4": "Staken",
+    "addition5": "Gedecentraliseerd",
+    "addition6": "Vereist bezit"
 }

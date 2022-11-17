@@ -320,11 +320,8 @@ const StakeBenefit: React.FunctionComponent = () => {
                   height="72px"
                   alt="compare-icon"
                 />
-                <StakeTitle>Maximize the benefits for KCS holders</StakeTitle>
-                <StakeDesc style={{ maxWidth: '522px' }}>
-                  For KCS holders, sKCS.io not only has higher earnings compared to KCS Bonus, obviously, but also
-                  sKCS.io has more advantages.
-                </StakeDesc>
+                <StakeTitle>{t('addition1')}</StakeTitle>
+                <StakeDesc style={{ maxWidth: '522px' }}>{t('addition2')}</StakeDesc>
                 <FlexBox style={{ marginTop: '20px' }} />
                 <GradienButton />
                 <FlexBox style={{ marginBottom: '26px' }} />
@@ -346,7 +343,7 @@ const StakeBenefit: React.FunctionComponent = () => {
                   </TableRow>
 
                   <TableRow>
-                    <NameColumn>{t('Annualized Yield')}</NameColumn>
+                    <NameColumn>{t('addition3')}</NameColumn>
                     <KCSColumn>
                       <Td>{`${formatNumber(staker.kcsBonusApy * 100, 2)}%`}</Td>
                     </KCSColumn>
@@ -357,7 +354,7 @@ const StakeBenefit: React.FunctionComponent = () => {
                   </TableRow>
 
                   <TableRow>
-                    <NameColumn>{t('Liquid staking token')}</NameColumn>
+                    <NameColumn>{t('addition4')}</NameColumn>
                     <KCSColumn>
                       <StatusIcon supported={false} />
                     </KCSColumn>
@@ -367,7 +364,7 @@ const StakeBenefit: React.FunctionComponent = () => {
                   </TableRow>
 
                   <TableRow>
-                    <NameColumn>{t('Decentralization')}</NameColumn>
+                    <NameColumn>{t('addition5')}</NameColumn>
                     <KCSColumn>
                       <StatusIcon supported={false} />
                     </KCSColumn>
@@ -377,7 +374,7 @@ const StakeBenefit: React.FunctionComponent = () => {
                   </TableRow>
 
                   <TableRow>
-                    <NameColumn>{t('Minimum required')}</NameColumn>
+                    <NameColumn>{t('addition6')}</NameColumn>
                     <KCSColumn>
                       <Td>6</Td>
                     </KCSColumn>

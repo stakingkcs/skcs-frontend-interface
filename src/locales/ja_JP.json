@@ -147,5 +147,11 @@
     "Borrowable value tip": "借入可能額 = (担保価値) x (担保係数)。例えば、sKCSの担保係数が80%で、sKCSの価格が20ドルの場合、1 sKCSを担保として使用して、市場にある他の資産を最大16(0.8 x 20)ドル借りることができます。",
     "Displayed APY tip": "表示されるAPYは、貸出APYと報酬収益に基づいています。",
     "Borrow APY tip": "Displayed APY is based on the current borrow APY and rewards.",
-    "KCSBonusAPY": "KCSボーナスは、KCS保有者とKuCoinエコシステム構築者向けの独自のインセンティブメカニズムです。6 KCS以上保有すると、KuCoinの毎日の取引手数料収入の50％から毎日配当を受ける資格を得られます。"
+    "KCSBonusAPY": "KCSボーナスは、KCS保有者とKuCoinエコシステム構築者向けの独自のインセンティブメカニズムです。6 KCS以上保有すると、KuCoinの毎日の取引手数料収入の50％から毎日配当を受ける資格を得られます。",
+    "addition1": "KCS保有者のメリットを最大化",
+    "addition2": "KCSボーナスと比較して、sKCS.ioはより多くの利益と利点を提供します。",
+    "addition3": "APR",
+    "addition4": "ステーキング",
+    "addition5": "非中央集権化",
+    "addition6": "要保有数量"
 }
