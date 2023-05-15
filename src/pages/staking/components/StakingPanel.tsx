@@ -239,7 +239,7 @@ const StakingPanel: FunctionComponent = () => {
       }
     } catch (e) {
       console.log(e)
-      StyledNotification.success({
+      StyledNotification.error({
         message: t('STAKE_57'),
         description: t('HOME_11'),
       })
