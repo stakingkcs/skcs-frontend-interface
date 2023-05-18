@@ -162,7 +162,7 @@ const StakingPanel: FunctionComponent = () => {
           updateBalance(library, account)
           dispatch(fetchStakersUserDataAsync(account))
         } else {
-          StyledNotification.success({
+          StyledNotification.error({
             message: t('Withdraw failed!'),
             description: t('HOME_11'),
           })

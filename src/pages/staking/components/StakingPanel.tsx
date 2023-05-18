@@ -231,7 +231,7 @@ const StakingPanel: FunctionComponent = () => {
           updateBalance(library, account)
           dispatch(fetchStakersUserDataAsync(account))
         } else {
-          StyledNotification.success({
+          StyledNotification.error({
             message: t('STAKE_57'),
             description: t('HOME_11'),
           })
