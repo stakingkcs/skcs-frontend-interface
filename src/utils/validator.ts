@@ -15,13 +15,24 @@ interface ContractCallResponse {
   error?: ContractCallError
 }
 
+function marginGasLimit(gasLimit) {
+  return gasLimit.add(gasLimit.div(2))
+}
+
 export async function depositKCSToValidator(
   stakerContract: Contract,
   amount: BigNumber | BN,
   account: string
 ): Promise<ContractCallResponse> {
   try {
-    const tx = await stakerContract.depositKCS(account, { value: new BN(amount.toString(10)).toString(10) })
+    const gasLimit = await stakerContract.estimateGas.depositKCS(account, {
+      value: new BN(amount.toString(10)).toString(10),
+    })
+    console.log('depositKCS gasLimit', gasLimit)
+    const tx = await stakerContract.depositKCS(account, {
+      value: new BN(amount.toString(10)).toString(10),
+      gasLimit: marginGasLimit(gasLimit),
+    })
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     if (window.gtag) {
@@ -40,7 +51,13 @@ export async function requestRedemption(
   account: string
 ): Promise<ContractCallResponse> {
   try {
-    const tx = await stakerContract.requestRedemption(amount.toString(10), account)
+    const gasLimit = await stakerContract.estimateGas.requestRedemption(amount.toString(10), account)
+
+    console.log('requestRedemption gasLimit', gasLimit)
+
+    const tx = await stakerContract.requestRedemption(amount.toString(10), account, {
+      gasLimit: marginGasLimit(gasLimit),
+    })
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     if (window.gtag) {
@@ -58,7 +75,11 @@ export async function withdrawKCSFromValidator(
   account: string
 ): Promise<ContractCallResponse> {
   try {
-    const tx = await stakerContract.withdrawKCS(account, account)
+    const gasLimit = await stakerContract.estimateGas.withdrawKCS(account, account)
+
+    console.log('withdrawKCS gasLimit', gasLimit)
+
+    const tx = await stakerContract.withdrawKCS(account, account, { gasLimit: marginGasLimit(gasLimit) })
     const response: TransactionReceipt = await tx.wait(1)
     console.log('contract call response', response)
     return { status: 1, data: response }
