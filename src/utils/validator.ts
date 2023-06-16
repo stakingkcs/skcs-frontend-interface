@@ -2,6 +2,7 @@ import { Contract } from '@ethersproject/contracts'
 import { TransactionReceipt } from '@ethersproject/providers'
 import BN from 'bignumber.js'
 import { BigNumber } from 'ethers/utils'
+import { BigNumber as B } from '@ethersproject/bignumber'
 
 interface ContractCallError {
   code: number
@@ -15,8 +16,8 @@ interface ContractCallResponse {
   error?: ContractCallError
 }
 
-function marginGasLimit(gasLimit) {
-  return gasLimit.add(gasLimit.div(2))
+function marginGasLimit(gasLimit: B) {
+  return gasLimit.mul(3)
 }
 
 export async function depositKCSToValidator(
