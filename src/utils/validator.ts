@@ -17,7 +17,7 @@ interface ContractCallResponse {
 }
 
 function marginGasLimit(gasLimit: B) {
-  return gasLimit.mul(3)
+  return gasLimit.mul(5)
 }
 
 export async function depositKCSToValidator(
