@@ -15,8 +15,8 @@ export const WalletList = [
   },
   {
     id: 2,
-    name: 'KuCoin Wallet',
-    logo: require('../assets/images/home/kucoinwallet.svg').default,
+    name: 'Halo Wallet',
+    logo: require('../assets/images/home/halo-wallet.png').default,
   },
   {
     id: 3,
