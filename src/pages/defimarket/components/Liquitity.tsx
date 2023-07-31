@@ -47,7 +47,6 @@ const Desc = styled.div`
 const LiquidityWarp = styled.div`
   position: relative;
   width: 384px;
-  height: 386px;
   border-radius: 16px;
   position: relative;
   background: rgba(0, 0, 0, 0.5);
@@ -127,7 +126,7 @@ const Liquidity: React.FunctionComponent<{
             </AppLogoWrap>
           </AppContainer>
         </RowBetween>
-        <RowData
+        {/* <RowData
           style={{ marginTop: isMobile ? '15px' : '24px' }}
           tstyle={{ fontSize: '18px' }}
           dstyle={{ color: '#00D092', fontWeight: 700, fontSize: '24px' }}
@@ -140,7 +139,7 @@ const Liquidity: React.FunctionComponent<{
           content={`$${formatNumber(liquidity.liquidity, 0)}`}
           tstyle={{ fontSize: '18px' }}
           dstyle={{ fontWeight: 700, fontSize: '24px' }}
-        />
+        /> */}
         <StyledButton
           onClick={() => window.open(liquidity.addLiquidityUrl, '_blank')}
           style={{ margin: '24px 0 24px 0', height: '48px' }}

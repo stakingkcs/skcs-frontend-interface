@@ -10,8 +10,8 @@ import { formatNumber } from '../../../utils/bignumber'
 import { useResponsive } from '../../../utils/responsive'
 import { useTranslation } from 'react-i18next'
 import { getStakerAddress } from '../../../utils/addressHelpers'
-import { useBlockNumber } from '../../../state/application/hooks'
-import axios from 'axios'
+// import { useBlockNumber } from '../../../state/application/hooks'
+// import axios from 'axios'
 
 const { Panel } = Collapse
 
@@ -104,29 +104,29 @@ const Statistics: React.FunctionComponent = () => {
   const { isMobile } = useResponsive()
   const { t } = useTranslation()
 
-  const [holders, setHolders] = React.useState<number>(0)
+  // const [holders, setHolders] = React.useState<number>(0)
 
-  const blockNumber = useBlockNumber()
+  // const blockNumber = useBlockNumber()
 
-  React.useEffect(() => {
-    async function getSKCSHolder() {
-      if (holders === 0 && blockNumber) {
-        try {
-          const { data } = await axios({
-            url: `https://campain.skcs.io/api/v1/info/holders?height=${blockNumber}`,
-          })
-          if (data.code === 0) {
-            const response = data.data?.total_unique
-            setHolders(() => response)
-            console.log('blockNumber', response)
-          }
-        } catch (e) {
-          console.log(e)
-        }
-      }
-    }
-    getSKCSHolder()
-  }, [blockNumber, holders])
+  // React.useEffect(() => {
+  //   async function getSKCSHolder() {
+  //     if (holders === 0 && blockNumber) {
+  //       try {
+  //         const { data } = await axios({
+  //           url: `https://campain.skcs.io/api/v1/info/holders?height=${blockNumber}`,
+  //         })
+  //         if (data.code === 0) {
+  //           const response = data.data?.total_unique
+  //           setHolders(() => response)
+  //           console.log('blockNumber', response)
+  //         }
+  //       } catch (e) {
+  //         console.log(e)
+  //       }
+  //     }
+  //   }
+  //   getSKCSHolder()
+  // }, [blockNumber, holders])
 
   return (
     <StepsWrap>
@@ -141,7 +141,7 @@ const Statistics: React.FunctionComponent = () => {
             title={t('STAKE_36')}
             content={`${formatNumber(new BN(staker.totalStakeKCSAmount.toString()).div(10 ** 18), 3)} KCS`}
           />
-          <RowData style={{ marginTop: '12px' }} title={t('STAKE_37')} content={formatNumber(holders, 0)} />
+          {/* <RowData style={{ marginTop: '12px' }} title={t('STAKE_37')} content={formatNumber(holders, 0)} /> */}
           <RowData
             style={{ marginTop: '12px' }}
             title={t('STAKE_38')}

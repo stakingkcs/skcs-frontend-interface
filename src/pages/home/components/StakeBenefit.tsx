@@ -345,7 +345,7 @@ const StakeBenefit: React.FunctionComponent = () => {
                   <TableRow>
                     <NameColumn>{t('addition3')}</NameColumn>
                     <KCSColumn>
-                      <Td>{`${formatNumber(staker.kcsBonusApy * 100, 2)}%`}</Td>
+                      <Td>{`1%`}</Td>
                     </KCSColumn>
                     <SKCSColumn>
                       <Td style={{ color: '#00D092' }}>{`${formatNumber(staker.apr * 100, 2)}%`}</Td>

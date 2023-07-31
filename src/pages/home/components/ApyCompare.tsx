@@ -145,13 +145,13 @@ const ApyCompare: React.FunctionComponent = () => {
     if (!show) {
       return 0
     }
-    return staker.apr / staker.kcsBonusApy
+    return staker.apr / 0.01
   }, [show, staker])
 
   return (
     <CompareWrap show={show}>
       <KCSBonusWrap>
-        <KCSNumber>{formatNumber(staker.kcsBonusApy * 100, 2)}%</KCSNumber>
+        <KCSNumber>1%</KCSNumber>
         <KCSBonusBg>
           <Text>KCS Bonus APY</Text>
           <Tooltip placement="top" title={t('KCSBonusAPY')} style={{ marginTop: '10px' }}>

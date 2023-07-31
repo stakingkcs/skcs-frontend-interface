@@ -25,7 +25,6 @@ import { addTokenToWallet } from '../../../utils/wallet'
 import GreenExternalLink from '../../../components/ExternalLink/GreenExternalLink'
 import { WalletList } from '../../../constants/wallet'
 import { find } from 'lodash'
-import BigSKCSWinBanner from 'components/skcsWinBanner/BigSKCSWinBanner'
 
 const BannerImage = require('../../../assets/images/staking/banner.png').default
 
@@ -63,19 +62,13 @@ const Desc = styled.div`
   color: #ffffff;
 `
 const ContentWrap = styled.div<{ connected: boolean }>`
-  margin-top: ${({ connected }) => {
-    if (connected) {
-      return '0px'
-    }
-    return '24px'
-  }};
   /* background: rgba(0, 0, 0, 0.5); */
   border-radius: 16px;
   height: ${({ connected }) => {
     if (connected) {
       return '495px'
     }
-    return '328px'
+    return '495px'
   }};
   @media (max-width: 768px) {
     height: auto;
@@ -185,13 +178,13 @@ const StakingPanel: FunctionComponent = () => {
 
   return (
     <>
-      {!account && (
+      {/* {!account && (
         // <HeaderPanel>
         //   <Title>{t('STAKE_6')}</Title>
         //   <Desc>{t('STAKE_7')}</Desc>
         // </HeaderPanel>
         <BigSKCSWinBanner />
-      )}
+      )} */}
 
       <ContentWrap connected={Boolean(account)}>
         {!account ? (
@@ -201,13 +194,6 @@ const StakingPanel: FunctionComponent = () => {
                 <DataItem
                   title={t('STAKE_8')}
                   balance={`${account ? formatNumber(new BN(balance).div(10 ** 18), 2) : '0.00'} KCS`}
-                  titleExtra={
-                    <ExternalLink
-                      style={{ marginLeft: '10px', fontSize: '14px' }}
-                      url="https://app.mojitoswap.finance/swap"
-                      name={t('STAKE_9')}
-                    />
-                  }
                 />
               </RowCenterBox>
             )}
@@ -246,13 +232,6 @@ const StakingPanel: FunctionComponent = () => {
                   <DataItem
                     title={t('STAKE_8')}
                     balance={`${account ? formatNumber(new BN(balance ?? 0).div(10 ** 18), 2) : '0.00'} KCS`}
-                    titleExtra={
-                      <ExternalLink
-                        style={{ marginLeft: '10px', fontSize: '14px' }}
-                        url="https://app.mojitoswap.finance/swap"
-                        name={t('STAKE_9')}
-                      />
-                    }
                   />
                 </RowCenterBox>
                 <RowCenterBox style={{ marginTop: '16px' }}>

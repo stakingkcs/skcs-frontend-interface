@@ -86,63 +86,63 @@ const DeFiMarket: React.FunctionComponent = () => {
   const [liquidityList, setLiquidityList] = React.useState<typeof marketList.liquidity>(marketList.liquidity)
   const [lendingList, setLendingList] = React.useState<typeof marketList.lending>(marketList.lending)
 
-  React.useEffect(() => {
-    async function updateliquidityList() {
-      if (liquidityList[0].apr !== 0) {
-        return
-      }
-      try {
-        const promises = liquidityList.map((l) => axios({ method: 'get', url: l.apiUrl }))
-        const responses = await Promise.all(promises)
+  // React.useEffect(() => {
+  //   async function updateliquidityList() {
+  //     if (liquidityList[0].apr !== 0) {
+  //       return
+  //     }
+  //     try {
+  //       const promises = liquidityList.map((l) => axios({ method: 'get', url: l.apiUrl }))
+  //       const responses = await Promise.all(promises)
 
-        const newLiquidityList = liquidityList.map((l, i) => {
-          return {
-            ...l,
-            apr: responses[i].data.data.apy ?? 0,
-            liquidity: responses[i].data.data.totalLiquidity ?? 0,
-          }
-        })
+  //       const newLiquidityList = liquidityList.map((l, i) => {
+  //         return {
+  //           ...l,
+  //           apr: responses[i].data.data.apy ?? 0,
+  //           liquidity: responses[i].data.data.totalLiquidity ?? 0,
+  //         }
+  //       })
 
-        console.log('newLiquidityList', newLiquidityList)
-        setLiquidityList(() => newLiquidityList)
-      } catch {
-        console.log('get data error')
-      }
-    }
+  //       console.log('newLiquidityList', newLiquidityList)
+  //       setLiquidityList(() => newLiquidityList)
+  //     } catch {
+  //       console.log('get data error')
+  //     }
+  //   }
 
-    updateliquidityList()
-  }, [liquidityList])
+  //   updateliquidityList()
+  // }, [liquidityList])
 
-  React.useEffect(() => {
-    async function updateLendingList() {
-      if (lendingList[0]?.borrowAPY !== 0) {
-        return
-      }
-      try {
-        const responses: any = await axios.get(lendingList[0].apiUrl)
+  // React.useEffect(() => {
+  //   async function updateLendingList() {
+  //     if (lendingList[0]?.borrowAPY !== 0) {
+  //       return
+  //     }
+  //     try {
+  //       const responses: any = await axios.get(lendingList[0].apiUrl)
 
-        console.log('————————————', responses)
+  //       console.log('————————————', responses)
 
-        const { skcs } = responses.data
+  //       const { skcs } = responses.data
 
-        console.log('skcs', skcs)
+  //       console.log('skcs', skcs)
 
-        const newLendingList: typeof marketList.lending = [
-          {
-            ...lendingList[0],
-            borrowAPY: skcs.borrowsRate - skcs.borrowFildaRate,
-            supplyAPY: skcs.supplyRate + skcs.supplyFildaRate,
-            collateralFactor: skcs?.collateralFactor ?? 0,
-          },
-        ]
-        console.log('newLendingList', newLendingList)
-        setLendingList(() => newLendingList)
-      } catch {
-        console.log('get data error')
-      }
-    }
-    updateLendingList()
-  }, [lendingList])
+  //       const newLendingList: typeof marketList.lending = [
+  //         {
+  //           ...lendingList[0],
+  //           borrowAPY: skcs.borrowsRate - skcs.borrowFildaRate,
+  //           supplyAPY: skcs.supplyRate + skcs.supplyFildaRate,
+  //           collateralFactor: skcs?.collateralFactor ?? 0,
+  //         },
+  //       ]
+  //       console.log('newLendingList', newLendingList)
+  //       setLendingList(() => newLendingList)
+  //     } catch {
+  //       console.log('get data error')
+  //     }
+  //   }
+  //   updateLendingList()
+  // }, [lendingList])
 
   return (
     <>
