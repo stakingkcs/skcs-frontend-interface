@@ -56,7 +56,7 @@ const HomePage: React.FunctionComponent = () => {
   useInterval(() => {
     console.log('start to update banner data...')
     updateBannerData()
-  }, 10000)
+  }, 30000)
 
   return (
     <>

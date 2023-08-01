@@ -40,13 +40,12 @@ export const useStakeApr = async () => {
   const staker = useStakerState()
   const dispatch = useAppDispatch()
 
-  const provider = new JsonRpcProvider(process.env.REACT_APP_NETWORK_URL)
-
-  const latestBlock = await provider.getBlockNumber()
-
   if (hasApr) {
     return
   }
+  const provider = new JsonRpcProvider(process.env.REACT_APP_NETWORK_URL)
+
+  const latestBlock = await provider.getBlockNumber()
 
   if (!latestBlock || staker.skcsQuetoByKCS == 0 || !latestBlock) {
     dispatch(updateStakerPublicDataByKey({ key: 'apr', value: 0 }))
