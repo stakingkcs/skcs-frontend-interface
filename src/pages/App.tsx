@@ -13,7 +13,6 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import { useFetchStakerPublicData } from 'state/hooks'
 import { useConnectWalletModalShow } from 'state/wallet/hooks'
 import { useFetchPriceList } from 'utils/prices'
-import { useKCSApr } from '../hooks/useKCSApr'
 
 const Staking = lazy(() => import(/* webpackChunkName:'Staking' */ 'pages/staking'))
 const SKCSWIN = lazy(() => import(/* webpackChunkName:'SKCSWIN' */ 'pages/skcswin'))
@@ -26,7 +25,6 @@ export default function App() {
   useFetchStakerPublicData()
   useFetchPriceList()
   useStakeApr()
-  useKCSApr()
 
   const walletListModalShow = useConnectWalletModalShow()
 

@@ -31,7 +31,7 @@ const greenAnimation = keyframes`
 `
 
 const CircleWrap = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: absolute;
   z-index: -1;
@@ -60,7 +60,7 @@ const PurpleCircle = styled.div`
   height: 400px;
   right: 154px;
   top: 164px;
-  background: #A187F3;
+  background: #a187f3;
   filter: blur(200px);
   animation: ${purpleAnimation} 12s infinite ease;
 `
